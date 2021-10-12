@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="MClibs">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/libs/MClibs" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/libs/MClibs" recursive="false" />
+  </library>
+</component>

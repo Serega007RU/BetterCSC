@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CSCHealth.iml" filepath="$PROJECT_DIR$/CSCHealth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BetterCSC.iml" filepath="$PROJECT_DIR$/BetterCSC.iml" />
     </modules>
   </component>
 </project>

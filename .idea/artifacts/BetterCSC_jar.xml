@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="CSCHealth:jar">
+  <artifact type="jar" name="BetterCSC:jar">
     <output-path>$USER_HOME$/.cristalix/updates/Minigames/mods</output-path>
-    <root id="archive" name="CSCHealth.jar">
-      <element id="module-output" name="CSCHealth" />
+    <root id="archive" name="BetterCSC.jar">
+      <element id="module-output" name="BetterCSC" />
     </root>
   </artifact>
 </component>

@@ -172,6 +172,7 @@ public class BetterCSC implements ModMain, Listener {
                         if (lastMessage != null && task != null && !task.isShutdown()) {
                             api.chat().printChatMessage(chatReceive.getText());
                             task = null;
+                            lastMessage = null;
                         }
                     }, 500, TimeUnit.MILLISECONDS);
                 } else if (chatReceive.getText().getFormattedText().contains("Вы успешно улучшили предмет") || chatReceive.getText().getFormattedText().contains("Вы успешно купили предмет")) {

@@ -51,6 +51,7 @@ public class BetterCSC implements ModMain, Listener {
     @Override
     public void load(ClientApi api) {
         api.chat().printChatMessage(Text.of("[BetterCSC] - загружен", TextFormatting.GOLD));
+        api.minecraft().displayScreen(new us());
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage();
@@ -277,6 +278,10 @@ public class BetterCSC implements ModMain, Listener {
                 api.chat().printChatMessage(Text.of("[BetterCSC] - Кажется вы закрыли GUI, быстрая покупка выключена", TextFormatting.GOLD));
                 if (taskBuy != null) taskBuy.shutdown();
                 taskBuy = null;
+            }
+            if (screenDisplay.getScreen() instanceof asO) {
+                screenDisplay.setCancelled(true);
+                api.minecraft().displayScreen(new us());
             }
         }, 100);
     }

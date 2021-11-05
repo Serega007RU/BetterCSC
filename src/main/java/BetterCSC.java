@@ -44,7 +44,7 @@ public class BetterCSC implements ModMain, Listener {
     private long allBets = 0;
     private boolean countBets = false;
 
-    private boolean forceSingleWindow = false;
+    private boolean forceSingleWindow = true;
 
     private Screen screen = null;
 

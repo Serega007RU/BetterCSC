@@ -3,12 +3,8 @@ import dev.xdark.clientapi.event.chat.ChatReceive;
 import dev.xdark.clientapi.event.gui.ScreenDisplay;
 import dev.xdark.clientapi.event.inventory.WindowClick;
 import dev.xdark.clientapi.event.network.PluginMessage;
-import dev.xdark.clientapi.event.render.ArmorRender;
-import dev.xdark.clientapi.event.render.HungerRender;
-import dev.xdark.clientapi.event.render.HealthRender;
+import dev.xdark.clientapi.event.render.*;
 import dev.xdark.clientapi.event.chat.ChatSend;
-import dev.xdark.clientapi.event.render.PlayerListRender;
-import dev.xdark.clientapi.gui.Screen;
 import dev.xdark.clientapi.input.KeyboardHelper;
 import dev.xdark.clientapi.item.Item;
 import dev.xdark.clientapi.item.ItemStack;
@@ -21,7 +17,10 @@ import dev.xdark.feder.NetUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
-import java.util.Collections;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.sql.Time;
+import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -46,12 +45,10 @@ public class BetterCSC implements ModMain, Listener {
 
     private boolean forceSingleWindow = true;
 
-    private Screen screen = null;
-
     @Override
     public void load(ClientApi api) {
         api.chat().printChatMessage(Text.of("[BetterCSC] - загружен", TextFormatting.GOLD));
-        api.minecraft().displayScreen(new us());
+        if (api.minecraft().currentScreen() instanceof asO) api.minecraft().displayScreen(new us());
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage();
@@ -128,14 +125,172 @@ public class BetterCSC implements ModMain, Listener {
                 } else if (msg.startsWith("/sendpayload ")) {
                     chatSend.setCancelled(true);
                     api.clientConnection().sendPayload(msg.replace("/sendpayload ", ""), Unpooled.buffer());
-                } else if (msg.startsWith("/screen")) {
+                } else if (msg.startsWith("/mod ")) {
                     chatSend.setCancelled(true);
-                    if (screen != null) {
-                        api.chat().printChatMessage(Text.of("[BetterCSC] - Отображанием сохранённый Screen", TextFormatting.GOLD));
-                        api.minecraft().displayScreen(screen);
-                    } else {
-                        api.chat().printChatMessage(Text.of("[BetterCSC] - Нет сохранённого Screen'а", TextFormatting.GOLD));
+                    asE ase = null;
+                    sE se;
+                    ClientApi clientApi = null;
+                    List<String> mods = new ArrayList<>();
+                    //Получаем доступ к приватному классу ClientApi
+                    try {
+                        Field field = null;
+                        for (Field f : api.getClass().getDeclaredFields()) {
+                            if (f.getName().equals("a") && f.getType().getName().equals("dev.xdark.clientapi.ClientApi")) {
+                                field = f;
+                            }
+                        }
+                        field.setAccessible(true);
+                        clientApi = (ClientApi) field.get(api);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
                     }
+                    //Для начала достаём класс Minecraft (Minecraft.getMinecraft())
+                    //Позже получаем доступ к классу asE в котором хранится список модов
+                    try {
+                        Field field = sE.class.getDeclaredField("a");
+                        field.setAccessible(true);
+                        se = (sE) field.get(null);
+                        Method method = null;
+                        for (Method m : se.getClass().getDeclaredMethods()) {
+                            if (m.getName().equals("a") && m.getReturnType().getName().equals("asE")) {
+                                method = m;
+                            }
+                        }
+                        method.setAccessible(true);
+                        ase = (asE) method.invoke(se);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+                    }
+                    try {
+                        Field field = null;
+                        for (Field f : asE.class.getDeclaredFields()) {
+                            if (f.getName().equals("a") && f.getType().getName().equals("java.util.Map")) {
+                                field = f;
+                            }
+                        }
+                        field.setAccessible(true);
+                        //noinspection unchecked
+                        Map<String, ModMain> modList = (Map<String, ModMain>) field.get(ase);
+                        for (Map.Entry<String, ModMain> mod : modList.entrySet()) {
+                            if (msg.startsWith("/mod list")) {
+                                mods.add(mod.getKey());
+                            } else if (msg.startsWith("/mod unload ") && mod.getKey().contains(msg.replace("/mod unload ", ""))) {
+                                api.chat().printChatMessage(Text.of("[BetterCSC] - Выгружаем " + mod.getKey(), TextFormatting.GOLD));
+                                mod.getValue().unload();
+                            } else if (msg.startsWith("/mod load ") && mod.getKey().contains(msg.replace("/mod load ", ""))) {
+                                api.chat().printChatMessage(Text.of("[BetterCSC] - Загружаем " + mod.getKey(), TextFormatting.GOLD));
+                                mod.getValue().load(clientApi);
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+                    }
+                    try {
+                        Field field = null;
+                        for (Field f : asE.class.getDeclaredFields()) {
+                            if (f.getName().equals("b") && f.getType().getName().equals("java.util.Map")) {
+                                field = f;
+                            }
+                        }
+                        field.setAccessible(true);
+                        //noinspection unchecked
+                        Map<String, ModMain> modList = (Map<String, ModMain>) field.get(ase);
+                        for (Map.Entry<String, ModMain> mod : modList.entrySet()) {
+                            if (msg.startsWith("/mod list")) {
+                                mods.add(mod.getKey());
+                            } else if (msg.startsWith("/mod unload ") && mod.getKey().contains(msg.replace("/mod unload ", ""))) {
+                                api.chat().printChatMessage(Text.of("[BetterCSC] - Выгружаем " + mod.getKey(), TextFormatting.GOLD));
+                                mod.getValue().unload();
+                            } else if (msg.startsWith("/mod load ") && mod.getKey().contains(msg.replace("/mod load ", ""))) {
+                                api.chat().printChatMessage(Text.of("[BetterCSC] - Загружаем " + mod.getKey(), TextFormatting.GOLD));
+                                mod.getValue().load(clientApi);
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+                    }
+                    if (msg.startsWith("/mod list")) {
+                        for (String mod : mods) {
+                            api.chat().printChatMessage(Text.of(mod));
+                        }
+                    }
+//                    try {
+//                        Field field = null;
+//                        for (Field f : asE.class.getFields()) {
+//                            if (f.getName().equals("a") && f.getType().getName().equals("java.util.Collection")) {
+//                                field = f;
+//                            }
+//                        }
+//                        //noinspection unchecked
+//                        Collection<ModMain> modList = (Collection<ModMain>) field.get(ase);
+//                        for (ModMain mod : modList) {
+//                            System.out.println("Mod: " + mod);
+//                        }
+//                        System.out.println("Конец Collection a");
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+                }/* else if (msg.startsWith("/quit")) {
+                    chatSend.setCancelled(true);
+                    int delayExit;
+                    try {
+                        delayExit = Integer.parseInt(msg.replace("/quit ", ""));
+                    } catch (Exception e) {
+                        api.chat().printChatMessage(Text.of("[BetterCSC] Укажите число", TextFormatting.RED));
+                        return;
+                    }
+                    api.chat().sendChatMessage("/reconnect");
+                    api.clientConnection().sendPayload("csc:reconnect", Unpooled.buffer());
+                    ScheduledExecutorService task = api.threadManagement().newSingleThreadedScheduledExecutor();
+                    task.schedule(() -> {
+                        try {
+                            Field field = sE.class.getDeclaredField("a");
+                            field.setAccessible(true);
+                            sE se = (sE) field.get(null);
+                            Field field2 = null;
+                            for (Field f : se.getClass().getFields()) {
+                                if (f.getName().equals("a") && f.getType().getName().equals("yw")) {
+                                    field2 = f;
+                                }
+                            }
+                            yw yw = (yw) field2.get(se);
+                            Method method = null;
+                            for (Method m : yw.getClass().getMethods()) {
+                                if (m.getName().equals("d") && m.getReturnType().getName().equals("void") && m.getParameterTypes().length == 0) {
+                                    method = m;
+                                }
+                            }
+                            method.invoke(yw);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+                        }
+                        api.chat().sendChatMessage("§4test");
+                    }, delayExit, TimeUnit.MILLISECONDS);
+                    ScheduledExecutorService task2 = api.threadManagement().newSingleThreadedScheduledExecutor();
+                    task2.scheduleAtFixedRate(()->{
+                        api.chat().sendChatMessage("§4test");
+                    }, 0, delayExit, TimeUnit.MILLISECONDS);
+                    ScheduledExecutorService task3 = api.threadManagement().newSingleThreadedScheduledExecutor();
+                    task3.schedule(()->{
+                        task2.shutdown();
+                    }, 5, TimeUnit.SECONDS);
+                }*/ else if (msg.startsWith("/join")) {
+                    chatSend.setCancelled(true);
+                    int slot;
+                    try {
+                        slot = Integer.parseInt(msg.replace("/join ", ""));
+                    } catch (Exception e) {
+                        api.chat().printChatMessage(Text.of("[BetterCSC] Укажите число", TextFormatting.RED));
+                        return;
+                    }
+                    Date date = new Date();
+                    date.setTime(date.getTime() + 3000);
+                    api.chat().sendChatMessage("/pc Simultaneous Join " + slot  + " " + date.getTime());
                 }
             }
         }, 100);
@@ -194,11 +349,39 @@ public class BetterCSC implements ModMain, Listener {
                         countBets = false;
                         allBets = 0;
                     }
+                } else if (chatReceive.getText().getUnformattedText().contains("[PC]") && chatReceive.getText().getUnformattedText().contains("Simultaneous Join ")) {
+                    String text = chatReceive.getText().getUnformattedText();
+                    List<String> list = Arrays.asList(text.substring(text.indexOf("Simultaneous Join ")).replaceAll("[^-?0-9]+", " ").trim().split(" "));
+                    if (list.size() == 1) {
+                        ScheduledExecutorService task1 = api.threadManagement().newSingleThreadedScheduledExecutor();
+                        ScheduledExecutorService task2 = api.threadManagement().newSingleThreadedScheduledExecutor();
+                        ScheduledExecutorService task3 = api.threadManagement().newSingleThreadedScheduledExecutor();
+                        task1.scheduleAtFixedRate(()->{
+                            api.clientConnection().sendPacket(new Xi(api.minecraft().getPlayer().getOpenContainer().getWindowId(), Integer.parseInt(list.get(0)), 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
+                        }, 0, 150, TimeUnit.MILLISECONDS);
+                        task2.scheduleAtFixedRate(()->{
+                            api.clientConnection().sendPacket(new Xi(api.minecraft().getPlayer().getOpenContainer().getWindowId() + 1, Integer.parseInt(list.get(0)), 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
+                        }, 0, 150, TimeUnit.MILLISECONDS);
+                        task3.scheduleAtFixedRate(()->{
+                            api.clientConnection().sendPacket(new Xi(api.minecraft().getPlayer().getOpenContainer().getWindowId() + 2, Integer.parseInt(list.get(0)), 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
+                        }, 0, 150, TimeUnit.MILLISECONDS);
+                        ScheduledExecutorService task6 = api.threadManagement().newSingleThreadedScheduledExecutor();
+                        task6.schedule(()->{
+                            task1.shutdown();
+                            task2.shutdown();
+                            task3.shutdown();
+                        }, 3, TimeUnit.SECONDS);
+                        api.chat().printChatMessage(Text.of("[BetterCSC] - Нажали", TextFormatting.GOLD));
+                    } else {
+                        api.chat().printChatMessage(Text.of("[BetterCSC] - Задача запланирована", TextFormatting.GOLD));
+                        Timer timer = new Timer();
+                        timer.schedule(new Join(api, Integer.parseInt(list.get(0))), new Date(Long.parseLong(list.get(1))));
+                    }
                 }
             }
         }, 100);
         HealthRender.BUS.register(this, healthRender -> {
-            if (this.hp) {
+            if (this.hp && !healthRender.isCancelled()) {
                 healthRender.setCancelled(true);
                 EntityPlayerSP player = api.minecraft().getPlayer();
                 float health = player.getHealth();
@@ -214,27 +397,31 @@ public class BetterCSC implements ModMain, Listener {
 //                        5f, 15.0f,
 //                        11184810, true); // Nickname
 
-                api.fontRenderer().drawString( String.format("%d%%", percent),
-                        w / 2.0F - 10.0f, h - 50.0f,
+                float alignment = 0.0F;
+                if (percent < 10) alignment = 8.0F;
+                else if (percent < 100) alignment = 4.0F;
+                api.fontRenderer().drawString(String.format("%d%%", percent),
+                        w / 2.0F - 12.0f + alignment, h - 50.0f,
                         color, true); // Percents
 
-                api.fontRenderer().drawString( String.format("%s \u2665", (int)health),
+                api.fontRenderer().drawString(String.format("%s \u2665", (int)health),
                         w / 2.0F - 88.0F, h - 50.0f,
                         color, true); // Health
 
-                api.fontRenderer().drawString( String.format("%6s \u2665", (int)maxHealth),
-                        w / 2.0F + 47.0F, h - 50.0f,
+                String mh = String.format("%6s \u2665", (int)maxHealth);
+                api.fontRenderer().drawString(mh,
+                        w / 2.0F + 87.0F - api.fontRenderer().getStringWidth(mh), h - 50.0f,
                         16777215, true); // Max Health
 
 //              api.fontRenderer().drawString( hp, api.resolution().getScaledWidth() / 2.0F - ((float) hp.length() * 3), api.resolution().getScaledHeight() - 50.0f, 0xFFFFFF, true);
             }
-        }, 1);
+        }, -1);
         HungerRender.BUS.register(this, hungerRender -> {
             if (this.hp) hungerRender.setCancelled(true);
-        }, 1);
+        }, -1);
         ArmorRender.BUS.register(this, armorRender -> {
             if (this.hp) armorRender.setCancelled(true);
-        }, 1);
+        }, -1);
         PlayerListRender.BUS.register(this, playerListRender -> {
             if (this.hp && playerListRender.isCancelled()) playerListRender.setCancelled(false);
         }, -1);
@@ -266,8 +453,8 @@ public class BetterCSC implements ModMain, Listener {
 //                  api.clientConnection().sendPayload("csc:sendlobby", Unpooled.buffer());
                 }
                 if (KeyboardHelper.isShiftKeyDown() && windowClick.getMouseButton() == 2) {
-                    api.chat().printChatMessage(Text.of("[BetterCSC] - Screen сохранён", TextFormatting.GOLD));
-                    screen = api.minecraft().currentScreen();
+                    api.chat().printChatMessage(Text.of("[BetterCSC] - Отправляем", TextFormatting.GOLD));
+                    api.chat().sendChatMessage("/pc Simultaneous Join " + windowClick.getSlot());
                 }
             }
         }, 100);
@@ -309,5 +496,43 @@ public class BetterCSC implements ModMain, Listener {
         int blue = 0/* & 0x000000FF*/; //Mask out anything not blue.
 
         return 0xFF000000 | red | green | blue; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
+    }
+
+    public static class Join extends TimerTask {
+
+        ClientApi api;
+        int slot;
+        public Join(ClientApi api, int slot) {
+            this.api = api;
+            this.slot = slot;
+        }
+
+        @Override
+        public void run() {
+            try {
+                api.minecraft().getPlayer().getOpenContainer().getWindowId();
+            } catch (Exception e) {
+                api.chat().printChatMessage(Text.of("[BetterCSC] - Кажется у вас не был открыт инвентарь", TextFormatting.DARK_RED));
+            }
+            ScheduledExecutorService task1 = api.threadManagement().newSingleThreadedScheduledExecutor();
+            ScheduledExecutorService task2 = api.threadManagement().newSingleThreadedScheduledExecutor();
+            ScheduledExecutorService task3 = api.threadManagement().newSingleThreadedScheduledExecutor();
+            task1.scheduleAtFixedRate(()->{
+                api.clientConnection().sendPacket(new Xi(api.minecraft().getPlayer().getOpenContainer().getWindowId(), slot, 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
+            }, 0, 150, TimeUnit.MILLISECONDS);
+            task2.scheduleAtFixedRate(()->{
+                api.clientConnection().sendPacket(new Xi(api.minecraft().getPlayer().getOpenContainer().getWindowId() + 1, slot, 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
+            }, 0, 150, TimeUnit.MILLISECONDS);
+            task3.scheduleAtFixedRate(()->{
+                api.clientConnection().sendPacket(new Xi(api.minecraft().getPlayer().getOpenContainer().getWindowId() + 2, slot, 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
+            }, 0, 150, TimeUnit.MILLISECONDS);
+            ScheduledExecutorService task6 = api.threadManagement().newSingleThreadedScheduledExecutor();
+            task6.schedule(()->{
+                task1.shutdown();
+                task2.shutdown();
+                task3.shutdown();
+            }, 3, TimeUnit.SECONDS);
+            api.chat().printChatMessage(Text.of("[BetterCSC] - Нажали", TextFormatting.GOLD));
+        }
     }
 }

@@ -19,7 +19,6 @@ import io.netty.buffer.Unpooled;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -279,19 +278,7 @@ public class BetterCSC implements ModMain, Listener {
                     task3.schedule(()->{
                         task2.shutdown();
                     }, 5, TimeUnit.SECONDS);
-                }*/ else if (msg.startsWith("/join")) {
-                    chatSend.setCancelled(true);
-                    int slot;
-                    try {
-                        slot = Integer.parseInt(msg.replace("/join ", ""));
-                    } catch (Exception e) {
-                        api.chat().printChatMessage(Text.of("[BetterCSC] Укажите число", TextFormatting.RED));
-                        return;
-                    }
-                    Date date = new Date();
-                    date.setTime(date.getTime() + 3000);
-                    api.chat().sendChatMessage("/pc Simultaneous Join " + slot  + " " + date.getTime());
-                }
+                }*/
             }
         }, 100);
         ChatReceive.BUS.register(this, chatReceive -> {
@@ -348,34 +335,6 @@ public class BetterCSC implements ModMain, Listener {
                         api.chat().printChatMessage(Text.of("Общая сумма ставок: " + allBets, TextFormatting.GOLD));
                         countBets = false;
                         allBets = 0;
-                    }
-                } else if (chatReceive.getText().getUnformattedText().contains("[PC]") && chatReceive.getText().getUnformattedText().contains("Simultaneous Join ")) {
-                    String text = chatReceive.getText().getUnformattedText();
-                    List<String> list = Arrays.asList(text.substring(text.indexOf("Simultaneous Join ")).replaceAll("[^-?0-9]+", " ").trim().split(" "));
-                    if (list.size() == 1) {
-                        ScheduledExecutorService task1 = api.threadManagement().newSingleThreadedScheduledExecutor();
-                        ScheduledExecutorService task2 = api.threadManagement().newSingleThreadedScheduledExecutor();
-                        ScheduledExecutorService task3 = api.threadManagement().newSingleThreadedScheduledExecutor();
-                        task1.scheduleAtFixedRate(()->{
-                            api.clientConnection().sendPacket(new Xi(api.minecraft().getPlayer().getOpenContainer().getWindowId(), Integer.parseInt(list.get(0)), 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
-                        }, 0, 150, TimeUnit.MILLISECONDS);
-                        task2.scheduleAtFixedRate(()->{
-                            api.clientConnection().sendPacket(new Xi(api.minecraft().getPlayer().getOpenContainer().getWindowId() + 1, Integer.parseInt(list.get(0)), 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
-                        }, 0, 150, TimeUnit.MILLISECONDS);
-                        task3.scheduleAtFixedRate(()->{
-                            api.clientConnection().sendPacket(new Xi(api.minecraft().getPlayer().getOpenContainer().getWindowId() + 2, Integer.parseInt(list.get(0)), 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
-                        }, 0, 150, TimeUnit.MILLISECONDS);
-                        ScheduledExecutorService task6 = api.threadManagement().newSingleThreadedScheduledExecutor();
-                        task6.schedule(()->{
-                            task1.shutdown();
-                            task2.shutdown();
-                            task3.shutdown();
-                        }, 3, TimeUnit.SECONDS);
-                        api.chat().printChatMessage(Text.of("[BetterCSC] - Нажали", TextFormatting.GOLD));
-                    } else {
-                        api.chat().printChatMessage(Text.of("[BetterCSC] - Задача запланирована", TextFormatting.GOLD));
-                        Timer timer = new Timer();
-                        timer.schedule(new Join(api, Integer.parseInt(list.get(0))), new Date(Long.parseLong(list.get(1))));
                     }
                 }
             }
@@ -496,43 +455,5 @@ public class BetterCSC implements ModMain, Listener {
         int blue = 0/* & 0x000000FF*/; //Mask out anything not blue.
 
         return 0xFF000000 | red | green | blue; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
-    }
-
-    public static class Join extends TimerTask {
-
-        ClientApi api;
-        int slot;
-        public Join(ClientApi api, int slot) {
-            this.api = api;
-            this.slot = slot;
-        }
-
-        @Override
-        public void run() {
-            try {
-                api.minecraft().getPlayer().getOpenContainer().getWindowId();
-            } catch (Exception e) {
-                api.chat().printChatMessage(Text.of("[BetterCSC] - Кажется у вас не был открыт инвентарь", TextFormatting.DARK_RED));
-            }
-            ScheduledExecutorService task1 = api.threadManagement().newSingleThreadedScheduledExecutor();
-            ScheduledExecutorService task2 = api.threadManagement().newSingleThreadedScheduledExecutor();
-            ScheduledExecutorService task3 = api.threadManagement().newSingleThreadedScheduledExecutor();
-            task1.scheduleAtFixedRate(()->{
-                api.clientConnection().sendPacket(new Xi(api.minecraft().getPlayer().getOpenContainer().getWindowId(), slot, 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
-            }, 0, 150, TimeUnit.MILLISECONDS);
-            task2.scheduleAtFixedRate(()->{
-                api.clientConnection().sendPacket(new Xi(api.minecraft().getPlayer().getOpenContainer().getWindowId() + 1, slot, 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
-            }, 0, 150, TimeUnit.MILLISECONDS);
-            task3.scheduleAtFixedRate(()->{
-                api.clientConnection().sendPacket(new Xi(api.minecraft().getPlayer().getOpenContainer().getWindowId() + 2, slot, 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
-            }, 0, 150, TimeUnit.MILLISECONDS);
-            ScheduledExecutorService task6 = api.threadManagement().newSingleThreadedScheduledExecutor();
-            task6.schedule(()->{
-                task1.shutdown();
-                task2.shutdown();
-                task3.shutdown();
-            }, 3, TimeUnit.SECONDS);
-            api.chat().printChatMessage(Text.of("[BetterCSC] - Нажали", TextFormatting.GOLD));
-        }
     }
 }

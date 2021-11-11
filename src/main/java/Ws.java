@@ -3,12 +3,10 @@
 // (powered by FernFlower decompiler)
 //
 
-import dev.xdark.clientapi.network.NetHandler;
 import dev.xdark.clientapi.network.Packet;
 import dev.xdark.feder.Recyclable;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import java.util.concurrent.Executor;
 
 public interface Ws extends Packet, Recyclable {
     void read(ByteBuf var1);

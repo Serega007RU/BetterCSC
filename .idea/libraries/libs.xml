@@ -8,6 +8,7 @@
       <root url="file://$PROJECT_DIR$/libs" />
       <root url="jar://$PROJECT_DIR$/libs/core-mod-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/core-mod-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/minecraft-sources.jar!/" />
     </SOURCES>
     <jarDirectory url="file://$PROJECT_DIR$/libs" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/libs" recursive="false" type="SOURCES" />

@@ -131,19 +131,20 @@ public class BetterCSC implements ModMain, Listener {
                     ClientApi clientApi = null;
                     List<String> mods = new ArrayList<>();
                     //Получаем доступ к приватному классу ClientApi
-                    try {
-                        Field field = null;
-                        for (Field f : api.getClass().getDeclaredFields()) {
-                            if (f.getName().equals("a") && f.getType().getName().equals("dev.xdark.clientapi.ClientApi")) {
-                                field = f;
-                            }
-                        }
-                        field.setAccessible(true);
-                        clientApi = (ClientApi) field.get(api);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
-                    }
+//                    try {
+//                        Field field = null;
+//                        for (Field f : api.getClass().getDeclaredFields()) {
+//                            if (f.getName().equals("a") && f.getType().getName().equals("dev.xdark.clientapi.ClientApi")) {
+//                                field = f;
+//                                break;
+//                            }
+//                        }
+//                        field.setAccessible(true);
+//                        clientApi = (ClientApi) field.get(api);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                        api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+//                    }
                     //Для начала достаём класс Minecraft (Minecraft.getMinecraft())
                     //Позже получаем доступ к классу asE в котором хранится список модов
                     try {
@@ -154,6 +155,7 @@ public class BetterCSC implements ModMain, Listener {
                         for (Method m : se.getClass().getDeclaredMethods()) {
                             if (m.getName().equals("a") && m.getReturnType().getName().equals("asE")) {
                                 method = m;
+                                break;
                             }
                         }
                         method.setAccessible(true);
@@ -162,66 +164,104 @@ public class BetterCSC implements ModMain, Listener {
                         e.printStackTrace();
                         api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
                     }
+                    //Получаем доступ к приватному классу ClientApi наследующий класс c
+                    try {
+                        Field field = null;
+                        for (Field f : asE.class.getFields()) {
+                            if (f.getName().equals("a") && f.getType().getName().equals("dev.xdark.clientapi.ClientApi")) {
+                                field = f;
+                                break;
+                            }
+                        }
+                        clientApi = (ClientApi) field.get(ase);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+                    }
+
+                    Map<String, ModMain> modList = null;
+                    //Получаем доступ к списку модов и делаем чо хотим с модом
                     try {
                         Field field = null;
                         for (Field f : asE.class.getDeclaredFields()) {
                             if (f.getName().equals("a") && f.getType().getName().equals("java.util.Map")) {
                                 field = f;
+                                break;
                             }
                         }
                         field.setAccessible(true);
                         //noinspection unchecked
-                        Map<String, ModMain> modList = (Map<String, ModMain>) field.get(ase);
-                        for (Map.Entry<String, ModMain> mod : modList.entrySet()) {
-                            if (msg.startsWith("/mod list")) {
-                                mods.add(mod.getKey());
-                            } else if (msg.startsWith("/mod unload ") && mod.getKey().contains(msg.replace("/mod unload ", ""))) {
-                                api.chat().printChatMessage(Text.of("[BetterCSC] - Выгружаем " + mod.getKey(), TextFormatting.GOLD));
-                                mod.getValue().unload();
-                            } else if (msg.startsWith("/mod load ") && mod.getKey().contains(msg.replace("/mod load ", ""))) {
-                                api.chat().printChatMessage(Text.of("[BetterCSC] - Загружаем " + mod.getKey(), TextFormatting.GOLD));
-                                mod.getValue().load(clientApi);
-                            }
-                        }
+                        modList = (Map<String, ModMain>) field.get(ase);
                     } catch (Exception e) {
                         e.printStackTrace();
                         api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
                     }
+                    //Получаем доступ ко второму списку модов и делаем чо хотим с модом
                     try {
                         Field field = null;
                         for (Field f : asE.class.getDeclaredFields()) {
                             if (f.getName().equals("b") && f.getType().getName().equals("java.util.Map")) {
                                 field = f;
+                                break;
                             }
                         }
                         field.setAccessible(true);
                         //noinspection unchecked
-                        Map<String, ModMain> modList = (Map<String, ModMain>) field.get(ase);
-                        for (Map.Entry<String, ModMain> mod : modList.entrySet()) {
-                            if (msg.startsWith("/mod list")) {
-                                mods.add(mod.getKey());
-                            } else if (msg.startsWith("/mod unload ") && mod.getKey().contains(msg.replace("/mod unload ", ""))) {
-                                api.chat().printChatMessage(Text.of("[BetterCSC] - Выгружаем " + mod.getKey(), TextFormatting.GOLD));
-                                mod.getValue().unload();
-                            } else if (msg.startsWith("/mod load ") && mod.getKey().contains(msg.replace("/mod load ", ""))) {
-                                api.chat().printChatMessage(Text.of("[BetterCSC] - Загружаем " + mod.getKey(), TextFormatting.GOLD));
-                                mod.getValue().load(clientApi);
-                            }
-                        }
+                        modList.putAll((Map<String, ModMain>) field.get(ase));
                     } catch (Exception e) {
                         e.printStackTrace();
                         api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+                    }
+                    for (Map.Entry<String, ModMain> mod : modList.entrySet()) {
+                        if (msg.startsWith("/mod list")) {
+                            mods.add(mod.getKey());
+                        } else {
+                            String search = msg.toLowerCase();
+                            search = search.replace("/mod unload ", "");
+                            search = search.replace("/mod load ", "");
+                            if (!mod.getKey().toLowerCase().contains(search)) {
+                                continue;
+                            }
+                            if (msg.startsWith("/mod unload ")) {
+                                api.chat().printChatMessage(Text.of("[BetterCSC] - Выгружаем " + mod.getKey(), TextFormatting.GOLD));
+                            } else {
+                                api.chat().printChatMessage(Text.of("[BetterCSC] - Загружаем " + mod.getKey(), TextFormatting.GOLD));
+                            }
+                            hw hw = (hw) mod.getValue();
+                            ModMain modMain = null;
+                            try {
+                                Field field = null;
+                                for (Field f : hw.class.getDeclaredFields()) {
+                                    if (f.getName().equals("a") && f.getType().getName().equals("dev.xdark.clientapi.entry.ModMain")) {
+                                        field = f;
+                                        break;
+                                    }
+                                }
+                                field.setAccessible(true);
+                                modMain = (ModMain) field.get(hw);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+                            }
+                            if (msg.startsWith("/mod unload ")) {
+                                modMain.unload();
+                            } else {
+                                modMain.load(clientApi);
+                            }
+                        }
                     }
                     if (msg.startsWith("/mod list")) {
                         for (String mod : mods) {
                             api.chat().printChatMessage(Text.of(mod));
                         }
                     }
+                    //Какой-то третий список модов (хз зачем он нужен)
 //                    try {
 //                        Field field = null;
 //                        for (Field f : asE.class.getFields()) {
 //                            if (f.getName().equals("a") && f.getType().getName().equals("java.util.Collection")) {
 //                                field = f;
+//                                break;
 //                            }
 //                        }
 //                        //noinspection unchecked
@@ -233,52 +273,7 @@ public class BetterCSC implements ModMain, Listener {
 //                    } catch (Exception e) {
 //                        e.printStackTrace();
 //                    }
-                }/* else if (msg.startsWith("/quit")) {
-                    chatSend.setCancelled(true);
-                    int delayExit;
-                    try {
-                        delayExit = Integer.parseInt(msg.replace("/quit ", ""));
-                    } catch (Exception e) {
-                        api.chat().printChatMessage(Text.of("[BetterCSC] Укажите число", TextFormatting.RED));
-                        return;
-                    }
-                    api.chat().sendChatMessage("/reconnect");
-                    api.clientConnection().sendPayload("csc:reconnect", Unpooled.buffer());
-                    ScheduledExecutorService task = api.threadManagement().newSingleThreadedScheduledExecutor();
-                    task.schedule(() -> {
-                        try {
-                            Field field = sE.class.getDeclaredField("a");
-                            field.setAccessible(true);
-                            sE se = (sE) field.get(null);
-                            Field field2 = null;
-                            for (Field f : se.getClass().getFields()) {
-                                if (f.getName().equals("a") && f.getType().getName().equals("yw")) {
-                                    field2 = f;
-                                }
-                            }
-                            yw yw = (yw) field2.get(se);
-                            Method method = null;
-                            for (Method m : yw.getClass().getMethods()) {
-                                if (m.getName().equals("d") && m.getReturnType().getName().equals("void") && m.getParameterTypes().length == 0) {
-                                    method = m;
-                                }
-                            }
-                            method.invoke(yw);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
-                        }
-                        api.chat().sendChatMessage("§4test");
-                    }, delayExit, TimeUnit.MILLISECONDS);
-                    ScheduledExecutorService task2 = api.threadManagement().newSingleThreadedScheduledExecutor();
-                    task2.scheduleAtFixedRate(()->{
-                        api.chat().sendChatMessage("§4test");
-                    }, 0, delayExit, TimeUnit.MILLISECONDS);
-                    ScheduledExecutorService task3 = api.threadManagement().newSingleThreadedScheduledExecutor();
-                    task3.schedule(()->{
-                        task2.shutdown();
-                    }, 5, TimeUnit.SECONDS);
-                }*/
+                }
             }
         }, 100);
         ChatReceive.BUS.register(this, chatReceive -> {

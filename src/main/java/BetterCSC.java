@@ -29,16 +29,16 @@ public class BetterCSC implements ModMain, Listener {
     private boolean hp = true;
 
     private Text lastMessage = null;
-    private ScheduledExecutorService task = null;
+//    private ScheduledExecutorService task = null;
 
     private boolean enableUP = false;
     private ScheduledExecutorService taskUP = null;
-    private int periodUP = 100;
+    private int periodUP = 100000;
+    private int countUp = 0;
 
     private boolean enableBuy = false;
     private ScheduledExecutorService taskBuy = null;
-    private int periodBuy = 40;
-    private int countBuy = 0;
+    private int periodBuy = 16666;
 
     private long allBets = 0;
     private boolean countBets = false;
@@ -81,7 +81,7 @@ public class BetterCSC implements ModMain, Listener {
                             return;
                         }
                         api.chat().printChatMessage(Text.of("[BetterCSC] - Быстрый апгрейд включён", TextFormatting.GOLD));
-                        countBuy = 0;
+                        countUp = 0;
                         enableUP = true;
                         int slot = player.getInventory().getActiveSlot();
                         int id = player.getInventory().getCurrentItem().getItem().getId();
@@ -89,13 +89,13 @@ public class BetterCSC implements ModMain, Listener {
                         taskUP = api.threadManagement().newSingleThreadedScheduledExecutor();
                         taskUP.scheduleAtFixedRate(() -> {
                             if (!enableUP) return;
-                            countBuy++;
-                            if (countBuy > count) {
+                            countUp++;
+                            if (countUp > count) {
                                 enableUP = false;
                                 api.chat().printChatMessage(Text.of("[BetterCSC] - Быстрый апгрейд выключен, достигли заданного числа", TextFormatting.GOLD));
                                 if (taskUP != null) taskUP.shutdown();
                                 taskUP = null;
-                                countBuy = 0;
+                                countUp = 0;
                                 return;
                             }
                             ByteBuf buffer;
@@ -103,18 +103,18 @@ public class BetterCSC implements ModMain, Listener {
                             NetUtil.writeVarInt(slot, $this$writeVarInt$iv);
                             NetUtil.writeVarInt(id, buffer);
                             api.clientConnection().sendPayload("csc:upgrade", buffer);
-                        }, 0, periodUP, TimeUnit.MILLISECONDS);
+                        }, 0, periodUP, TimeUnit.MICROSECONDS);
                     } else {
                         enableUP = false;
                         api.chat().printChatMessage(Text.of("[BetterCSC] - Быстрый апгрейд выключен", TextFormatting.GOLD));
                         if (taskUP != null) taskUP.shutdown();
                         taskUP = null;
-                        countBuy = 0;
+                        countUp = 0;
                     }
                 } else if (msg.startsWith("/period up")) {
 					chatSend.setCancelled(true);
                     try {
-                        periodUP = Integer.parseInt(msg.replace("/period up ", ""));
+                        periodUP = 1000000 / Integer.parseInt(msg.replace("/period up ", ""));
                     } catch (Exception e) {
                         api.chat().printChatMessage(Text.of("[BetterCSC] Укажите число", TextFormatting.RED));
                         return;
@@ -123,7 +123,7 @@ public class BetterCSC implements ModMain, Listener {
                 } else if (msg.startsWith("/period buy")) {
                     chatSend.setCancelled(true);
                     try {
-                        periodBuy = Integer.parseInt(msg.replace("/period buy ", ""));
+                        periodBuy = 1000000 / Integer.parseInt(msg.replace("/period buy ", ""));
                     } catch (Exception e) {
                         api.chat().printChatMessage(Text.of("[BetterCSC] Укажите число", TextFormatting.RED));
                         return;
@@ -308,24 +308,25 @@ public class BetterCSC implements ModMain, Listener {
                         return;
                     }
                 }
+
                 if (chatReceive.getText().getFormattedText().contains("Баланс: ")) {
                     chatReceive.setCancelled(true);
                     lastMessage = chatReceive.getText();
-                    task = api.threadManagement().newSingleThreadedScheduledExecutor();
-                    task.schedule(() -> {
-                        if (lastMessage != null && task != null && !task.isShutdown()) {
-                            api.chat().printChatMessage(chatReceive.getText());
-                            task = null;
-                            lastMessage = null;
-                        }
-                    }, 500, TimeUnit.MILLISECONDS);
+//                    task = api.threadManagement().newSingleThreadedScheduledExecutor();
+//                    task.schedule(() -> {
+//                        if (lastMessage != null && task != null && !task.isShutdown()) {
+//                            api.chat().printChatMessage(chatReceive.getText());
+//                            task = null;
+//                            lastMessage = null;
+//                        }
+//                    }, 500, TimeUnit.MILLISECONDS);
                 } else if (chatReceive.getText().getFormattedText().contains("Вы успешно улучшили предмет") || chatReceive.getText().getFormattedText().contains("Вы успешно купили предмет")) {
                     chatReceive.setCancelled(true);
                     lastMessage = null;
-                    if (task != null && !task.isShutdown()) {
-                        task.shutdown();
-                        task = null;
-                    }
+//                    if (task != null && !task.isShutdown()) {
+//                        task.shutdown();
+//                        task = null;
+//                    }
                 } else if (chatReceive.getText().getFormattedText().contains("Ставки выиграли:")) {
                     countBets = true;
                 } else if (countBets) {
@@ -338,6 +339,11 @@ public class BetterCSC implements ModMain, Listener {
                         countBets = false;
                         allBets = 0;
                     }
+                }
+
+                if (lastMessage != null) {
+                    api.chat().printChatMessage(lastMessage);
+                    lastMessage = null;
                 }
             }
         }, 100);
@@ -400,7 +406,7 @@ public class BetterCSC implements ModMain, Listener {
                             api.clientConnection().sendPacket(new Xi(windowId.get(), windowClick.getSlot(), 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
                             if (!forceSingleWindow) windowId.getAndIncrement();
                             api.clientConnection().sendPacket(new XF(abU.MAIN_HAND));
-                        }, 0, periodBuy, TimeUnit.MILLISECONDS);
+                        }, 0, periodBuy, TimeUnit.MICROSECONDS);
                     } else {
                         enableBuy = false;
                         api.chat().printChatMessage(Text.of("[BetterCSC] - Быстрая покупка выключена", TextFormatting.GOLD));
@@ -412,10 +418,6 @@ public class BetterCSC implements ModMain, Listener {
                     api.chat().printChatMessage(Text.of("[BetterCSC] - Выходим из игры", TextFormatting.GOLD));
                     api.chat().sendChatMessage("/hub");
 //                  api.clientConnection().sendPayload("csc:sendlobby", Unpooled.buffer());
-                }
-                if (KeyboardHelper.isShiftKeyDown() && windowClick.getMouseButton() == 2) {
-                    api.chat().printChatMessage(Text.of("[BetterCSC] - Отправляем", TextFormatting.GOLD));
-                    api.chat().sendChatMessage("/pc Simultaneous Join " + windowClick.getSlot());
                 }
             }
         }, 100);

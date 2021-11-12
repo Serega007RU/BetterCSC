@@ -286,31 +286,32 @@ public class BetterCSC implements ModMain, Listener {
         }, 100);
         ChatReceive.BUS.register(this, chatReceive -> {
             if (this.hp) {
+                String msg = chatReceive.getText().getUnformattedText();
                 if (enableUP) {
-                    if (chatReceive.getText().getFormattedText().contains("Баланс: ") || chatReceive.getText().getFormattedText().contains("Вы успешно улучшили предмет")) {
+                    if (msg.contains("Баланс: ") || msg.contains("Вы успешно улучшили предмет")) {
                         chatReceive.setCancelled(true);
                         return;
-                    } else if (chatReceive.getText().getFormattedText().contains("У вас недостаточно золота на балансе") || chatReceive.getText().getFormattedText().contains("Этот предмет нельзя улучшить") || chatReceive.getText().getFormattedText().contains("Вы не находитесь в игре") || chatReceive.getText().getFormattedText().contains("вы не можете сейчас открыть меню апгрейда")) {
+                    } else if (msg.contains("У вас недостаточно золота на балансе") || msg.contains("Этот предмет нельзя улучшить") || msg.contains("Вы не находитесь в игре") || msg.contains("вы не можете сейчас открыть меню апгрейда")) {
                         chatReceive.setCancelled(true);
                         enableUP = false;
                         if (taskUP != null) taskUP.shutdown();
-                        api.chat().printChatMessage(Text.of("[BetterCSC] - Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED, ", " + TextFormatting.GOLD, chatReceive.getText().getUnformattedText(), TextFormatting.RED));
+                        api.chat().printChatMessage(Text.of("[BetterCSC] - Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED, ", " + TextFormatting.GOLD, msg, TextFormatting.RED));
                         return;
                     }
                 } else if (enableBuy) {
-                    if (chatReceive.getText().getFormattedText().contains("Баланс: ") || chatReceive.getText().getFormattedText().contains("Вы успешно купили предмет")) {
+                    if (msg.contains("Баланс: ") || msg.contains("Вы успешно купили предмет")) {
                         chatReceive.setCancelled(true);
                         return;
-                    } else if (chatReceive.getText().getFormattedText().contains("У вас недостаточно золота на балансе") || chatReceive.getText().getFormattedText().contains("Вы уже купили этот предмет")) {
+                    } else if (msg.contains("У вас недостаточно золота на балансе") || msg.contains("Вы уже купили этот предмет")) {
                         chatReceive.setCancelled(true);
                         enableBuy = false;
                         if (taskBuy != null) taskBuy.shutdown();
-                        api.chat().printChatMessage(Text.of("[BetterCSC] - Быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED, ", ", TextFormatting.GOLD, chatReceive.getText().getUnformattedText(), TextFormatting.RED));
+                        api.chat().printChatMessage(Text.of("[BetterCSC] - Быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED, ", ", TextFormatting.GOLD, msg, TextFormatting.RED));
                         return;
                     }
                 }
 
-                if (chatReceive.getText().getFormattedText().contains("Баланс: ")) {
+                if (msg.contains("Баланс: ")) {
                     chatReceive.setCancelled(true);
                     lastMessage = chatReceive.getText();
 //                    task = api.threadManagement().newSingleThreadedScheduledExecutor();
@@ -321,23 +322,22 @@ public class BetterCSC implements ModMain, Listener {
 //                            lastMessage = null;
 //                        }
 //                    }, 500, TimeUnit.MILLISECONDS);
-                } else if (chatReceive.getText().getFormattedText().contains("Вы успешно улучшили предмет") || chatReceive.getText().getFormattedText().contains("Вы успешно купили предмет")) {
+                } else if (msg.contains("Вы успешно улучшили предмет") || msg.contains("Вы успешно купили предмет")) {
                     chatReceive.setCancelled(true);
                     lastMessage = null;
 //                    if (task != null && !task.isShutdown()) {
 //                        task.shutdown();
 //                        task = null;
 //                    }
-                } else if (chatReceive.getText().getFormattedText().contains("Ставки выиграли:")) {
+                } else if (msg.contains("Ставки выиграли:")) {
                     countBets = true;
                 } else if (countBets) {
-                    if (chatReceive.getText().getUnformattedText().contains(" - ")) {
-                        String text = chatReceive.getText().getUnformattedText();
-                        text = chatReceive.getText().getUnformattedText().substring(text.indexOf(" - ") + 3, text.length());
+                    if (msg.contains(" - ")) {
+                        String text = msg;
+                        text = msg.substring(text.indexOf(" - ") + 3, text.length());
                         allBets += Long.parseLong(text);
                     } else {
-                        DecimalFormat formatter = new DecimalFormat("#,###");
-                        api.chat().printChatMessage(Text.of("Общая сумма ставок: ", TextFormatting.GOLD, formatter.format(allBets), TextFormatting.GOLD));
+                        api.chat().printChatMessage(Text.of("Общая сумма ставок: ", TextFormatting.GOLD, new DecimalFormat("#,###").format(allBets), TextFormatting.GOLD));
                         countBets = false;
                         allBets = 0;
                     }

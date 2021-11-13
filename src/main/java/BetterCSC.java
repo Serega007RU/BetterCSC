@@ -39,7 +39,7 @@ public class BetterCSC implements ModMain, Listener {
 
     private boolean enableBuy = false;
     private ScheduledExecutorService taskBuy = null;
-    private int periodBuy = 16666;
+    private int periodBuy = 40000;
 
     private long allBets = 0;
     private boolean countBets = false;
@@ -69,6 +69,10 @@ public class BetterCSC implements ModMain, Listener {
                     int count;
                     try {
                         count = Integer.parseInt(msg.replace("/up ", ""));
+                        if (count > 5000) {
+                            api.chat().printChatMessage(Text.of("[BetterCSC] Куда так много? Максимум можно 5000", TextFormatting.RED));
+                            return;
+                        }
                     } catch (Exception e) {
                         api.chat().printChatMessage(Text.of("[BetterCSC] Укажите число", TextFormatting.RED));
                         return;
@@ -115,7 +119,13 @@ public class BetterCSC implements ModMain, Listener {
                 } else if (msg.startsWith("/period up")) {
 					chatSend.setCancelled(true);
                     try {
-                        periodUP = 1000000 / Integer.parseInt(msg.replace("/period up ", ""));
+                        int period = Integer.parseInt(msg.replace("/period up ", ""));
+                        if (period > 500) {
+                            api.chat().printChatMessage(Text.of("[BetterCSC] Куда ты так торопишься? Максимум можно 500", TextFormatting.RED));
+                            return;
+                        }
+                        if (period < 0) throw new RuntimeException();
+                        periodUP = 1000000 / period;
                     } catch (Exception e) {
                         api.chat().printChatMessage(Text.of("[BetterCSC] Укажите число", TextFormatting.RED));
                         return;

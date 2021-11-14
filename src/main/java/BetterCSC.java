@@ -41,7 +41,7 @@ public class BetterCSC implements ModMain, Listener {
 
     private boolean enableBuy = false;
     private ScheduledExecutorService taskBuy = null;
-    private int periodBuy = 40000;
+    private int periodBuy = 2000;
 
     private boolean forceSingleWindow = true;
 
@@ -122,8 +122,9 @@ public class BetterCSC implements ModMain, Listener {
                     }
                 } else if (msg.startsWith("/period up")) {
                     chatSend.setCancelled(true);
+                    int period;
                     try {
-                        int period = Integer.parseInt(msg.replace("/period up ", ""));
+                        period = Integer.parseInt(msg.replace("/period up ", ""));
                         if (period > 500) {
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 500", TextFormatting.RED)));
                             return;
@@ -134,16 +135,23 @@ public class BetterCSC implements ModMain, Listener {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
                         return;
                     }
-                    api.chat().printChatMessage(prefix.copy().append(Text.of("Период прокачки настроен на ", TextFormatting.GOLD, String.valueOf(periodUP), TextFormatting.WHITE)));
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Период прокачки настроен на ", TextFormatting.GOLD, String.valueOf(period), TextFormatting.WHITE)));
                 } else if (msg.startsWith("/period buy")) {
                     chatSend.setCancelled(true);
+                    int period;
                     try {
-                        periodBuy = 1000000 / Integer.parseInt(msg.replace("/period buy ", ""));
+                        period = Integer.parseInt(msg.replace("/period buy ", ""));
+                        if (period > 500) {
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 500", TextFormatting.RED)));
+                            return;
+                        }
+                        if (period < 0) throw new RuntimeException();
+                        periodBuy = 1000000 / period;
                     } catch (Exception e) {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
                         return;
                     }
-                    api.chat().printChatMessage(prefix.copy().append(Text.of("Период покупки настроен на ", TextFormatting.GOLD, String.valueOf(periodBuy), TextFormatting.WHITE)));
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Период покупки настроен на ", TextFormatting.GOLD, String.valueOf(period), TextFormatting.WHITE)));
                 } else if (msg.startsWith("/forcesingleup")) {
                     chatSend.setCancelled(true);
                     forceSingleWindow = !forceSingleWindow;

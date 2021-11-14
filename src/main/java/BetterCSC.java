@@ -24,7 +24,7 @@ public class BetterCSC implements ModMain, Listener {
 
     @Override
     public void load(ClientApi api) {
-        api.chat().printChatMessage(prefix.append(Text.of("загружен", TextFormatting.GOLD)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage();
@@ -32,9 +32,9 @@ public class BetterCSC implements ModMain, Listener {
                 if (msg.startsWith("/hp")) {
                     chatSend.setCancelled(true);
                     if (this.hp)
-                        api.chat().printChatMessage(prefix.append(Text.of("отключён", TextFormatting.RED)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("отключён", TextFormatting.RED)));
                     else
-                        api.chat().printChatMessage(prefix.append(Text.of("включён", TextFormatting.GREEN)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("включён", TextFormatting.GREEN)));
                     this.hp = !this.hp;
                 }
             }

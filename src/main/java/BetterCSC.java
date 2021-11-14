@@ -72,11 +72,11 @@ public class BetterCSC implements ModMain, Listener {
                     try {
                         count = Integer.parseInt(msg.replace("/up ", ""));
                         if (count > 5000) {
-                            api.chat().printChatMessage(prefix.append(Text.of("Куда так много? Максимум можно 5000", TextFormatting.RED)));
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 5000", TextFormatting.RED)));
                             return;
                         }
                     } catch (Exception e) {
-                        api.chat().printChatMessage(prefix.append(Text.of("Укажите число", TextFormatting.RED)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
                         return;
                     }
                     EntityPlayerSP player = api.minecraft().getPlayer();
@@ -84,11 +84,11 @@ public class BetterCSC implements ModMain, Listener {
                         try {
                             player.getInventory().getCurrentItem().getItem().getId();
                         } catch (Exception e) {
-                            api.chat().printChatMessage(prefix.append(Text.of("В руках отсутствует предмет", TextFormatting.RED)));
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("В руках отсутствует предмет", TextFormatting.RED)));
                             return;
                         }
                         fireChatSend("/mod unload csc mod");
-                        api.chat().printChatMessage(prefix.append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN)));
                         countUp = 0;
                         enableUP = true;
                         int slot = player.getInventory().getActiveSlot();
@@ -100,7 +100,7 @@ public class BetterCSC implements ModMain, Listener {
                             countUp++;
                             if (countUp > count) {
                                 enableUP = false;
-                                api.chat().printChatMessage(prefix.append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED, ", ", TextFormatting.GOLD, "достигли заданного числа", TextFormatting.GREEN)));
+                                api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED, ", ", TextFormatting.GOLD, "достигли заданного числа", TextFormatting.GREEN)));
                                 if (taskUP != null) taskUP.shutdown();
                                 taskUP = null;
                                 countUp = 0;
@@ -114,7 +114,7 @@ public class BetterCSC implements ModMain, Listener {
                         }, 0, periodUP, TimeUnit.MICROSECONDS);
                     } else {
                         enableUP = false;
-                        api.chat().printChatMessage(prefix.append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED)));
                         if (taskUP != null) taskUP.shutdown();
                         taskUP = null;
                         countUp = 0;
@@ -124,30 +124,30 @@ public class BetterCSC implements ModMain, Listener {
                     try {
                         int period = Integer.parseInt(msg.replace("/period up ", ""));
                         if (period > 500) {
-                            api.chat().printChatMessage(prefix.append(Text.of("Куда ты так торопишься? Максимум можно 500", TextFormatting.RED)));
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 500", TextFormatting.RED)));
                             return;
                         }
                         if (period < 0) throw new RuntimeException();
                         periodUP = 1000000 / period;
                     } catch (Exception e) {
-                        api.chat().printChatMessage(prefix.append(Text.of("Укажите число", TextFormatting.RED)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
                         return;
                     }
-                    api.chat().printChatMessage(prefix.append(Text.of("Период прокачки настроен на ", TextFormatting.GOLD, String.valueOf(periodUP), TextFormatting.WHITE)));
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Период прокачки настроен на ", TextFormatting.GOLD, String.valueOf(periodUP), TextFormatting.WHITE)));
                 } else if (msg.startsWith("/period buy")) {
                     chatSend.setCancelled(true);
                     try {
                         periodBuy = 1000000 / Integer.parseInt(msg.replace("/period buy ", ""));
                     } catch (Exception e) {
-                        api.chat().printChatMessage(prefix.append(Text.of("Укажите число", TextFormatting.RED)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
                         return;
                     }
-                    api.chat().printChatMessage(prefix.append(Text.of("Период покупки настроен на ", TextFormatting.GOLD, String.valueOf(periodBuy), TextFormatting.WHITE)));
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Период покупки настроен на ", TextFormatting.GOLD, String.valueOf(periodBuy), TextFormatting.WHITE)));
                 } else if (msg.startsWith("/forcesingleup")) {
                     chatSend.setCancelled(true);
                     forceSingleWindow = !forceSingleWindow;
-                    if (forceSingleWindow) api.chat().printChatMessage(prefix.append(Text.of("ForceSingleUp ", TextFormatting.GOLD, "включён", TextFormatting.WHITE)));
-                    else api.chat().printChatMessage(prefix.append(Text.of("ForceSingleUp ", TextFormatting.GOLD, "выключен", TextFormatting.RED)));
+                    if (forceSingleWindow) api.chat().printChatMessage(prefix.copy().append(Text.of("ForceSingleUp ", TextFormatting.GOLD, "включён", TextFormatting.WHITE)));
+                    else api.chat().printChatMessage(prefix.copy().append(Text.of("ForceSingleUp ", TextFormatting.GOLD, "выключен", TextFormatting.RED)));
 
                 } else if (msg.startsWith("/sendpayload ")) {
                     chatSend.setCancelled(true);
@@ -240,9 +240,9 @@ public class BetterCSC implements ModMain, Listener {
                                     continue;
                                 }
                                 if (msg.startsWith("/mod unload ")) {
-                                    api.chat().printChatMessage(prefix.append(Text.of("Выгружаем ", TextFormatting.RED, mod.getKey(), TextFormatting.WHITE)));
+                                    api.chat().printChatMessage(prefix.copy().append(Text.of("Выгружаем ", TextFormatting.RED, mod.getKey(), TextFormatting.WHITE)));
                                 } else {
-                                    api.chat().printChatMessage(prefix.append(Text.of("Загружаем ", TextFormatting.GREEN, mod.getKey(), TextFormatting.WHITE)));
+                                    api.chat().printChatMessage(prefix.copy().append(Text.of("Загружаем ", TextFormatting.GREEN, mod.getKey(), TextFormatting.WHITE)));
                                 }
                                 hw hw = (hw) mod.getValue();
                                 ModMain modMain = null;
@@ -313,7 +313,7 @@ public class BetterCSC implements ModMain, Listener {
                         chatReceive.setCancelled(true);
                         enableUP = false;
                         if (taskUP != null) taskUP.shutdown();
-                        api.chat().printChatMessage(prefix.append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED, ", " + TextFormatting.GOLD, msg, TextFormatting.RED)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED, ", " + TextFormatting.GOLD, msg, TextFormatting.RED)));
                         return;
                     }
                 } else if (enableBuy) {
@@ -324,7 +324,7 @@ public class BetterCSC implements ModMain, Listener {
                         chatReceive.setCancelled(true);
                         enableBuy = false;
                         if (taskBuy != null) taskBuy.shutdown();
-                        api.chat().printChatMessage(prefix.append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED, ", ", TextFormatting.GOLD, msg, TextFormatting.RED)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED, ", ", TextFormatting.GOLD, msg, TextFormatting.RED)));
                         return;
                     }
                 }
@@ -429,7 +429,7 @@ public class BetterCSC implements ModMain, Listener {
             if (this.hp) {
                 if (KeyboardHelper.isAltKeyDown() && windowClick.getMouseButton() == 2) {
                     if (!enableBuy) {
-                        api.chat().printChatMessage(prefix.append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN)));
                         enableBuy = true;
 
                         taskBuy = api.threadManagement().newSingleThreadedScheduledExecutor();
@@ -442,18 +442,18 @@ public class BetterCSC implements ModMain, Listener {
                         }, 0, periodBuy, TimeUnit.MICROSECONDS);
                     } else {
                         enableBuy = false;
-                        api.chat().printChatMessage(prefix.append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED)));
                         if (taskBuy != null) taskBuy.shutdown();
                         taskBuy = null;
                     }
                 }
                 if (KeyboardHelper.isCtrlKeyDown() && windowClick.getMouseButton() == 2) {
-                    api.chat().printChatMessage(prefix.append(Text.of("Выходим из игры", TextFormatting.RED)));
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Выходим из игры", TextFormatting.RED)));
                     api.chat().sendChatMessage("/hub");
 //                  api.clientConnection().sendPayload("csc:sendlobby", Unpooled.buffer());
                 }
 //                if (KeyboardHelper.isShiftKeyDown() && windowClick.getMouseButton() == 2) {
-//                    api.chat().printChatMessage(prefix.append(Text.of("test", TextFormatting.GREEN)));
+//                    api.chat().printChatMessage(prefix.copy().append(Text.of("test", TextFormatting.GREEN)));
 //                    doAutoBet = true;
 ////                    api.chat().sendChatMessage("/duelsettings");
 //                }
@@ -465,7 +465,7 @@ public class BetterCSC implements ModMain, Listener {
                 screenDisplay.setCancelled(true);
             if (enableBuy && screen == null) {
                 enableBuy = false;
-                api.chat().printChatMessage(prefix.append(Text.of("Кажется вы закрыли GUI, быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED)));
+                api.chat().printChatMessage(prefix.copy().append(Text.of("Кажется вы закрыли GUI, быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED)));
                 if (taskBuy != null) taskBuy.shutdown();
                 taskBuy = null;
             }

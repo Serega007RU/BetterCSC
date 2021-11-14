@@ -5,6 +5,7 @@ import dev.xdark.clientapi.event.inventory.WindowClick;
 import dev.xdark.clientapi.event.network.PluginMessage;
 import dev.xdark.clientapi.event.render.*;
 import dev.xdark.clientapi.event.chat.ChatSend;
+import dev.xdark.clientapi.gui.Screen;
 import dev.xdark.clientapi.input.KeyboardHelper;
 import dev.xdark.clientapi.item.Item;
 import dev.xdark.clientapi.item.ItemStack;
@@ -46,6 +47,8 @@ public class BetterCSC implements ModMain, Listener {
 
     private boolean forceSingleWindow = true;
 
+//    private boolean doAutoBet = false;
+
     @Override
     public void load(ClientApi api) {
         api.chat().printChatMessage(Text.of("[BetterCSC] - загружен", TextFormatting.GOLD));
@@ -85,6 +88,7 @@ public class BetterCSC implements ModMain, Listener {
                             api.chat().printChatMessage(Text.of("[BetterCSC] - В руках отсутствует предмет", TextFormatting.RED));
                             return;
                         }
+                        fireChatSend("/mod unload csc mod");
                         api.chat().printChatMessage(Text.of("[BetterCSC] - Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN));
                         countUp = 0;
                         enableUP = true;
@@ -291,7 +295,11 @@ public class BetterCSC implements ModMain, Listener {
                         e.printStackTrace();
                         api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
                     }
-                }
+                }/* else if (msg.startsWith("/test")) {
+                    chatSend.setCancelled(true);
+                    api.chat().sendChatMessage("/duelsettings");
+                    doAutoBet = !doAutoBet;
+                }*/
             }
         }, 100);
         ChatReceive.BUS.register(this, chatReceive -> {
@@ -323,6 +331,9 @@ public class BetterCSC implements ModMain, Listener {
 
                 if (msg.contains("Баланс: ")) {
                     chatReceive.setCancelled(true);
+                    if (lastMessage != null) {
+                        api.chat().printChatMessage(lastMessage);
+                    }
                     lastMessage = chatReceive.getText();
 //                    task = api.threadManagement().newSingleThreadedScheduledExecutor();
 //                    task.schedule(() -> {
@@ -332,6 +343,7 @@ public class BetterCSC implements ModMain, Listener {
 //                            lastMessage = null;
 //                        }
 //                    }, 500, TimeUnit.MILLISECONDS);
+                    return;
                 } else if (msg.contains("Вы успешно улучшили предмет") || msg.contains("Вы успешно купили предмет")) {
                     chatReceive.setCancelled(true);
                     lastMessage = null;
@@ -431,22 +443,87 @@ public class BetterCSC implements ModMain, Listener {
                     api.chat().sendChatMessage("/hub");
 //                  api.clientConnection().sendPayload("csc:sendlobby", Unpooled.buffer());
                 }
+//                if (KeyboardHelper.isShiftKeyDown() && windowClick.getMouseButton() == 2) {
+//                    api.chat().printChatMessage(Text.of("[BetterCSC] - ", TextFormatting.GOLD, "test", TextFormatting.GREEN));
+//                    doAutoBet = true;
+////                    api.chat().sendChatMessage("/duelsettings");
+//                }
             }
         }, 100);
         ScreenDisplay.BUS.register(this, screenDisplay -> {
-            if (enableUP && screenDisplay.getScreen() != null && screenDisplay.getScreen().doesGuiPauseGame())
+            Screen screen = screenDisplay.getScreen();
+            if (enableUP && screen != null && screen.doesGuiPauseGame())
                 screenDisplay.setCancelled(true);
-            if (enableBuy && screenDisplay.getScreen() == null) {
+            if (enableBuy && screen == null) {
                 enableBuy = false;
                 api.chat().printChatMessage(Text.of("[BetterCSC] - Кажется вы закрыли GUI, быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED));
                 if (taskBuy != null) taskBuy.shutdown();
                 taskBuy = null;
             }
-            if (screenDisplay.getScreen() instanceof asO) {
+            if (screen instanceof asO) {
                 screenDisplay.setCancelled(true);
                 api.minecraft().displayScreen(new us());
             }
+
+//            if (doAutoBet) {
+//                try {
+//                    if (screen instanceof vN) {
+//                        //Получаем доступ к приватной переменной обозначающее название открытого Container
+//                        vN inv = (vN) screen;
+//                        SE se = (SE) inv.getClass().getField("a").get(inv);
+//                        //Достаём windowId
+//                        vO vo = (vO) screen;
+//                        RY ry = (RY) Arrays.stream(vo.getClass().getFields()).filter(field -> field.getName().equals("a") && field.getType().getName().equals("RY")).findFirst().get().get(vo);
+//                        int windowId = (int) Arrays.stream(ry.getClass().getFields()).filter(field -> field.getName().equals("a") && field.getType().getName().equals("int")).findFirst().get().get(ry);
+//
+//                        String text = se.a().getUnformattedText();
+//                        api.chat().printChatMessage(Text.of(text));
+//                        if (text.equals("Выбрать команду") || text.equals("Выбор игрока")) {
+//                            api.chat().printChatMessage(Text.of("screen " + windowId));
+//                            api.clientConnection().sendPacket(new Xi(windowId, 11, 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
+//                        } else if (text.equals("Ставка на команду")) {
+//                            api.chat().printChatMessage(Text.of("Отсылаем с"));
+//                            api.clientConnection().sendPacket(new Xi(windowId, 8, 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
+//                            api.minecraft().getPlayer().closeScreen();
+//                            doAutoBet = false;
+//                        }
+//
+//                    }
+//                } catch (Exception e) {
+//                    api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+//                    e.printStackTrace();
+//                }
+//            }
         }, 100);
+    }
+
+    public void fireChatSend(String message) {
+        ChatSend.BUS.fire(new ChatSend() {
+            @Override
+            public String getMessage() {
+                return message;
+            }
+
+            @Override
+            public void setMessage(String message) {
+
+            }
+
+            @Override
+            public boolean isCommand() {
+                return message.startsWith("/");
+            }
+
+            @Override
+            public boolean isCancelled() {
+                return false;
+            }
+
+            @Override
+            public void setCancelled(boolean cancelled) {
+
+            }
+        });
     }
 
     @Override

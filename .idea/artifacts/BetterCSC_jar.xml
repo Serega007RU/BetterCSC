@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="BetterCSC:jar">
-    <output-path>$USER_HOME$/.cristalix/updates/Minigames/mods</output-path>
+    <output-path>$PROJECT_DIR$/build</output-path>
     <root id="archive" name="BetterCSC.jar">
       <element id="module-output" name="BetterCSC" />
     </root>

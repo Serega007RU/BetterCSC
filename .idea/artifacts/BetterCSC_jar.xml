@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="BetterCSC:jar">
     <output-path>$PROJECT_DIR$/build</output-path>
-    <root id="archive" name="BetterCSC.jar">
+    <root id="archive" name="BetterCSC-Plus.jar">
       <element id="module-output" name="BetterCSC" />
     </root>
   </artifact>

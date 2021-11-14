@@ -52,6 +52,7 @@ public class BetterCSC implements ModMain, Listener {
     @Override
     public void load(ClientApi api) {
         api.chat().printChatMessage(prefix.copy().append(Text.of("загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        if (api.minecraft().currentScreen() instanceof asO) api.minecraft().displayScreen(new us());
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage();

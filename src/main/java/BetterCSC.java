@@ -36,12 +36,12 @@ public class BetterCSC implements ModMain, Listener {
 
     private boolean enableUP = false;
     private ScheduledExecutorService taskUP = null;
-    private int periodUP = 100000;
+    private int periodUP = 2000;
     private int countUp = 0;
 
     private boolean enableBuy = false;
     private ScheduledExecutorService taskBuy = null;
-    private int periodBuy = 2000;
+    private int periodBuy = 40000;
 
     private boolean forceSingleWindow = true;
 
@@ -69,6 +69,14 @@ public class BetterCSC implements ModMain, Listener {
                     api.clientConnection().sendPayload("csc:upgrade", Unpooled.buffer());
                 } else if (msg.startsWith("/up")) {
                     chatSend.setCancelled(true);
+                    if (enableUP) {
+                        enableUP = false;
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED)));
+                        if (taskUP != null) taskUP.shutdown();
+                        taskUP = null;
+                        countUp = 0;
+                        return;
+                    }
                     int count;
                     try {
                         count = Integer.parseInt(msg.replace("/up ", ""));
@@ -76,50 +84,43 @@ public class BetterCSC implements ModMain, Listener {
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 5000", TextFormatting.RED)));
                             return;
                         }
+                        if (count < 0) throw new RuntimeException();
                     } catch (Exception e) {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
                         return;
                     }
                     EntityPlayerSP player = api.minecraft().getPlayer();
-                    if (!enableUP) {
-                        try {
-                            player.getInventory().getCurrentItem().getItem().getId();
-                        } catch (Exception e) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("В руках отсутствует предмет", TextFormatting.RED)));
+                    try {
+                        player.getInventory().getCurrentItem().getItem().getId();
+                    } catch (Exception e) {
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("В руках отсутствует предмет", TextFormatting.RED)));
+                        return;
+                    }
+                    fireChatSend("/mod unload csc mod");
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN)));
+                    countUp = 0;
+                    enableUP = true;
+                    int slot = player.getInventory().getActiveSlot();
+                    int id = player.getInventory().getCurrentItem().getItem().getId();
+
+                    taskUP = api.threadManagement().newSingleThreadedScheduledExecutor();
+                    taskUP.scheduleAtFixedRate(() -> {
+                        if (!enableUP) return;
+                        countUp++;
+                        if (countUp > count) {
+                            enableUP = false;
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED, ", ", TextFormatting.GOLD, "достигли заданного числа", TextFormatting.GREEN)));
+                            if (taskUP != null) taskUP.shutdown();
+                            taskUP = null;
+                            countUp = 0;
                             return;
                         }
-                        fireChatSend("/mod unload csc mod");
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN)));
-                        countUp = 0;
-                        enableUP = true;
-                        int slot = player.getInventory().getActiveSlot();
-                        int id = player.getInventory().getCurrentItem().getItem().getId();
-
-                        taskUP = api.threadManagement().newSingleThreadedScheduledExecutor();
-                        taskUP.scheduleAtFixedRate(() -> {
-                            if (!enableUP) return;
-                            countUp++;
-                            if (countUp > count) {
-                                enableUP = false;
-                                api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED, ", ", TextFormatting.GOLD, "достигли заданного числа", TextFormatting.GREEN)));
-                                if (taskUP != null) taskUP.shutdown();
-                                taskUP = null;
-                                countUp = 0;
-                                return;
-                            }
-                            ByteBuf buffer;
-                            ByteBuf $this$writeVarInt$iv = buffer = Unpooled.buffer();
-                            NetUtil.writeVarInt(slot, $this$writeVarInt$iv);
-                            NetUtil.writeVarInt(id, buffer);
-                            api.clientConnection().sendPayload("csc:upgrade", buffer);
-                        }, 0, periodUP, TimeUnit.MICROSECONDS);
-                    } else {
-                        enableUP = false;
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED)));
-                        if (taskUP != null) taskUP.shutdown();
-                        taskUP = null;
-                        countUp = 0;
-                    }
+                        ByteBuf buffer;
+                        ByteBuf $this$writeVarInt$iv = buffer = Unpooled.buffer();
+                        NetUtil.writeVarInt(slot, $this$writeVarInt$iv);
+                        NetUtil.writeVarInt(id, buffer);
+                        api.clientConnection().sendPayload("csc:upgrade", buffer);
+                    }, 0, periodUP, TimeUnit.MICROSECONDS);
                 } else if (msg.startsWith("/period up")) {
                     chatSend.setCancelled(true);
                     int period;
@@ -329,7 +330,7 @@ public class BetterCSC implements ModMain, Listener {
                     if (msg.contains("Баланс: ") || msg.contains("Вы успешно купили предмет")) {
                         chatReceive.setCancelled(true);
                         return;
-                    } else if (msg.contains("У вас недостаточно золота на балансе") || msg.contains("Вы уже купили этот предмет")) {
+                    } else if (msg.contains("У вас недостаточно золота на балансе") || msg.contains("Вы уже купили этот предмет") || msg.contains("У вас недостаточно места в инвентаре")) {
                         chatReceive.setCancelled(true);
                         enableBuy = false;
                         if (taskBuy != null) taskBuy.shutdown();

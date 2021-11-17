@@ -356,6 +356,7 @@ public class BetterCSC implements ModMain, Listener {
                 } else if (msg.contains("Вы успешно улучшили предмет") || msg.contains("Вы успешно купили предмет")) {
                     chatReceive.setCancelled(true);
                     lastMessage = null;
+                    return;
                 } else if (msg.contains("Ставки выиграли:")) {
                     countBets = true;
                 } else if (countBets) {

@@ -598,13 +598,13 @@ public class BetterCSC implements ModMain, Listener {
         for (String str : list) {
             if (str.length() == 0) continue;
             char ch = str.charAt(0);
-            str = str.substring(1);
             TextFormatting textFormatting = textFormattingValues.get(ch);
             if (textFormatting == null) {
                 formText.append(Text.of(str));
             } else if (textFormatting == TextFormatting.OBFUSCATED || textFormatting == TextFormatting.BOLD || textFormatting == TextFormatting.STRIKETHROUGH || textFormatting == TextFormatting.UNDERLINE) {
                 formText.append(Text.of(textFormatting));
             } else {
+                str = str.substring(1);
                 formText.append(Text.of(str, textFormatting));
             }
         }

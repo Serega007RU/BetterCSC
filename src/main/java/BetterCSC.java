@@ -30,6 +30,7 @@ public class BetterCSC implements ModMain, Listener {
     private boolean hp = true;
 
     private Text lastMessage = null;
+    private long lastMessageTimeMillis;
 
     private long allBets = 0;
     private boolean countBets = false;
@@ -311,12 +312,14 @@ public class BetterCSC implements ModMain, Listener {
                 }*/
             }
         }, 100);
+
         ChatReceive.BUS.register(this, chatReceive -> {
             if (this.hp) {
                 String msg = chatReceive.getText().getUnformattedText();
+                String msgColored = chatReceive.getText().getFormattedText();
 
                 if (enableUP) {
-                    if (msg.contains("Баланс: ") || msg.contains("Вы успешно улучшили предмет")) {
+                    if (msgColored.contains("§aБаланс: ") || msgColored.contains("§aВы успешно улучшили предмет")) {
                         chatReceive.setCancelled(true);
                         return;
                     } else if (msg.contains("У вас недостаточно золота на балансе") || msg.contains("Этот предмет нельзя улучшить") || msg.contains("Вы не находитесь в игре") || msg.contains("вы не можете сейчас открыть меню апгрейда") || msg.contains("Этот предмет улучшен до максимального уровня")) {
@@ -327,7 +330,7 @@ public class BetterCSC implements ModMain, Listener {
                         return;
                     }
                 } else if (enableBuy) {
-                    if (msg.contains("Баланс: ") || msg.contains("Вы успешно купили предмет")) {
+                    if (msgColored.contains("§aБаланс: ") || msgColored.contains("§aВы успешно купили предмет")) {
                         chatReceive.setCancelled(true);
                         return;
                     } else if (msg.contains("У вас недостаточно золота на балансе") || msg.contains("Вы уже купили этот предмет") || msg.contains("У вас недостаточно места в инвентаре")) {
@@ -339,7 +342,7 @@ public class BetterCSC implements ModMain, Listener {
                     }
                 }
 
-                if (msg.contains("Баланс: ")) {
+                if (msgColored.contains("§aБаланс: ")) {
                     chatReceive.setCancelled(true);
                     if (lastMessage != null) {
                         api.chat().printChatMessage(lastMessage);
@@ -352,15 +355,14 @@ public class BetterCSC implements ModMain, Listener {
                     }
                     chatReceive.setText(stringToText(text));
                     lastMessage = chatReceive.getText();
-                    return;
-                } else if (msg.contains("Вы успешно улучшили предмет") || msg.contains("Вы успешно купили предмет")) {
+                    lastMessageTimeMillis = System.currentTimeMillis();
+                } else if (msgColored.contains("§aВы успешно улучшили предмет") || msgColored.contains("§aВы успешно купили предмет")) {
                     chatReceive.setCancelled(true);
                     lastMessage = null;
-                    return;
-                } else if (msg.contains("Ставки выиграли:")) {
+                } else if (msgColored.contains("§aСтавки выиграли:")) {
                     countBets = true;
                 } else if (countBets) {
-                    if (msg.contains(" - ")) {
+                    if (msgColored.contains("§7- ")) {
                         String text = msg;
                         text = msg.substring(text.indexOf(" - ") + 3, text.length());
                         long num = Long.parseLong(text);
@@ -374,7 +376,7 @@ public class BetterCSC implements ModMain, Listener {
                         countBets = false;
                         allBets = 0;
                     }
-                } else if (msg.contains(" сорвал куш и получил ") || msg.contains(" сорвала джекпот и получила ")) {
+                } else if (msgColored.contains("§aсорвал куш и получил ") || msgColored.contains("§aсорвала джекпот и получила ")) {
                     String var;
                     if (msg.contains(" сорвал куш и получил ")) {
                         var = " сорвал куш и получил ";
@@ -387,12 +389,23 @@ public class BetterCSC implements ModMain, Listener {
                     chatReceive.setText(stringToText(text));
                 }
 
-                if (lastMessage != null) {
+//                if (lastMessage != null) {
+//                    api.chat().printChatMessage(lastMessage);
+//                    lastMessage = null;
+//                }
+            }
+        }, 100);
+
+        ScheduledExecutorService task = api.threadManagement().newSingleThreadedScheduledExecutor();
+        task.scheduleAtFixedRate(() -> {
+            if (lastMessage != null) {
+                if (lastMessageTimeMillis + 1000 < System.currentTimeMillis()) {
                     api.chat().printChatMessage(lastMessage);
                     lastMessage = null;
                 }
             }
-        }, 100);
+        }, 0, 1, TimeUnit.SECONDS);
+
         HealthRender.BUS.register(this, healthRender -> {
             if (this.hp && !healthRender.isCancelled()) {
                 healthRender.setCancelled(true);
@@ -433,6 +446,7 @@ public class BetterCSC implements ModMain, Listener {
         ArmorRender.BUS.register(this, armorRender -> {
             if (this.hp) armorRender.setCancelled(true);
         }, -1);
+
         PlayerListRender.BUS.register(this, playerListRender -> {
             if (this.hp && playerListRender.isCancelled()) playerListRender.setCancelled(false);
         }, -1);

@@ -10,12 +10,15 @@ import dev.xdark.clientapi.entry.ModMain;
 
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("unused")
 public class BetterCSC implements ModMain, Listener {
     private boolean hp = true;
 
     private Text lastMessage = null;
+    private long lastMessageTimeMillis;
 
     private long allBets = 0;
     private boolean countBets = false;
@@ -39,6 +42,7 @@ public class BetterCSC implements ModMain, Listener {
                 }
             }
         }, 100);
+
         ChatReceive.BUS.register(this, chatReceive -> {
             if (this.hp) {
                 String msg = chatReceive.getText().getUnformattedText();
@@ -56,11 +60,10 @@ public class BetterCSC implements ModMain, Listener {
                     }
                     chatReceive.setText(stringToText(text));
                     lastMessage = chatReceive.getText();
-                    return;
+                    lastMessageTimeMillis = System.currentTimeMillis();
                 } else if (msg.contains("Вы успешно улучшили предмет") || msg.contains("Вы успешно купили предмет")) {
                     chatReceive.setCancelled(true);
                     lastMessage = null;
-                    return;
                 } else if (msg.contains("Ставки выиграли:")) {
                     countBets = true;
                 } else if (countBets) {
@@ -91,12 +94,23 @@ public class BetterCSC implements ModMain, Listener {
                     chatReceive.setText(stringToText(text));
                 }
 
-                if (lastMessage != null) {
+//                if (lastMessage != null) {
+//                    api.chat().printChatMessage(lastMessage);
+//                    lastMessage = null;
+//                }
+            }
+        }, 100);
+
+        ScheduledExecutorService task = api.threadManagement().newSingleThreadedScheduledExecutor();
+        task.scheduleAtFixedRate(() -> {
+            if (lastMessage != null) {
+                if (lastMessageTimeMillis + 1000 < System.currentTimeMillis()) {
                     api.chat().printChatMessage(lastMessage);
                     lastMessage = null;
                 }
             }
-        }, 100);
+        }, 0, 1, TimeUnit.SECONDS);
+
         HealthRender.BUS.register(this, healthRender -> {
             if (this.hp && !healthRender.isCancelled()) {
                 healthRender.setCancelled(true);
@@ -137,6 +151,7 @@ public class BetterCSC implements ModMain, Listener {
         ArmorRender.BUS.register(this, armorRender -> {
             if (this.hp) armorRender.setCancelled(true);
         }, -1);
+
         PlayerListRender.BUS.register(this, playerListRender -> {
             if (this.hp && playerListRender.isCancelled()) playerListRender.setCancelled(false);
         }, -1);

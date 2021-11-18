@@ -317,7 +317,6 @@ public class BetterCSC implements ModMain, Listener {
             if (this.hp) {
                 String msg = chatReceive.getText().getUnformattedText();
                 String msgColored = chatReceive.getText().getFormattedText();
-                System.out.println(msgColored);
 
                 if (enableUP) {
                     if (msgColored.contains("§aБаланс: ") || msgColored.contains("§aВы успешно улучшили предмет")) {

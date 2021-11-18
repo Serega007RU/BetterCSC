@@ -317,12 +317,13 @@ public class BetterCSC implements ModMain, Listener {
             if (this.hp) {
                 String msg = chatReceive.getText().getUnformattedText();
                 String msgColored = chatReceive.getText().getFormattedText();
+                System.out.println(msgColored);
 
                 if (enableUP) {
                     if (msgColored.contains("§aБаланс: ") || msgColored.contains("§aВы успешно улучшили предмет")) {
                         chatReceive.setCancelled(true);
                         return;
-                    } else if (msg.contains("У вас недостаточно золота на балансе") || msg.contains("Этот предмет нельзя улучшить") || msg.contains("Вы не находитесь в игре") || msg.contains("вы не можете сейчас открыть меню апгрейда") || msg.contains("Этот предмет улучшен до максимального уровня")) {
+                    } else if (msgColored.contains("§cУ вас недостаточно золота на балансе") || msgColored.contains("§cЭтот предмет нельзя улучшить") || msgColored.contains("§cВы не находитесь в игре") || msgColored.contains("§cОшибка, вы не можете сейчас открыть меню апгрейда") || msgColored.contains("§cЭтот предмет улучшен до максимального уровня")) {
                         chatReceive.setCancelled(true);
                         enableUP = false;
                         if (taskUP != null) taskUP.shutdown();
@@ -333,7 +334,7 @@ public class BetterCSC implements ModMain, Listener {
                     if (msgColored.contains("§aБаланс: ") || msgColored.contains("§aВы успешно купили предмет")) {
                         chatReceive.setCancelled(true);
                         return;
-                    } else if (msg.contains("У вас недостаточно золота на балансе") || msg.contains("Вы уже купили этот предмет") || msg.contains("У вас недостаточно места в инвентаре")) {
+                    } else if (msgColored.contains("§cУ вас недостаточно золота на балансе") || msgColored.contains("§cВы уже купили этот предмет") || msgColored.contains("§cУ вас недостаточно места в инвентаре")) {
                         chatReceive.setCancelled(true);
                         enableBuy = false;
                         if (taskBuy != null) taskBuy.shutdown();

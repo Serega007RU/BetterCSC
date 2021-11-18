@@ -46,8 +46,9 @@ public class BetterCSC implements ModMain, Listener {
         ChatReceive.BUS.register(this, chatReceive -> {
             if (this.hp) {
                 String msg = chatReceive.getText().getUnformattedText();
+                String msgColored = chatReceive.getText().getFormattedText();
 
-                if (msg.contains("Баланс: ")) {
+                if (msgColored.contains("§aБаланс: ")) {
                     chatReceive.setCancelled(true);
                     if (lastMessage != null) {
                         api.chat().printChatMessage(lastMessage);
@@ -61,13 +62,13 @@ public class BetterCSC implements ModMain, Listener {
                     chatReceive.setText(stringToText(text));
                     lastMessage = chatReceive.getText();
                     lastMessageTimeMillis = System.currentTimeMillis();
-                } else if (msg.contains("Вы успешно улучшили предмет") || msg.contains("Вы успешно купили предмет")) {
+                } else if (msgColored.contains("§aВы успешно улучшили предмет") || msgColored.contains("§aВы успешно купили предмет")) {
                     chatReceive.setCancelled(true);
                     lastMessage = null;
-                } else if (msg.contains("Ставки выиграли:")) {
+                } else if (msgColored.contains("§aСтавки выиграли:")) {
                     countBets = true;
                 } else if (countBets) {
-                    if (msg.contains(" - ")) {
+                    if (msgColored.contains("§7- ")) {
                         String text = msg;
                         text = msg.substring(text.indexOf(" - ") + 3, text.length());
                         long num = Long.parseLong(text);
@@ -81,7 +82,7 @@ public class BetterCSC implements ModMain, Listener {
                         countBets = false;
                         allBets = 0;
                     }
-                } else if (msg.contains(" сорвал куш и получил ") || msg.contains(" сорвала джекпот и получила ")) {
+                } else if (msgColored.contains("§aсорвал куш и получил ") || msgColored.contains("§aсорвала джекпот и получила ")) {
                     String var;
                     if (msg.contains(" сорвал куш и получил ")) {
                         var = " сорвал куш и получил ";

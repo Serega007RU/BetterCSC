@@ -56,7 +56,7 @@ public class BetterCSC implements ModMain, Listener {
         if (api.minecraft().currentScreen() instanceof asO) api.minecraft().displayScreen(new us());
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
-                String msg = chatSend.getMessage();
+                String msg = chatSend.getMessage().toLowerCase();
 
                 if (msg.startsWith("/hp")) {
                     chatSend.setCancelled(true);

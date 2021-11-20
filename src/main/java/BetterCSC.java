@@ -30,7 +30,7 @@ public class BetterCSC implements ModMain, Listener {
         api.chat().printChatMessage(prefix.copy().append(Text.of("загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
-                String msg = chatSend.getMessage();
+                String msg = chatSend.getMessage().toLowerCase();
 
                 if (msg.startsWith("/hp")) {
                     chatSend.setCancelled(true);

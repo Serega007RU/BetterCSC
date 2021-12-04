@@ -35,31 +35,38 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class BetterCSC implements ModMain, Listener {
     private boolean hp = true;
 
+    //Скрытие флуда в чате при быстрой прокачке/покупке
     private Text lastMessage = null;
     private long lastMessageTimeMillis;
 
+    //Подсчёт общей суммы ставок
     private long allBets = 0;
     private boolean countBets = false;
 
+    //Быстрая прокачка меча без лагов
     private boolean enableUP = false;
     private ScheduledExecutorService taskUP = null;
     private int periodUP = 2000;
     private int countUp = 0;
 
+    //Быстрая покупка книг с автоюзанием
     private boolean enableBuy = false;
     private ScheduledExecutorService taskBuy = null;
     private int periodBuy = 40000;
-
     private boolean forceSingleWindow = true;
 
+    //Автоставки
 //    private boolean doAutoBet = false;
 
+    //Список игроков находящиеся на сервере
     private Collection<NetworkPlayerInfo> playerList;
 
+    //Таблица топ рейтинга
     private final Gson gson = new Gson();
     private String boardUUID;
     private BoardContent boardList;
 
+    //Префикс мода
     private final Text prefix = Text.of("[", TextFormatting.DARK_RED, "BetterCSC", TextFormatting.DARK_PURPLE, "]", TextFormatting.DARK_RED, " ");
 
     @Override
@@ -325,6 +332,7 @@ public class BetterCSC implements ModMain, Listener {
                     chatSend.setCancelled(true);
                     if (boardList != null) {
                         for (BoardContent.BoardLine line : boardList.getContent()) {
+                            api.chat().printChatMessage(Text.of("Топ рейтинга: ", TextFormatting.YELLOW));
                             Text text = Text.of("");
                             for (String column : line.getColumns()) {
                                 text.append(stringToText(column + " "));
@@ -557,12 +565,9 @@ public class BetterCSC implements ModMain, Listener {
         }, 100);
 
         PluginMessage.BUS.register(this, pluginMessage -> {
-//            System.out.println("Channel: " + pluginMessage.getChannel());
-//            System.out.println("DataCha: " + pluginMessage.getData().toString(StandardCharsets.UTF_8));
             if (pluginMessage.getChannel().equals("boards:new")) {
                 String var4 = NetUtil.readUtf8(pluginMessage.getData(), Integer.MAX_VALUE);
                 BoardStructure var6 = gson.fromJson(var4, BoardStructure.class);
-                System.out.println(var6.getName());
                 if (var6.getName().equals("§e§lТоп рейтинга")) {
                     boardUUID = var6.getUuid().toString();
                 }
@@ -609,10 +614,6 @@ public class BetterCSC implements ModMain, Listener {
                 playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
             }
         }, 1);
-
-//        ServerSwitch.BUS.register(this, serverSwitch -> {
-//            playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
-//        }, 1);
     }
 
     @SuppressWarnings("UnusedReturnValue")

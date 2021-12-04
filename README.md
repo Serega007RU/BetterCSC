@@ -2,7 +2,7 @@
     
 ## Как установить:
 1. [Скачать](https://gitlab.com/Serega007/bettercsc/-/raw/main/build/BetterCSC.jar) мод
-2. Закинть скачанный файл в C:\Users\ИмяПользователя\.cristalix\updates\Minigames\mods
+2. Закинуть скачанный файл в `C:\Users\ИмяПользователя\.cristalix\updates\Minigames\mods`
 3. Перезапустить игру если она была запущена в этот момент
     
 ## Что добавляет этот мод:

@@ -1,12 +1,18 @@
+import com.google.gson.Gson;
 import dev.xdark.clientapi.entity.EntityPlayerSP;
 import dev.xdark.clientapi.event.chat.ChatReceive;
+import dev.xdark.clientapi.event.network.PluginMessage;
 import dev.xdark.clientapi.event.render.*;
 import dev.xdark.clientapi.event.chat.ChatSend;
+import dev.xdark.clientapi.network.NetworkPlayerInfo;
 import dev.xdark.clientapi.text.Text;
 import dev.xdark.clientapi.text.TextFormatting;
 import dev.xdark.clientapi.ClientApi;
 import dev.xdark.clientapi.event.Listener;
 import dev.xdark.clientapi.entry.ModMain;
+import dev.xdark.feder.NetUtil;
+import leaderboards.BoardContent;
+import leaderboards.BoardStructure;
 
 import java.text.DecimalFormat;
 import java.util.*;
@@ -17,12 +23,23 @@ import java.util.concurrent.TimeUnit;
 public class BetterCSC implements ModMain, Listener {
     private boolean hp = true;
 
+    //Скрытие флуда в чате при быстрой прокачке/покупке
     private Text lastMessage = null;
     private long lastMessageTimeMillis;
 
+    //Подсчёт общей суммы ставок
     private long allBets = 0;
     private boolean countBets = false;
 
+    //Список игроков находящиеся на сервере
+    private Collection<NetworkPlayerInfo> playerList;
+
+    //Таблица топ рейтинга
+    private final Gson gson = new Gson();
+    private String boardUUID;
+    private BoardContent boardList;
+
+    //Префикс мода
     private final Text prefix = Text.of("[", TextFormatting.DARK_RED, "BetterCSC", TextFormatting.DARK_PURPLE, "]", TextFormatting.DARK_RED, " ");
 
     @Override
@@ -39,6 +56,24 @@ public class BetterCSC implements ModMain, Listener {
                     else
                         api.chat().printChatMessage(prefix.copy().append(Text.of("включён", TextFormatting.GREEN)));
                     this.hp = !this.hp;
+                } else if (msg.startsWith("/unloadbcsc")) {
+                    chatSend.setCancelled(true);
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Выгружаем данный мод, пока =(", TextFormatting.WHITE)));
+                    unload();
+                } else if (msg.startsWith("/leadertop")) {
+                    chatSend.setCancelled(true);
+                    if (boardList != null) {
+                        api.chat().printChatMessage(Text.of("Топ рейтинга: ", TextFormatting.YELLOW));
+                        for (BoardContent.BoardLine line : boardList.getContent()) {
+                            Text text = Text.of("");
+                            for (String column : line.getColumns()) {
+                                text.append(stringToText(column + " "));
+                            }
+                            api.chat().printChatMessage(text);
+                        }
+                    } else {
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Нет таблицы", TextFormatting.RED)));
+                    }
                 }
             }
         }, 100);
@@ -156,6 +191,57 @@ public class BetterCSC implements ModMain, Listener {
         PlayerListRender.BUS.register(this, playerListRender -> {
             if (this.hp && playerListRender.isCancelled()) playerListRender.setCancelled(false);
         }, -1);
+
+        PluginMessage.BUS.register(this, pluginMessage -> {
+            if (pluginMessage.getChannel().equals("boards:new")) {
+                String var4 = NetUtil.readUtf8(pluginMessage.getData(), Integer.MAX_VALUE);
+                BoardStructure var6 = gson.fromJson(var4, BoardStructure.class);
+                if (var6.getName().equals("§e§lТоп рейтинга")) {
+                    boardUUID = var6.getUuid().toString();
+                }
+            } else if (pluginMessage.getChannel().equals("boards:content")) {
+                String var4 = NetUtil.readUtf8(pluginMessage.getData(), Integer.MAX_VALUE);
+                BoardContent var5 = gson.fromJson(var4, BoardContent.class);
+                if (var5.getBoardId().toString().equals(boardUUID)) {
+                    boardList = var5;
+                }
+            } else if (pluginMessage.getChannel().equals("boards:reset")) {
+                boardUUID = null;
+                boardList = null;
+            } else if (pluginMessage.getChannel().equals("REGISTER")) {
+                playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
+            } else if (pluginMessage.getChannel().equals("csc:ui")) {
+                //Да тут просто трилион костылей что бы на этом говно API Cristalix хоть как-то работало
+                if (playerList == null || playerList.size() == 0 || playerList.size() == 1) {
+                    playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
+                }
+                for (NetworkPlayerInfo player1 : api.clientConnection().getPlayerInfos()) {
+                    boolean has = false;
+                    for (NetworkPlayerInfo player2 : playerList) {
+                        if (player1.getGameProfile().getId().toString().equals(player2.getGameProfile().getId().toString())) {
+                            has = true;
+                            break;
+                        }
+                    }
+                    if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && player1.getDisplayName().getFormattedText().length() > 0) {
+                        api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(11, player1.getDisplayName().getFormattedText().length() - (player1.getDisplayName().getFormattedText().contains("[§") ? 0 : 5)))).append(Text.of(" зашёл на сервер", TextFormatting.YELLOW)));
+                    }
+                }
+                for (NetworkPlayerInfo player1 : playerList) {
+                    boolean has = false;
+                    for (NetworkPlayerInfo player2 : api.clientConnection().getPlayerInfos()) {
+                        if (player1.getGameProfile().getId().toString().equals(player2.getGameProfile().getId().toString())) {
+                            has = true;
+                            break;
+                        }
+                    }
+                    if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && player1.getDisplayName().getFormattedText().length() > 0) {
+                        api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(11, player1.getDisplayName().getFormattedText().length() - (player1.getDisplayName().getFormattedText().contains("[§") ? 0 : 5)))).append(Text.of(" вышел с сервера", TextFormatting.YELLOW)));
+                    }
+                }
+                playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
+            }
+        }, 1);
     }
 
     @Override
@@ -205,6 +291,7 @@ public class BetterCSC implements ModMain, Listener {
         put('r', TextFormatting.RESET);
     }};
 
+    //Что бы адекватно в консоль выводился текст (без кода цвета)
     private Text stringToText(String text) {
         String[] list = text.replaceAll("§", "regex").split("regex");
         Text formText = Text.of("");

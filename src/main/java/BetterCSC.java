@@ -1,13 +1,17 @@
+import com.google.gson.Gson;
 import dev.xdark.clientapi.entity.EntityPlayerSP;
 import dev.xdark.clientapi.event.chat.ChatReceive;
 import dev.xdark.clientapi.event.gui.ScreenDisplay;
 import dev.xdark.clientapi.event.inventory.WindowClick;
+import dev.xdark.clientapi.event.network.PluginMessage;
 import dev.xdark.clientapi.event.render.*;
 import dev.xdark.clientapi.event.chat.ChatSend;
 import dev.xdark.clientapi.gui.Screen;
 import dev.xdark.clientapi.input.KeyboardHelper;
+import dev.xdark.clientapi.inventory.ClickType;
 import dev.xdark.clientapi.item.Item;
 import dev.xdark.clientapi.item.ItemStack;
+import dev.xdark.clientapi.network.NetworkPlayerInfo;
 import dev.xdark.clientapi.text.Text;
 import dev.xdark.clientapi.text.TextFormatting;
 import dev.xdark.clientapi.ClientApi;
@@ -16,6 +20,8 @@ import dev.xdark.clientapi.entry.ModMain;
 import dev.xdark.feder.NetUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import leaderboards.BoardContent;
+import leaderboards.BoardStructure;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -47,6 +53,12 @@ public class BetterCSC implements ModMain, Listener {
     private boolean forceSingleWindow = true;
 
 //    private boolean doAutoBet = false;
+
+    private Collection<NetworkPlayerInfo> playerList;
+
+    private final Gson gson = new Gson();
+    private String boardUUID;
+    private BoardContent boardList;
 
     private final Text prefix = Text.of("[", TextFormatting.DARK_RED, "BetterCSC", TextFormatting.DARK_PURPLE, "]", TextFormatting.DARK_RED, " ");
 
@@ -305,11 +317,25 @@ public class BetterCSC implements ModMain, Listener {
                         e.printStackTrace();
                         api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
                     }
-                }/* else if (msg.startsWith("/test")) {
+                } else if (msg.startsWith("/unloadbcsc")) {
                     chatSend.setCancelled(true);
-                    api.chat().sendChatMessage("/duelsettings");
-                    doAutoBet = !doAutoBet;
-                }*/
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Выгружаем данный мод, пока =(", TextFormatting.WHITE)));
+                    unload();
+                } else if (msg.startsWith("/leadertop")) {
+                    chatSend.setCancelled(true);
+                    if (boardList != null) {
+                        for (BoardContent.BoardLine line : boardList.getContent()) {
+                            Text text = Text.of("");
+                            for (String column : line.getColumns()) {
+                                text.append(stringToText(column + " "));
+                            }
+                            api.chat().printChatMessage(text);
+                        }
+
+                    } else {
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Нет таблицы", TextFormatting.RED)));
+                    }
+                }
             }
         }, 100);
 
@@ -452,7 +478,7 @@ public class BetterCSC implements ModMain, Listener {
         }, -1);
         WindowClick.BUS.register(this, windowClick -> {
             if (this.hp) {
-                if (KeyboardHelper.isAltKeyDown() && windowClick.getMouseButton() == 2) {
+                if (KeyboardHelper.isAltKeyDown() && windowClick.getMouseButton() == 2 && windowClick.getClickType() == ClickType.CLONE) {
                     if (!enableBuy) {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN)));
                         enableBuy = true;
@@ -472,12 +498,12 @@ public class BetterCSC implements ModMain, Listener {
                         taskBuy = null;
                     }
                 }
-                if (KeyboardHelper.isCtrlKeyDown() && windowClick.getMouseButton() == 2) {
+                if (KeyboardHelper.isCtrlKeyDown() && windowClick.getMouseButton() == 2 && windowClick.getClickType() == ClickType.CLONE) {
                     api.chat().printChatMessage(prefix.copy().append(Text.of("Выходим из игры", TextFormatting.RED)));
                     api.chat().sendChatMessage("/hub");
 //                  api.clientConnection().sendPayload("csc:sendlobby", Unpooled.buffer());
                 }
-//                if (KeyboardHelper.isShiftKeyDown() && windowClick.getMouseButton() == 2) {
+//                if (KeyboardHelper.isShiftKeyDown() && windowClick.getMouseButton() == 2 && windowClick.getClickType() == ClickType.CLONE) {
 //                    api.chat().printChatMessage(prefix.copy().append(Text.of("test", TextFormatting.GREEN)));
 //                    doAutoBet = true;
 ////                    api.chat().sendChatMessage("/duelsettings");
@@ -529,33 +555,95 @@ public class BetterCSC implements ModMain, Listener {
 //                }
 //            }
         }, 100);
+
+        PluginMessage.BUS.register(this, pluginMessage -> {
+//            System.out.println("Channel: " + pluginMessage.getChannel());
+//            System.out.println("DataCha: " + pluginMessage.getData().toString(StandardCharsets.UTF_8));
+            if (pluginMessage.getChannel().equals("boards:new")) {
+                String var4 = NetUtil.readUtf8(pluginMessage.getData(), Integer.MAX_VALUE);
+                BoardStructure var6 = gson.fromJson(var4, BoardStructure.class);
+                System.out.println(var6.getName());
+                if (var6.getName().equals("§e§lТоп рейтинга")) {
+                    boardUUID = var6.getUuid().toString();
+                }
+            } else if (pluginMessage.getChannel().equals("boards:content")) {
+                String var4 = NetUtil.readUtf8(pluginMessage.getData(), Integer.MAX_VALUE);
+                BoardContent var5 = gson.fromJson(var4, BoardContent.class);
+                if (var5.getBoardId().toString().equals(boardUUID)) {
+                    boardList = var5;
+                }
+            } else if (pluginMessage.getChannel().equals("boards:reset")) {
+                boardUUID = null;
+                boardList = null;
+            } else if (pluginMessage.getChannel().equals("REGISTER")) {
+                playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
+            } else if (pluginMessage.getChannel().equals("csc:ui")) {
+                //Да тут просто трилион костылей что бы на этом говно API Cristalix хоть как-то работало
+                if (playerList == null || playerList.size() == 0 || playerList.size() == 1) {
+                    playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
+                }
+                for (NetworkPlayerInfo player1 : api.clientConnection().getPlayerInfos()) {
+                    boolean has = false;
+                    for (NetworkPlayerInfo player2 : playerList) {
+                        if (player1.getGameProfile().getId().toString().equals(player2.getGameProfile().getId().toString())) {
+                            has = true;
+                            break;
+                        }
+                    }
+                    if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && player1.getDisplayName().getFormattedText().length() > 0) {
+                        api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(11, player1.getDisplayName().getFormattedText().length() - (player1.getDisplayName().getFormattedText().contains("[§") ? 0 : 5)))).append(Text.of(" зашёл на сервер", TextFormatting.YELLOW)));
+                    }
+                }
+                for (NetworkPlayerInfo player1 : playerList) {
+                    boolean has = false;
+                    for (NetworkPlayerInfo player2 : api.clientConnection().getPlayerInfos()) {
+                        if (player1.getGameProfile().getId().toString().equals(player2.getGameProfile().getId().toString())) {
+                            has = true;
+                            break;
+                        }
+                    }
+                    if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && player1.getDisplayName().getFormattedText().length() > 0) {
+                        api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(11, player1.getDisplayName().getFormattedText().length() - (player1.getDisplayName().getFormattedText().contains("[§") ? 0 : 5)))).append(Text.of(" вышел с сервера", TextFormatting.YELLOW)));
+                    }
+                }
+                playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
+            }
+        }, 1);
+
+//        ServerSwitch.BUS.register(this, serverSwitch -> {
+//            playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
+//        }, 1);
     }
 
-    public void fireChatSend(String message) {
-        ChatSend.BUS.fire(new ChatSend() {
+    @SuppressWarnings("UnusedReturnValue")
+    public ChatSend fireChatSend(String message) {
+        return ChatSend.BUS.fire(new ChatSend() {
+            boolean canceled = false;
+            String message_ = message;
+
             @Override
             public String getMessage() {
-                return message;
+                return message_;
             }
 
             @Override
             public void setMessage(String message) {
-
+                this.message_ = message;
             }
 
             @Override
             public boolean isCommand() {
-                return message.startsWith("/");
+                return message_.startsWith("/");
             }
 
             @Override
             public boolean isCancelled() {
-                return false;
+                return canceled;
             }
 
             @Override
             public void setCancelled(boolean cancelled) {
-
+                this.canceled = cancelled;
             }
         });
     }
@@ -563,12 +651,7 @@ public class BetterCSC implements ModMain, Listener {
     @Override
     public void unload() {
         this.hp = false;
-        HungerRender.BUS.unregisterAll(this);
-        HealthRender.BUS.unregisterAll(this);
         ChatSend.BUS.unregisterAll(this);
-        ChatReceive.BUS.unregisterAll(this);
-        ArmorRender.BUS.unregisterAll(this);
-        PlayerListRender.BUS.unregisterAll(this);
     }
 
     private int getColor(int percent) {
@@ -607,6 +690,7 @@ public class BetterCSC implements ModMain, Listener {
         put('r', TextFormatting.RESET);
     }};
 
+    //Что бы адекватно в консоль выводился текст (без кода цвета)
     private Text stringToText(String text) {
         String[] list = text.replaceAll("§", "regex").split("regex");
         Text formText = Text.of("");

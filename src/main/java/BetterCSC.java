@@ -11,6 +11,8 @@ import dev.xdark.clientapi.ClientApi;
 import dev.xdark.clientapi.event.Listener;
 import dev.xdark.clientapi.entry.ModMain;
 import dev.xdark.feder.NetUtil;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import leaderboards.BoardContent;
 import leaderboards.BoardStructure;
 
@@ -31,13 +33,15 @@ public class BetterCSC implements ModMain, Listener {
     private long allBets = 0;
     private boolean countBets = false;
 
-    //Список игроков находящиеся на сервере
+    //Оповещение в чате когда кто-то заходит/выходит в катке CSC
     private Collection<NetworkPlayerInfo> playerList;
+    private boolean startGame = false;
 
     //Таблица топ рейтинга
     private final Gson gson = new Gson();
-    private String boardUUID;
-    private BoardContent boardList;
+    private BoardStructure boardStructure;
+    private BoardContent boardContent;
+    private boolean reset = false;
 
     //Префикс мода
     private final Text prefix = Text.of("[", TextFormatting.DARK_RED, "BetterCSC", TextFormatting.DARK_PURPLE, "]", TextFormatting.DARK_RED, " ");
@@ -62,15 +66,16 @@ public class BetterCSC implements ModMain, Listener {
                     unload();
                 } else if (msg.startsWith("/leadertop")) {
                     chatSend.setCancelled(true);
-                    if (boardList != null) {
+                    if (boardContent != null) {
                         api.chat().printChatMessage(Text.of("Топ рейтинга: ", TextFormatting.YELLOW));
-                        for (BoardContent.BoardLine line : boardList.getContent()) {
+                        for (BoardContent.BoardLine line : boardContent.getContent()) {
                             Text text = Text.of("");
                             for (String column : line.getColumns()) {
                                 text.append(stringToText(column + " "));
                             }
                             api.chat().printChatMessage(text);
                         }
+
                     } else {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("Нет таблицы", TextFormatting.RED)));
                     }
@@ -193,55 +198,98 @@ public class BetterCSC implements ModMain, Listener {
         }, -1);
 
         PluginMessage.BUS.register(this, pluginMessage -> {
-            if (pluginMessage.getChannel().equals("boards:new")) {
-                String var4 = NetUtil.readUtf8(pluginMessage.getData(), Integer.MAX_VALUE);
+            System.out.println("Channel:" + pluginMessage.getChannel());
+            System.out.println("Datacha: " + NetUtil.readUtf8(pluginMessage.getData().copy()));
+            if (reset && boardStructure != null && boardContent != null) {
+                reset = false;
+                ByteBuf byteBuf = Unpooled.buffer();
+                NetUtil.writeUtf8(gson.toJson(boardStructure), byteBuf);
+                firePluginMessage("boards:new", byteBuf);
+                ByteBuf byteBuf2 = Unpooled.buffer();
+                NetUtil.writeUtf8(gson.toJson(boardContent), byteBuf2);
+                firePluginMessage("boards:content", byteBuf2);
+            }
+            if (pluginMessage.getChannel().equals("csc:updateonline")) {
+                startGame = true;
+            } else if (pluginMessage.getChannel().equals("csc:tab")) {
+                startGame = false;
+            } else if (pluginMessage.getChannel().equals("boards:new")) {
+                String var4 = NetUtil.readUtf8(pluginMessage.getData().copy(), Integer.MAX_VALUE);
                 BoardStructure var6 = gson.fromJson(var4, BoardStructure.class);
                 if (var6.getName().equals("§e§lТоп рейтинга")) {
-                    boardUUID = var6.getUuid().toString();
+                    //Изменяем координаты только для таблица которая используется
+//                    if (var6.getX() == 0) {
+                    //Намеренно изменяем координаты board
+                    var6.setX(269);
+                    var6.setY(108);
+                    var6.setZ(-17);
+                    var6.setYaw(180);
+                    //Изменяем ByteBuf
+                    pluginMessage.getData().clear();
+                    NetUtil.writeUtf8(gson.toJson(var6), pluginMessage.getData());
+//                    }
+                    boardStructure = var6;
                 }
             } else if (pluginMessage.getChannel().equals("boards:content")) {
-                String var4 = NetUtil.readUtf8(pluginMessage.getData(), Integer.MAX_VALUE);
+                String var4 = NetUtil.readUtf8(pluginMessage.getData().copy(), Integer.MAX_VALUE);
                 BoardContent var5 = gson.fromJson(var4, BoardContent.class);
-                if (var5.getBoardId().toString().equals(boardUUID)) {
-                    boardList = var5;
+                if (boardStructure != null && var5.getBoardId().toString().equals(boardStructure.getUuid().toString())) {
+                    boardContent = var5;
                 }
             } else if (pluginMessage.getChannel().equals("boards:reset")) {
-                boardUUID = null;
-                boardList = null;
+                if (boardStructure != null && boardContent != null) reset = true;
             } else if (pluginMessage.getChannel().equals("REGISTER")) {
                 playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
-            } else if (pluginMessage.getChannel().equals("csc:ui")) {
-                //Да тут просто трилион костылей что бы на этом говно API Cristalix хоть как-то работало
-                if (playerList == null || playerList.size() == 0 || playerList.size() == 1) {
+            } else if (pluginMessage.getChannel().equals("csc:ui") && !startGame) {
+                String cscUi = NetUtil.readUtf8(pluginMessage.getData().copy(), Integer.MAX_VALUE);
+                if (cscUi.startsWith("7:")) {
+                    //Да тут просто трилион костылей что бы на этом говно API Cristalix хоть как-то работало
+                    if (playerList == null || playerList.size() == 0 || playerList.size() == 1) {
+                        playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
+                    }
+                    for (NetworkPlayerInfo player1 : api.clientConnection().getPlayerInfos()) {
+                        boolean has = false;
+                        for (NetworkPlayerInfo player2 : playerList) {
+                            if (player1.getGameProfile().getId().toString().equals(player2.getGameProfile().getId().toString())) {
+                                has = true;
+                                break;
+                            }
+                        }
+                        if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && player1.getDisplayName().getFormattedText().length() > 0) {
+                            api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(11, player1.getDisplayName().getFormattedText().length() - (player1.getDisplayName().getFormattedText().contains("[§") ? 0 : 5)))).append(Text.of(" зашёл на сервер", TextFormatting.YELLOW)));
+                        }
+                    }
+                    for (NetworkPlayerInfo player1 : playerList) {
+                        boolean has = false;
+                        for (NetworkPlayerInfo player2 : api.clientConnection().getPlayerInfos()) {
+                            if (player1.getGameProfile().getId().toString().equals(player2.getGameProfile().getId().toString())) {
+                                has = true;
+                                break;
+                            }
+                        }
+                        if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && player1.getDisplayName().getFormattedText().length() > 0) {
+                            api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(11, player1.getDisplayName().getFormattedText().length() - (player1.getDisplayName().getFormattedText().contains("[§") ? 0 : 5)))).append(Text.of(" вышел с сервера", TextFormatting.YELLOW)));
+                        }
+                    }
                     playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
                 }
-                for (NetworkPlayerInfo player1 : api.clientConnection().getPlayerInfos()) {
-                    boolean has = false;
-                    for (NetworkPlayerInfo player2 : playerList) {
-                        if (player1.getGameProfile().getId().toString().equals(player2.getGameProfile().getId().toString())) {
-                            has = true;
-                            break;
-                        }
-                    }
-                    if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && player1.getDisplayName().getFormattedText().length() > 0) {
-                        api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(11, player1.getDisplayName().getFormattedText().length() - (player1.getDisplayName().getFormattedText().contains("[§") ? 0 : 5)))).append(Text.of(" зашёл на сервер", TextFormatting.YELLOW)));
-                    }
-                }
-                for (NetworkPlayerInfo player1 : playerList) {
-                    boolean has = false;
-                    for (NetworkPlayerInfo player2 : api.clientConnection().getPlayerInfos()) {
-                        if (player1.getGameProfile().getId().toString().equals(player2.getGameProfile().getId().toString())) {
-                            has = true;
-                            break;
-                        }
-                    }
-                    if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && player1.getDisplayName().getFormattedText().length() > 0) {
-                        api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(11, player1.getDisplayName().getFormattedText().length() - (player1.getDisplayName().getFormattedText().contains("[§") ? 0 : 5)))).append(Text.of(" вышел с сервера", TextFormatting.YELLOW)));
-                    }
-                }
-                playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
             }
         }, 1);
+    }
+
+    @SuppressWarnings("UnusedReturnValue")
+    public PluginMessage firePluginMessage(String channel, ByteBuf byteBuf) {
+        return PluginMessage.BUS.fire(new PluginMessage() {
+            @Override
+            public String getChannel() {
+                return channel;
+            }
+
+            @Override
+            public ByteBuf getData() {
+                return byteBuf;
+            }
+        });
     }
 
     @Override

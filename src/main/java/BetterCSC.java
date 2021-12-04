@@ -65,6 +65,7 @@ public class BetterCSC implements ModMain, Listener {
     private final Gson gson = new Gson();
     private BoardStructure boardStructure;
     private BoardContent boardContent;
+    private boolean reset = false;
 
     //Префикс мода
     private final Text prefix = Text.of("[", TextFormatting.DARK_RED, "BetterCSC", TextFormatting.DARK_PURPLE, "]", TextFormatting.DARK_RED, " ");
@@ -565,6 +566,15 @@ public class BetterCSC implements ModMain, Listener {
         }, 100);
 
         PluginMessage.BUS.register(this, pluginMessage -> {
+            if (reset && boardStructure != null && boardContent != null) {
+                reset = false;
+                ByteBuf byteBuf = Unpooled.buffer();
+                NetUtil.writeUtf8(gson.toJson(boardStructure), byteBuf);
+                firePluginMessage("boards:new", byteBuf);
+                ByteBuf byteBuf2 = Unpooled.buffer();
+                NetUtil.writeUtf8(gson.toJson(boardContent), byteBuf2);
+                firePluginMessage("boards:content", byteBuf2);
+            }
             if (pluginMessage.getChannel().equals("boards:new")) {
                 String var4 = NetUtil.readUtf8(pluginMessage.getData().copy(), Integer.MAX_VALUE);
                 BoardStructure var6 = gson.fromJson(var4, BoardStructure.class);
@@ -589,8 +599,7 @@ public class BetterCSC implements ModMain, Listener {
                     boardContent = var5;
                 }
             } else if (pluginMessage.getChannel().equals("boards:reset")) {
-                boardStructure = null;
-                boardContent = null;
+                if (boardStructure != null && boardContent != null) reset = true;
             } else if (pluginMessage.getChannel().equals("REGISTER")) {
                 playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
             } else if (pluginMessage.getChannel().equals("csc:ui")) {
@@ -624,7 +633,7 @@ public class BetterCSC implements ModMain, Listener {
                 }
                 playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
             }
-        }, -99);
+        }, 1);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -656,6 +665,21 @@ public class BetterCSC implements ModMain, Listener {
             @Override
             public void setCancelled(boolean cancelled) {
                 this.canceled = cancelled;
+            }
+        });
+    }
+
+    @SuppressWarnings("UnusedReturnValue")
+    public PluginMessage firePluginMessage(String channel, ByteBuf byteBuf) {
+        return PluginMessage.BUS.fire(new PluginMessage() {
+            @Override
+            public String getChannel() {
+                return channel;
+            }
+
+            @Override
+            public ByteBuf getData() {
+                return byteBuf;
             }
         });
     }

@@ -331,8 +331,8 @@ public class BetterCSC implements ModMain, Listener {
                 } else if (msg.startsWith("/leadertop")) {
                     chatSend.setCancelled(true);
                     if (boardList != null) {
+                        api.chat().printChatMessage(Text.of("Топ рейтинга: ", TextFormatting.YELLOW));
                         for (BoardContent.BoardLine line : boardList.getContent()) {
-                            api.chat().printChatMessage(Text.of("Топ рейтинга: ", TextFormatting.YELLOW));
                             Text text = Text.of("");
                             for (String column : line.getColumns()) {
                                 text.append(stringToText(column + " "));

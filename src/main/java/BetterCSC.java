@@ -567,8 +567,8 @@ public class BetterCSC implements ModMain, Listener {
         }, 100);
 
         PluginMessage.BUS.register(this, pluginMessage -> {
-            System.out.println("Channel:" + pluginMessage.getChannel());
-            System.out.println("Datacha: " + NetUtil.readUtf8(pluginMessage.getData().copy()));
+//            System.out.println("Channel:" + pluginMessage.getChannel());
+//            System.out.println("Datacha: " + NetUtil.readUtf8(pluginMessage.getData().copy()));
             if (reset && boardStructure != null && boardContent != null) {
                 reset = false;
                 ByteBuf byteBuf = Unpooled.buffer();

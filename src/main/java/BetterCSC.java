@@ -63,8 +63,8 @@ public class BetterCSC implements ModMain, Listener {
 
     //Таблица топ рейтинга
     private final Gson gson = new Gson();
-    private String boardUUID;
-    private BoardContent boardList;
+    private BoardStructure boardStructure;
+    private BoardContent boardContent;
 
     //Префикс мода
     private final Text prefix = Text.of("[", TextFormatting.DARK_RED, "BetterCSC", TextFormatting.DARK_PURPLE, "]", TextFormatting.DARK_RED, " ");
@@ -100,10 +100,10 @@ public class BetterCSC implements ModMain, Listener {
                     int count;
                     try {
                         count = Integer.parseInt(msg.replace("/up ", ""));
-                        if (count > 5000) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 5000", TextFormatting.RED)));
-                            return;
-                        }
+//                        if (count > 5000) {
+//                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 5000", TextFormatting.RED)));
+//                            return;
+//                        }
                         if (count < 0) throw new RuntimeException();
                     } catch (Exception e) {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
@@ -146,10 +146,10 @@ public class BetterCSC implements ModMain, Listener {
                     int period;
                     try {
                         period = Integer.parseInt(msg.replace("/period up ", ""));
-                        if (period > 500) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 500", TextFormatting.RED)));
-                            return;
-                        }
+//                        if (period > 500) {
+//                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 500", TextFormatting.RED)));
+//                            return;
+//                        }
                         if (period < 0) throw new RuntimeException();
                         periodUP = 1000000 / period;
                     } catch (Exception e) {
@@ -162,10 +162,10 @@ public class BetterCSC implements ModMain, Listener {
                     int period;
                     try {
                         period = Integer.parseInt(msg.replace("/period buy ", ""));
-                        if (period > 500) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 500", TextFormatting.RED)));
-                            return;
-                        }
+//                        if (period > 500) {
+//                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 500", TextFormatting.RED)));
+//                            return;
+//                        }
                         if (period < 0) throw new RuntimeException();
                         periodBuy = 1000000 / period;
                     } catch (Exception e) {
@@ -330,9 +330,9 @@ public class BetterCSC implements ModMain, Listener {
                     unload();
                 } else if (msg.startsWith("/leadertop")) {
                     chatSend.setCancelled(true);
-                    if (boardList != null) {
+                    if (boardContent != null) {
                         api.chat().printChatMessage(Text.of("Топ рейтинга: ", TextFormatting.YELLOW));
-                        for (BoardContent.BoardLine line : boardList.getContent()) {
+                        for (BoardContent.BoardLine line : boardContent.getContent()) {
                             Text text = Text.of("");
                             for (String column : line.getColumns()) {
                                 text.append(stringToText(column + " "));
@@ -566,20 +566,31 @@ public class BetterCSC implements ModMain, Listener {
 
         PluginMessage.BUS.register(this, pluginMessage -> {
             if (pluginMessage.getChannel().equals("boards:new")) {
-                String var4 = NetUtil.readUtf8(pluginMessage.getData(), Integer.MAX_VALUE);
+                String var4 = NetUtil.readUtf8(pluginMessage.getData().copy(), Integer.MAX_VALUE);
                 BoardStructure var6 = gson.fromJson(var4, BoardStructure.class);
                 if (var6.getName().equals("§e§lТоп рейтинга")) {
-                    boardUUID = var6.getUuid().toString();
+                    //Изменяем координаты только для таблица которая используется
+//                    if (var6.getX() == 0) {
+                        //Намеренно изменяем координаты board
+                        var6.setX(269);
+                        var6.setY(108);
+                        var6.setZ(-17);
+                        var6.setYaw(180);
+                        //Изменяем ByteBuf
+                        pluginMessage.getData().clear();
+                        NetUtil.writeUtf8(gson.toJson(var6), pluginMessage.getData());
+//                    }
+                    boardStructure = var6;
                 }
             } else if (pluginMessage.getChannel().equals("boards:content")) {
-                String var4 = NetUtil.readUtf8(pluginMessage.getData(), Integer.MAX_VALUE);
+                String var4 = NetUtil.readUtf8(pluginMessage.getData().copy(), Integer.MAX_VALUE);
                 BoardContent var5 = gson.fromJson(var4, BoardContent.class);
-                if (var5.getBoardId().toString().equals(boardUUID)) {
-                    boardList = var5;
+                if (boardStructure != null && var5.getBoardId().toString().equals(boardStructure.getUuid().toString())) {
+                    boardContent = var5;
                 }
             } else if (pluginMessage.getChannel().equals("boards:reset")) {
-                boardUUID = null;
-                boardList = null;
+                boardStructure = null;
+                boardContent = null;
             } else if (pluginMessage.getChannel().equals("REGISTER")) {
                 playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
             } else if (pluginMessage.getChannel().equals("csc:ui")) {
@@ -613,7 +624,7 @@ public class BetterCSC implements ModMain, Listener {
                 }
                 playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
             }
-        }, 1);
+        }, -99);
     }
 
     @SuppressWarnings("UnusedReturnValue")

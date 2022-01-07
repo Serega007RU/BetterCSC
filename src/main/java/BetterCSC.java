@@ -294,6 +294,9 @@ public class BetterCSC implements ModMain, Listener {
                                 }
                                 if (msg.startsWith("/mod unload ")) {
                                     modMain.unload();
+                                    if (modMain instanceof Listener) {
+                                        ChatSend.BUS.unregisterAll((Listener) modMain);
+                                    }
                                 } else {
                                     modMain.load(clientApi);
                                 }

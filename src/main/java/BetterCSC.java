@@ -74,7 +74,7 @@ public class BetterCSC implements ModMain, Listener {
     @Override
     public void load(ClientApi api) {
         api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
-        if (api.minecraft().currentScreen() instanceof asO) api.minecraft().displayScreen(new us());
+//        if (api.minecraft().currentScreen() instanceof asO) api.minecraft().displayScreen(new us());
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -358,8 +358,8 @@ public class BetterCSC implements ModMain, Listener {
 
             //Это сделано для того что бы проверять своих на использование старой версии, если тот кто использует старую версию значит у него нет ограничений на прокачку и есть угроза что этот негодяй нарошно заддосит катку CSC (в новой версии сделана защита от ддоса)
             if (msg.contains("bcsc сообщи версию")) {
-                if (msg.contains("Serega007RU") || msg.contains("W1ZarDs") || msg.contains("Сергей007") || msg.contains("Серега10") || msg.contains("Серега14") || msg.contains("Серега16") || msg.contains("Серега17") || msg.contains("Серега19") || msg.contains("Серега21") || msg.contains("Серега22") || msg.contains("Серега25") || msg.contains("Серега26") || msg.contains("Серега27") || msg.contains("Серега3") || msg.contains("Серега4") || msg.contains("Серега6") || msg.contains("Серега7") || msg.contains("Серега8")) {
-                    api.chat().sendChatMessage("/pc Версия 2.4.0");
+                if (msgColored.contains("Serega007RU§r§8 » §r") || msgColored.contains("W1ZarDs§r§8 » §r") || msgColored.contains("Сергей007§r§8 » §r") || msgColored.contains("Серега10§r§8 » §r") || msgColored.contains("Серега14§r§8 » §r") || msgColored.contains("Серега16§r§8 » §r") || msgColored.contains("Серега17§r§8 » §r") || msgColored.contains("Серега19§r§8 » §r") || msgColored.contains("Серега21§r§8 » §r") || msgColored.contains("Серега22§r§8 » §r") || msgColored.contains("Серега25§r§8 » §r") || msgColored.contains("Серега26§r§8 » §r") || msgColored.contains("Серега27§r§8 » §r") || msgColored.contains("Серега3§r§8 » §r") || msgColored.contains("Серега4§r§8 » §r") || msgColored.contains("Серега6§r§8 » §r") || msgColored.contains("Серега7§r§8 » §r") || msgColored.contains("Серега8§r§8 » §r")) {
+                    api.chat().sendChatMessage("/pc Версия 2.4.1");
                 }
                 return;
             }
@@ -542,10 +542,10 @@ public class BetterCSC implements ModMain, Listener {
                 if (taskBuy != null) taskBuy.shutdown();
                 taskBuy = null;
             }
-            if (screen instanceof asO) {
-                screenDisplay.setCancelled(true);
-                api.minecraft().displayScreen(new us());
-            }
+//            if (screen instanceof asO) {
+//                screenDisplay.setCancelled(true);
+//                api.minecraft().displayScreen(new us());
+//            }
 
 //            if (doAutoBet) {
 //                try {

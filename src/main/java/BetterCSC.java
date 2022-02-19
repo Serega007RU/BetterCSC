@@ -46,14 +46,14 @@ public class BetterCSC implements ModMain, Listener {
     //Быстрая прокачка меча без лагов
     private boolean enableUP = false;
     private ScheduledExecutorService taskUP = null;
-    private int periodUP = 2000;
+    private int periodUP = 6666;
     private int countUp = 0;
 
     //Быстрая покупка книг с автоюзанием
     private boolean enableBuy = false;
     private ScheduledExecutorService taskBuy = null;
     private int periodBuy = 40000;
-    private boolean forceSingleWindow = true;
+    private boolean forceSingleWindow = false;
 
     //Автоставки
 //    private boolean doAutoBet = false;
@@ -102,10 +102,10 @@ public class BetterCSC implements ModMain, Listener {
                     int count;
                     try {
                         count = Integer.parseInt(msg.replace("/up ", ""));
-//                        if (count > 5000) {
-//                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 5000", TextFormatting.RED)));
-//                            return;
-//                        }
+                        if (count > 500) {
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 500", TextFormatting.RED)));
+                            return;
+                        }
                         if (count < 0) throw new RuntimeException();
                     } catch (Exception e) {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
@@ -148,10 +148,10 @@ public class BetterCSC implements ModMain, Listener {
                     int period;
                     try {
                         period = Integer.parseInt(msg.replace("/period up ", ""));
-//                        if (period > 500) {
-//                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 500", TextFormatting.RED)));
-//                            return;
-//                        }
+                        if (period > 150) {//Так как сосаликс ложится от такой нагрузки, поэтому такая защита от ддоса
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 150", TextFormatting.RED)));
+                            return;
+                        }
                         if (period < 0) throw new RuntimeException();
                         periodUP = 1000000 / period;
                     } catch (Exception e) {
@@ -164,10 +164,10 @@ public class BetterCSC implements ModMain, Listener {
                     int period;
                     try {
                         period = Integer.parseInt(msg.replace("/period buy ", ""));
-//                        if (period > 500) {
-//                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 500", TextFormatting.RED)));
-//                            return;
-//                        }
+                        if (period > 35) {
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 35", TextFormatting.RED)));
+                            return;
+                        }
                         if (period < 0) throw new RuntimeException();
                         periodBuy = 1000000 / period;
                     } catch (Exception e) {
@@ -353,9 +353,18 @@ public class BetterCSC implements ModMain, Listener {
         }, 100);
 
         ChatReceive.BUS.register(this, chatReceive -> {
+            String msg = chatReceive.getText().getUnformattedText();
+            String msgColored = chatReceive.getText().getFormattedText();
+
+            //Это сделано для того что бы проверять своих на использование старой версии, если тот кто использует старую версию значит у него нет ограничений на прокачку и есть угроза что этот негодяй нарошно заддосит катку CSC (в новой версии сделана защита от ддоса)
+            if (msg.contains("bcsc сообщи версию")) {
+                if (msg.contains("Serega007RU") || msg.contains("W1ZarDs") || msg.contains("Сергей007") || msg.contains("Серега10") || msg.contains("Серега14") || msg.contains("Серега16") || msg.contains("Серега17") || msg.contains("Серега19") || msg.contains("Серега21") || msg.contains("Серега22") || msg.contains("Серега25") || msg.contains("Серега26") || msg.contains("Серега27") || msg.contains("Серега3") || msg.contains("Серега4") || msg.contains("Серега6") || msg.contains("Серега7") || msg.contains("Серега8")) {
+                    api.chat().sendChatMessage("/pc Версия 2.4.0");
+                }
+                return;
+            }
+
             if (this.hp) {
-                String msg = chatReceive.getText().getUnformattedText();
-                String msgColored = chatReceive.getText().getFormattedText();
 
                 if (enableUP) {
                     if (msgColored.contains("§aБаланс: ") || msgColored.contains("§aВы успешно улучшили предмет")) {

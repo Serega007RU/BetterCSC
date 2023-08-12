@@ -24,6 +24,7 @@ import leaderboards.BoardContent;
 import leaderboards.BoardStructure;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -86,9 +87,6 @@ public class BetterCSC implements ModMain, Listener {
                     else
                         api.chat().printChatMessage(prefix.copy().append(Text.of("включён", TextFormatting.GREEN)));
                     this.hp = !this.hp;
-                } else if (msg.startsWith("/upgrade")) {
-                    chatSend.setCancelled(true);
-                    api.clientConnection().sendPayload("csc:upgrade", Unpooled.buffer());
                 } else if (msg.startsWith("/up")) {
                     chatSend.setCancelled(true);
                     if (enableUP) {
@@ -118,7 +116,7 @@ public class BetterCSC implements ModMain, Listener {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("В руках отсутствует предмет", TextFormatting.RED)));
                         return;
                     }
-                    fireChatSend("/mod unload csc mod");
+                    fireChatSend("/mod unload CSC mod");
                     api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN)));
                     countUp = 0;
                     enableUP = true;
@@ -187,79 +185,75 @@ public class BetterCSC implements ModMain, Listener {
                 } else if (msg.startsWith("/mod ")) {
                     chatSend.setCancelled(true);
                     try {
-                        asE ase;
-                        sE se;
-                        ClientApi clientApi;
+                        aws aws;
+                        tx tx;
+                        jr jr;
                         List<String> mods = new ArrayList<>();
-                        //Получаем доступ к приватному классу ClientApi
-//                    try {
-//                        Field field = null;
-//                        for (Field f : api.getClass().getDeclaredFields()) {
-//                            if (f.getName().equals("a") && f.getType().getName().equals("dev.xdark.clientapi.ClientApi")) {
-//                                field = f;
-//                                break;
-//                            }
-//                        }
-//                        field.setAccessible(true);
-//                        clientApi = (ClientApi) field.get(api);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                        api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
-//                    }
-                        //Для начала достаём класс Minecraft (Minecraft.getMinecraft())
-                        //Позже получаем доступ к классу asE в котором хранится список модов
-                        {
-                            Field field = sE.class.getDeclaredField("a");
-                            field.setAccessible(true);
-                            se = (sE) field.get(null);
-                            Method method = null;
-                            for (Method m : se.getClass().getDeclaredMethods()) {
-                                if (m.getName().equals("a") && m.getReturnType().getName().equals("asE")) {
-                                    method = m;
-                                    break;
-                                }
-                            }
-                            method.setAccessible(true);
-                            ase = (asE) method.invoke(se);
-                        }
                         //Получаем доступ к приватному классу ClientApi наследующий класс c
                         {
                             Field field = null;
-                            for (Field f : asE.class.getFields()) {
+                            for (Field f : api.getClass().getDeclaredFields()) {
                                 if (f.getName().equals("a") && f.getType().getName().equals("dev.xdark.clientapi.ClientApi")) {
                                     field = f;
                                     break;
                                 }
                             }
-                            clientApi = (ClientApi) field.get(ase);
+                            field.setAccessible(true);
+                            jr = (jr) field.get(api);
+                        }
+
+                        //Для начала достаём класс Minecraft (Minecraft.getMinecraft())
+                        {
+                            Field field = null;
+                            for (Field f : jr.getClass().getDeclaredFields()) {
+                                if (f.getName().equals("a") && f.getType().getName().equals("tx")) {
+                                    field = f;
+                                    break;
+                                }
+                            }
+                            field.setAccessible(true);
+                            tx = (tx) field.get(jr);
+                        }
+
+                        //Получаем доступ к классу aws в котором хранится список модов
+                        {
+                            Field field = null;
+                            for (Field f : tx.getClass().getDeclaredFields()) {
+                                if (f.getName().equals("as")) {
+                                    field = f;
+                                    break;
+                                }
+                            }
+                            field.setAccessible(true);
+                            aws = (aws) field.get(tx);
                         }
 
                         Map<String, ModMain> modList;
                         //Получаем доступ к списку модов и делаем чо хотим с модом
                         {
                             Field field = null;
-                            for (Field f : asE.class.getDeclaredFields()) {
-                                if (f.getName().equals("a") && f.getType().getName().equals("java.util.Map")) {
+                            for (Field f : aws.class.getDeclaredFields()) {
+                                if (f.getName().equals("de")) {
                                     field = f;
                                     break;
                                 }
                             }
                             field.setAccessible(true);
                             //noinspection unchecked
-                            modList = (Map<String, ModMain>) field.get(ase);
+                            modList = (Map<String, ModMain>) field.get(aws);
                         }
                         //Получаем доступ ко второму списку модов и делаем чо хотим с модом
                         {
                             Field field = null;
-                            for (Field f : asE.class.getDeclaredFields()) {
-                                if (f.getName().equals("b") && f.getType().getName().equals("java.util.Map")) {
+                            for (Field f : aws.class.getDeclaredFields()) {
+                                if (f.getName().equals("df")) {
                                     field = f;
                                     break;
                                 }
                             }
                             field.setAccessible(true);
                             //noinspection unchecked
-                            modList.putAll((Map<String, ModMain>) field.get(ase));
+                            modList.putAll((Map<String, ModMain>) field.get(aws));
                         }
                         for (Map.Entry<String, ModMain> mod : modList.entrySet()) {
                             if (msg.startsWith("/mod list")) {
@@ -276,29 +270,37 @@ public class BetterCSC implements ModMain, Listener {
                                 } else {
                                     api.chat().printChatMessage(prefix.copy().append(Text.of("Загружаем ", TextFormatting.GREEN, mod.getKey(), TextFormatting.WHITE)));
                                 }
-                                hw hw = (hw) mod.getValue();
-                                ModMain modMain = null;
-                                try {
-                                    Field field = null;
-                                    for (Field f : hw.class.getDeclaredFields()) {
-                                        if (f.getName().equals("a") && f.getType().getName().equals("dev.xdark.clientapi.entry.ModMain")) {
-                                            field = f;
-                                            break;
-                                        }
-                                    }
-                                    field.setAccessible(true);
-                                    modMain = (ModMain) field.get(hw);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                    api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
-                                }
+//                                hw hw = (hw) mod.getValue();
+//                                ModMain modMain = null;
+//                                try {
+//                                    Field field = null;
+//                                    for (Field f : hw.class.getDeclaredFields()) {
+//                                        if (f.getName().equals("a") && f.getType().getName().equals("dev.xdark.clientapi.entry.ModMain")) {
+//                                            field = f;
+//                                            break;
+//                                        }
+//                                    }
+//                                    field.setAccessible(true);
+//                                    modMain = (ModMain) field.get(hw);
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//                                    api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+//                                }
+//                                if (msg.startsWith("/mod unload ")) {
+//                                    modMain.unload();
+//                                    if (modMain instanceof Listener) {
+//                                        ChatSend.BUS.unregisterAll((Listener) modMain);
+//                                    }
+//                                } else {
+//                                    modMain.load(clientApi);
+//                                }
                                 if (msg.startsWith("/mod unload ")) {
-                                    modMain.unload();
-                                    if (modMain instanceof Listener) {
-                                        ChatSend.BUS.unregisterAll((Listener) modMain);
+                                    mod.getValue().unload();
+                                    if (mod.getValue() instanceof Listener) {
+                                        ChatSend.BUS.unregisterAll((Listener) mod.getValue());
                                     }
                                 } else {
-                                    modMain.load(clientApi);
+                                    mod.getValue().load(jr);
                                 }
                             }
                         }
@@ -310,14 +312,14 @@ public class BetterCSC implements ModMain, Listener {
                         //Какой-то третий список модов (хз зачем он нужен)
 //                    try {
 //                        Field field = null;
-//                        for (Field f : asE.class.getFields()) {
+//                        for (Field f : aws.class.getFields()) {
 //                            if (f.getName().equals("a") && f.getType().getName().equals("java.util.Collection")) {
 //                                field = f;
 //                                break;
 //                            }
 //                        }
 //                        //noinspection unchecked
-//                        Collection<ModMain> modList = (Collection<ModMain>) field.get(ase);
+//                        Collection<ModMain> modList = (Collection<ModMain>) field.get(aws);
 //                        for (ModMain mod : modList) {
 //                            System.out.println("Mod: " + mod);
 //                        }
@@ -355,14 +357,6 @@ public class BetterCSC implements ModMain, Listener {
         ChatReceive.BUS.register(this, chatReceive -> {
             String msg = chatReceive.getText().getUnformattedText();
             String msgColored = chatReceive.getText().getFormattedText();
-
-            //Это сделано для того что бы проверять своих на использование старой версии, если тот кто использует старую версию значит у него нет ограничений на прокачку и есть угроза что этот негодяй нарошно заддосит катку CSC (в новой версии сделана защита от ддоса)
-            if (msg.contains("bcsc сообщи версию")) {
-                if (msgColored.contains("Serega007RU§r§8 » §r") || msgColored.contains("W1ZarDs§r§8 » §r") || msgColored.contains("Сергей007§r§8 » §r") || msgColored.contains("Серега10§r§8 » §r") || msgColored.contains("Серега14§r§8 » §r") || msgColored.contains("Серега16§r§8 » §r") || msgColored.contains("Серега17§r§8 » §r") || msgColored.contains("Серега19§r§8 » §r") || msgColored.contains("Серега21§r§8 » §r") || msgColored.contains("Серега22§r§8 » §r") || msgColored.contains("Серега25§r§8 » §r") || msgColored.contains("Серега26§r§8 » §r") || msgColored.contains("Серега27§r§8 » §r") || msgColored.contains("Серега3§r§8 » §r") || msgColored.contains("Серега4§r§8 » §r") || msgColored.contains("Серега6§r§8 » §r") || msgColored.contains("Серега7§r§8 » §r") || msgColored.contains("Серега8§r§8 » §r")) {
-                    api.chat().sendChatMessage("/pc Версия 2.4.1");
-                }
-                return;
-            }
 
             if (this.hp) {
 
@@ -500,31 +494,37 @@ public class BetterCSC implements ModMain, Listener {
         }, -1);
         WindowClick.BUS.register(this, windowClick -> {
             if (this.hp) {
-                if (KeyboardHelper.isAltKeyDown() && windowClick.getMouseButton() == 2 && windowClick.getClickType() == ClickType.CLONE) {
-                    if (!enableBuy) {
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN)));
-                        enableBuy = true;
-
-                        taskBuy = api.threadManagement().newSingleThreadedScheduledExecutor();
-                        AtomicInteger windowId = new AtomicInteger(windowClick.getWindowId());
-                        taskBuy.scheduleAtFixedRate(() -> {
-                            if (!enableBuy) return;
-                            api.clientConnection().sendPacket(new Xi(windowId.get(), windowClick.getSlot(), 0, RX.PICKUP, (Vh) ItemStack.of(Item.of(0), 1, 0), (short) 0));
-                            if (!forceSingleWindow) windowId.getAndIncrement();
-                            api.clientConnection().sendPacket(new XF(abU.MAIN_HAND));
-                        }, 0, periodBuy, TimeUnit.MICROSECONDS);
-                    } else {
-                        enableBuy = false;
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED)));
-                        if (taskBuy != null) taskBuy.shutdown();
-                        taskBuy = null;
-                    }
-                }
-                if (KeyboardHelper.isCtrlKeyDown() && windowClick.getMouseButton() == 2 && windowClick.getClickType() == ClickType.CLONE) {
-                    api.chat().printChatMessage(prefix.copy().append(Text.of("Выходим из игры", TextFormatting.RED)));
-                    api.chat().sendChatMessage("/hub");
-//                  api.clientConnection().sendPayload("csc:sendlobby", Unpooled.buffer());
-                }
+//                if (KeyboardHelper.isAltKeyDown() && windowClick.getMouseButton() == 2 && windowClick.getClickType() == ClickType.CLONE) {
+//                    if (!enableBuy) {
+//                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN)));
+//                        enableBuy = true;
+//
+//                        taskBuy = api.threadManagement().newSingleThreadedScheduledExecutor();
+//                        AtomicInteger windowId = new AtomicInteger(windowClick.getWindowId());
+//                        taskBuy.scheduleAtFixedRate(() -> {
+//                            if (!enableBuy) return;
+//                            try {
+//                                sendPacket(api, new XO(windowId.get(), windowClick.getSlot(), 0, SD.PICKUP, (VN) ItemStack.of(Item.of(0), 1, 0), (short) 0));
+//                            } catch (Exception e) {
+//                                enableBuy = false;
+//                                e.printStackTrace();
+//                                api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+//                            }
+//                            if (!forceSingleWindow) windowId.getAndIncrement();
+////                            api.clientConnection().sendPacket(new XF(abU.MAIN_HAND));
+//                        }, 0, periodBuy, TimeUnit.MICROSECONDS);
+//                    } else {
+//                        enableBuy = false;
+//                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED)));
+//                        if (taskBuy != null) taskBuy.shutdown();
+//                        taskBuy = null;
+//                    }
+//                }
+//                if (KeyboardHelper.isCtrlKeyDown() && windowClick.getMouseButton() == 2 && windowClick.getClickType() == ClickType.CLONE) {
+//                    api.chat().printChatMessage(prefix.copy().append(Text.of("Выходим из игры", TextFormatting.RED)));
+//                    api.chat().sendChatMessage("/hub");
+////                  api.clientConnection().sendPayload("csc:sendlobby", Unpooled.buffer());
+//                }
 //                if (KeyboardHelper.isShiftKeyDown() && windowClick.getMouseButton() == 2 && windowClick.getClickType() == ClickType.CLONE) {
 //                    api.chat().printChatMessage(prefix.copy().append(Text.of("test", TextFormatting.GREEN)));
 //                    doAutoBet = true;
@@ -766,5 +766,46 @@ public class BetterCSC implements ModMain, Listener {
             }
         }
         return formText;
+    }
+
+    public Method sendPacketMethod;
+    public zu sendPacketInstance;
+    public void sendPacket(ClientApi api, WZ packet) throws InvocationTargetException, IllegalAccessException {
+        if (sendPacketMethod == null) {
+            // Сначало получаем доступ к zu
+            zu zu;
+            {
+                Method method = null;
+                for (Method m : ((sB) api.clientConnection()).getClass().getDeclaredMethods()) {
+                    if (m.getName().equals("a") && m.getReturnType().getName().equals("WU")) {
+                        method = m;
+                        break;
+                    }
+                }
+                method.setAccessible(true);
+                zu = (zu) method.invoke(api);
+                sendPacketInstance = zu;
+            }
+            //Позже получаем метод который вызывает sendPacket
+            {
+                Method method = null;
+                for (Method m : zu.getClass().getDeclaredMethods()) {
+                    if (m.getName().equals("a")) {
+                        for (Class<?> class_ : m.getParameterTypes()) {
+                            if (class_.getName().equals("WZ")) {
+                                method = m;
+                                break;
+                            }
+                        }
+                        if (method != null) {
+                            break;
+                        }
+                    }
+                }
+                method.setAccessible(true);
+                sendPacketMethod = method;
+            }
+        }
+        sendPacketMethod.invoke(sendPacketInstance, packet);
     }
 }

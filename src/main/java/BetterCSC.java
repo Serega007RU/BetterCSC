@@ -1,16 +1,10 @@
-import com.google.gson.Gson;
 import dev.xdark.clientapi.entity.EntityPlayerSP;
 import dev.xdark.clientapi.event.chat.ChatReceive;
 import dev.xdark.clientapi.event.gui.ScreenDisplay;
-import dev.xdark.clientapi.event.inventory.WindowClick;
 import dev.xdark.clientapi.event.network.PluginMessage;
 import dev.xdark.clientapi.event.render.*;
 import dev.xdark.clientapi.event.chat.ChatSend;
 import dev.xdark.clientapi.gui.Screen;
-import dev.xdark.clientapi.input.KeyboardHelper;
-import dev.xdark.clientapi.inventory.ClickType;
-import dev.xdark.clientapi.item.Item;
-import dev.xdark.clientapi.item.ItemStack;
 import dev.xdark.clientapi.network.NetworkPlayerInfo;
 import dev.xdark.clientapi.text.Text;
 import dev.xdark.clientapi.text.TextFormatting;
@@ -20,8 +14,6 @@ import dev.xdark.clientapi.entry.ModMain;
 import dev.xdark.feder.NetUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import leaderboards.BoardContent;
-import leaderboards.BoardStructure;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -30,7 +22,6 @@ import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @SuppressWarnings("unused")
 public class BetterCSC implements ModMain, Listener {
@@ -54,7 +45,7 @@ public class BetterCSC implements ModMain, Listener {
     private boolean enableBuy = false;
     private ScheduledExecutorService taskBuy = null;
     private int periodBuy = 40000;
-    private boolean forceSingleWindow = false;
+    private String uuidWindowBuy = null;
 
     //Автоставки
 //    private boolean doAutoBet = false;
@@ -63,11 +54,6 @@ public class BetterCSC implements ModMain, Listener {
     private Collection<NetworkPlayerInfo> playerList;
     private boolean startGame = false;
 
-    //Таблица топ рейтинга
-    private final Gson gson = new Gson();
-    private BoardStructure boardStructure;
-    private BoardContent boardContent;
-    private boolean reset = false;
 
     //Префикс мода
     private final Text prefix = Text.of("[", TextFormatting.DARK_RED, "BetterCSC", TextFormatting.DARK_PURPLE, "]", TextFormatting.DARK_RED, " ");
@@ -116,7 +102,7 @@ public class BetterCSC implements ModMain, Listener {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("В руках отсутствует предмет", TextFormatting.RED)));
                         return;
                     }
-                    fireChatSend("/mod unload CSC mod");
+                    fireChatSend("/mod unload CSC UI mod");
                     api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN)));
                     countUp = 0;
                     enableUP = true;
@@ -141,6 +127,47 @@ public class BetterCSC implements ModMain, Listener {
                         NetUtil.writeVarInt(id, buffer);
                         api.clientConnection().sendPayload("csc:upgrade", buffer);
                     }, 0, periodUP, TimeUnit.MICROSECONDS);
+                } else if (msg.startsWith("/buy")) {
+                    chatSend.setCancelled(true);
+                    if (enableBuy) {
+                        enableBuy = false;
+                        uuidWindowBuy = null;
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED)));
+                        if (taskBuy != null) taskBuy.shutdown();
+                        taskBuy = null;
+                        return;
+                    }
+                    int id;
+                    try {
+                        id = Integer.parseInt(msg.replace("/buy ", ""));
+                        if (id <= 0) throw new RuntimeException();
+                    } catch (Exception e) {
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
+                        return;
+                    }
+//                    fireChatSend("/mod unload Visual Driver");
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена ", TextFormatting.GREEN, "Откройте магазин что бы начать", TextFormatting.GOLD)));
+                    enableBuy = true;
+                    uuidWindowBuy = null;
+                    taskBuy = api.threadManagement().newSingleThreadedScheduledExecutor();
+                    taskBuy.scheduleAtFixedRate(() -> {
+                        if (!enableBuy || uuidWindowBuy == null) return;
+                        ByteBuf buffer = Unpooled.buffer();
+                        NetUtil.writeUtf8(buffer, uuidWindowBuy);
+                        buffer.writeInt(id - 1);
+                        buffer.writeInt(0);
+                        api.clientConnection().sendPayload("storage:click", buffer);
+                        try {
+                            sendPacketRightClick(api);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            enableBuy = false;
+                            uuidWindowBuy = null;
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "выключена, " + e.getLocalizedMessage(), TextFormatting.RED)));
+                            if (taskBuy != null) taskBuy.shutdown();
+                            taskBuy = null;
+                        }
+                    }, 0, periodBuy, TimeUnit.MICROSECONDS);
                 } else if (msg.startsWith("/period up")) {
                     chatSend.setCancelled(true);
                     int period;
@@ -173,12 +200,6 @@ public class BetterCSC implements ModMain, Listener {
                         return;
                     }
                     api.chat().printChatMessage(prefix.copy().append(Text.of("Период покупки настроен на ", TextFormatting.GOLD, String.valueOf(period), TextFormatting.WHITE)));
-                } else if (msg.startsWith("/forcesingleup")) {
-                    chatSend.setCancelled(true);
-                    forceSingleWindow = !forceSingleWindow;
-                    if (forceSingleWindow) api.chat().printChatMessage(prefix.copy().append(Text.of("ForceSingleUp ", TextFormatting.GOLD, "включён", TextFormatting.WHITE)));
-                    else api.chat().printChatMessage(prefix.copy().append(Text.of("ForceSingleUp ", TextFormatting.GOLD, "выключен", TextFormatting.RED)));
-
                 } else if (msg.startsWith("/sendpayload ")) {
                     chatSend.setCancelled(true);
                     api.clientConnection().sendPayload(msg.replace("/sendpayload ", ""), Unpooled.buffer());
@@ -335,21 +356,6 @@ public class BetterCSC implements ModMain, Listener {
                     chatSend.setCancelled(true);
                     api.chat().printChatMessage(prefix.copy().append(Text.of("Выгружаем данный мод, пока =(", TextFormatting.WHITE)));
                     unload();
-                } else if (msg.startsWith("/leadertop")) {
-                    chatSend.setCancelled(true);
-                    if (boardContent != null) {
-                        api.chat().printChatMessage(Text.of("Топ рейтинга: ", TextFormatting.YELLOW));
-                        for (BoardContent.BoardLine line : boardContent.getContent()) {
-                            Text text = Text.of("");
-                            for (String column : line.getColumns()) {
-                                text.append(stringToText(column + " "));
-                            }
-                            api.chat().printChatMessage(text);
-                        }
-
-                    } else {
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Нет таблицы", TextFormatting.RED)));
-                    }
                 }
             }
         }, 100);
@@ -360,26 +366,17 @@ public class BetterCSC implements ModMain, Listener {
 
             if (this.hp) {
 
-                if (enableUP) {
-                    if (msgColored.contains("§aБаланс: ") || msgColored.contains("§aВы успешно улучшили предмет")) {
+                if (enableUP || enableBuy) {
+                    if (msgColored.contains("§aБаланс: ") || msgColored.contains("§aВы успешно улучшили предмет") || msgColored.contains("§aВы успешно купили предмет")) {
                         chatReceive.setCancelled(true);
                         return;
-                    } else if (msgColored.contains("§cУ вас недостаточно золота на балансе") || msgColored.contains("§cЭтот предмет нельзя улучшить") || msgColored.contains("§cВы не находитесь в игре") || msgColored.contains("§cОшибка, вы не можете сейчас открыть меню апгрейда") || msgColored.contains("§cЭтот предмет улучшен до максимального уровня")) {
+                    } else if (msgColored.contains("§cУ вас недостаточно золота на балансе") || msgColored.contains("§cВы уже купили этот предмет") || msgColored.contains("§cЭтот предмет нельзя улучшить") || msgColored.contains("§cВы не находитесь в игре") || msgColored.contains("§cОшибка, вы не можете сейчас открыть меню апгрейда") || msgColored.contains("§cЭтот предмет улучшен до максимального уровня") || msgColored.contains("§cУ вас недостаточно места в инвентаре")) {
                         chatReceive.setCancelled(true);
                         enableUP = false;
-                        if (taskUP != null) taskUP.shutdown();
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED, ", " + TextFormatting.GOLD, msg, TextFormatting.RED)));
-                        return;
-                    }
-                } else if (enableBuy) {
-                    if (msgColored.contains("§aБаланс: ") || msgColored.contains("§aВы успешно купили предмет")) {
-                        chatReceive.setCancelled(true);
-                        return;
-                    } else if (msgColored.contains("§cУ вас недостаточно золота на балансе") || msgColored.contains("§cВы уже купили этот предмет") || msgColored.contains("§cУ вас недостаточно места в инвентаре")) {
-                        chatReceive.setCancelled(true);
                         enableBuy = false;
+                        if (taskUP != null) taskUP.shutdown();
                         if (taskBuy != null) taskBuy.shutdown();
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED, ", ", TextFormatting.GOLD, msg, TextFormatting.RED)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд/покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED, ", " + TextFormatting.GOLD, msg, TextFormatting.RED)));
                         return;
                     }
                 }
@@ -492,52 +489,13 @@ public class BetterCSC implements ModMain, Listener {
         PlayerListRender.BUS.register(this, playerListRender -> {
             if (this.hp && playerListRender.isCancelled()) playerListRender.setCancelled(false);
         }, -1);
-        WindowClick.BUS.register(this, windowClick -> {
-            if (this.hp) {
-//                if (KeyboardHelper.isAltKeyDown() && windowClick.getMouseButton() == 2 && windowClick.getClickType() == ClickType.CLONE) {
-//                    if (!enableBuy) {
-//                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN)));
-//                        enableBuy = true;
-//
-//                        taskBuy = api.threadManagement().newSingleThreadedScheduledExecutor();
-//                        AtomicInteger windowId = new AtomicInteger(windowClick.getWindowId());
-//                        taskBuy.scheduleAtFixedRate(() -> {
-//                            if (!enableBuy) return;
-//                            try {
-//                                sendPacket(api, new XO(windowId.get(), windowClick.getSlot(), 0, SD.PICKUP, (VN) ItemStack.of(Item.of(0), 1, 0), (short) 0));
-//                            } catch (Exception e) {
-//                                enableBuy = false;
-//                                e.printStackTrace();
-//                                api.chat().printChatMessage(Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
-//                            }
-//                            if (!forceSingleWindow) windowId.getAndIncrement();
-////                            api.clientConnection().sendPacket(new XF(abU.MAIN_HAND));
-//                        }, 0, periodBuy, TimeUnit.MICROSECONDS);
-//                    } else {
-//                        enableBuy = false;
-//                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED)));
-//                        if (taskBuy != null) taskBuy.shutdown();
-//                        taskBuy = null;
-//                    }
-//                }
-//                if (KeyboardHelper.isCtrlKeyDown() && windowClick.getMouseButton() == 2 && windowClick.getClickType() == ClickType.CLONE) {
-//                    api.chat().printChatMessage(prefix.copy().append(Text.of("Выходим из игры", TextFormatting.RED)));
-//                    api.chat().sendChatMessage("/hub");
-////                  api.clientConnection().sendPayload("csc:sendlobby", Unpooled.buffer());
-//                }
-//                if (KeyboardHelper.isShiftKeyDown() && windowClick.getMouseButton() == 2 && windowClick.getClickType() == ClickType.CLONE) {
-//                    api.chat().printChatMessage(prefix.copy().append(Text.of("test", TextFormatting.GREEN)));
-//                    doAutoBet = true;
-////                    api.chat().sendChatMessage("/duelsettings");
-//                }
-            }
-        }, 100);
         ScreenDisplay.BUS.register(this, screenDisplay -> {
             Screen screen = screenDisplay.getScreen();
             if (enableUP && screen != null && screen.doesGuiPauseGame())
                 screenDisplay.setCancelled(true);
-            if (enableBuy && screen == null) {
+            if (enableBuy && uuidWindowBuy != null && screen == null) {
                 enableBuy = false;
+                uuidWindowBuy = null;
                 api.chat().printChatMessage(prefix.copy().append(Text.of("Кажется вы закрыли GUI, быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED)));
                 if (taskBuy != null) taskBuy.shutdown();
                 taskBuy = null;
@@ -581,51 +539,17 @@ public class BetterCSC implements ModMain, Listener {
         PluginMessage.BUS.register(this, pluginMessage -> {
 //            System.out.println("Channel:" + pluginMessage.getChannel());
 //            System.out.println("Datacha: " + NetUtil.readUtf8(pluginMessage.getData().copy()));
-            if (reset && boardStructure != null && boardContent != null) {
-                reset = false;
-                ByteBuf byteBuf = Unpooled.buffer();
-                NetUtil.writeUtf8(gson.toJson(boardStructure), byteBuf);
-                firePluginMessage("boards:new", byteBuf);
-                ByteBuf byteBuf2 = Unpooled.buffer();
-                NetUtil.writeUtf8(gson.toJson(boardContent), byteBuf2);
-                firePluginMessage("boards:content", byteBuf2);
-            }
             if (pluginMessage.getChannel().equals("csc:updateonline")) {
                 startGame = true;
             } else if (pluginMessage.getChannel().equals("csc:tab")) {
                 startGame = false;
-            } else if (pluginMessage.getChannel().equals("boards:new")) {
-                String var4 = NetUtil.readUtf8(pluginMessage.getData().copy(), Integer.MAX_VALUE);
-                BoardStructure var6 = gson.fromJson(var4, BoardStructure.class);
-                if (var6.getName().equals("§e§lТоп рейтинга")) {
-                    //Изменяем координаты только для таблица которая используется
-//                    if (var6.getX() == 0) {
-                        //Намеренно изменяем координаты board
-                        var6.setX(269);
-                        var6.setY(108);
-                        var6.setZ(-17);
-                        var6.setYaw(180);
-                        //Изменяем ByteBuf
-                        pluginMessage.getData().clear();
-                        NetUtil.writeUtf8(gson.toJson(var6), pluginMessage.getData());
-//                    }
-                    boardStructure = var6;
-                }
-            } else if (pluginMessage.getChannel().equals("boards:content")) {
-                String var4 = NetUtil.readUtf8(pluginMessage.getData().copy(), Integer.MAX_VALUE);
-                BoardContent var5 = gson.fromJson(var4, BoardContent.class);
-                if (boardStructure != null && var5.getBoardId().toString().equals(boardStructure.getUuid().toString())) {
-                    boardContent = var5;
-                }
-            } else if (pluginMessage.getChannel().equals("boards:reset")) {
-                if (boardStructure != null && boardContent != null) reset = true;
             } else if (pluginMessage.getChannel().equals("REGISTER")) {
                 playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
             } else if (pluginMessage.getChannel().equals("csc:ui") && !startGame) {
                 String cscUi = NetUtil.readUtf8(pluginMessage.getData().copy(), Integer.MAX_VALUE);
                 if (cscUi.startsWith("7:")) {
                     //Да тут просто трилион костылей что бы на этом говно API Cristalix хоть как-то работало
-                    if (playerList == null || playerList.size() == 0 || playerList.size() == 1) {
+                    if (playerList == null || playerList.isEmpty() || playerList.size() == 1) {
                         playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
                     }
                     for (NetworkPlayerInfo player1 : api.clientConnection().getPlayerInfos()) {
@@ -636,8 +560,8 @@ public class BetterCSC implements ModMain, Listener {
                                 break;
                             }
                         }
-                        if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && player1.getDisplayName().getFormattedText().length() > 0) {
-                            api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(11, player1.getDisplayName().getFormattedText().length() - (player1.getDisplayName().getFormattedText().contains("[§") ? 0 : 5)))).append(Text.of(" зашёл на сервер", TextFormatting.YELLOW)));
+                        if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && !player1.getDisplayName().getFormattedText().isEmpty()) {
+                            api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(14))).append(Text.of(" зашёл на сервер", TextFormatting.YELLOW)));
                         }
                     }
                     for (NetworkPlayerInfo player1 : playerList) {
@@ -648,12 +572,14 @@ public class BetterCSC implements ModMain, Listener {
                                 break;
                             }
                         }
-                        if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && player1.getDisplayName().getFormattedText().length() > 0) {
-                            api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(11, player1.getDisplayName().getFormattedText().length() - (player1.getDisplayName().getFormattedText().contains("[§") ? 0 : 5)))).append(Text.of(" вышел с сервера", TextFormatting.YELLOW)));
+                        if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && !player1.getDisplayName().getFormattedText().isEmpty()) {
+                            api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(14))).append(Text.of(" вышел с сервера", TextFormatting.YELLOW)));
                         }
                     }
                     playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
                 }
+            } else if (pluginMessage.getChannel().equals("func:page-response")) {
+                uuidWindowBuy = NetUtil.readUtf8(pluginMessage.getData().copy());
             }
         }, 1);
     }
@@ -687,21 +613,6 @@ public class BetterCSC implements ModMain, Listener {
             @Override
             public void setCancelled(boolean cancelled) {
                 this.canceled = cancelled;
-            }
-        });
-    }
-
-    @SuppressWarnings("UnusedReturnValue")
-    public PluginMessage firePluginMessage(String channel, ByteBuf byteBuf) {
-        return PluginMessage.BUS.fire(new PluginMessage() {
-            @Override
-            public String getChannel() {
-                return channel;
-            }
-
-            @Override
-            public ByteBuf getData() {
-                return byteBuf;
             }
         });
     }
@@ -769,43 +680,45 @@ public class BetterCSC implements ModMain, Listener {
     }
 
     public Method sendPacketMethod;
-    public zu sendPacketInstance;
-    public void sendPacket(ClientApi api, WZ packet) throws InvocationTargetException, IllegalAccessException {
-        if (sendPacketMethod == null) {
-            // Сначало получаем доступ к zu
-            zu zu;
+    public tx sendPacketInstance;
+    public void sendPacketRightClick(ClientApi api) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        if (sendPacketMethod == null || sendPacketInstance == null) {
+            tx tx;
+            jr jr;
+            //Получаем доступ к приватному классу ClientApi наследующий класс c
             {
-                Method method = null;
-                for (Method m : ((sB) api.clientConnection()).getClass().getDeclaredMethods()) {
-                    if (m.getName().equals("a") && m.getReturnType().getName().equals("WU")) {
-                        method = m;
+                Field field = null;
+                for (Field f : api.getClass().getDeclaredFields()) {
+                    if (f.getName().equals("a") && f.getType().getName().equals("dev.xdark.clientapi.ClientApi")) {
+                        field = f;
                         break;
                     }
                 }
-                method.setAccessible(true);
-                zu = (zu) method.invoke(api);
-                sendPacketInstance = zu;
+                field.setAccessible(true);
+                jr = (jr) field.get(api);
             }
-            //Позже получаем метод который вызывает sendPacket
+
+            //Для начала достаём класс Minecraft (Minecraft.getMinecraft())
             {
-                Method method = null;
-                for (Method m : zu.getClass().getDeclaredMethods()) {
-                    if (m.getName().equals("a")) {
-                        for (Class<?> class_ : m.getParameterTypes()) {
-                            if (class_.getName().equals("WZ")) {
-                                method = m;
-                                break;
-                            }
-                        }
-                        if (method != null) {
-                            break;
-                        }
+                Field field = null;
+                for (Field f : jr.getClass().getDeclaredFields()) {
+                    if (f.getName().equals("a") && f.getType().getName().equals("tx")) {
+                        field = f;
+                        break;
                     }
                 }
+                field.setAccessible(true);
+                tx = (tx) field.get(jr);
+                sendPacketInstance = tx;
+            }
+            {
+                Method method = tx.getClass().getDeclaredMethod("rightClickMouse");
                 method.setAccessible(true);
+                method.invoke(tx);
                 sendPacketMethod = method;
             }
         }
-        sendPacketMethod.invoke(sendPacketInstance, packet);
+
+        sendPacketMethod.invoke(sendPacketInstance);
     }
 }

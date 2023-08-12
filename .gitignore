@@ -1,3 +1,5 @@
 BetterCSC.iml
 out
 .idea
+build
+.gradle

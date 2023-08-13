@@ -21,7 +21,6 @@ import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-@SuppressWarnings("unused")
 public class BetterCSC implements ModMain, Listener {
     private boolean hp = true;
 
@@ -178,6 +177,7 @@ public class BetterCSC implements ModMain, Listener {
                         try {
                             sendPacketRightClick(api);
                         } catch (Exception e) {
+                            //noinspection CallToPrintStackTrace
                             e.printStackTrace();
                             enableBuy = false;
 //                            uuidWindowBuy = null;
@@ -335,11 +335,11 @@ public class BetterCSC implements ModMain, Listener {
                         w / 2.0F - 12.0f + alignment, h - 50.0f,
                         color, true); // Percents
 
-                api.fontRenderer().drawString(String.format("%s \u2665", (int)health),
+                api.fontRenderer().drawString(String.format("%s ♥", (int)health),
                         w / 2.0F - 88.0F, h - 50.0f,
                         color, true); // Health
 
-                String mh = String.format("%6s \u2665", (int)maxHealth);
+                String mh = String.format("%6s ♥", (int)maxHealth);
                 api.fontRenderer().drawString(mh,
                         w / 2.0F + 87.0F - api.fontRenderer().getStringWidth(mh), h - 50.0f,
                         16777215, true); // Max Health
@@ -456,7 +456,7 @@ public class BetterCSC implements ModMain, Listener {
         String[] list = text.replaceAll("§", "regex").split("regex");
         Text formText = Text.of("");
         for (String str : list) {
-            if (str.length() == 0) continue;
+            if (str.isEmpty()) continue;
             char ch = str.charAt(0);
             TextFormatting textFormatting = textFormattingValues.get(ch);
             if (textFormatting == null) {
@@ -473,6 +473,7 @@ public class BetterCSC implements ModMain, Listener {
 
     public Method sendPacketMethod;
     public tx sendPacketInstance;
+    @SuppressWarnings("DataFlowIssue")
     public void sendPacketRightClick(ClientApi api) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         if (sendPacketMethod == null || sendPacketInstance == null) {
             tx tx;

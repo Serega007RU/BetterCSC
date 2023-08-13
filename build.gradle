@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-version = "Plus-2.5.1"
+version = "Plus-2.5.2"
 group = "bcsc"
 archivesBaseName = "BetterCSC"
 

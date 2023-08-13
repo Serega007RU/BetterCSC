@@ -385,7 +385,7 @@ public class BetterCSC implements ModMain, Listener {
                             // Это полный кринж, в displayName мы в начале получаем кракозябры из всяких не понятных символов, говно API дристаликса
                             String nick = player1.getDisplayName().getFormattedText().substring(player1.getDisplayName().getFormattedText().indexOf("§r§f") + 5);
                             if (nick.startsWith("§r§f ")) nick = nick.substring(5);
-                            api.chat().printChatMessage(prefix.copy().append(stringToText(nick).append(Text.of(" зашёл на сервер", TextFormatting.YELLOW))));
+                            api.chat().printChatMessage(prefix.copy().append(stringToText(nick).append(Text.of(" зашёл в игру", TextFormatting.GREEN))));
                         }
                     }
                     for (NetworkPlayerInfo player1 : playerList) {
@@ -399,7 +399,7 @@ public class BetterCSC implements ModMain, Listener {
                         if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && !player1.getDisplayName().getFormattedText().isEmpty()) {
                             String nick = player1.getDisplayName().getFormattedText().substring(player1.getDisplayName().getFormattedText().indexOf("§r§f") + 5);
                             if (nick.startsWith("§r§f ")) nick = nick.substring(5);
-                            api.chat().printChatMessage(prefix.copy().append(stringToText(nick).append(Text.of(" зашёл на сервер", TextFormatting.YELLOW))));
+                            api.chat().printChatMessage(prefix.copy().append(stringToText(nick).append(Text.of(" покинул игру", TextFormatting.RED))));
                         }
                     }
                     playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());

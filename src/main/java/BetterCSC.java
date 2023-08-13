@@ -16,7 +16,6 @@ import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-@SuppressWarnings("unused")
 public class BetterCSC implements ModMain, Listener {
     private boolean hp = true;
 
@@ -151,11 +150,11 @@ public class BetterCSC implements ModMain, Listener {
                         w / 2.0F - 12.0f + alignment, h - 50.0f,
                         color, true); // Percents
 
-                api.fontRenderer().drawString(String.format("%s \u2665", (int)health),
+                api.fontRenderer().drawString(String.format("%s ♥", (int)health),
                         w / 2.0F - 88.0F, h - 50.0f,
                         color, true); // Health
 
-                String mh = String.format("%6s \u2665", (int)maxHealth);
+                String mh = String.format("%6s ♥", (int)maxHealth);
                 api.fontRenderer().drawString(mh,
                         w / 2.0F + 87.0F - api.fontRenderer().getStringWidth(mh), h - 50.0f,
                         16777215, true); // Max Health
@@ -166,10 +165,6 @@ public class BetterCSC implements ModMain, Listener {
         }, -1);
         ArmorRender.BUS.register(this, armorRender -> {
             if (this.hp) armorRender.setCancelled(true);
-        }, -1);
-
-        PlayerListRender.BUS.register(this, playerListRender -> {
-            if (this.hp && playerListRender.isCancelled()) playerListRender.setCancelled(false);
         }, -1);
 
         PluginMessage.BUS.register(this, pluginMessage -> {
@@ -197,7 +192,10 @@ public class BetterCSC implements ModMain, Listener {
                             }
                         }
                         if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && !player1.getDisplayName().getFormattedText().isEmpty()) {
-                            api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(14))).append(Text.of(" зашёл на сервер", TextFormatting.YELLOW)));
+                            // Это полный кринж, в displayName мы в начале получаем кракозябры из всяких не понятных символов, говно API дристаликса
+                            String nick = player1.getDisplayName().getFormattedText().substring(player1.getDisplayName().getFormattedText().indexOf("§r§f") + 5);
+                            if (nick.startsWith("§r§f ")) nick = nick.substring(5);
+                            api.chat().printChatMessage(prefix.copy().append(stringToText(nick).append(Text.of(" зашёл на сервер", TextFormatting.YELLOW))));
                         }
                     }
                     for (NetworkPlayerInfo player1 : playerList) {
@@ -209,46 +207,15 @@ public class BetterCSC implements ModMain, Listener {
                             }
                         }
                         if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && !player1.getDisplayName().getFormattedText().isEmpty()) {
-                            api.chat().printChatMessage(prefix.copy().append(stringToText(player1.getDisplayName().getFormattedText().substring(14))).append(Text.of(" вышел с сервера", TextFormatting.YELLOW)));
+                            String nick = player1.getDisplayName().getFormattedText().substring(player1.getDisplayName().getFormattedText().indexOf("§r§f") + 5);
+                            if (nick.startsWith("§r§f ")) nick = nick.substring(5);
+                            api.chat().printChatMessage(prefix.copy().append(stringToText(nick).append(Text.of(" зашёл на сервер", TextFormatting.YELLOW))));
                         }
                     }
                     playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
                 }
             }
         }, 1);
-    }
-
-    @SuppressWarnings("UnusedReturnValue")
-    public ChatSend fireChatSend(String message) {
-        return ChatSend.BUS.fire(new ChatSend() {
-            boolean canceled = false;
-            String message_ = message;
-
-            @Override
-            public String getMessage() {
-                return message_;
-            }
-
-            @Override
-            public void setMessage(String message) {
-                this.message_ = message;
-            }
-
-            @Override
-            public boolean isCommand() {
-                return message_.startsWith("/");
-            }
-
-            @Override
-            public boolean isCancelled() {
-                return canceled;
-            }
-
-            @Override
-            public void setCancelled(boolean cancelled) {
-                this.canceled = cancelled;
-            }
-        });
     }
 
     @Override
@@ -298,7 +265,7 @@ public class BetterCSC implements ModMain, Listener {
         String[] list = text.replaceAll("§", "regex").split("regex");
         Text formText = Text.of("");
         for (String str : list) {
-            if (str.length() == 0) continue;
+            if (str.isEmpty()) continue;
             char ch = str.charAt(0);
             TextFormatting textFormatting = textFormattingValues.get(ch);
             if (textFormatting == null) {

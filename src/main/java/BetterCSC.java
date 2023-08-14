@@ -482,7 +482,7 @@ public class BetterCSC implements ModMain, Listener {
     public void sendPacketRightClick(ClientApi api) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         if (sendPacketMethod == null || sendPacketInstance == null) {
             tx tx;
-            jr jr;
+            ey ey;
             //Получаем доступ к приватному классу ClientApi наследующий класс c
             {
                 Field field = null;
@@ -493,20 +493,20 @@ public class BetterCSC implements ModMain, Listener {
                     }
                 }
                 field.setAccessible(true);
-                jr = (jr) field.get(api);
+                ey = (ey) field.get(api);
             }
 
             //Для начала достаём класс Minecraft (Minecraft.getMinecraft())
             {
                 Field field = null;
-                for (Field f : jr.getClass().getDeclaredFields()) {
+                for (Field f : ey.getClass().getDeclaredFields()) {
                     if (f.getName().equals("a") && f.getType().getName().equals("tx")) {
                         field = f;
                         break;
                     }
                 }
                 field.setAccessible(true);
-                tx = (tx) field.get(jr);
+                tx = (tx) field.get(ey);
                 sendPacketInstance = tx;
             }
             {

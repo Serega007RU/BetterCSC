@@ -1,3 +1,7 @@
+package ru.serega007.bcsc;
+
+import com.xenoceal.cristalix.Reflection;
+import com.xenoceal.cristalix.Wrapper;
 import dev.xdark.clientapi.entity.EntityPlayerSP;
 import dev.xdark.clientapi.event.chat.ChatReceive;
 import dev.xdark.clientapi.event.network.PluginMessage;
@@ -14,9 +18,6 @@ import dev.xdark.feder.NetUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
@@ -59,8 +60,16 @@ public class BetterCSC implements ModMain, Listener {
 
     @Override
     public void load(ClientApi api) {
+        try {
+            Reflection.initialize();
+        } catch (Exception e) {
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+            api.chat().printChatMessage(prefix.copy().append(Text.of("Ошибка загрузки маппингов, обратитесь к разработкичку https://gitlab.com/Serega007/bettercsc/-/issues " + e.getLocalizedMessage(), TextFormatting.DARK_RED)));
+            return;
+        }
+
         api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
-//        if (api.minecraft().currentScreen() instanceof asO) api.minecraft().displayScreen(new us());
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -176,7 +185,7 @@ public class BetterCSC implements ModMain, Listener {
                         buffer.writeInt(0);
                         api.clientConnection().sendPayload("storage:click", buffer);
                         try {
-                            sendPacketRightClick(api);
+                            Wrapper.rightClickMouse();
                         } catch (Exception e) {
                             //noinspection CallToPrintStackTrace
                             e.printStackTrace();
@@ -221,6 +230,7 @@ public class BetterCSC implements ModMain, Listener {
                         }
                         api.chat().printChatMessage(prefix.copy().append(Text.of("Период покупки настроен на ", TextFormatting.GOLD, String.valueOf(period), TextFormatting.WHITE)));
                     } else {
+                        chatSend.setCancelled(true);
                         api.chat().printChatMessage(prefix.copy().append(Text.of("Неверно указаны агрументы, ", TextFormatting.RED, "/period <buy/up> <число>", TextFormatting.GOLD)));
                     }
                 } else if (msg.startsWith("/unloadbcsc")) {
@@ -480,49 +490,5 @@ public class BetterCSC implements ModMain, Listener {
             }
         }
         return formText;
-    }
-
-    public Method sendPacketMethod;
-    public tx sendPacketInstance;
-    @SuppressWarnings("DataFlowIssue")
-    public void sendPacketRightClick(ClientApi api) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
-        if (sendPacketMethod == null || sendPacketInstance == null) {
-            tx tx;
-            ey ey;
-            //Получаем доступ к приватному классу ClientApi наследующий класс c
-            {
-                Field field = null;
-                for (Field f : api.getClass().getDeclaredFields()) {
-                    if (f.getName().equals("a") && f.getType().getName().equals("dev.xdark.clientapi.ClientApi")) {
-                        field = f;
-                        break;
-                    }
-                }
-                field.setAccessible(true);
-                ey = (ey) field.get(api);
-            }
-
-            //Для начала достаём класс Minecraft (Minecraft.getMinecraft())
-            {
-                Field field = null;
-                for (Field f : ey.getClass().getDeclaredFields()) {
-                    if (f.getName().equals("a") && f.getType().getName().equals("tx")) {
-                        field = f;
-                        break;
-                    }
-                }
-                field.setAccessible(true);
-                tx = (tx) field.get(ey);
-                sendPacketInstance = tx;
-            }
-            {
-                Method method = tx.getClass().getDeclaredMethod("rightClickMouse");
-                method.setAccessible(true);
-                method.invoke(tx);
-                sendPacketMethod = method;
-            }
-        }
-
-        sendPacketMethod.invoke(sendPacketInstance);
     }
 }

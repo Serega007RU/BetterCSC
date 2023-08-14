@@ -2,8 +2,8 @@ plugins {
     id 'java'
 }
 
-version = "Plus-2.5.3"
-group = "bcsc"
+version = "Plus-2.5.4"
+group = "ru.serega007.bcsc"
 archivesBaseName = "BetterCSC"
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'

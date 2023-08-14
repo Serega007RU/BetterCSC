@@ -1,7 +1,7 @@
 # Мод BetterCSC Plus Edition для Cristalix для мини игры Custom Steve Chaos
     
 ## Как установить:
-1. [Скачать](https://gitlab.com/Serega007/bettercsc/-/raw/plus/build/libs/BetterCSC-Plus-2.5.3.jar) мод
+1. [Скачать](https://gitlab.com/Serega007/bettercsc/-/raw/plus/build/libs/BetterCSC-Plus-2.5.4.jar) мод
 2. Закинуть скачанный файл в `C:\Xenoceal\mods`
 3. Заинжектить Bypass.dll
     

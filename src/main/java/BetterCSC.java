@@ -1,6 +1,7 @@
 import dev.xdark.clientapi.entity.EntityPlayerSP;
 import dev.xdark.clientapi.event.chat.ChatReceive;
 import dev.xdark.clientapi.event.network.PluginMessage;
+import dev.xdark.clientapi.event.network.ServerSwitch;
 import dev.xdark.clientapi.event.render.*;
 import dev.xdark.clientapi.event.chat.ChatSend;
 import dev.xdark.clientapi.network.NetworkPlayerInfo;
@@ -207,8 +208,8 @@ public class BetterCSC implements ModMain, Listener {
                     int period;
                     try {
                         period = Integer.parseInt(msg.replace("/period buy ", ""));
-                        if (period > 35) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 35", TextFormatting.RED)));
+                        if (period > 50) {
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 50", TextFormatting.RED)));
                             return;
                         }
                         if (period < 0) throw new RuntimeException();
@@ -356,6 +357,8 @@ public class BetterCSC implements ModMain, Listener {
             if (this.hp && playerListRender.isCancelled()) playerListRender.setCancelled(false);
         }, -1);
 
+        ServerSwitch.BUS.register(this, serverSwitch -> uuidWindowBuy = null, 1);
+
         PluginMessage.BUS.register(this, pluginMessage -> {
 //            System.out.println("Channel:" + pluginMessage.getChannel());
 //            System.out.println("Datacha: " + NetUtil.readUtf8(pluginMessage.getData().copy()));
@@ -365,7 +368,6 @@ public class BetterCSC implements ModMain, Listener {
                 startGame = false;
             } else if (pluginMessage.getChannel().equals("REGISTER")) {
                 playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
-                uuidWindowBuy = null;
             } else if (pluginMessage.getChannel().equals("csc:ui") && !startGame) {
                 String cscUi = NetUtil.readUtf8(pluginMessage.getData().copy(), Integer.MAX_VALUE);
                 if (cscUi.startsWith("7:")) {

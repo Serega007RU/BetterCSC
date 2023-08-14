@@ -187,38 +187,42 @@ public class BetterCSC implements ModMain, Listener {
                             taskBuy = null;
                         }
                     }, 0, periodBuy, TimeUnit.MICROSECONDS);
-                } else if (msg.startsWith("/period up")) {
-                    chatSend.setCancelled(true);
-                    int period;
-                    try {
-                        period = Integer.parseInt(msg.replace("/period up ", ""));
-                        if (period > 150) {//Так как сосаликс ложится от такой нагрузки, поэтому такая защита от ддоса
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 150", TextFormatting.RED)));
+                } else if (msg.startsWith("/period")) {
+                    if (msg.startsWith("/period up")) {
+                        chatSend.setCancelled(true);
+                        int period;
+                        try {
+                            period = Integer.parseInt(msg.replace("/period up ", ""));
+                            if (period > 150) {//Так как сосаликс ложится от такой нагрузки, поэтому такая защита от ддоса
+                                api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 150", TextFormatting.RED)));
+                                return;
+                            }
+                            if (period < 0) throw new RuntimeException();
+                            periodUP = 1000000 / period;
+                        } catch (Exception e) {
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
                             return;
                         }
-                        if (period < 0) throw new RuntimeException();
-                        periodUP = 1000000 / period;
-                    } catch (Exception e) {
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
-                        return;
-                    }
-                    api.chat().printChatMessage(prefix.copy().append(Text.of("Период прокачки настроен на ", TextFormatting.GOLD, String.valueOf(period), TextFormatting.WHITE)));
-                } else if (msg.startsWith("/period buy")) {
-                    chatSend.setCancelled(true);
-                    int period;
-                    try {
-                        period = Integer.parseInt(msg.replace("/period buy ", ""));
-                        if (period > 50) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 50", TextFormatting.RED)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Период прокачки настроен на ", TextFormatting.GOLD, String.valueOf(period), TextFormatting.WHITE)));
+                    } else if (msg.startsWith("/period buy")) {
+                        chatSend.setCancelled(true);
+                        int period;
+                        try {
+                            period = Integer.parseInt(msg.replace("/period buy ", ""));
+                            if (period > 50) {
+                                api.chat().printChatMessage(prefix.copy().append(Text.of("Куда ты так торопишься? Максимум можно 50", TextFormatting.RED)));
+                                return;
+                            }
+                            if (period < 0) throw new RuntimeException();
+                            periodBuy = 1000000 / period;
+                        } catch (Exception e) {
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
                             return;
                         }
-                        if (period < 0) throw new RuntimeException();
-                        periodBuy = 1000000 / period;
-                    } catch (Exception e) {
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Укажите число", TextFormatting.RED)));
-                        return;
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Период покупки настроен на ", TextFormatting.GOLD, String.valueOf(period), TextFormatting.WHITE)));
+                    } else {
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Неверно указаны агрументы, ", TextFormatting.RED, "/period <buy/up> <число>", TextFormatting.GOLD)));
                     }
-                    api.chat().printChatMessage(prefix.copy().append(Text.of("Период покупки настроен на ", TextFormatting.GOLD, String.valueOf(period), TextFormatting.WHITE)));
                 } else if (msg.startsWith("/unloadbcsc")) {
                     chatSend.setCancelled(true);
                     api.chat().printChatMessage(prefix.copy().append(Text.of("Выгружаем данный мод, пока =(", TextFormatting.WHITE)));

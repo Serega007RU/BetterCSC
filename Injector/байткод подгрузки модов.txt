@@ -1,0 +1,126 @@
+DEFINE PUBLIC c(LYQ; yq)V
+TRY EX_START_11 EX_END_11 CATCH(java/lang/Throwable) EX_HANDLER_11
+TRY EX_START_3 EX_END_3 CATCH(java/lang/Throwable) EX_START_5
+TRY EX_START_3 EX_END_3 CATCH(*) EX_HANDLER_5
+TRY EX_START_4 EX_END_4 CATCH(java/lang/Throwable) EX_HANDLER_4
+TRY EX_START_5 EX_END_5 CATCH(*) EX_HANDLER_5
+TRY EX_START_6 EX_END_6 CATCH(java/lang/Exception) EX_HANDLER_6
+ALOAD this
+GETFIELD aws.loadedMods Z
+IFNE DI
+ALOAD this
+GETFIELD aws.loadedMods Z
+IFNE DI
+ALOAD this
+ICONST_1
+PUTFIELD aws.loadedMods Z
+EX_START_6:
+LINE EX_START_6 40
+NEW java/io/File
+DUP
+LDC "C:\\Xenoceal\\mods\\"
+INVOKESPECIAL java/io/File.<init>(Ljava/lang/String;)V
+INVOKEVIRTUAL java/io/File.listFiles()[Ljava/io/File;
+ASTORE 2
+ALOAD 2
+ARRAYLENGTH
+ISTORE 3
+ICONST_0
+ISTORE 4
+DD:
+ILOAD 4
+ILOAD 3
+IF_ICMPGE EX_END_6
+ALOAD 2
+ILOAD 4
+AALOAD
+ASTORE fileEntry
+ALOAD fileEntry
+INVOKEVIRTUAL java/io/File.toPath()Ljava/nio/file/Path;
+ICONST_0
+ANEWARRAY java/nio/file/OpenOption
+INVOKESTATIC java/nio/file/Files.newInputStream(Ljava/nio/file/Path;[Ljava/nio/file/OpenOption;)Ljava/io/InputStream;
+ASTORE var2
+ACONST_NULL
+ASTORE var3
+EX_START_3:
+LINE EX_START_3 46
+ALOAD this
+GETFIELD aws.g Ljava/lang/Object;
+CHECKCAST dev/xdark/clientapi/ClientApi
+ALOAD var2
+GETSTATIC dev/xdark/clientapi/Side.SERVER Ldev/xdark/clientapi/Side;
+INVOKESTATIC ow.a(Ldev/xdark/clientapi/ClientApi;Ljava/io/InputStream;Ldev/xdark/clientapi/Side;)LoH;
+ASTORE var4
+EX_END_3:
+LINE EX_END_3 51
+ALOAD var2
+IFNULL DC
+ALOAD var3
+IFNULL DA
+EX_START_11:
+LINE EX_START_11 54
+ALOAD var2
+INVOKEVIRTUAL java/io/InputStream.close()V
+EX_END_11:
+LINE EX_END_11 57
+GOTO DC
+EX_HANDLER_11:
+LINE EX_HANDLER_11 55
+ASTORE var13
+ALOAD var3
+ALOAD var13
+INVOKEVIRTUAL java/lang/Throwable.addSuppressed(Ljava/lang/Throwable;)V
+GOTO DC
+DA:
+LINE DA 59
+ALOAD var2
+INVOKEVIRTUAL java/io/InputStream.close()V
+GOTO DC
+EX_START_5:
+LINE EX_START_5 47
+ASTORE 9
+ALOAD 9
+ASTORE var3
+ALOAD 9
+ATHROW
+EX_HANDLER_5:
+LINE EX_HANDLER_5 51
+ASTORE 10
+EX_END_5:
+ALOAD var2
+IFNULL DI
+ALOAD var3
+IFNULL DH
+EX_START_4:
+ALOAD var2
+INVOKEVIRTUAL java/io/InputStream.close()V
+EX_END_4:
+GOTO DI
+EX_HANDLER_4:
+ASTORE var13
+ALOAD var3
+ALOAD var13
+INVOKEVIRTUAL java/lang/Throwable.addSuppressed(Ljava/lang/Throwable;)V
+GOTO DI
+DH:
+LINE DH 59
+ALOAD var2
+INVOKEVIRTUAL java/io/InputStream.close()V
+ALOAD 10
+ATHROW
+DC:
+LINE DC 65
+AD:
+LINE AD 40
+IINC 4 1
+GOTO DD
+EX_END_6:
+LINE EX_END_6 69
+GOTO DI
+EX_HANDLER_6:
+LINE EX_HANDLER_6 67
+INVOKEVIRTUAL java/lang/Exception.printStackTrace()V
+DI:
+LINE DI 71
+RETURN

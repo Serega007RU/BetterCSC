@@ -2,8 +2,7 @@ plugins {
     id 'java'
 }
 
-def baseVersion = '2.5.4'
-version = "Plus-" + baseVersion
+version = "Plus-2.5.4"
 group = "ru.serega007.bcsc"
 archivesBaseName = "BetterCSC"
 
@@ -38,7 +37,10 @@ tasks.register('customZip', Zip) {
     }
     from('Injector/') {
         include('Bypass.dll')
-        into('')
     }
-    archiveFileName = 'BetterCSC-' + baseVersion + '.zip'
+    from('./') {
+        include('README.md')
+        rename { 'Инструкция.txt' }
+    }
+    archiveFileName = 'BetterCSC-' + version + '.zip'
 }

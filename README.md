@@ -1,9 +1,12 @@
 # Мод BetterCSC Plus Edition для Cristalix для мини игры Custom Steve Chaos
     
 ## Как установить:
-1. [Скачать](https://gitlab.com/Serega007/bettercsc/-/raw/plus/build/libs/BetterCSC-Plus-2.5.4.jar) мод
-2. Закинуть скачанный файл в `C:\Xenoceal\mods`
-3. Заинжектить Bypass.dll
+1. [Скачать](https://gitlab.com/Serega007/bettercsc/-/raw/plus/build/distributions/BetterCSC-Plus-2.5.4.zip) архив c данным модов и инжектором
+3. [Скачать](https://github.com/master131/ExtremeInjector/releases) программу для инжекта
+4. Закинуть папку Xenoceal на диск C:\
+5. Открыть Extreme Injector и настроить его следующим образом
+![](https://i.imgur.com/zB87InZ.jpg)
+6. Запустить кристаликс и радоваться жизни
     
 ## Что добавляет этот мод:
 - Вместо сердечек (хп) отображается полоска хп с точным кол-во хп и процентами (это сделано что бы на пуш волнах хп не мешали игре)   

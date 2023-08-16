@@ -270,7 +270,9 @@ public class BetterCSC implements ModMain, Listener {
                         long num = Long.parseLong(str);
                         text = text.replaceAll(str, new DecimalFormat("#,###").format(num));
                     }
-                    chatReceive.setText(stringToText(text));
+//                    chatReceive.setText(stringToText(text));
+                    chatReceive.setCancelled(true);
+                    api.chat().printChatMessage(stringToText(text));
                     lastMessage = chatReceive.getText();
                     lastMessageTimeMillis = System.currentTimeMillis();
                 } else if (msgColored.contains("§aВы успешно улучшили предмет") || msgColored.contains("§aВы успешно купили предмет")) {
@@ -287,7 +289,9 @@ public class BetterCSC implements ModMain, Listener {
 
                         String unfText = chatReceive.getText().getFormattedText();
                         unfText = unfText.replaceAll(String.valueOf(num), new DecimalFormat("#,###").format(num));
-                        chatReceive.setText(stringToText(unfText));
+//                        chatReceive.setText(stringToText(unfText));
+                        chatReceive.setCancelled(true);
+                        api.chat().printChatMessage(stringToText(unfText));
                     } else {
                         api.chat().printChatMessage(Text.of("Общая сумма ставок: ", TextFormatting.GOLD, new DecimalFormat("#,###").format(allBets), TextFormatting.GOLD));
                         countBets = false;
@@ -303,7 +307,9 @@ public class BetterCSC implements ModMain, Listener {
                     String text = chatReceive.getText().getFormattedText();
                     long num = Long.parseLong(msg.substring(msg.indexOf(var) + var.length(), msg.indexOf(" золота")));
                     text = text.replaceAll(String.valueOf(num), new DecimalFormat("#,###").format(num));
-                    chatReceive.setText(stringToText(text));
+//                    chatReceive.setText(stringToText(text));
+                    chatReceive.setCancelled(true);
+                    api.chat().printChatMessage(stringToText(text));
                 }
 
 //                if (lastMessage != null) {

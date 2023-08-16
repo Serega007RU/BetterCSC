@@ -270,9 +270,7 @@ public class BetterCSC implements ModMain, Listener {
                         long num = Long.parseLong(str);
                         text = text.replaceAll(str, new DecimalFormat("#,###").format(num));
                     }
-//                    chatReceive.setText(stringToText(text));
-                    chatReceive.setCancelled(true);
-                    api.chat().printChatMessage(stringToText(text));
+                    chatReceive.setText(stringToText(text));
                     lastMessage = chatReceive.getText();
                     lastMessageTimeMillis = System.currentTimeMillis();
                 } else if (msgColored.contains("§aВы успешно улучшили предмет") || msgColored.contains("§aВы успешно купили предмет")) {

@@ -141,18 +141,18 @@ public class BetterCSC implements ModMain, Listener {
                         disableBuy(api, Text.of(""));
                         return;
                     }
-                    if (protectBuy) {
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка пока ещё не полнолстью выключилась, подождите где-то 5 секунд", TextFormatting.RED)));
-                        return;
-                    }
+//                    if (protectBuy) {
+//                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка пока ещё не полнолстью выключилась, подождите где-то 5 секунд", TextFormatting.RED)));
+//                        return;
+//                    }
                     int id;
                     int count;
                     try {
                         String[] args = msg.split(" ");
                         count = Integer.parseInt(args[1]);
                         id = Integer.parseInt(args[2]);
-                        if (count > 1000) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 1000", TextFormatting.RED)));
+                        if (count > 5000) {
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 5000", TextFormatting.RED)));
                             return;
                         }
                         if (id <= 0 || count <= 0) throw new RuntimeException();
@@ -169,7 +169,7 @@ public class BetterCSC implements ModMain, Listener {
                     api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN)));
 
                     enableBuy = true;
-                    protectBuy = true;
+//                    protectBuy = true;
                     countBuy = 0;
 
                     taskBuy = api.threadManagement().newSingleThreadedScheduledExecutor();
@@ -447,10 +447,10 @@ public class BetterCSC implements ModMain, Listener {
         api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "выключена", TextFormatting.RED)).append(reason));
         if (taskBuy != null) taskBuy.shutdown();
         taskBuy = null;
-        api.threadManagement().newSingleThreadedScheduledExecutor().schedule(() -> {
-            protectBuy = false;
-            api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "завершена", TextFormatting.YELLOW)));
-        }, 5, TimeUnit.SECONDS);
+//        api.threadManagement().newSingleThreadedScheduledExecutor().schedule(() -> {
+//            protectBuy = false;
+//            api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "завершена", TextFormatting.YELLOW)));
+//        }, 5, TimeUnit.SECONDS);
     }
 
     @Override

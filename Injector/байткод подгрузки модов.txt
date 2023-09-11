@@ -50,7 +50,7 @@ GETFIELD aws.g Ljava/lang/Object;
 CHECKCAST dev/xdark/clientapi/ClientApi
 ALOAD var2
 GETSTATIC dev/xdark/clientapi/Side.SERVER Ldev/xdark/clientapi/Side;
-INVOKESTATIC ow.a(Ldev/xdark/clientapi/ClientApi;Ljava/io/InputStream;Ldev/xdark/clientapi/Side;)LoH;
+INVOKESTATIC kD.a(Ldev/xdark/clientapi/ClientApi;Ljava/io/InputStream;Ldev/xdark/clientapi/Side;)LoL;
 ASTORE var4
 EX_END_3:
 LINE EX_END_3 51

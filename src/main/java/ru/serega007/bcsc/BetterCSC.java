@@ -4,6 +4,7 @@ import com.xenoceal.cristalix.Reflection;
 import com.xenoceal.cristalix.Wrapper;
 import dev.xdark.clientapi.entity.EntityPlayerSP;
 import dev.xdark.clientapi.event.chat.ChatReceive;
+import dev.xdark.clientapi.event.input.MousePress;
 import dev.xdark.clientapi.event.network.PluginMessage;
 import dev.xdark.clientapi.event.network.ServerSwitch;
 import dev.xdark.clientapi.event.render.*;
@@ -112,7 +113,7 @@ public class BetterCSC implements ModMain, Listener {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("В руках отсутствует предмет", TextFormatting.RED)));
                         return;
                     }
-                    api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN)));
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN, ", нажмите ", TextFormatting.GOLD, "СКМ", TextFormatting.RED, " что бы выключть", TextFormatting.GOLD)));
 
                     enableUP = true;
                     protectUp = true;
@@ -166,7 +167,7 @@ public class BetterCSC implements ModMain, Listener {
                         return;
                     }
 
-                    api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN)));
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN, TextFormatting.GREEN, ", нажмите ", TextFormatting.GOLD, "СКМ", TextFormatting.RED, " что бы выключть", TextFormatting.GOLD)));
 
                     enableBuy = true;
 //                    protectBuy = true;
@@ -426,6 +427,17 @@ public class BetterCSC implements ModMain, Listener {
             } else if (pluginMessage.getChannel().equals("csc:upgrade")) {
                 if (protectUp) {
                     pluginMessage.getData().clear();
+                }
+            }
+        }, 1);
+
+        MousePress.BUS.register(this, mousePress -> {
+            if (mousePress.getButton() == 2 && mousePress.getState()) {
+                if (enableUP) {
+                    disableUp(api, Text.of(""));
+                }
+                if (enableBuy) {
+                    disableBuy(api, Text.of(""));
                 }
             }
         }, 1);

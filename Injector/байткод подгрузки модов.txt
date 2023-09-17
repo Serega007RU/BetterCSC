@@ -50,7 +50,7 @@ GETFIELD awB.g Ljava/lang/Object;
 CHECKCAST dev/xdark/clientapi/ClientApi
 ALOAD var2
 GETSTATIC dev/xdark/clientapi/Side.SERVER Ldev/xdark/clientapi/Side;
-INVOKESTATIC of.a(Ldev/xdark/clientapi/ClientApi;Ljava/io/InputStream;Ldev/xdark/clientapi/Side;)Lnf;
+INVOKESTATIC jD.a(Ldev/xdark/clientapi/ClientApi;Ljava/io/InputStream;Ldev/xdark/clientapi/Side;)Li;
 ASTORE var4
 EX_END_3:
 LINE EX_END_3 51

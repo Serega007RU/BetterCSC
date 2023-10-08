@@ -18,7 +18,7 @@ public final class Reflection {
 
     public static void initialize() {
         try {
-            addClass("Minecraft", "tK");
+            addClass("Minecraft", "tS");
             addHandle("getMinecraft", LOOKUP.findStatic(getClass("Minecraft"), "a", MethodType.methodType(getClass("Minecraft"))));
             addHandle("rightClickMouse", LOOKUP.findVirtual(getClass("Minecraft"), "rightClickMouse", MethodType.methodType(Void.TYPE)));
         } catch (Throwable var1) {

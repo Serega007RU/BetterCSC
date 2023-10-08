@@ -1,4 +1,4 @@
-DEFINE PUBLIC c(LZa; yq)V
+DEFINE PUBLIC c(LZl; 1)V
 TRY EX_START_11 EX_END_11 CATCH(java/lang/Throwable) EX_HANDLER_11
 TRY EX_START_3 EX_END_3 CATCH(java/lang/Throwable) EX_START_5
 TRY EX_START_3 EX_END_3 CATCH(*) EX_HANDLER_5
@@ -6,14 +6,14 @@ TRY EX_START_4 EX_END_4 CATCH(java/lang/Throwable) EX_HANDLER_4
 TRY EX_START_5 EX_END_5 CATCH(*) EX_HANDLER_5
 TRY EX_START_6 EX_END_6 CATCH(java/lang/Exception) EX_HANDLER_6
 ALOAD this
-GETFIELD awF.loadedMods Z
+GETFIELD awN.loadedMods Z
 IFNE DI
 ALOAD this
-GETFIELD awF.loadedMods Z
+GETFIELD awN.loadedMods Z
 IFNE DI
 ALOAD this
 ICONST_1
-PUTFIELD awF.loadedMods Z
+PUTFIELD awN.loadedMods Z
 EX_START_6:
 LINE EX_START_6 40
 NEW java/io/File
@@ -46,11 +46,11 @@ ASTORE var3
 EX_START_3:
 LINE EX_START_3 46
 ALOAD this
-GETFIELD awF.g Ljava/lang/Object;
+GETFIELD awN.g Ljava/lang/Object;
 CHECKCAST dev/xdark/clientapi/ClientApi
 ALOAD var2
 GETSTATIC dev/xdark/clientapi/Side.SERVER Ldev/xdark/clientapi/Side;
-INVOKESTATIC pp.a(Ldev/xdark/clientapi/ClientApi;Ljava/io/InputStream;Ldev/xdark/clientapi/Side;)Lcs;
+INVOKESTATIC kw.a(Ldev/xdark/clientapi/ClientApi;Ljava/io/InputStream;Ldev/xdark/clientapi/Side;)Lpr;
 ASTORE var4
 EX_END_3:
 LINE EX_END_3 51

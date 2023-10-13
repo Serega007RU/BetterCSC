@@ -72,7 +72,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.5.14", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.5.15", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -245,8 +245,13 @@ public class BetterCSC implements ModMain, Listener {
 
             if (this.hp) {
 
+                if (msgColored.contains("§cУ вас максимальное количество денег")) {
+                    chatReceive.setCancelled(true);
+                    return;
+                }
+
                 if (enableUP || enableBuy || protectUp || protectBuy) {
-                    if (msgColored.contains("§aБаланс: ") || msgColored.contains("§aВы успешно улучшили предмет") || msgColored.contains("§aВы успешно купили предмет") || msgColored.contains("§cУ вас максимальное количество денег")) {
+                    if (msgColored.contains("§aБаланс: ") || msgColored.contains("§aВы успешно улучшили предмет") || msgColored.contains("§aВы успешно купили предмет")) {
                         chatReceive.setCancelled(true);
                         return;
                     } else if (msgColored.contains("§cУ вас недостаточно золота на балансе") || msgColored.contains("§cВы уже купили этот предмет") || msgColored.contains("§cЭтот предмет нельзя улучшить") || msgColored.contains("§cВы не находитесь в игре") || msgColored.contains("§cОшибка, вы не можете сейчас открыть меню апгрейда") || msgColored.contains("§cЭтот предмет улучшен до максимального уровня") || msgColored.contains("§cУ вас недостаточно места в инвентаре") || msgColored.contains("§cВы не можете сейчас покупать предметы")) {

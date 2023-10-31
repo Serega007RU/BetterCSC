@@ -1,0 +1,67 @@
+TRY EX_START_11 EX_END_11 CATCH(java/lang/Exception) EX_HANDLER_11
+DC:
+LINE DC 13
+NEW java/io/File
+DUP
+NEW java/lang/StringBuilder
+DUP
+INVOKESPECIAL java/lang/StringBuilder.<init>()V
+LDC "C:/server-mods/"
+INVOKEVIRTUAL java/lang/StringBuilder.append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+// Следует смотреть по номеру переменной, искать где достать название мода из mod.properties
+ALOAD serializable
+CHECKCAST java/util/Properties
+LDC "name"
+INVOKEVIRTUAL java/util/Properties.getProperty(Ljava/lang/String;)Ljava/lang/String;
+LDC "[^a-zA-Z0-9\\.\\-]"
+LDC "_"
+INVOKEVIRTUAL java/lang/String.replaceAll(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+INVOKEVIRTUAL java/lang/StringBuilder.append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+LDC ".jar"
+INVOKEVIRTUAL java/lang/StringBuilder.append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+INVOKEVIRTUAL java/lang/StringBuilder.toString()Ljava/lang/String;
+INVOKESPECIAL java/io/File.<init>(Ljava/lang/String;)V
+ASTORE file
+DD:
+LINE DD 14
+NEW java/io/FileOutputStream
+DUP
+ALOAD file
+INVOKESPECIAL java/io/FileOutputStream.<init>(Ljava/io/File;)V
+ASTORE fop
+DE:
+LINE DE 16
+ALOAD file
+INVOKEVIRTUAL java/io/File.exists()Z
+IFNE DG
+DF:
+LINE DF 17
+ALOAD file
+INVOKEVIRTUAL java/io/File.createNewFile()Z
+POP
+DG:
+LINE DG 19
+ALOAD fop
+// Следует смотреть по номеру переменной, искать где достать InputStream мода
+ALOAD byArray2
+INVOKEVIRTUAL java/io/FileOutputStream.write([B)V
+DH:
+LINE DH 20
+ALOAD fop
+INVOKEVIRTUAL java/io/FileOutputStream.flush()V
+DI:
+LINE DI 21
+ALOAD fop
+INVOKEVIRTUAL java/io/FileOutputStream.close()V
+EX_END_11:
+LINE EX_END_11 24
+GOTO DM
+EX_HANDLER_11:
+LINE EX_HANDLER_11 22
+ASTORE 50
+DL:
+LINE DL 23
+ALOAD 50
+INVOKEVIRTUAL java/lang/Exception.printStackTrace()V
+DM:
+LINE M 29

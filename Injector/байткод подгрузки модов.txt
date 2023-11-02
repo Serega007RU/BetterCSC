@@ -46,11 +46,12 @@ ASTORE var3
 EX_START_3:
 LINE EX_START_3 46
 ALOAD this
+ALOAD this
 GETFIELD axz.g Ljava/lang/Object;
 CHECKCAST dev/xdark/clientapi/ClientApi
 ALOAD var2
 GETSTATIC dev/xdark/clientapi/Side.SERVER Ldev/xdark/clientapi/Side;
-INVOKESTATIC df.a(Ldev/xdark/clientapi/ClientApi;Ljava/io/InputStream;Ldev/xdark/clientapi/Side;)LkJ;
+INVOKESTATIC po.a(Laxz;Ldev/xdark/clientapi/ClientApi;Ljava/io/InputStream;Ldev/xdark/clientapi/Side;)LkB;
 ASTORE var4
 EX_END_3:
 LINE EX_END_3 51

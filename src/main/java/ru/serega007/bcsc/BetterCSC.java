@@ -72,7 +72,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.5.24", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.5.25", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -241,20 +241,20 @@ public class BetterCSC implements ModMain, Listener {
 
         ChatReceive.BUS.register(this, chatReceive -> {
             String msg = chatReceive.getText().getUnformattedText();
-            String msgColored = chatReceive.getText().getFormattedText();
+            String msgColored = chatReceive.getText().getFormattedText().toLowerCase();
 
             if (this.hp) {
 
-                if (msgColored.contains("§cУ вас максимальное количество денег")) {
+                if (msgColored.contains("§cу вас максимальное количество денег")) {
                     chatReceive.setCancelled(true);
                     return;
                 }
 
                 if (enableUP || enableBuy || protectUp || protectBuy) {
-                    if (msgColored.contains("§aБаланс: ") || msgColored.contains("§aВы успешно улучшили предмет") || msgColored.contains("§aВы успешно купили предмет")) {
+                    if (msgColored.contains("§aбаланс: ") || msgColored.contains("§aвы успешно улучшили предмет") || msgColored.contains("§aвы успешно купили предмет")) {
                         chatReceive.setCancelled(true);
                         return;
-                    } else if (msgColored.contains("§cУ вас недостаточно золота на балансе") || msgColored.contains("§cВы уже купили этот предмет") || msgColored.contains("§cЭтот предмет нельзя улучшить") || msgColored.contains("§cВы не находитесь в игре") || msgColored.contains("§cОшибка, вы не можете сейчас открыть меню апгрейда") || msgColored.contains("§cЭтот предмет улучшен до максимального уровня") || msgColored.contains("§cУ вас недостаточно места в инвентаре") || msgColored.contains("§cВы не можете сейчас покупать предметы")) {
+                    } else if (msgColored.contains("§cу вас недостаточно золота на балансе") || msgColored.contains("§cвы уже купили этот предмет") || msgColored.contains("§cэтот предмет нельзя улучшить") || msgColored.contains("§cвы не находитесь в игре") || msgColored.contains("§cошибка, вы не можете сейчас открыть меню апгрейда") || msgColored.contains("§cэтот предмет улучшен до максимального уровня") || msgColored.contains("§cу вас недостаточно места в инвентаре") || msgColored.contains("§cвы не можете сейчас покупать предметы")) {
                         chatReceive.setCancelled(true);
                         if (enableUP) {
                             disableUp(api, Text.of(TextFormatting.RED, ", " + TextFormatting.GOLD, msg, TextFormatting.RED));
@@ -265,7 +265,7 @@ public class BetterCSC implements ModMain, Listener {
                     }
                 }
 
-                if (msgColored.contains("§aБаланс: ")) {
+                if (msgColored.contains("§aбаланс: ")) {
                     chatReceive.setCancelled(true);
                     if (lastMessage != null) {
                         api.chat().printChatMessage(lastMessage);
@@ -279,10 +279,10 @@ public class BetterCSC implements ModMain, Listener {
                     chatReceive.setText(stringToText(text));
                     lastMessage = chatReceive.getText();
                     lastMessageTimeMillis = System.currentTimeMillis();
-                } else if (msgColored.contains("§aВы успешно улучшили предмет") || msgColored.contains("§aВы успешно купили предмет")) {
+                } else if (msgColored.contains("§aвы успешно улучшили предмет") || msgColored.contains("§aвы успешно купили предмет")) {
                     chatReceive.setCancelled(true);
                     lastMessage = null;
-                } else if (msgColored.contains("§aСтавки выиграли:")) {
+                } else if (msgColored.contains("§aставки выиграли:")) {
                     countBets = true;
                 } else if (countBets) {
                     if (msgColored.contains("§7- ")) {

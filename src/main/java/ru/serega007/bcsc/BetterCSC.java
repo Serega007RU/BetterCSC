@@ -56,6 +56,7 @@ public class BetterCSC implements ModMain, Listener {
     //Оповещение в чате когда кто-то заходит/выходит в катке CSC
     private Collection<NetworkPlayerInfo> playerList;
     private boolean startGame = false;
+    private int balance = 0;
 
 
     //Префикс мода
@@ -72,7 +73,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.5.26", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.5.27", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -91,7 +92,7 @@ public class BetterCSC implements ModMain, Listener {
                         return;
                     }
                     if (protectUp) {
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд пока ещё не полнолстью выключился, подождите где-то 5 секунд", TextFormatting.RED)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд пока ещё не полнолстью выключился, подождите где-то 15 секунд", TextFormatting.RED)));
                         return;
                     }
                     int count;
@@ -235,6 +236,43 @@ public class BetterCSC implements ModMain, Listener {
                     chatSend.setCancelled(true);
                     api.chat().printChatMessage(prefix.copy().append(Text.of("Выгружаем данный мод, пока =(", TextFormatting.WHITE)));
                     unload();
+                } else if (msg.startsWith("/bet")) {
+                    chatSend.setCancelled(true);
+                    int sum;
+                    int team;
+                    try {
+                        String[] argsx = msg.split(" ");
+                        team = Integer.parseInt(argsx[1]);
+                        if (argsx[2].contains("all")) {
+                            sum = balance;
+                        } else {
+                            sum = Integer.parseInt(argsx[2]);
+                        }
+                        if (team <= 0) {
+                            throw new RuntimeException();
+                        }
+                    } catch (Exception var14) {
+                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Неверно указаны числа, ", TextFormatting.RED, "/bet <номер команды> <сумма ставки>", TextFormatting.RED)));
+                        return;
+                    }
+                    if (sum == 0) {
+                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Ставка 0? Ноль ты без палочки!", TextFormatting.RED)));
+                        return;
+                    }
+                    if (team > 2) {
+                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Неверно указан номер команды (тимы), ", TextFormatting.RED, "/bet <номер команды> <сумма ставки/all>", TextFormatting.RED)));
+                        return;
+                    }
+                    if (sum > balance) {
+                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Ваш баланс (", TextFormatting.RED, String.valueOf(balance), TextFormatting.GOLD, ") меньше указанной суммы (", TextFormatting.RED, String.valueOf(sum), TextFormatting.GOLD, ")", TextFormatting.RED)));
+                        return;
+                    }
+                    api.chat().printChatMessage(this.prefix.copy().append(Text.of("Ставка (", TextFormatting.GREEN, String.valueOf(sum), TextFormatting.GOLD, ") поставлена успешно", TextFormatting.GREEN)));
+                    ByteBuf buffer;
+                    ByteBuf $this$lambda_u246_u24lambda_u245 = buffer = Unpooled.buffer();
+                    $this$lambda_u246_u24lambda_u245.writeInt(team - 1);
+                    $this$lambda_u246_u24lambda_u245.writeLong(sum);
+                    api.clientConnection().sendPayload("csc:make_bet", buffer);
                 }
             }
         }, 100);
@@ -378,7 +416,10 @@ public class BetterCSC implements ModMain, Listener {
             if (this.hp && playerListRender.isCancelled()) playerListRender.setCancelled(false);
         }, -1);
 
-        ServerSwitch.BUS.register(this, serverSwitch -> uuidWindowBuy = null, 1);
+        ServerSwitch.BUS.register(this, serverSwitch -> {
+            uuidWindowBuy = null;
+            balance = 0;
+        }, 1);
 
         PluginMessage.BUS.register(this, pluginMessage -> {
 //            System.out.println("Channel:" + pluginMessage.getChannel());
@@ -433,6 +474,8 @@ public class BetterCSC implements ModMain, Listener {
                 if (protectUp) {
                     pluginMessage.getData().clear();
                 }
+            } else if (pluginMessage.getChannel().equals("csc:balance")) {
+                balance = NetUtil.readVarInt(pluginMessage.getData());
             }
         }, 100);
 
@@ -456,7 +499,7 @@ public class BetterCSC implements ModMain, Listener {
         api.threadManagement().newSingleThreadedScheduledExecutor().schedule(() -> {
             protectUp = false;
             api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "завершён", TextFormatting.YELLOW)));
-        }, 5, TimeUnit.SECONDS);
+        }, 15, TimeUnit.SECONDS);
     }
 
     private void disableBuy(ClientApi api, Text reason) {

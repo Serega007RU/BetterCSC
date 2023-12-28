@@ -1,4 +1,4 @@
-DEFINE PUBLIC zRwSxDZ(LDkqajJd; 1)V
+DEFINE PUBLIC eacXXxx(LHhpUWOd; 1)V
 TRY EX_START_11 EX_END_11 CATCH(java/lang/Throwable) EX_HANDLER_11
 TRY EX_START_3 EX_END_3 CATCH(java/lang/Throwable) EX_START_5
 TRY EX_START_3 EX_END_3 CATCH(*) EX_HANDLER_5
@@ -6,14 +6,14 @@ TRY EX_START_4 EX_END_4 CATCH(java/lang/Throwable) EX_HANDLER_4
 TRY EX_START_5 EX_END_5 CATCH(*) EX_HANDLER_5
 TRY EX_START_6 EX_END_6 CATCH(java/lang/Exception) EX_HANDLER_6
 ALOAD this
-GETFIELD WZMnlZT.loadedMods Z
+GETFIELD tKZwbsP.loadedMods Z
 IFNE DI
 ALOAD this
-GETFIELD WZMnlZT.loadedMods Z
+GETFIELD tKZwbsP.loadedMods Z
 IFNE DI
 ALOAD this
 ICONST_1
-PUTFIELD WZMnlZT.loadedMods Z
+PUTFIELD tKZwbsP.loadedMods Z
 EX_START_6:
 LINE EX_START_6 40
 NEW java/io/File
@@ -47,12 +47,12 @@ EX_START_3:
 LINE EX_START_3 46
 ALOAD this
 ALOAD this
-GETFIELD WZMnlZT.EyKuRCv Ljava/lang/Object;
+GETFIELD tKZwbsP.wSuKqYW Ljava/lang/Object;
 CHECKCAST dev/xdark/clientapi/ClientApi
 ALOAD var2
 GETSTATIC dev/xdark/clientapi/Side.SERVER Ldev/xdark/clientapi/Side;
 ICONST_1
-INVOKESTATIC EjhDFOx.kmyDCAu(LWZMnlZT;Ldev/xdark/clientapi/ClientApi;Ljava/io/InputStream;Ldev/xdark/clientapi/Side;Z)LwPrrMks;
+INVOKESTATIC WUizCgZ.ELFFHvN(LtKZwbsP;Ldev/xdark/clientapi/ClientApi;Ljava/io/InputStream;Ldev/xdark/clientapi/Side;Z)LlaxTyOu;
 ASTORE var4
 EX_END_3:
 LINE EX_END_3 51

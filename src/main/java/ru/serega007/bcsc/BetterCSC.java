@@ -23,6 +23,7 @@ import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 public class BetterCSC implements ModMain, Listener {
     private boolean hp = true;
@@ -56,6 +57,7 @@ public class BetterCSC implements ModMain, Listener {
     private Collection<NetworkPlayerInfo> playerList;
     private boolean startGame = false;
     private long balance = 0;
+    private final Pattern STRIP_COLOR_PATTERN = Pattern.compile("(?i)" + '§' + "[0-9A-FK-OR]");
 
 
     //Префикс мода
@@ -300,7 +302,9 @@ public class BetterCSC implements ModMain, Listener {
                         api.chat().printChatMessage(lastMessage);
                     }
                     String text = chatReceive.getText().getFormattedText();
-                    String[] list = msg.replaceAll("[^-?0-9]+", " ").trim().split(" ");
+                    // TODO getUnformattedText должен возвращать текст без знаков цвета но почему-то стало ровно по другому
+                    // TODO что-то кристаликс сломал в этой функции по этому приходится самому коды цветов выковыривать
+                    String[] list = STRIP_COLOR_PATTERN.matcher(msg).replaceAll("").replaceAll("[^-?0-9]+", " ").trim().split(" ");
                     for (String str : list) {
                         long num = Long.parseLong(str);
                         text = text.replaceAll(str, new DecimalFormat("#,###").format(num));

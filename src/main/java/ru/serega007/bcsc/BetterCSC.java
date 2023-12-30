@@ -55,7 +55,7 @@ public class BetterCSC implements ModMain, Listener {
     //Оповещение в чате когда кто-то заходит/выходит в катке CSC
     private Collection<NetworkPlayerInfo> playerList;
     private boolean startGame = false;
-    private int balance = 0;
+    private long balance = 0;
 
 
     //Префикс мода
@@ -72,7 +72,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.0", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.1", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -229,7 +229,7 @@ public class BetterCSC implements ModMain, Listener {
                     unload();
                 } else if (msg.startsWith("/bet")) {
                     chatSend.setCancelled(true);
-                    int sum;
+                    long sum;
                     int team;
                     try {
                         String[] args = msg.split(" ");
@@ -237,7 +237,7 @@ public class BetterCSC implements ModMain, Listener {
                         if (args[2].contains("all")) {
                             sum = balance;
                         } else {
-                            sum = Integer.parseInt(args[2]);
+                            sum = Long.parseLong(args[2]);
                         }
                         if (team <= 0) {
                             throw new RuntimeException();
@@ -258,12 +258,12 @@ public class BetterCSC implements ModMain, Listener {
                         api.chat().printChatMessage(this.prefix.copy().append(Text.of("Ваш баланс (", TextFormatting.RED, String.valueOf(balance), TextFormatting.GOLD, ") меньше указанной суммы (", TextFormatting.RED, String.valueOf(sum), TextFormatting.GOLD, ")", TextFormatting.RED)));
                         return;
                     }
-                    api.chat().printChatMessage(this.prefix.copy().append(Text.of("Ставка (", TextFormatting.GREEN, String.valueOf(sum), TextFormatting.GOLD, ") поставлена успешно", TextFormatting.GREEN)));
                     ByteBuf buffer;
                     ByteBuf $this$lambda_u246_u24lambda_u245 = buffer = Unpooled.buffer();
                     $this$lambda_u246_u24lambda_u245.writeInt(team - 1);
                     $this$lambda_u246_u24lambda_u245.writeLong(sum);
                     api.clientConnection().sendPayload("csc:make_bet", buffer);
+                    api.chat().printChatMessage(this.prefix.copy().append(Text.of("Ставка (", TextFormatting.GREEN, String.valueOf(sum), TextFormatting.GOLD, ") поставлена успешно", TextFormatting.GREEN)));
                 }
             }
         }, 100);
@@ -466,7 +466,7 @@ public class BetterCSC implements ModMain, Listener {
                     pluginMessage.getData().clear();
                 }
             } else if (pluginMessage.getChannel().equals("csc:balance")) {
-                balance = NetUtil.readVarInt(pluginMessage.getData());
+                balance = NetUtil.readVarLong(pluginMessage.getData());
             }
         }, 100);
 

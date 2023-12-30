@@ -438,8 +438,8 @@ public class BetterCSC implements ModMain, Listener {
                         }
                         if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && !player1.getDisplayName().getFormattedText().isEmpty()) {
                             // Это полный кринж, в displayName мы в начале получаем кракозябры из всяких не понятных символов, говно API дристаликса
-                            String nick = player1.getDisplayName().getFormattedText().substring(player1.getDisplayName().getFormattedText().indexOf("§r§f") + 5);
-                            if (nick.startsWith("§r§f ")) nick = nick.substring(5);
+                            String nick = player1.getDisplayName().getFormattedText().substring(player1.getDisplayName().getFormattedText().indexOf("§r§f") + 6);
+                            if (nick.startsWith("§r§f ")) nick = nick.substring(6);
                             api.chat().printChatMessage(prefix.copy().append(stringToText(nick).append(Text.of(" зашёл в игру", TextFormatting.GREEN))));
                         }
                     }
@@ -452,8 +452,8 @@ public class BetterCSC implements ModMain, Listener {
                             }
                         }
                         if (!has && player1 != null && player1.getDisplayName() != null && player1.getDisplayName().getFormattedText() != null && !player1.getDisplayName().getFormattedText().isEmpty()) {
-                            String nick = player1.getDisplayName().getFormattedText().substring(player1.getDisplayName().getFormattedText().indexOf("§r§f") + 5);
-                            if (nick.startsWith("§r§f ")) nick = nick.substring(5);
+                            String nick = player1.getDisplayName().getFormattedText().substring(player1.getDisplayName().getFormattedText().indexOf("§r§f") + 6);
+                            if (nick.startsWith("§r§f ")) nick = nick.substring(6);
                             api.chat().printChatMessage(prefix.copy().append(stringToText(nick).append(Text.of(" покинул игру", TextFormatting.RED))));
                         }
                     }

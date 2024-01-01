@@ -74,7 +74,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.1", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.2", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -469,8 +469,12 @@ public class BetterCSC implements ModMain, Listener {
                 if (protectUp) {
                     pluginMessage.getData().clear();
                 }
-            } else if (pluginMessage.getChannel().equals("csc:balance")) {
-                balance = NetUtil.readVarLong(pluginMessage.getData());
+            } else if (pluginMessage.getChannel().equals("func:scoreboard-update")) {
+                ByteBuf byteBuf = pluginMessage.getData().copy();
+                NetUtil.readId(byteBuf);
+                if (NetUtil.readUtf8(byteBuf).equals("i18n.csc.game.gold")) {
+                    balance = Long.parseLong(STRIP_COLOR_PATTERN.matcher(NetUtil.readUtf8(byteBuf)).replaceAll(""));
+                }
             }
         }, 100);
 

@@ -40,6 +40,7 @@ public class BetterCSC implements ModMain, Listener {
     private boolean enableUP = false;
     private boolean protectUp = false;
     private ScheduledExecutorService taskUP = null;
+    private ScheduledExecutorService taskProtectUP = null;
     private int countUp = 0;
 
     //Быстрая покупка книг с автоюзанием
@@ -74,7 +75,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.2", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.3", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -92,10 +93,7 @@ public class BetterCSC implements ModMain, Listener {
                         disableUp(api, Text.of(""));
                         return;
                     }
-                    if (protectUp) {
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд пока ещё не полнолстью выключился, подождите где-то 15 секунд", TextFormatting.RED)));
-                        return;
-                    }
+
                     int slot;
                     int count;
                     int period;
@@ -108,8 +106,8 @@ public class BetterCSC implements ModMain, Listener {
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Неверно указан номер слота, он может быть только от 1 до 9", TextFormatting.RED)));
                             return;
                         }
-                        if (count > 5000) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 5000 кол-во", TextFormatting.RED)));
+                        if (count > 32767) {
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 32766 кол-во", TextFormatting.RED)));
                             return;
                         }
                         if (period > 500) {
@@ -129,6 +127,9 @@ public class BetterCSC implements ModMain, Listener {
                         return;
                     }
                     api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN, ", нажмите ", TextFormatting.GOLD, "СКМ", TextFormatting.RED, " что бы выключть", TextFormatting.GOLD)));
+
+                    if (taskProtectUP != null) taskProtectUP.shutdown();
+                    taskProtectUP = null;
 
                     enableUP = true;
                     protectUp = true;
@@ -219,10 +220,13 @@ public class BetterCSC implements ModMain, Listener {
                         }
                         try {
                             Wrapper.rightClickMouse();
+                        } catch (NullPointerException e) {
+                            // TODO иногда почему-то эта функция выдаёт ошибку NullPointerException, мы сообщаем о ней пользователю но не отключаем её
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Произошла ошибка NullPointerException при попытке кликнуть ПКМ", TextFormatting.RED)));
                         } catch (Exception e) {
                             //noinspection CallToPrintStackTrace
                             e.printStackTrace();
-                            disableUp(api, Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+                            disableBuy(api, Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
                         }
                     }, 0, 1000000 / periodUse, TimeUnit.MICROSECONDS);
                 } else if (msg.startsWith("/unloadbcsc")) {
@@ -495,8 +499,14 @@ public class BetterCSC implements ModMain, Listener {
         api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "выключен", TextFormatting.RED)).append(reason));
         if (taskUP != null) taskUP.shutdown();
         taskUP = null;
-        api.threadManagement().newSingleThreadedScheduledExecutor().schedule(() -> {
+
+        if (taskProtectUP != null) taskProtectUP.shutdown();
+        taskProtectUP = null;
+        taskProtectUP = api.threadManagement().newSingleThreadedScheduledExecutor();
+        taskProtectUP.schedule(() -> {
+            if (enableUP) return;
             protectUp = false;
+            taskProtectUP = null;
             api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "завершён", TextFormatting.YELLOW)));
         }, 15, TimeUnit.SECONDS);
     }

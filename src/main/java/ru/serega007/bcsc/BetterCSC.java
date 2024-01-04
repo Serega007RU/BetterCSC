@@ -79,7 +79,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.7", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.8", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -332,7 +332,7 @@ public class BetterCSC implements ModMain, Listener {
                     if (msgColored.contains("§aбаланс: ") || msgColored.contains("§aвы успешно улучшили предмет") || msgColored.contains("§aвы успешно купили предмет")) {
                         chatReceive.setCancelled(true);
                         return;
-                    } else if (msgColored.contains("§cу вас недостаточно золота на балансе") || msgColored.contains("§cвы уже купили этот предмет") || msgColored.contains("§cэтот предмет нельзя улучшить") || msgColored.contains("§cвы не находитесь в игре") || msgColored.contains("§cошибка, вы не можете сейчас открыть меню апгрейда") || msgColored.contains("§cэтот предмет улучшен до максимального уровня") || msgColored.contains("§cу вас недостаточно места в инвентаре") || msgColored.contains("§cвы не можете сейчас покупать предметы")) {
+                    } else if (msgColored.contains("§cу вас недостаточно золота на балансе") || msgColored.contains("§cвы уже купили этот предмет") || msgColored.contains("§cэтот предмет нельзя улучшить") /*|| msgColored.contains("§cвы не находитесь в игре")*/ || msgColored.contains("§cошибка, вы не можете сейчас открыть меню апгрейда") || msgColored.contains("§cэтот предмет улучшен до максимального уровня") || msgColored.contains("§cу вас недостаточно места в инвентаре") || msgColored.contains("§cвы не можете сейчас покупать предметы")) {
                         chatReceive.setCancelled(true);
                         if (msgColored.contains("§cвы не можете сейчас покупать предметы") || msgColored.contains("§cошибка, вы не можете сейчас открыть меню апгрейда")) {
                             allowedBuy = false;
@@ -523,6 +523,8 @@ public class BetterCSC implements ModMain, Listener {
                 if (protectUp) {
                     pluginMessage.getData().clear();
                 }
+            } else if (pluginMessage.getChannel().equals("csc:balance")) {
+                balance = NetUtil.readVarLong(pluginMessage.getData());
             } else if (pluginMessage.getChannel().equals("func:scoreboard-update")) {
                 ByteBuf byteBuf = pluginMessage.getData().copy();
                 NetUtil.readId(byteBuf);

@@ -79,7 +79,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.8", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.9", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -303,16 +303,22 @@ public class BetterCSC implements ModMain, Listener {
                         api.chat().printChatMessage(this.prefix.copy().append(Text.of("Неверно указан номер команды (тимы), ", TextFormatting.RED, "/bet ", TextFormatting.AQUA, "<", TextFormatting.GRAY, "номер команды", TextFormatting.LIGHT_PURPLE, "> <", TextFormatting.GRAY, "сумма ставки", TextFormatting.LIGHT_PURPLE, "/", TextFormatting.GRAY, "all", TextFormatting.DARK_PURPLE, ">", TextFormatting.GRAY)));
                         return;
                     }
-                    if (sum > balance) {
-                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Ваш баланс (", TextFormatting.RED, new DecimalFormat("#,###").format(balance), TextFormatting.GOLD, ") меньше указанной суммы (", TextFormatting.RED, new DecimalFormat("#,###").format(sum), TextFormatting.GOLD, ")", TextFormatting.RED)));
-                        return;
+                    long finalSum = sum;
+                    if (sum > balance && balance != 0) {
+                        finalSum = balance;
                     }
                     ByteBuf buffer;
                     ByteBuf $this$lambda_u246_u24lambda_u245 = buffer = Unpooled.buffer();
                     $this$lambda_u246_u24lambda_u245.writeInt(team - 1);
-                    $this$lambda_u246_u24lambda_u245.writeLong(sum);
+                    $this$lambda_u246_u24lambda_u245.writeLong(finalSum);
                     api.clientConnection().sendPayload("csc:make_bet", buffer);
-                    api.chat().printChatMessage(this.prefix.copy().append(Text.of("Ставка (", TextFormatting.GREEN, new DecimalFormat("#,###").format(sum), TextFormatting.GOLD, ") поставлена успешно", TextFormatting.GREEN)));
+                    if (balance == 0) {
+                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Ставка (", TextFormatting.GREEN, new DecimalFormat("#,###").format(finalSum), TextFormatting.GOLD, ") поставлена. ", TextFormatting.GREEN, "Предупреждение, ваш баланс ",TextFormatting.RED, "ноль", TextFormatting.GOLD, ", ставка может быть не успешной", TextFormatting.RED)));
+                    } else if (sum > balance) {
+                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Ставка (", TextFormatting.GREEN, new DecimalFormat("#,###").format(finalSum), TextFormatting.GOLD, ") поставлена. ", TextFormatting.GREEN, "Предупреждение, ваш баланс (",TextFormatting.RED, new DecimalFormat("#,###").format(balance), TextFormatting.GOLD, ") меньше указанной суммы (", TextFormatting.RED, new DecimalFormat("#,###").format(sum), TextFormatting.GOLD, ") ставка может быть не успешной", TextFormatting.RED)));
+                    } else {
+                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Ставка (", TextFormatting.GREEN, new DecimalFormat("#,###").format(finalSum), TextFormatting.GOLD, ") поставлена успешно", TextFormatting.GREEN)));
+                    }
                 }
             }
         }, 100);

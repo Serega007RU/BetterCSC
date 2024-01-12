@@ -18,8 +18,8 @@ public final class Reflection {
 
     public static void initialize() {
         try {
-            addClass("Minecraft", "EGsUGsY");
-            addHandle("getMinecraft", LOOKUP.findStatic(getClass("Minecraft"), "ELFFHvN", MethodType.methodType(getClass("Minecraft"))));
+            addClass("Minecraft", "UPZJozR");
+            addHandle("getMinecraft", LOOKUP.findStatic(getClass("Minecraft"), "vhUOaMG", MethodType.methodType(getClass("Minecraft"))));
             addHandle("rightClickMouse", LOOKUP.findVirtual(getClass("Minecraft"), "rightClickMouse", MethodType.methodType(Void.TYPE)));
         } catch (Throwable var1) {
             throw SneakyThrow.sneaky(var1);

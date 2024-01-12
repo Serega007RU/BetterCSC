@@ -229,7 +229,7 @@ public class BetterCSC implements ModMain, Listener {
                         if (player.getInventory().getActiveSlot() != activeSlot) {
                             if (!pausedBuy) {
                                 pausedBuy = true;
-                                api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "приостановлена", TextFormatting.YELLOW, " так как вы не держите слот ", TextFormatting.GOLD, String.valueOf(activeSlot), TextFormatting.BLUE, " активным")));
+                                api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "приостановлена", TextFormatting.YELLOW, " так как вы не держите слот ", TextFormatting.GOLD, String.valueOf(activeSlot + 1), TextFormatting.BLUE, " активным")));
                             }
                             return;
                         }
@@ -263,13 +263,15 @@ public class BetterCSC implements ModMain, Listener {
                         }
                         try {
                             Wrapper.rightClickMouse();
-                        } catch (NullPointerException e) {
-                            // TODO иногда почему-то эта функция выдаёт ошибку NullPointerException, мы сообщаем о ней пользователю но не отключаем её
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Произошла ошибка NullPointerException при попытке кликнуть ПКМ", TextFormatting.RED)));
                         } catch (Exception e) {
+                            // TODO иногда почему-то эта функция выдаёт ошибку NullPointerException, мы сообщаем о ней пользователю но не отключаем её
+                            if (e.getCause() instanceof NullPointerException) {
+                                api.chat().printChatMessage(prefix.copy().append(Text.of("Произошла ошибка NullPointerException при попытке кликнуть ПКМ", TextFormatting.RED)));
+                                return;
+                            }
                             //noinspection CallToPrintStackTrace
                             e.printStackTrace();
-                            disableBuy(api, Text.of(e.getLocalizedMessage(), TextFormatting.DARK_RED));
+                            disableBuy(api, Text.of(TextFormatting.RED, ", ", TextFormatting.GOLD, e.toString(), TextFormatting.DARK_RED));
                         }
                     }, 0, 1000000 / periodUse, TimeUnit.MICROSECONDS);
                 } else if (msg.startsWith("/unloadbcsc")) {

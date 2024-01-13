@@ -16,6 +16,8 @@ import dev.xdark.clientapi.text.TextFormatting;
 import dev.xdark.clientapi.ClientApi;
 import dev.xdark.clientapi.event.Listener;
 import dev.xdark.clientapi.entry.ModMain;
+import dev.xdark.clientapi.util.EnumHand;
+import dev.xdark.clientapi.world.GameMode;
 import dev.xdark.feder.NetUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -54,6 +56,7 @@ public class BetterCSC implements ModMain, Listener {
     private int countBuy = 0;
     private int countUse = 0;
     private String uuidWindowBuy = null;
+    private int slotForBuy = 0;
 
     //Автоставки
 //    private boolean doAutoBet = false;
@@ -79,7 +82,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.10", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.11", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -207,9 +210,9 @@ public class BetterCSC implements ModMain, Listener {
 
                     EntityPlayerSP player = api.minecraft().getPlayer();
 
-                    int activeSlot = player.getInventory().getActiveSlot();
+                    slotForBuy = player.getInventory().getActiveSlot();
 
-                    api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN, TextFormatting.GREEN, ", нажмите ", TextFormatting.GOLD, "СКМ", TextFormatting.RED, " что бы выключть, Выбран слот ", TextFormatting.GOLD, String.valueOf(activeSlot + 1), TextFormatting.BLUE, " в качестве использования книг", TextFormatting.GOLD)));
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN, TextFormatting.GREEN, ", нажмите ", TextFormatting.GOLD, "СКМ", TextFormatting.RED, " что бы выключть, Выбран слот ", TextFormatting.GOLD, String.valueOf(slotForBuy + 1), TextFormatting.BLUE, " в качестве использования книг", TextFormatting.GOLD)));
 
                     enableBuy = true;
                     pausedBuy = false;
@@ -226,10 +229,10 @@ public class BetterCSC implements ModMain, Listener {
                             }
                             return;
                         }
-                        if (player.getInventory().getActiveSlot() != activeSlot) {
+                        if (player.getInventory().getActiveSlot() != slotForBuy) {
                             if (!pausedBuy) {
                                 pausedBuy = true;
-                                api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "приостановлена", TextFormatting.YELLOW, " так как вы не держите слот ", TextFormatting.GOLD, String.valueOf(activeSlot + 1), TextFormatting.BLUE, " активным")));
+                                api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "приостановлена", TextFormatting.YELLOW, " так как вы не держите слот ", TextFormatting.GOLD, String.valueOf(slotForBuy + 1), TextFormatting.BLUE, " активным", TextFormatting.GOLD)));
                             }
                             return;
                         }
@@ -237,8 +240,10 @@ public class BetterCSC implements ModMain, Listener {
                             pausedBuy = false;
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "возобновлена", TextFormatting.GREEN)));
                         }
+                        // TODO мы не можем использовать книги в гм3
+                        if (api.minecraft().getPlayerController().getGameMode().equals(GameMode.SPECTATOR)) return;
                         ItemStack itemStack = player.getInventory().getCurrentItem();
-                        if (!itemStack.isEmpty() && itemStack.getCount() > 32) return;
+                        if (!itemStack.isEmpty() && (!itemStack.getDisplayName().contains("Книга") || itemStack.getCount() > 32)) return;
                         countBuy++;
                         if (countBuy > count) {
                             disableBuy(api, Text.of(TextFormatting.RED, ", ", TextFormatting.GOLD, "достигли заданного числа", TextFormatting.GREEN));
@@ -255,23 +260,22 @@ public class BetterCSC implements ModMain, Listener {
                     taskUse.scheduleAtFixedRate(() -> {
                         if (!enableBuy || uuidWindowBuy == null) return;
                         if (!allowedBuy) return;
-                        if (player.getInventory().getActiveSlot() != activeSlot) return;
+                        if (player.getInventory().getActiveSlot() != slotForBuy) return;
+                        // TODO мы не можем использовать книги в гм3
+                        if (api.minecraft().getPlayerController().getGameMode().equals(GameMode.SPECTATOR)) return;
+                        ItemStack itemStack = player.getInventory().getCurrentItem();
+                        if (!itemStack.isEmpty() && !itemStack.getDisplayName().contains("Книга")) return;
                         countUse++;
                         if (countUse > count) {
                             disableBuy(api, Text.of(TextFormatting.RED, ", ", TextFormatting.GOLD, "достигли заданного числа", TextFormatting.GREEN));
                             return;
                         }
                         try {
-                            Wrapper.rightClickMouse();
+                            Wrapper.sendPacket(Wrapper.CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
                         } catch (Exception e) {
-                            // TODO иногда почему-то эта функция выдаёт ошибку NullPointerException, мы сообщаем о ней пользователю но не отключаем её
-                            if (e.getCause() instanceof NullPointerException) {
-                                api.chat().printChatMessage(prefix.copy().append(Text.of("Произошла ошибка NullPointerException при попытке кликнуть ПКМ", TextFormatting.RED)));
-                                return;
-                            }
                             //noinspection CallToPrintStackTrace
                             e.printStackTrace();
-                            disableBuy(api, Text.of(TextFormatting.RED, ", ", TextFormatting.GOLD, e.toString(), TextFormatting.DARK_RED));
+                            disableBuy(api, Text.of("Произошла ошибка при попытке кликнуть ПКМ", TextFormatting.RED, ", ", TextFormatting.GOLD, e.toString(), TextFormatting.DARK_RED));
                         }
                     }, 0, 1000000 / periodUse, TimeUnit.MICROSECONDS);
                 } else if (msg.startsWith("/unloadbcsc")) {
@@ -545,9 +549,11 @@ public class BetterCSC implements ModMain, Listener {
                     allowedBuy = false;
                 } else if (message.contains("wave.complete")) {
                     allowedBuy = true;
+                    if (enableBuy) changeActiveSlot(api, slotForBuy);
                 }
             } else if (pluginMessage.getChannel().equals("func:drop-item")) {
                 allowedBuy = true;
+                if (enableBuy) changeActiveSlot(api, slotForBuy);
             } else if (pluginMessage.getChannel().equals("func:title")) {
                 if (enableUP || enableBuy) {
                     if (NetUtil.readUtf8(pluginMessage.getData().copy()).equals("i18n.csc.game.not.gold")) {
@@ -601,6 +607,16 @@ public class BetterCSC implements ModMain, Listener {
         taskBuy = null;
         if (taskUse != null) taskUse.shutdownNow();
         taskUse = null;
+    }
+
+    private void changeActiveSlot(ClientApi api, int slot) {
+        try {
+            Wrapper.changeActiveSlot(api.minecraft().getPlayer().getInventory(), slot);
+        } catch (Exception e) {
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+            disableBuy(api, Text.of("Произошла ошибка при попытке сменить активный слот", TextFormatting.RED, ", ", TextFormatting.GOLD, e.toString(), TextFormatting.DARK_RED));
+        }
     }
 
     @Override

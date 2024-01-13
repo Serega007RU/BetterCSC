@@ -22,8 +22,20 @@ public final class Wrapper {
         return Reflection.invoke("getMinecraft");
     }
 
-    public static void rightClickMouse() {
-        Reflection.invoke("rightClickMouse", Wrapper.getMinecraft());
+    public static Object getClientConnection() {
+        return Reflection.invoke("getClientConnection", Wrapper.getMinecraft());
+    }
+
+    public static void sendPacket(Object object) {
+        Reflection.invoke("sendPacket", Wrapper.getClientConnection(), object);
+    }
+
+    public static void changeActiveSlot(Object inventory, Object slot) {
+        Reflection.invoke("changeActiveSlot", inventory, slot);
+    }
+
+    public static Object CPacketPlayerTryUseItem(Object enumHand) {
+        return Reflection.invoke("CPacketPlayerTryUseItem", enumHand);
     }
 
     private Wrapper() {

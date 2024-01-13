@@ -8,6 +8,8 @@ import java.lang.invoke.MethodType;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+
+import dev.xdark.clientapi.util.EnumHand;
 import sun.misc.Unsafe;
 
 public final class Reflection {
@@ -19,8 +21,16 @@ public final class Reflection {
     public static void initialize() {
         try {
             addClass("Minecraft", "UPZJozR");
+            addClass("ClientConnection", "aUUTffb");
+            addClass("Packet", "bcRmglR");
+            addClass("EnumHand", "cvVaKEd");
+            addClass("CPacketPlayerTryUseItem", "YNmwnYm");
+            addClass("InventoryPlayer", "efYnhca");
             addHandle("getMinecraft", LOOKUP.findStatic(getClass("Minecraft"), "vhUOaMG", MethodType.methodType(getClass("Minecraft"))));
-            addHandle("rightClickMouse", LOOKUP.findVirtual(getClass("Minecraft"), "rightClickMouse", MethodType.methodType(Void.TYPE)));
+            addHandle("getClientConnection", LOOKUP.findVirtual(getClass("Minecraft"), "vhUOaMG", MethodType.methodType(getClass("ClientConnection"))));
+            addHandle("sendPacket", LOOKUP.findVirtual(getClass("ClientConnection"), "vhUOaMG", MethodType.methodType(Void.TYPE, getClass("Packet"))));
+            addHandle("CPacketPlayerTryUseItem", LOOKUP.findConstructor(getClass("CPacketPlayerTryUseItem"), MethodType.methodType(Void.TYPE, getClass("EnumHand"))));
+            addHandle("changeActiveSlot", LOOKUP.findSetter(getClass("InventoryPlayer"), "ZtMpPdf", Integer.TYPE));
         } catch (Throwable var1) {
             throw SneakyThrow.sneaky(var1);
         }

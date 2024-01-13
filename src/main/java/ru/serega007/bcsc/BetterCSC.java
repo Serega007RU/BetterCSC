@@ -82,7 +82,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.11", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.12", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -537,12 +537,16 @@ public class BetterCSC implements ModMain, Listener {
                 }
             } else if (pluginMessage.getChannel().equals("csc:balance")) {
                 balance = NetUtil.readVarLong(pluginMessage.getData());
-            } else if (pluginMessage.getChannel().equals("func:scoreboard-update")) {
-                ByteBuf byteBuf = pluginMessage.getData().copy();
-                NetUtil.readId(byteBuf);
-                if (NetUtil.readUtf8(byteBuf).equals("i18n.csc.game.gold")) {
-                    balance = Long.parseLong(STRIP_COLOR_PATTERN.matcher(NetUtil.readUtf8(byteBuf)).replaceAll(""));
+                if (balance <= 0) { // TODO иногда при баге бесконечного баланса мы получаем нулелвой баланс
+                    balance = Integer.MAX_VALUE;
                 }
+            // TODO со скорборда баланс приходит с задержкой
+//            } else if (pluginMessage.getChannel().equals("func:scoreboard-update")) {
+//                ByteBuf byteBuf = pluginMessage.getData().copy();
+//                NetUtil.readId(byteBuf);
+//                if (NetUtil.readUtf8(byteBuf).equals("i18n.csc.game.gold")) {
+//                    balance = Long.parseLong(STRIP_COLOR_PATTERN.matcher(NetUtil.readUtf8(byteBuf)).replaceAll(""));
+//                }
             } else if (pluginMessage.getChannel().equals("func:notice")) {
                 String message = NetUtil.readUtf8(pluginMessage.getData().copy());
                 if (message.contains("wave.started")) {

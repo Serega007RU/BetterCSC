@@ -37,7 +37,7 @@ POP
 DF:
 LINE DF 18
 ALOAD fop
-ALOAD byArray2
+ALOAD bytes
 INVOKEVIRTUAL java/io/FileOutputStream.write([B)V
 DG:
 LINE DG 19

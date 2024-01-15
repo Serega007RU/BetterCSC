@@ -20,17 +20,17 @@ public final class Reflection {
 
     public static void initialize() {
         try {
-            addClass("Minecraft", "UPZJozR");
-            addClass("ClientConnection", "aUUTffb");
-            addClass("Packet", "bcRmglR");
-            addClass("EnumHand", "cvVaKEd");
-            addClass("CPacketPlayerTryUseItem", "YNmwnYm");
-            addClass("InventoryPlayer", "efYnhca");
-            addHandle("getMinecraft", LOOKUP.findStatic(getClass("Minecraft"), "vhUOaMG", MethodType.methodType(getClass("Minecraft"))));
-            addHandle("getClientConnection", LOOKUP.findVirtual(getClass("Minecraft"), "vhUOaMG", MethodType.methodType(getClass("ClientConnection"))));
-            addHandle("sendPacket", LOOKUP.findVirtual(getClass("ClientConnection"), "vhUOaMG", MethodType.methodType(Void.TYPE, getClass("Packet"))));
+            addClass("Minecraft", "net.minecraft.client.Minecraft");
+            addClass("ClientConnection", "net.minecraft.client.network.NetHandlerPlayClient");
+            addClass("Packet", "net.minecraft.network.OutboundPacket");
+            addClass("EnumHand", "net.minecraft.util.EnumHand");
+            addClass("CPacketPlayerTryUseItem", "net.minecraft.network.play.client.CPacketPlayerTryUseItem");
+            addClass("InventoryPlayer", "net.minecraft.entity.player.InventoryPlayer");
+            addHandle("getMinecraft", LOOKUP.findStatic(getClass("Minecraft"), "getMinecraft", MethodType.methodType(getClass("Minecraft"))));
+            addHandle("getClientConnection", LOOKUP.findVirtual(getClass("Minecraft"), "getConnection", MethodType.methodType(getClass("ClientConnection"))));
+            addHandle("sendPacket", LOOKUP.findVirtual(getClass("ClientConnection"), "sendPacket", MethodType.methodType(Void.TYPE, getClass("Packet"))));
             addHandle("CPacketPlayerTryUseItem", LOOKUP.findConstructor(getClass("CPacketPlayerTryUseItem"), MethodType.methodType(Void.TYPE, getClass("EnumHand"))));
-            addHandle("changeActiveSlot", LOOKUP.findSetter(getClass("InventoryPlayer"), "ZtMpPdf", Integer.TYPE));
+            addHandle("changeActiveSlot", LOOKUP.findSetter(getClass("InventoryPlayer"), "currentItem", Integer.TYPE));
         } catch (Throwable var1) {
             throw SneakyThrow.sneaky(var1);
         }

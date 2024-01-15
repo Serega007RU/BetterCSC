@@ -48,7 +48,7 @@ public class BetterCSC implements ModMain, Listener {
     private ScheduledExecutorService taskProtectUP = null;
     private int countUp = 0;
 
-    //Быстрая покупка книг с автоюзанием
+    //Быстрая покупка книг с авто-использованием
     private boolean enableBuy = false;
     private boolean pausedBuy = false;
     private ScheduledExecutorService taskBuy = null;
@@ -58,7 +58,7 @@ public class BetterCSC implements ModMain, Listener {
     private String uuidWindowBuy = null;
     private int slotForBuy = 0;
 
-    //Автоставки
+    //Авто-ставки
 //    private boolean doAutoBet = false;
 
     //Оповещение в чате когда кто-то заходит/выходит в катке CSC
@@ -78,7 +78,7 @@ public class BetterCSC implements ModMain, Listener {
         } catch (Exception e) {
             //noinspection CallToPrintStackTrace
             e.printStackTrace();
-            api.chat().printChatMessage(prefix.copy().append(Text.of("Ошибка загрузки маппингов, обратитесь к разработкичку https://gitlab.com/Serega007/bettercsc/-/issues " + e.getLocalizedMessage(), TextFormatting.DARK_RED)));
+            api.chat().printChatMessage(prefix.copy().append(Text.of("Ошибка загрузки маппингов, обратитесь к разработчику https://gitlab.com/Serega007/bettercsc/-/issues " + e.getLocalizedMessage(), TextFormatting.DARK_RED)));
             return;
         }
 
@@ -134,7 +134,7 @@ public class BetterCSC implements ModMain, Listener {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("В слоте ", TextFormatting.RED, String.valueOf(slot), TextFormatting.GOLD, " отсутствует предмет", TextFormatting.RED)));
                         return;
                     }
-                    api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN, ", нажмите ", TextFormatting.GOLD, "СКМ", TextFormatting.RED, " что бы выключть", TextFormatting.GOLD)));
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN, ", нажмите ", TextFormatting.GOLD, "СКМ", TextFormatting.RED, " что бы выключить", TextFormatting.GOLD)));
 
                     if (taskProtectUP != null) taskProtectUP.shutdownNow();
                     taskProtectUP = null;
@@ -212,7 +212,7 @@ public class BetterCSC implements ModMain, Listener {
 
                     slotForBuy = player.getInventory().getActiveSlot();
 
-                    api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN, TextFormatting.GREEN, ", нажмите ", TextFormatting.GOLD, "СКМ", TextFormatting.RED, " что бы выключть, Выбран слот ", TextFormatting.GOLD, String.valueOf(slotForBuy + 1), TextFormatting.BLUE, " в качестве использования книг", TextFormatting.GOLD)));
+                    api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрая покупка ", TextFormatting.GOLD, "включена", TextFormatting.GREEN, TextFormatting.GREEN, ", нажмите ", TextFormatting.GOLD, "СКМ", TextFormatting.RED, " что бы выключить, Выбран слот ", TextFormatting.GOLD, String.valueOf(slotForBuy + 1), TextFormatting.BLUE, " в качестве использования книг", TextFormatting.GOLD)));
 
                     enableBuy = true;
                     pausedBuy = false;
@@ -494,7 +494,7 @@ public class BetterCSC implements ModMain, Listener {
             } else if (pluginMessage.getChannel().equals("csc:ui") && !startGame) {
                 String cscUi = NetUtil.readUtf8(pluginMessage.getData().copy(), Integer.MAX_VALUE);
                 if (cscUi.startsWith("7:")) {
-                    //Да тут просто трилион костылей что бы на этом говно API Cristalix хоть как-то работало
+                    //Да тут просто триллион костылей, что бы на этом говно API Cristalix хоть как-то работало
                     if (playerList == null || playerList.isEmpty() || playerList.size() == 1) {
                         playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
                     }
@@ -537,7 +537,7 @@ public class BetterCSC implements ModMain, Listener {
                 }
             } else if (pluginMessage.getChannel().equals("csc:balance")) {
                 balance = NetUtil.readVarLong(pluginMessage.getData());
-                if (balance <= 0) { // TODO иногда при баге бесконечного баланса мы получаем нулелвой баланс
+                if (balance <= 0) { // TODO иногда при баге бесконечного баланса мы получаем нулевой баланс
                     balance = Integer.MAX_VALUE;
                 }
             // TODO со скорборда баланс приходит с задержкой

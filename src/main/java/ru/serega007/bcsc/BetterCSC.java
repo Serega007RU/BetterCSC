@@ -82,7 +82,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.14", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.15", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -113,12 +113,12 @@ public class BetterCSC implements ModMain, Listener {
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Неверно указан номер слота, он может быть только от 1 до 9", TextFormatting.RED)));
                             return;
                         }
-                        if (count > 32766) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 32766 кол-во", TextFormatting.RED)));
-                            return;
-                        }
+//                        if (count > 32766) {
+//                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 32766 кол-во", TextFormatting.RED)));
+//                            return;
+//                        }
                         if (period > 500) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 500 период", TextFormatting.RED)));
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Больше 500 периода слишком много, комп так сгорит", TextFormatting.RED)));
                             return;
                         }
                         if (count <= 0 || period <= 0) throw new RuntimeException();
@@ -185,16 +185,16 @@ public class BetterCSC implements ModMain, Listener {
                         count = Integer.parseInt(args[2]);
                         periodBuy = Integer.parseInt(args[3]);
                         periodUse = Integer.parseInt(args[4]);
-                        if (count > 50000) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 50000 кол-во", TextFormatting.RED)));
-                            return;
-                        }
+//                        if (count > 50000) {
+//                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 50000 кол-во", TextFormatting.RED)));
+//                            return;
+//                        }
                         if (periodBuy > 500) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 500 период покупки", TextFormatting.RED)));
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Больше 500 периода покупки слишком много, комп так сгорит", TextFormatting.RED)));
                             return;
                         }
                         if (periodUse > 500) {
-                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 500 период использования", TextFormatting.RED)));
+                            api.chat().printChatMessage(prefix.copy().append(Text.of("Больше 500 периода использования слишком много, комп так сгорит", TextFormatting.RED)));
                             return;
                         }
                         if (id <= 0 || count <= 0 || periodBuy <= 0 || periodUse <= 0) throw new RuntimeException();

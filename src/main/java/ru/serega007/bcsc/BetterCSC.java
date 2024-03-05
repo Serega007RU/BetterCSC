@@ -10,6 +10,7 @@ import dev.xdark.clientapi.event.network.ServerSwitch;
 import dev.xdark.clientapi.event.render.*;
 import dev.xdark.clientapi.event.chat.ChatSend;
 import dev.xdark.clientapi.item.ItemStack;
+import dev.xdark.clientapi.item.ItemTools;
 import dev.xdark.clientapi.network.NetworkPlayerInfo;
 import dev.xdark.clientapi.text.Text;
 import dev.xdark.clientapi.text.TextFormatting;
@@ -55,7 +56,7 @@ public class BetterCSC implements ModMain, Listener {
     private ScheduledExecutorService taskUse = null;
     private int countBuy = 0;
     private int countUse = 0;
-    private String uuidWindowBuy = null;
+    private final Map<Integer, List<String>> idShopItems = new HashMap<>();
     private int slotForBuy = 0;
 
     //Авто-ставки
@@ -82,7 +83,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.16", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.6.17", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -175,16 +176,18 @@ public class BetterCSC implements ModMain, Listener {
                         disableBuy(api, Text.of(""));
                         return;
                     }
-                    int id;
+                    int tab;
+                    int slot;
                     int count;
                     int periodBuy;
                     int periodUse;
                     try {
                         String[] args = msg.split(" ");
-                        id = Integer.parseInt(args[1]);
-                        count = Integer.parseInt(args[2]);
-                        periodBuy = Integer.parseInt(args[3]);
-                        periodUse = Integer.parseInt(args[4]);
+                        tab = Integer.parseInt(args[1]);
+                        slot = Integer.parseInt(args[2]);
+                        count = Integer.parseInt(args[3]);
+                        periodBuy = Integer.parseInt(args[4]);
+                        periodUse = Integer.parseInt(args[5]);
 //                        if (count > 50000) {
 //                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 50000 кол-во", TextFormatting.RED)));
 //                            return;
@@ -197,16 +200,26 @@ public class BetterCSC implements ModMain, Listener {
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Больше 500 периода использования слишком много, комп так сгорит", TextFormatting.RED)));
                             return;
                         }
-                        if (id <= 0 || count <= 0 || periodBuy <= 0 || periodUse <= 0) throw new RuntimeException();
+                        if (tab <= 0 || slot <= 0 || count <= 0 || periodBuy <= 0 || periodUse <= 0) throw new RuntimeException();
                     } catch (Exception e) {
-                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Неверно указаны числа или аргументы, ", TextFormatting.RED, "/buy ", TextFormatting.AQUA, "<", TextFormatting.GRAY, "номер слота", TextFormatting.LIGHT_PURPLE, "> <", TextFormatting.GRAY, "кол-во", TextFormatting.LIGHT_PURPLE, "> <", TextFormatting.GRAY, "период закупки", TextFormatting.LIGHT_PURPLE, "> <", TextFormatting.GRAY, "период использования", TextFormatting.LIGHT_PURPLE, ">", TextFormatting.GRAY)));
+                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Неверно указаны числа или аргументы, ", TextFormatting.RED, "/buy ", TextFormatting.AQUA, "<", TextFormatting.GRAY, "номер вкладки", TextFormatting.LIGHT_PURPLE, "> <", "<", TextFormatting.GRAY, "номер слота", TextFormatting.LIGHT_PURPLE, "> <", TextFormatting.GRAY, "кол-во", TextFormatting.LIGHT_PURPLE, "> <", TextFormatting.GRAY, "период закупки", TextFormatting.LIGHT_PURPLE, "> <", TextFormatting.GRAY, "период использования", TextFormatting.LIGHT_PURPLE, ">", TextFormatting.GRAY)));
                         return;
                     }
 
-                    if (uuidWindowBuy == null) {
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Похоже вы не открывали меню Магазина, откройте его (хотя бы на секунду) что б мод запомнил ID меню")));
+                    if (idShopItems.isEmpty()) {
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Мы не смогли получить id предметов из магазина для их покупки, попробуйте открыть магазин (хотя бы на секунду)", TextFormatting.RED)));
                         return;
                     }
+                    List<String> itemList = idShopItems.get(tab - 1);
+                    if (itemList == null) {
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("В магазине вкладки под номером ", TextFormatting.RED, String.valueOf(tab), TextFormatting.GOLD, " не существует", TextFormatting.RED)));
+                        return;
+                    }
+                    if (itemList.size() < slot) {
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("В магазине слота под номером ", TextFormatting.RED, String.valueOf(slot), TextFormatting.GOLD, " не существует", TextFormatting.RED)));
+                        return;
+                    }
+                    String id = itemList.get(slot - 1);
 
                     EntityPlayerSP player = api.minecraft().getPlayer();
 
@@ -221,7 +234,7 @@ public class BetterCSC implements ModMain, Listener {
 
                     taskBuy = api.threadManagement().newSingleThreadedScheduledExecutor();
                     taskBuy.scheduleAtFixedRate(() -> {
-                        if (!enableBuy || uuidWindowBuy == null) return;
+                        if (!enableBuy || idShopItems.isEmpty()) return;
                         if (!allowedBuy) {
                             if (!pausedBuy) {
                                 pausedBuy = true;
@@ -250,15 +263,15 @@ public class BetterCSC implements ModMain, Listener {
                             return;
                         }
                         ByteBuf buffer = Unpooled.buffer();
-                        NetUtil.writeUtf8(buffer, uuidWindowBuy);
-                        buffer.writeInt(id - 1);
                         buffer.writeInt(0);
-                        api.clientConnection().sendPayload("storage:click", buffer);
+                        buffer.writeInt(tab - 1);
+                        NetUtil.writeUtf8(buffer, id);
+                        api.clientConnection().sendPayload("csc:shop:buy", buffer);
                     }, 0, 1000000 / periodBuy, TimeUnit.MICROSECONDS);
 
                     taskUse = api.threadManagement().newSingleThreadedScheduledExecutor();
                     taskUse.scheduleAtFixedRate(() -> {
-                        if (!enableBuy || uuidWindowBuy == null) return;
+                        if (!enableBuy || idShopItems.isEmpty()) return;
                         if (!allowedBuy) return;
                         if (player.getInventory().getActiveSlot() != slotForBuy) return;
                         // TODO мы не можем использовать книги в гм3
@@ -475,7 +488,7 @@ public class BetterCSC implements ModMain, Listener {
         }, -1);
 
         ServerSwitch.BUS.register(this, serverSwitch -> {
-            uuidWindowBuy = null;
+            idShopItems.clear();
             balance = 0;
             disableUp(api, Text.of(TextFormatting.RED, ", " + TextFormatting.GOLD, "Вы вышли из игры", TextFormatting.RED));
             disableBuy(api, Text.of(TextFormatting.RED, ", " + TextFormatting.GOLD, "Вы вышли из игры", TextFormatting.RED));
@@ -529,8 +542,20 @@ public class BetterCSC implements ModMain, Listener {
                     }
                     playerList = new ArrayList<>(api.clientConnection().getPlayerInfos());
                 }
-            } else if (pluginMessage.getChannel().equals("func:page-response")) {
-                uuidWindowBuy = NetUtil.readUtf8(pluginMessage.getData().copy());
+            } else if (pluginMessage.getChannel().equals("csc:shop:init")) {
+                ByteBuf byteBuf = pluginMessage.getData().copy();
+                int container = byteBuf.readInt();
+                List<String> itemList = new ArrayList<>();
+                while(byteBuf.isReadable()) {
+                    String id = NetUtil.readUtf8(byteBuf);
+                    itemList.add(id);
+
+                    // TODO А надо ли оно? Я плохо понимаю в ByteBuf но вроде это так и долнжо быть
+                    ItemTools.read(byteBuf);
+                    byteBuf.readInt();
+                }
+                // Удалять нет необходимости, put перезапишет itemList этого container если он уже там есть
+                idShopItems.put(container, itemList);
             } else if (pluginMessage.getChannel().equals("csc:upgrade")) {
                 if (protectUp) {
                     pluginMessage.getData().clear();

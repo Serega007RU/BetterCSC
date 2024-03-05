@@ -47,15 +47,12 @@ public class BetterCSC implements ModMain, Listener {
     private boolean protectUp = false;
     private ScheduledExecutorService taskUP = null;
     private ScheduledExecutorService taskProtectUP = null;
-    private int countUp = 0;
 
     //Быстрая покупка книг с авто-использованием
     private boolean enableBuy = false;
     private boolean pausedBuy = false;
     private ScheduledExecutorService taskBuy = null;
     private ScheduledExecutorService taskUse = null;
-    private int countBuy = 0;
-    private int countUse = 0;
     private final Map<Integer, List<String>> idShopItems = new HashMap<>();
     private int slotForBuy = 0;
 
@@ -103,28 +100,26 @@ public class BetterCSC implements ModMain, Listener {
                     }
 
                     int slot;
-                    int count;
                     int period;
                     try {
                         String[] args = msg.split(" ");
                         slot = Integer.parseInt(args[1]);
-                        count = Integer.parseInt(args[2]);
-                        period = Integer.parseInt(args[3]);
+                        try {
+                            period = Integer.parseInt(args[2]);
+                        } catch (Exception ignore) {
+                            period = 7;
+                        }
                         if (slot < 1 || slot > 9) {
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Неверно указан номер слота, он может быть только от 1 до 9", TextFormatting.RED)));
                             return;
                         }
-//                        if (count > 32766) {
-//                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 32766 кол-во", TextFormatting.RED)));
-//                            return;
-//                        }
                         if (period > 500) {
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Больше 500 периода слишком много, комп так сгорит", TextFormatting.RED)));
                             return;
                         }
-                        if (count <= 0 || period <= 0) throw new RuntimeException();
+                        if (period <= 0) throw new RuntimeException();
                     } catch (Exception e) {
-                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Неверно указаны числа или аргументы, ", TextFormatting.RED, "/up ", TextFormatting.AQUA, "<", TextFormatting.GRAY, "номер слота", TextFormatting.LIGHT_PURPLE, "> <", TextFormatting.GRAY, "кол-во", TextFormatting.LIGHT_PURPLE, "> <", TextFormatting.GRAY, "период", TextFormatting.LIGHT_PURPLE, ">", TextFormatting.GRAY)));
+                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Неверно указаны числа или аргументы, ", TextFormatting.RED, "/up ", TextFormatting.AQUA, "<", TextFormatting.GRAY, "номер слота", TextFormatting.LIGHT_PURPLE, "> {", TextFormatting.GRAY, "период", TextFormatting.LIGHT_PURPLE, "}", TextFormatting.GRAY)));
                         return;
                     }
                     EntityPlayerSP player = api.minecraft().getPlayer();
@@ -143,7 +138,6 @@ public class BetterCSC implements ModMain, Listener {
                     enableUP = true;
                     pausedUp = false;
                     protectUp = true;
-                    countUp = 0;
 
                     taskUP = api.threadManagement().newSingleThreadedScheduledExecutor();
                     taskUP.scheduleAtFixedRate(() -> {
@@ -159,11 +153,6 @@ public class BetterCSC implements ModMain, Listener {
                             pausedUp = false;
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "возобновлён", TextFormatting.GREEN)));
                         }
-                        countUp++;
-                        if (countUp > count) {
-                            disableUp(api, Text.of(TextFormatting.RED, ", ", TextFormatting.GOLD, "достигли заданного числа", TextFormatting.GREEN));
-                            return;
-                        }
                         ByteBuf buffer;
                         ByteBuf $this$writeVarInt$iv = buffer = Unpooled.buffer();
                         NetUtil.writeVarInt(slot - 1, $this$writeVarInt$iv);
@@ -178,20 +167,24 @@ public class BetterCSC implements ModMain, Listener {
                     }
                     int tab;
                     int slot;
-                    int count;
                     int periodBuy;
                     int periodUse;
                     try {
                         String[] args = msg.split(" ");
                         tab = Integer.parseInt(args[1]);
                         slot = Integer.parseInt(args[2]);
-                        count = Integer.parseInt(args[3]);
-                        periodBuy = Integer.parseInt(args[4]);
-                        periodUse = Integer.parseInt(args[5]);
-//                        if (count > 50000) {
-//                            api.chat().printChatMessage(prefix.copy().append(Text.of("Куда так много? Максимум можно 50000 кол-во", TextFormatting.RED)));
-//                            return;
-//                        }
+                        try {
+                            periodBuy = Integer.parseInt(args[3]);
+                            periodUse = Integer.parseInt(args[4]);
+                        } catch (Exception ignore) {
+                            if (slot < 7) {
+                                periodBuy = 29;
+
+                            } else {
+                                periodBuy = 3;
+                            }
+                            periodUse = 29;
+                        }
                         if (periodBuy > 500) {
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Больше 500 периода покупки слишком много, комп так сгорит", TextFormatting.RED)));
                             return;
@@ -200,9 +193,9 @@ public class BetterCSC implements ModMain, Listener {
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Больше 500 периода использования слишком много, комп так сгорит", TextFormatting.RED)));
                             return;
                         }
-                        if (tab <= 0 || slot <= 0 || count <= 0 || periodBuy <= 0 || periodUse <= 0) throw new RuntimeException();
+                        if (tab <= 0 || slot <= 0 || periodBuy <= 0 || periodUse <= 0) throw new RuntimeException();
                     } catch (Exception e) {
-                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Неверно указаны числа или аргументы, ", TextFormatting.RED, "/buy ", TextFormatting.AQUA, "<", TextFormatting.GRAY, "номер вкладки", TextFormatting.LIGHT_PURPLE, "> <", "<", TextFormatting.GRAY, "номер слота", TextFormatting.LIGHT_PURPLE, "> <", TextFormatting.GRAY, "кол-во", TextFormatting.LIGHT_PURPLE, "> <", TextFormatting.GRAY, "период закупки", TextFormatting.LIGHT_PURPLE, "> <", TextFormatting.GRAY, "период использования", TextFormatting.LIGHT_PURPLE, ">", TextFormatting.GRAY)));
+                        api.chat().printChatMessage(this.prefix.copy().append(Text.of("Неверно указаны числа или аргументы, ", TextFormatting.RED, "/buy ", TextFormatting.AQUA, "<", TextFormatting.GRAY, "номер вкладки", TextFormatting.LIGHT_PURPLE, "> <", "<", TextFormatting.GRAY, "номер слота", TextFormatting.LIGHT_PURPLE, "> {", TextFormatting.GRAY, "период закупки", TextFormatting.LIGHT_PURPLE, "} {", TextFormatting.GRAY, "период использования", TextFormatting.LIGHT_PURPLE, "}", TextFormatting.GRAY)));
                         return;
                     }
 
@@ -229,8 +222,6 @@ public class BetterCSC implements ModMain, Listener {
 
                     enableBuy = true;
                     pausedBuy = false;
-                    countBuy = 0;
-                    countUse = 0;
 
                     taskBuy = api.threadManagement().newSingleThreadedScheduledExecutor();
                     taskBuy.scheduleAtFixedRate(() -> {
@@ -257,11 +248,6 @@ public class BetterCSC implements ModMain, Listener {
                         if (api.minecraft().getPlayerController().getGameMode().equals(GameMode.SPECTATOR)) return;
                         ItemStack itemStack = player.getInventory().getCurrentItem();
                         if (!itemStack.isEmpty() && (!itemStack.getDisplayName().contains("Книга") || itemStack.getCount() > 32)) return;
-                        countBuy++;
-                        if (countBuy > count) {
-                            disableBuy(api, Text.of(TextFormatting.RED, ", ", TextFormatting.GOLD, "достигли заданного числа", TextFormatting.GREEN));
-                            return;
-                        }
                         ByteBuf buffer = Unpooled.buffer();
                         buffer.writeInt(0);
                         buffer.writeInt(tab - 1);
@@ -278,11 +264,6 @@ public class BetterCSC implements ModMain, Listener {
                         if (api.minecraft().getPlayerController().getGameMode().equals(GameMode.SPECTATOR)) return;
                         ItemStack itemStack = player.getInventory().getCurrentItem();
                         if (!itemStack.isEmpty() && !itemStack.getDisplayName().contains("Книга")) return;
-                        countUse++;
-                        if (countUse > count) {
-                            disableBuy(api, Text.of(TextFormatting.RED, ", ", TextFormatting.GOLD, "достигли заданного числа", TextFormatting.GREEN));
-                            return;
-                        }
                         try {
                             Wrapper.sendPacket(Wrapper.CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
                         } catch (Exception e) {

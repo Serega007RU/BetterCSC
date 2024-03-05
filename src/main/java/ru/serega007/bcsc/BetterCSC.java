@@ -193,11 +193,13 @@ public class BetterCSC implements ModMain, Listener {
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Больше 500 периода использования слишком много, комп так сгорит", TextFormatting.RED)));
                             return;
                         }
-                        if (tab <= 0 || slot <= 0 || periodBuy <= 0 || periodUse <= 0) throw new RuntimeException();
+                        if (tab <= 0 || slot <= 0 || periodBuy <= 0 || periodUse < 0) throw new RuntimeException();
                     } catch (Exception e) {
                         api.chat().printChatMessage(this.prefix.copy().append(Text.of("Неверно указаны числа или аргументы, ", TextFormatting.RED, "/buy ", TextFormatting.AQUA, "<", TextFormatting.GRAY, "номер вкладки", TextFormatting.LIGHT_PURPLE, "> <", "<", TextFormatting.GRAY, "номер слота", TextFormatting.LIGHT_PURPLE, "> {", TextFormatting.GRAY, "период закупки", TextFormatting.LIGHT_PURPLE, "} {", TextFormatting.GRAY, "период использования", TextFormatting.LIGHT_PURPLE, "}", TextFormatting.GRAY)));
                         return;
                     }
+                    //Эта катавасия для лямбды
+                    int finalPeriodUse = periodUse;
 
                     if (idShopItems.isEmpty()) {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("Мы не смогли получить id предметов из магазина для их покупки, попробуйте открыть магазин (хотя бы на секунду)", TextFormatting.RED)));
@@ -247,7 +249,7 @@ public class BetterCSC implements ModMain, Listener {
                         // TODO мы не можем использовать книги в гм3
                         if (api.minecraft().getPlayerController().getGameMode().equals(GameMode.SPECTATOR)) return;
                         ItemStack itemStack = player.getInventory().getCurrentItem();
-                        if (!itemStack.isEmpty() && (!itemStack.getDisplayName().contains("Книга") || itemStack.getCount() > 32)) return;
+                        if (finalPeriodUse > 0 && !itemStack.isEmpty() && (!itemStack.getDisplayName().contains("Книга") || itemStack.getCount() > 32)) return;
                         ByteBuf buffer = Unpooled.buffer();
                         buffer.writeInt(0);
                         buffer.writeInt(tab - 1);
@@ -255,23 +257,25 @@ public class BetterCSC implements ModMain, Listener {
                         api.clientConnection().sendPayload("csc:shop:buy", buffer);
                     }, 0, 1000000 / periodBuy, TimeUnit.MICROSECONDS);
 
-                    taskUse = api.threadManagement().newSingleThreadedScheduledExecutor();
-                    taskUse.scheduleAtFixedRate(() -> {
-                        if (!enableBuy || idShopItems.isEmpty()) return;
-                        if (!allowedBuy) return;
-                        if (player.getInventory().getActiveSlot() != slotForBuy) return;
-                        // TODO мы не можем использовать книги в гм3
-                        if (api.minecraft().getPlayerController().getGameMode().equals(GameMode.SPECTATOR)) return;
-                        ItemStack itemStack = player.getInventory().getCurrentItem();
-                        if (!itemStack.isEmpty() && !itemStack.getDisplayName().contains("Книга")) return;
-                        try {
-                            Wrapper.sendPacket(Wrapper.CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
-                        } catch (Exception e) {
-                            //noinspection CallToPrintStackTrace
-                            e.printStackTrace();
-                            disableBuy(api, Text.of("Произошла ошибка при попытке кликнуть ПКМ", TextFormatting.RED, ", ", TextFormatting.GOLD, e.toString(), TextFormatting.DARK_RED));
-                        }
-                    }, 0, 1000000 / periodUse, TimeUnit.MICROSECONDS);
+                    if (periodUse > 0) {
+                        taskUse = api.threadManagement().newSingleThreadedScheduledExecutor();
+                        taskUse.scheduleAtFixedRate(() -> {
+                            if (!enableBuy || idShopItems.isEmpty()) return;
+                            if (!allowedBuy) return;
+                            if (player.getInventory().getActiveSlot() != slotForBuy) return;
+                            // TODO мы не можем использовать книги в гм3
+                            if (api.minecraft().getPlayerController().getGameMode().equals(GameMode.SPECTATOR)) return;
+                            ItemStack itemStack = player.getInventory().getCurrentItem();
+                            if (!itemStack.isEmpty() && !itemStack.getDisplayName().contains("Книга")) return;
+                            try {
+                                Wrapper.sendPacket(Wrapper.CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
+                            } catch (Exception e) {
+                                //noinspection CallToPrintStackTrace
+                                e.printStackTrace();
+                                disableBuy(api, Text.of("Произошла ошибка при попытке кликнуть ПКМ", TextFormatting.RED, ", ", TextFormatting.GOLD, e.toString(), TextFormatting.DARK_RED));
+                            }
+                        }, 0, 1000000 / periodUse, TimeUnit.MICROSECONDS);
+                    }
                 } else if (msg.startsWith("/unloadbcsc")) {
                     chatSend.setCancelled(true);
                     api.chat().printChatMessage(prefix.copy().append(Text.of("Выгружаем данный мод, пока =(", TextFormatting.WHITE)));

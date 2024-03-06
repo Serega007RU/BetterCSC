@@ -11,6 +11,7 @@ import dev.xdark.clientapi.event.render.*;
 import dev.xdark.clientapi.event.chat.ChatSend;
 import dev.xdark.clientapi.item.ItemStack;
 import dev.xdark.clientapi.item.ItemTools;
+import dev.xdark.clientapi.nbt.NBTTagList;
 import dev.xdark.clientapi.network.NetworkPlayerInfo;
 import dev.xdark.clientapi.text.Text;
 import dev.xdark.clientapi.text.TextFormatting;
@@ -80,7 +81,7 @@ public class BetterCSC implements ModMain, Listener {
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.7.0", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "2.7.1", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -124,12 +125,20 @@ public class BetterCSC implements ModMain, Listener {
                     }
                     EntityPlayerSP player = api.minecraft().getPlayer();
                     int id;
+                    ItemStack stack;
                     try {
-                        id = player.getInventory().getStackInSlot(slot - 1).getItem().getId();
+                        stack = player.getInventory().getStackInSlot(slot - 1);
+                        id = stack.getItem().getId();
                     } catch (Exception e) {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("В слоте ", TextFormatting.RED, String.valueOf(slot), TextFormatting.GOLD, " отсутствует предмет", TextFormatting.RED)));
                         return;
                     }
+
+                    if (getMaxEnchantLvl(stack) > 32700) {
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Ваш предмет зачарован больше 32700 уровня, мы не можем вам и дальше позволить его автоматически прокачивать, высока вероятность что мод может его случайно перекачать и увести в минус, не прокачивайте зачарование больше 32767, иначе этот уровень уйдёт в минус")));
+                        return;
+                    }
+
                     api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "включён", TextFormatting.GREEN, ", нажмите ", TextFormatting.GOLD, "СКМ", TextFormatting.RED, " что бы выключить", TextFormatting.GOLD)));
 
                     if (taskProtectUP != null) taskProtectUP.shutdownNow();
@@ -152,6 +161,10 @@ public class BetterCSC implements ModMain, Listener {
                         if (pausedUp) {
                             pausedUp = false;
                             api.chat().printChatMessage(prefix.copy().append(Text.of("Быстрый апгрейд ", TextFormatting.GOLD, "возобновлён", TextFormatting.GREEN)));
+                        }
+                        if (getMaxEnchantLvl(player.getInventory().getStackInSlot(slot - 1)) > 32700) {
+                            disableUp(api, Text.of(TextFormatting.RED, ", ", TextFormatting.GOLD, "Ваш предмет зачарован больше 32700 уровня, мы не можем вам и дальше позволить его автоматически прокачивать, высока вероятность что мод может его случайно перекачать и увести в минус, не прокачивайте зачарование больше 32767, иначе этот уровень уйдёт в минус", TextFormatting.RED));
+                            return;
                         }
                         ByteBuf buffer;
                         ByteBuf $this$writeVarInt$iv = buffer = Unpooled.buffer();
@@ -198,8 +211,6 @@ public class BetterCSC implements ModMain, Listener {
                         api.chat().printChatMessage(this.prefix.copy().append(Text.of("Неверно указаны числа или аргументы, ", TextFormatting.RED, "/buy ", TextFormatting.AQUA, "<", TextFormatting.GRAY, "номер вкладки", TextFormatting.LIGHT_PURPLE, "> <", "<", TextFormatting.GRAY, "номер слота", TextFormatting.LIGHT_PURPLE, "> {", TextFormatting.GRAY, "период закупки", TextFormatting.LIGHT_PURPLE, "} {", TextFormatting.GRAY, "период использования", TextFormatting.LIGHT_PURPLE, "}", TextFormatting.GRAY)));
                         return;
                     }
-                    //Эта катавасия для лямбды
-                    int finalPeriodUse = periodUse;
 
                     if (idShopItems.isEmpty()) {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("Мы не смогли получить id предметов из магазина для их покупки, попробуйте открыть магазин (хотя бы на секунду)", TextFormatting.RED)));
@@ -224,6 +235,7 @@ public class BetterCSC implements ModMain, Listener {
 
                     enableBuy = true;
                     pausedBuy = false;
+                    boolean useUse = periodUse > 0;
 
                     taskBuy = api.threadManagement().newSingleThreadedScheduledExecutor();
                     taskBuy.scheduleAtFixedRate(() -> {
@@ -249,7 +261,7 @@ public class BetterCSC implements ModMain, Listener {
                         // TODO мы не можем использовать книги в гм3
                         if (api.minecraft().getPlayerController().getGameMode().equals(GameMode.SPECTATOR)) return;
                         ItemStack itemStack = player.getInventory().getCurrentItem();
-                        if (finalPeriodUse > 0 && !itemStack.isEmpty() && (!itemStack.getDisplayName().contains("Книга") || itemStack.getCount() > 32)) return;
+                        if (useUse && !itemStack.isEmpty() && (!itemStack.getDisplayName().contains("Книга") || itemStack.getCount() > 32)) return;
                         ByteBuf buffer = Unpooled.buffer();
                         buffer.writeInt(0);
                         buffer.writeInt(tab - 1);
@@ -631,6 +643,22 @@ public class BetterCSC implements ModMain, Listener {
             e.printStackTrace();
             disableBuy(api, Text.of("Произошла ошибка при попытке сменить активный слот", TextFormatting.RED, ", ", TextFormatting.GOLD, e.toString(), TextFormatting.DARK_RED));
         }
+    }
+
+    private int getMaxEnchantLvl(ItemStack stack) {
+        int enchantLvl = 0;
+        if (stack.isItemEnchanted()) {
+            NBTTagList nbttaglist = stack.getEnchantmentTagList();
+            if (nbttaglist != null) {
+                for (int i = 0; i < nbttaglist.size(); ++i) {
+                    int lvl = nbttaglist.getCompound(i).getShort("lvl");
+                    if (lvl > enchantLvl) {
+                        enchantLvl = lvl;
+                    }
+                }
+            }
+        }
+        return enchantLvl;
     }
 
     @Override

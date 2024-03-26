@@ -8,7 +8,7 @@
 </details>
 
 ## Как установить:
-1. [Скачать](https://gitlab.com/Serega007/bettercsc/-/raw/plus/build/distributions/BetterCSC-Plus-2.7.1.zip) архив c данным модов и инжектором
+1. [Скачать](https://gitlab.com/Serega007/bettercsc/-/raw/plus/build/distributions/BetterCSC-Plus-2.7.2.zip) архив c данным модов и инжектором
 3. [Скачать](https://github.com/master131/ExtremeInjector/releases) программу для инжекта
 4. Закинуть папку Xenoceal на диск C:\
 5. Открыть Extreme Injector и настроить его следующим образом

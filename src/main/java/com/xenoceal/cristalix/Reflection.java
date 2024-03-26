@@ -20,17 +20,17 @@ public final class Reflection {
 
     public static void initialize() {
         try {
-            addClass("Minecraft", "vVQYqlk");
-            addClass("ClientConnection", "fSPHjIt");
-            addClass("Packet", "vWnQitl");
-            addClass("EnumHand", "ZytJxkR");
-            addClass("CPacketPlayerTryUseItem", "YpLYUbU");
-            addClass("InventoryPlayer", "cEPBjqS");
-            addHandle("getMinecraft", LOOKUP.findStatic(getClass("Minecraft"), "OMzFoJy", MethodType.methodType(getClass("Minecraft"))));
-            addHandle("getClientConnection", LOOKUP.findVirtual(getClass("Minecraft"), "OMzFoJy", MethodType.methodType(getClass("ClientConnection"))));
-            addHandle("sendPacket", LOOKUP.findVirtual(getClass("ClientConnection"), "OMzFoJy", MethodType.methodType(Void.TYPE, getClass("Packet"))));
+            addClass("Minecraft", "NGAlyUe");
+            addClass("ClientConnection", "XFBlgRo");
+            addClass("Packet", "HEALNwf");
+            addClass("EnumHand", "ftfIQJf");
+            addClass("CPacketPlayerTryUseItem", "ToHlnce");
+            addClass("InventoryPlayer", "OsgCJEy");
+            addHandle("getMinecraft", LOOKUP.findStatic(getClass("Minecraft"), "gRuBWGg", MethodType.methodType(getClass("Minecraft"))));
+            addHandle("getClientConnection", LOOKUP.findVirtual(getClass("Minecraft"), "gRuBWGg", MethodType.methodType(getClass("ClientConnection"))));
+            addHandle("sendPacket", LOOKUP.findVirtual(getClass("ClientConnection"), "gRuBWGg", MethodType.methodType(Void.TYPE, getClass("Packet"))));
             addHandle("CPacketPlayerTryUseItem", LOOKUP.findConstructor(getClass("CPacketPlayerTryUseItem"), MethodType.methodType(Void.TYPE, getClass("EnumHand"))));
-            addHandle("changeActiveSlot", LOOKUP.findSetter(getClass("InventoryPlayer"), "IDHiVaG", Integer.TYPE));
+            addHandle("changeActiveSlot", LOOKUP.findSetter(getClass("InventoryPlayer"), "iWDJhQU", Integer.TYPE));
         } catch (Throwable var1) {
             throw SneakyThrow.sneaky(var1);
         }

@@ -1,5 +1,8 @@
+import org.apache.commons.compress.archivers.sevenz.SevenZMethod
+
 plugins {
     id 'java'
+    id "io.freefair.compress.7z" version "8.6"
 }
 
 version = "Plus-2.7.4"
@@ -26,7 +29,7 @@ jar {
 
 build.finalizedBy("customZip")
 
-tasks.register('customZip', Zip) {
+tasks.register('customZip', SevenZip) {
     from('build/libs/') {
         into 'Xenoceal/mods/'
     }
@@ -42,5 +45,6 @@ tasks.register('customZip', Zip) {
         include('README.md')
         rename { 'Инструкция.txt' }
     }
-    archiveFileName = 'BetterCSC-' + version + '.zip'
+    archiveFileName = 'BetterCSC-' + version + '.7z'
+    contentCompression = SevenZMethod.LZMA2
 }

@@ -38,9 +38,6 @@ tasks.register('customZip', SevenZip) {
         include('sunec.jar')
         into('Xenoceal/')
     }
-    from('Injector/') {
-        include('Bypass.dll')
-    }
     from('./') {
         include('README.md')
         rename { 'Инструкция.txt' }

@@ -1,0 +1,91 @@
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Get version from tag
+        id: get_version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+              version=${GITHUB_REF#refs/tags/}
+          else
+              version=0.0.0.${GITHUB_REF#refs/heads/}
+          fi
+          echo "version=${version}" >> "${GITHUB_OUTPUT}"
+
+      - uses: actions/checkout@v4
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build with Gradle Wrapper
+        run: ./gradlew build
+        env:
+          VERSION: ${{ steps.get_version.outputs.version }}
+
+      - uses: edgarrc/action-7z@v1
+        with:
+          args: 7z u ./Injector/Injector.7z -p2024 -mhe=on -u- -up1q1r2x1y1z1w1!BetterCSC-${{ steps.get_version.outputs.version }}.7z ./build/libs/* README.md
+      - uses: edgarrc/action-7z@v1
+        with:
+          args: 7z rn BetterCSC-${{ steps.get_version.outputs.version }}.7z -p2024 -mhe=on README.md Инструкция.txt BetterCSC-Plus-${{ steps.get_version.outputs.version }}.jar Xenoceal/mods/BetterCSC-Plus-${{ steps.get_version.outputs.version }}.jar
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Package
+          path: BetterCSC-${{ steps.get_version.outputs.version }}.7z
+
+  upload:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Get version from tag
+        id: get_version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+              version=${GITHUB_REF#refs/tags/}
+          else
+              version=0.0.0.${GITHUB_REF#refs/heads/}
+          fi
+          echo "version=${version}" >> "${GITHUB_OUTPUT}"
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: Package
+
+      - name: Creating release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.get_version.outputs.version }}
+          release_name: Version ${{ steps.get_version.outputs.version }}
+          body: Пароль от архива 2024
+          draft: false
+          prerelease: false
+
+      - name: Uploading release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: BetterCSC-${{ steps.get_version.outputs.version }}.7z
+          asset_name: BetterCSC-${{ steps.get_version.outputs.version }}.7z
+          asset_content_type: application/java-archive

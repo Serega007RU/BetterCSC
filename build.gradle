@@ -1,13 +1,12 @@
-import org.apache.commons.compress.archivers.sevenz.SevenZMethod
+import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id 'java'
-    id "io.freefair.compress.7z" version "8.6"
 }
 
-version = "Plus-2.7.4"
+version = System.getenv("VERSION") ? System.getenv("VERSION") : "test"
 group = "ru.serega007.bcsc"
-archivesBaseName = "BetterCSC"
+archivesBaseName = "BetterCSC-Plus"
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
@@ -27,21 +26,21 @@ jar {
 	}
 }
 
-build.finalizedBy("customZip")
+tasks.register('processSource', Sync) {
+    from sourceSets.main.java
+    inputs.property 'version', version
+    filter(ReplaceTokens, tokens: [version: version])
+    into "$buildDir/src"
+}
 
-tasks.register('customZip', SevenZip) {
-    from('build/libs/') {
-        into 'Xenoceal/mods/'
+compileJava {
+    source = processSource.outputs
+}
+
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    from(sourceSets.main.resources) {
+        filter(ReplaceTokens, tokens: [version:  version])
     }
-    from('Injector/') {
-        include('bypass.jar')
-        include('sunec.jar')
-        into('Xenoceal/')
-    }
-    from('./') {
-        include('README.md')
-        rename { 'Инструкция.txt' }
-    }
-    archiveFileName = 'BetterCSC-' + version + '.7z'
-    contentCompression = SevenZMethod.LZMA2
+    into(buildDir)
 }

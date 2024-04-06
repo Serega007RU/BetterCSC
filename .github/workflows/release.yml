@@ -88,4 +88,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: BetterCSC-${{ steps.get_version.outputs.version }}.7z
           asset_name: BetterCSC-${{ steps.get_version.outputs.version }}.7z
-          asset_content_type: application/java-archive
+          asset_content_type: application/x-7z-compressed

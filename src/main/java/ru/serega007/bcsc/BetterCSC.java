@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 public class BetterCSC implements ModMain, Listener {
-    private boolean hp = true;
+    private boolean enabled = true;
 
     //Скрытие флуда в чате при быстрой прокачке/покупке
     private Text lastMessage = null;
@@ -77,7 +77,7 @@ public class BetterCSC implements ModMain, Listener {
         } catch (Exception e) {
             //noinspection CallToPrintStackTrace
             e.printStackTrace();
-            api.chat().printChatMessage(prefix.copy().append(Text.of("Ошибка загрузки маппингов, обратитесь к разработчику https://gitlab.com/Serega007/bettercsc/-/issues " + e.getLocalizedMessage(), TextFormatting.DARK_RED)));
+            api.chat().printChatMessage(prefix.copy().append(Text.of("Ошибка загрузки маппингов, обратитесь к разработчику https://github.com/Serega007RU/BetterCSC/issues " + e.getLocalizedMessage(), TextFormatting.DARK_RED)));
             return;
         }
 
@@ -86,13 +86,17 @@ public class BetterCSC implements ModMain, Listener {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
 
-                if (msg.startsWith("/hp")) {
+                if (msg.startsWith("/bcsc")) {
                     chatSend.setCancelled(true);
-                    if (this.hp)
+                    if (this.enabled) {
+                        disableUp(api, Text.of(""));
+                        disableBuy(api, Text.of(""));
+                        allowedBuy = true;
                         api.chat().printChatMessage(prefix.copy().append(Text.of("отключён", TextFormatting.RED)));
-                    else
+                    } else {
                         api.chat().printChatMessage(prefix.copy().append(Text.of("включён", TextFormatting.GREEN)));
-                    this.hp = !this.hp;
+                    }
+                    this.enabled = !this.enabled;
                 } else if (msg.startsWith("/up")) {
                     chatSend.setCancelled(true);
                     if (enableUP) {
@@ -335,102 +339,106 @@ public class BetterCSC implements ModMain, Listener {
                     } else {
                         api.chat().printChatMessage(this.prefix.copy().append(Text.of("Ставка (", TextFormatting.GREEN, new DecimalFormat("#,###").format(finalSum), TextFormatting.GOLD, ") поставлена успешно", TextFormatting.GREEN)));
                     }
+                } else if (msg.startsWith("/sendpayload ")) {
+                    chatSend.setCancelled(true);
+                    api.clientConnection().sendPayload(msg.replace("/sendpayload ", ""), Unpooled.buffer());
                 }
             }
         }, 100);
 
         ChatReceive.BUS.register(this, chatReceive -> {
+            if (!this.enabled) return;
+
             String msg = chatReceive.getText().getUnformattedText();
             String msgColored = chatReceive.getText().getFormattedText().toLowerCase();
 
-            if (this.hp) {
+            if (msgColored.contains("§cу вас максимальное количество денег")) {
+                chatReceive.setCancelled(true);
+                return;
+            }
 
-                if (msgColored.contains("§cу вас максимальное количество денег")) {
+            if (enableUP || enableBuy || protectUp) {
+                if (msgColored.contains("§aбаланс: ") || msgColored.contains("§aвы успешно улучшили предмет") || msgColored.contains("§aвы успешно купили предмет")) {
                     chatReceive.setCancelled(true);
                     return;
-                }
-
-                if (enableUP || enableBuy || protectUp) {
-                    if (msgColored.contains("§aбаланс: ") || msgColored.contains("§aвы успешно улучшили предмет") || msgColored.contains("§aвы успешно купили предмет")) {
-                        chatReceive.setCancelled(true);
-                        return;
-                    } else if (msgColored.contains("§cу вас недостаточно золота на балансе") || msgColored.contains("§cвы уже купили этот предмет") || msgColored.contains("§cэтот предмет нельзя улучшить") /*|| msgColored.contains("§cвы не находитесь в игре")*/ || msgColored.contains("§cошибка, вы не можете сейчас открыть меню апгрейда") || msgColored.contains("§cэтот предмет улучшен до максимального уровня") || msgColored.contains("§cу вас недостаточно места в инвентаре") || msgColored.contains("§cвы не можете сейчас покупать предметы")) {
-                        chatReceive.setCancelled(true);
-                        if (msgColored.contains("§cвы не можете сейчас покупать предметы") || msgColored.contains("§cошибка, вы не можете сейчас открыть меню апгрейда")) {
-                            allowedBuy = false;
-                            return;
-                        }
-                        if (enableUP) {
-                            disableUp(api, Text.of(TextFormatting.RED, ", " + TextFormatting.GOLD, msg, TextFormatting.RED));
-                        } else if (enableBuy) {
-                            disableBuy(api, Text.of(TextFormatting.RED, ", " + TextFormatting.GOLD, msg, TextFormatting.RED));
-                        }
+                } else if (msgColored.contains("§cу вас недостаточно золота на балансе") || msgColored.contains("§cвы уже купили этот предмет") || msgColored.contains("§cэтот предмет нельзя улучшить") /*|| msgColored.contains("§cвы не находитесь в игре")*/ || msgColored.contains("§cошибка, вы не можете сейчас открыть меню апгрейда") || msgColored.contains("§cэтот предмет улучшен до максимального уровня") || msgColored.contains("§cу вас недостаточно места в инвентаре") || msgColored.contains("§cвы не можете сейчас покупать предметы")) {
+                    chatReceive.setCancelled(true);
+                    if (msgColored.contains("§cвы не можете сейчас покупать предметы") || msgColored.contains("§cошибка, вы не можете сейчас открыть меню апгрейда")) {
+                        allowedBuy = false;
                         return;
                     }
+                    if (enableUP) {
+                        disableUp(api, Text.of(TextFormatting.RED, ", " + TextFormatting.GOLD, msg, TextFormatting.RED));
+                    } else if (enableBuy) {
+                        disableBuy(api, Text.of(TextFormatting.RED, ", " + TextFormatting.GOLD, msg, TextFormatting.RED));
+                    }
+                    return;
                 }
-
-                if (msgColored.contains("§aбаланс: ")) {
-                    chatReceive.setCancelled(true);
-                    if (lastMessage != null) {
-                        api.chat().printChatMessage(lastMessage);
-                    }
-                    String text = chatReceive.getText().getFormattedText();
-                    // TODO getUnformattedText должен возвращать текст без знаков цвета но почему-то стало ровно по другому
-                    // TODO что-то кристаликс сломал в этой функции по этому приходится самому коды цветов выковыривать
-                    String[] list = STRIP_COLOR_PATTERN.matcher(msg).replaceAll("").replaceAll("[^-?0-9]+", " ").trim().split(" ");
-                    for (String str : list) {
-                        long num = Long.parseLong(str);
-                        text = text.replaceAll(str, new DecimalFormat("#,###").format(num));
-                    }
-                    chatReceive.setText(stringToText(text));
-                    lastMessage = chatReceive.getText();
-                    lastMessageTimeMillis = System.currentTimeMillis();
-                } else if (msgColored.contains("§aвы успешно улучшили предмет") || msgColored.contains("§aвы успешно купили предмет")) {
-                    chatReceive.setCancelled(true);
-                    lastMessage = null;
-                } else if (msgColored.contains("§aставки выиграли:")) {
-                    countBets = true;
-                } else if (countBets) {
-                    if (msgColored.contains("§7- ")) {
-                        String text = msg;
-                        text = msg.substring(text.indexOf(" - ") + 3, text.length());
-                        long num = Long.parseLong(text);
-                        allBets += num;
-
-                        String unfText = chatReceive.getText().getFormattedText();
-                        unfText = unfText.replaceAll(String.valueOf(num), new DecimalFormat("#,###").format(num));
-//                        chatReceive.setText(stringToText(unfText));
-                        chatReceive.setCancelled(true);
-                        api.chat().printChatMessage(stringToText(unfText));
-                    } else {
-                        api.chat().printChatMessage(Text.of("Общая сумма ставок: ", TextFormatting.GOLD, new DecimalFormat("#,###").format(allBets), TextFormatting.GOLD));
-                        countBets = false;
-                        allBets = 0;
-                    }
-                } else if (msgColored.contains("§aсорвал куш и получил ") || msgColored.contains("§aсорвала джекпот и получила ")) {
-                    String var;
-                    if (msg.contains(" сорвал куш и получил ")) {
-                        var = " сорвал куш и получил ";
-                    } else {
-                        var = " сорвала джекпот и получила ";
-                    }
-                    String text = chatReceive.getText().getFormattedText();
-                    long num = Long.parseLong(msg.substring(msg.indexOf(var) + var.length(), msg.indexOf(" золота")));
-                    text = text.replaceAll(String.valueOf(num), new DecimalFormat("#,###").format(num));
-//                    chatReceive.setText(stringToText(text));
-                    chatReceive.setCancelled(true);
-                    api.chat().printChatMessage(stringToText(text));
-                }
-
-//                if (lastMessage != null) {
-//                    api.chat().printChatMessage(lastMessage);
-//                    lastMessage = null;
-//                }
             }
+
+            if (msgColored.contains("§aбаланс: ")) {
+                chatReceive.setCancelled(true);
+                if (lastMessage != null) {
+                    api.chat().printChatMessage(lastMessage);
+                }
+                String text = chatReceive.getText().getFormattedText();
+                // TODO getUnformattedText должен возвращать текст без знаков цвета но почему-то стало ровно по другому
+                // TODO что-то кристаликс сломал в этой функции по этому приходится самому коды цветов выковыривать
+                String[] list = STRIP_COLOR_PATTERN.matcher(msg).replaceAll("").replaceAll("[^-?0-9]+", " ").trim().split(" ");
+                for (String str : list) {
+                    long num = Long.parseLong(str);
+                    text = text.replaceAll(str, new DecimalFormat("#,###").format(num));
+                }
+                chatReceive.setText(stringToText(text));
+                lastMessage = chatReceive.getText();
+                lastMessageTimeMillis = System.currentTimeMillis();
+            } else if (msgColored.contains("§aвы успешно улучшили предмет") || msgColored.contains("§aвы успешно купили предмет")) {
+                chatReceive.setCancelled(true);
+                lastMessage = null;
+            } else if (msgColored.contains("§aставки выиграли:")) {
+                countBets = true;
+            } else if (countBets) {
+                if (msgColored.contains("§7- ")) {
+                    String text = msg;
+                    text = msg.substring(text.indexOf(" - ") + 3, text.length());
+                    long num = Long.parseLong(text);
+                    allBets += num;
+
+                    String unfText = chatReceive.getText().getFormattedText();
+                    unfText = unfText.replaceAll(String.valueOf(num), new DecimalFormat("#,###").format(num));
+//                        chatReceive.setText(stringToText(unfText));
+                    chatReceive.setCancelled(true);
+                    api.chat().printChatMessage(stringToText(unfText));
+                } else {
+                    api.chat().printChatMessage(Text.of("Общая сумма ставок: ", TextFormatting.GOLD, new DecimalFormat("#,###").format(allBets), TextFormatting.GOLD));
+                    countBets = false;
+                    allBets = 0;
+                }
+            } else if (msgColored.contains("§aсорвал куш и получил ") || msgColored.contains("§aсорвала джекпот и получила ")) {
+                String var;
+                if (msg.contains(" сорвал куш и получил ")) {
+                    var = " сорвал куш и получил ";
+                } else {
+                    var = " сорвала джекпот и получила ";
+                }
+                String text = chatReceive.getText().getFormattedText();
+                long num = Long.parseLong(msg.substring(msg.indexOf(var) + var.length(), msg.indexOf(" золота")));
+                text = text.replaceAll(String.valueOf(num), new DecimalFormat("#,###").format(num));
+//                    chatReceive.setText(stringToText(text));
+                chatReceive.setCancelled(true);
+                api.chat().printChatMessage(stringToText(text));
+            }
+
+//            if (lastMessage != null) {
+//                api.chat().printChatMessage(lastMessage);
+//                lastMessage = null;
+//            }
         }, 100);
 
         ScheduledExecutorService task = api.threadManagement().newSingleThreadedScheduledExecutor();
         task.scheduleAtFixedRate(() -> {
+            if (!this.enabled) return;
+
             if (lastMessage != null) {
                 if (lastMessageTimeMillis + 1000 < System.currentTimeMillis()) {
                     api.chat().printChatMessage(lastMessage);
@@ -438,50 +446,8 @@ public class BetterCSC implements ModMain, Listener {
                 }
             }
         }, 0, 1, TimeUnit.SECONDS);
-
-        HealthRender.BUS.register(this, healthRender -> {
-            if (this.hp && !healthRender.isCancelled()) {
-                healthRender.setCancelled(true);
-                EntityPlayerSP player = api.minecraft().getPlayer();
-                float health = player.getHealth();
-                float maxHealth = player.getMaxHealth();
-                int percent = (int)(health / maxHealth * 100.0f);
-                int color = getColor(percent);
-                float w = api.resolution().getScaledWidth(), h = api.resolution().getScaledHeight();
-
-                api.fontRenderer().drawString(String.join("", Collections.nCopies(25, "█")), w / 2.0f - 88.0f, h - 40.0f, 11184810, true);
-                api.fontRenderer().drawString(String.join("", Collections.nCopies((int) (percent * 0.25), "█")), w / 2.0f - 88.0f, h - 40.0f, color, true);
-
-//                api.fontRenderer().drawString(api.minecraft().getSession().getName(),
-//                        5f, 15.0f,
-//                        11184810, true); // Nickname
-
-                float alignment = 0.0F;
-                if (percent < 10) alignment = 8.0F;
-                else if (percent < 100) alignment = 4.0F;
-                api.fontRenderer().drawString(String.format("%d%%", percent),
-                        w / 2.0F - 12.0f + alignment, h - 50.0f,
-                        color, true); // Percents
-
-                api.fontRenderer().drawString(String.format("%s ♥", (int)health),
-                        w / 2.0F - 88.0F, h - 50.0f,
-                        color, true); // Health
-
-                String mh = String.format("%6s ♥", (int)maxHealth);
-                api.fontRenderer().drawString(mh,
-                        w / 2.0F + 87.0F - api.fontRenderer().getStringWidth(mh), h - 50.0f,
-                        16777215, true); // Max Health
-            }
-        }, -1);
-        HungerRender.BUS.register(this, hungerRender -> {
-            if (this.hp) hungerRender.setCancelled(true);
-        }, -1);
-        ArmorRender.BUS.register(this, armorRender -> {
-            if (this.hp) armorRender.setCancelled(true);
-        }, -1);
-
         PlayerListRender.BUS.register(this, playerListRender -> {
-            if (this.hp && playerListRender.isCancelled()) playerListRender.setCancelled(false);
+            if (this.enabled && playerListRender.isCancelled()) playerListRender.setCancelled(false);
         }, -1);
 
         ServerSwitch.BUS.register(this, serverSwitch -> {
@@ -493,6 +459,8 @@ public class BetterCSC implements ModMain, Listener {
         }, 1);
 
         PluginMessage.BUS.register(this, pluginMessage -> {
+            if (!this.enabled) return;
+
 //            System.out.println("Channel:" + pluginMessage.getChannel());
 //            System.out.println("Datacha: " + NetUtil.readUtf8(pluginMessage.getData().copy()));
             if (pluginMessage.getChannel().equals("csc:updateonline")) {
@@ -663,19 +631,8 @@ public class BetterCSC implements ModMain, Listener {
 
     @Override
     public void unload() {
-        this.hp = false;
+        this.enabled = false;
         ChatSend.BUS.unregisterAll(this);
-    }
-
-    private int getColor(int percent) {
-        int red = (int) ((percent > 50 ? 1 - 2 * (percent - 50) / 100.0 : 1.0) * 255);
-        int green = (int) ((percent > 50 ? 1.0 : 2 * percent / 100.0) * 255);
-//      int blue = 0;
-        red = (red << 16) & 0x00FF0000; //Shift red 16-bits and mask out other stuff
-        green = (green << 8) & 0x0000FF00; //Shift Green 8-bits and mask out other stuff
-        int blue = 0/* & 0x000000FF*/; //Mask out anything not blue.
-
-        return 0xFF000000 | red | green | blue; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
     }
 
     private final Map<Character, TextFormatting> textFormattingValues = new HashMap<Character, TextFormatting>() {{

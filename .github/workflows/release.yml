@@ -8,15 +8,8 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Get version from tag
-        id: get_version
-        run: |
-          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-              version=${GITHUB_REF#refs/tags/}
-          else
-              version=0.0.0.${GITHUB_REF#refs/heads/}
-          fi
-          echo "version=${version}" >> "${GITHUB_OUTPUT}"
+      - id: get_version
+        uses: battila7/get-version-action@v2
 
       - uses: actions/checkout@v4
       - name: Set up JDK 8
@@ -51,15 +44,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
-      - name: Get version from tag
-        id: get_version
-        run: |
-          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-              version=${GITHUB_REF#refs/tags/}
-          else
-              version=0.0.0.${GITHUB_REF#refs/heads/}
-          fi
-          echo "version=${version}" >> "${GITHUB_OUTPUT}"
+      - id: get_version
+        uses: battila7/get-version-action@v2
 
       - name: Check out repository
         uses: actions/checkout@v3

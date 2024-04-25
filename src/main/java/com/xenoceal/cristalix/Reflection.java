@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import dev.xdark.clientapi.util.EnumHand;
+import io.netty.buffer.ByteBuf;
 import sun.misc.Unsafe;
 
 public final class Reflection {
@@ -26,11 +27,13 @@ public final class Reflection {
             addClass("EnumHand", "nikmfbx");
             addClass("CPacketPlayerTryUseItem", "ifLorDS");
             addClass("InventoryPlayer", "DfByzYv");
+            addClass("UnpooledSlicedByteBuf", "io.netty.buffer.UnpooledSlicedByteBuf");
             addHandle("getMinecraft", LOOKUP.findStatic(getClass("Minecraft"), "gWjrZHr", MethodType.methodType(getClass("Minecraft"))));
             addHandle("getClientConnection", LOOKUP.findVirtual(getClass("Minecraft"), "gWjrZHr", MethodType.methodType(getClass("ClientConnection"))));
             addHandle("sendPacket", LOOKUP.findVirtual(getClass("ClientConnection"), "gWjrZHr", MethodType.methodType(Void.TYPE, getClass("Packet"))));
             addHandle("CPacketPlayerTryUseItem", LOOKUP.findConstructor(getClass("CPacketPlayerTryUseItem"), MethodType.methodType(Void.TYPE, getClass("EnumHand"))));
             addHandle("changeActiveSlot", LOOKUP.findSetter(getClass("InventoryPlayer"), "ulWRDdg", Integer.TYPE));
+            addHandle("unwrapByteBuff", LOOKUP.findVirtual(getClass("UnpooledSlicedByteBuf"), "unwrap", MethodType.methodType(ByteBuf.class)));
         } catch (Throwable var1) {
             throw SneakyThrow.sneaky(var1);
         }

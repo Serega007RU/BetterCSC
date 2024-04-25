@@ -1,7 +1,7 @@
 Сразу скажу, инжекторы не мои, один из них лишь мною модифицировался.
 
 В bypass.jar содержатся классы которые модифицируют minecraft.jar или core-mode.jar, в частности там убирается проверка на @SidedApi(Side.SERVER) также проверки запрещающее доступ модам ко внутренним классам майнкрафта  
-в ru.cristalix.client.CristalixClient.class идёт подгрузка модов из папки C:\Xenoceal\mods, также разрешена модификация пакетов для PluginMessage (убрано использование метода slice в ByteBuf)
+в ru.cristalix.client.CristalixClient.class идёт подгрузка модов из папки C:\Xenoceal\mods
 в dev.xdark.clientapi.loader.ClientVerifier.class убираются проверки на доступ к внутренним классам майнкрафта   
 dev.xdark.clientapi.loader.Verifier.class это интерфейс класса dev.xdark.clientapi.loader.ClientVerifier.class, иначе без него не запускается майнкрафт
 

@@ -523,7 +523,15 @@ public class BetterCSC implements ModMain, Listener {
                 idShopItems.put(container, itemList);
             } else if (pluginMessage.getChannel().equals("csc:upgrade")) {
                 if (protectUp) {
-                    pluginMessage.getData().clear();
+//                    pluginMessage.getData().clear();
+                    try {
+                        ByteBuf unwrapped = Wrapper.unwrapBuffer(pluginMessage.getData());
+                        unwrapped.clear();
+                    } catch (Exception e) {
+                        //noinspection CallToPrintStackTrace
+                        e.printStackTrace();
+                        disableBuy(api, Text.of("Произошла ошибка при попытке отменить открытие GUI прокачки", TextFormatting.RED, ", ", TextFormatting.GOLD, e.toString(), TextFormatting.DARK_RED));
+                    }
                 }
             } else if (pluginMessage.getChannel().equals("csc:balance")) {
                 balance = NetUtil.readVarLong(pluginMessage.getData());

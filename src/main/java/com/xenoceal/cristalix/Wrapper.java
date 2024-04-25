@@ -17,6 +17,8 @@
  */
 package com.xenoceal.cristalix;
 
+import io.netty.buffer.ByteBuf;
+
 public final class Wrapper {
     public static Object getMinecraft() {
         return Reflection.invoke("getMinecraft");
@@ -36,6 +38,16 @@ public final class Wrapper {
 
     public static Object CPacketPlayerTryUseItem(Object enumHand) {
         return Reflection.invoke("CPacketPlayerTryUseItem", enumHand);
+    }
+
+    static Class<?> unpooledSlicedByteBufClass = Reflection.getClass("UnpooledSlicedByteBuf");
+    public static ByteBuf unwrapBuffer(ByteBuf buf) {
+        Class<?> bufferClass = buf.getClass();
+        if (bufferClass.isAssignableFrom(unpooledSlicedByteBufClass)) {
+            return (ByteBuf) Reflection.invoke("unwrapByteBuff", buf);
+        } else {
+            return buf;
+        }
     }
 
     private Wrapper() {

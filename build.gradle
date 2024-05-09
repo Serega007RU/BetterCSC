@@ -4,7 +4,10 @@ plugins {
     id 'java'
 }
 
-version = System.getenv("VERSION") ? System.getenv("VERSION") : "test"
+ext {
+    projectVersion = System.getenv("VERSION") ? System.getenv("VERSION") : "test"
+}
+version = ext.projectVersion + '-dev'
 group = "ru.serega007.bcsc"
 archivesBaseName = "BetterCSC-Plus"
 
@@ -28,9 +31,9 @@ jar {
 
 tasks.register('processSource', Sync) {
     from sourceSets.main.java
-    inputs.property 'version', version
-    filter(ReplaceTokens, tokens: [version: version])
-    into "$buildDir/src"
+    inputs.property 'version', projectVersion
+    filter(ReplaceTokens, tokens: [version: projectVersion])
+    into layout.buildDirectory.file('src').get()
 }
 
 compileJava {
@@ -40,7 +43,15 @@ compileJava {
 processResources {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     from(sourceSets.main.resources) {
-        filter(ReplaceTokens, tokens: [version:  version])
+        filter(ReplaceTokens, tokens: [version:  projectVersion])
     }
-    into(buildDir)
+    into(layout.buildDirectory)
+}
+
+tasks.named("build") { finalizedBy("runObfuscator") }
+tasks.register('runObfuscator', JavaExec) {
+    classpath = files('obfuscator\\obfuscator-1.0.0.jar')
+    workingDir = file('obfuscator')
+//    jvmArgs = ['-Ddependencies=' + file('obfuscator\\libsobf\\') + ',' + file('libs\\') + ',' + file('libs\\lwjgl\\') + ',' + file('libs\\MCLibs\\')]
+    args = [layout.buildDirectory.file("\\libs\\$archivesBaseName-$version" + ".jar").get(), layout.buildDirectory.file("\\libs\\$archivesBaseName-$projectVersion" + ".jar").get()]
 }

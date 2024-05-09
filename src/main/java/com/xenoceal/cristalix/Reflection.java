@@ -21,18 +21,7 @@ public final class Reflection {
 
     public static void initialize() {
         try {
-            addClass("Minecraft", "LhJdpCu");
-            addClass("ClientConnection", "NYsCdLp");
-            addClass("Packet", "agUpFoz");
-            addClass("EnumHand", "nikmfbx");
-            addClass("CPacketPlayerTryUseItem", "ifLorDS");
-            addClass("InventoryPlayer", "DfByzYv");
             addClass("UnpooledSlicedByteBuf", "io.netty.buffer.UnpooledSlicedByteBuf");
-            addHandle("getMinecraft", LOOKUP.findStatic(getClass("Minecraft"), "gWjrZHr", MethodType.methodType(getClass("Minecraft"))));
-            addHandle("getClientConnection", LOOKUP.findVirtual(getClass("Minecraft"), "gWjrZHr", MethodType.methodType(getClass("ClientConnection"))));
-            addHandle("sendPacket", LOOKUP.findVirtual(getClass("ClientConnection"), "gWjrZHr", MethodType.methodType(Void.TYPE, getClass("Packet"))));
-            addHandle("CPacketPlayerTryUseItem", LOOKUP.findConstructor(getClass("CPacketPlayerTryUseItem"), MethodType.methodType(Void.TYPE, getClass("EnumHand"))));
-            addHandle("changeActiveSlot", LOOKUP.findSetter(getClass("InventoryPlayer"), "ulWRDdg", Integer.TYPE));
             addHandle("unwrapByteBuff", LOOKUP.findVirtual(getClass("UnpooledSlicedByteBuf"), "unwrap", MethodType.methodType(ByteBuf.class)));
         } catch (Throwable var1) {
             throw SneakyThrow.sneaky(var1);

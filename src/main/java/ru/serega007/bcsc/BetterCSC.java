@@ -18,11 +18,14 @@ import dev.xdark.clientapi.text.TextFormatting;
 import dev.xdark.clientapi.ClientApi;
 import dev.xdark.clientapi.event.Listener;
 import dev.xdark.clientapi.entry.ModMain;
-import dev.xdark.clientapi.util.EnumHand;
 import dev.xdark.clientapi.world.GameMode;
 import dev.xdark.feder.NetUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
+import net.minecraft.util.EnumHand;
 
 import java.text.DecimalFormat;
 import java.util.*;
@@ -283,13 +286,7 @@ public class BetterCSC implements ModMain, Listener {
                             if (api.minecraft().getPlayerController().getGameMode().equals(GameMode.SPECTATOR)) return;
                             ItemStack itemStack = player.getInventory().getCurrentItem();
                             if (!itemStack.isEmpty() && !itemStack.getDisplayName().contains("Книга")) return;
-                            try {
-                                Wrapper.sendPacket(Wrapper.CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
-                            } catch (Exception e) {
-                                //noinspection CallToPrintStackTrace
-                                e.printStackTrace();
-                                disableBuy(api, Text.of("Произошла ошибка при попытке кликнуть ПКМ", TextFormatting.RED, ", ", TextFormatting.GOLD, e.toString(), TextFormatting.DARK_RED));
-                            }
+                            Minecraft.getMinecraft().getConnection().sendPacket(new CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
                         }, 0, 1000000 / periodUse, TimeUnit.MICROSECONDS);
                     }
                 } else if (msg.startsWith("/unloadbcsc")) {
@@ -551,11 +548,11 @@ public class BetterCSC implements ModMain, Listener {
                     allowedBuy = false;
                 } else if (message.contains("wave.complete")) {
                     allowedBuy = true;
-                    if (enableBuy) changeActiveSlot(api, slotForBuy);
+                    if (enableBuy) ((InventoryPlayer) api.minecraft().getPlayer().getInventory()).currentItem = slotForBuy;
                 }
             } else if (pluginMessage.getChannel().equals("func:drop-item")) {
                 allowedBuy = true;
-                if (enableBuy) changeActiveSlot(api, slotForBuy);
+                if (enableBuy) ((InventoryPlayer) api.minecraft().getPlayer().getInventory()).currentItem = slotForBuy;
             } else if (pluginMessage.getChannel().equals("func:title")) {
                 if (enableUP || enableBuy) {
                     if (NetUtil.readUtf8(pluginMessage.getData().copy()).equals("i18n.csc.game.not.gold")) {
@@ -609,16 +606,6 @@ public class BetterCSC implements ModMain, Listener {
         taskBuy = null;
         if (taskUse != null) taskUse.shutdownNow();
         taskUse = null;
-    }
-
-    private void changeActiveSlot(ClientApi api, int slot) {
-        try {
-            Wrapper.changeActiveSlot(api.minecraft().getPlayer().getInventory(), slot);
-        } catch (Exception e) {
-            //noinspection CallToPrintStackTrace
-            e.printStackTrace();
-            disableBuy(api, Text.of("Произошла ошибка при попытке сменить активный слот", TextFormatting.RED, ", ", TextFormatting.GOLD, e.toString(), TextFormatting.DARK_RED));
-        }
     }
 
     private int getMaxEnchantLvl(ItemStack stack) {

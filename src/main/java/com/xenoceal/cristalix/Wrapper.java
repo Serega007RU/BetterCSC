@@ -20,26 +20,6 @@ package com.xenoceal.cristalix;
 import io.netty.buffer.ByteBuf;
 
 public final class Wrapper {
-    public static Object getMinecraft() {
-        return Reflection.invoke("getMinecraft");
-    }
-
-    public static Object getClientConnection() {
-        return Reflection.invoke("getClientConnection", Wrapper.getMinecraft());
-    }
-
-    public static void sendPacket(Object object) {
-        Reflection.invoke("sendPacket", Wrapper.getClientConnection(), object);
-    }
-
-    public static void changeActiveSlot(Object inventory, Object slot) {
-        Reflection.invoke("changeActiveSlot", inventory, slot);
-    }
-
-    public static Object CPacketPlayerTryUseItem(Object enumHand) {
-        return Reflection.invoke("CPacketPlayerTryUseItem", enumHand);
-    }
-
     static Class<?> unpooledSlicedByteBufClass = Reflection.getClass("UnpooledSlicedByteBuf");
     public static ByteBuf unwrapBuffer(ByteBuf buf) {
         Class<?> bufferClass = buf.getClass();

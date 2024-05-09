@@ -1,0 +1,419 @@
+{
+  "pw/lach/fonts/managers/font/FontType": {
+    "actual": "lJUBSmZ",
+    "fields": {
+      "FANCY": "FANCY",
+      "UNICODE": "UNICODE",
+      "DEFAULT": "DEFAULT",
+      "descriptionId": "descriptionId",
+      "unicodeFlag": "unicodeFlag",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lpw/lach/fonts/managers/font/FontType;": "values",
+      "valueOf(Ljava/lang/String;)Lpw/lach/fonts/managers/font/FontType;": "valueOf",
+      "getDescription()Ljava/lang/String;": "getDescription"
+    }
+  },
+  "pw/lach/fonts/model/EmojiKind": {
+    "actual": "MBBbPeE",
+    "fields": {
+      "Standard": "Standard",
+      "BuiltIn": "BuiltIn",
+      "Provided": "Provided",
+      "ServerDefined": "ServerDefined",
+      "rangeStart": "rangeStart",
+      "rangeEnd": "rangeEnd",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lpw/lach/fonts/model/EmojiKind;": "values",
+      "valueOf(Ljava/lang/String;)Lpw/lach/fonts/model/EmojiKind;": "valueOf",
+      "isInRange(I)Z": "Jbqngxu"
+    }
+  },
+  "pw/lach/fonts/CoreFontMod": {
+    "actual": "sPlquCu",
+    "fields": {
+      "MOD_ID": "BKnVYBJ"
+    },
+    "methods": {}
+  },
+  "pw/lach/fonts/BuiltInEmojis": {
+    "actual": "dOlFWDQ",
+    "fields": {
+      "ERROR": "gWjrZHr",
+      "LMB": "kPRmjRd",
+      "MMB": "LzYOZuP",
+      "RMB": "BCmcrbn",
+      "LUCKY": "SJseNMa",
+      "CRISTALIX_LOGO": "xZcGKMl",
+      "ALL_BUILTINS": "gWjrZHr"
+    },
+    "methods": {
+      "newBuiltIn(ILjava/lang/String;)Lpw/lach/fonts/storage/Emoji;": "gWjrZHr"
+    }
+  },
+  "pw/lach/fonts/exception/WipFontTypeException": {
+    "actual": "mELmlDt",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/fonts/storage/EmojiStorage": {
+    "actual": "LVzbNNf",
+    "fields": {
+      "emojiManager": "BCmcrbn",
+      "emojis": "kPRmjRd",
+      "standardEmojis": "LzYOZuP",
+      "emojiIdentifiers": "JXuvHKA",
+      "gson": "kcVZOtm"
+    },
+    "methods": {
+      "isEmoji(C)Z": "obWbjzA",
+      "isStandardEmoji(C)Z": "XkTqykZ",
+      "getAllEmojis()Lit/unimi/dsi/fastutil/chars/CharSet;": "gWjrZHr",
+      "requestEmojis()Ljava/util/List;": "wHRudfg",
+      "loadEmojis(Ljava/util/List;)V": "yuHMixK",
+      "reloadEmojis0(Ljava/util/concurrent/CompletableFuture;I)V": "SJseNMa",
+      "reloadEmojis()Ljava/util/concurrent/CompletableFuture;": "BCmcrbn",
+      "getEmoji(C)Lpw/lach/fonts/storage/Emoji;": "gWjrZHr",
+      "lambda$reloadEmojis0$1(ILjava/util/concurrent/CompletableFuture;)V": "gWjrZHr",
+      "lambda$null$0(Ljava/util/concurrent/CompletableFuture;I)V": "BCmcrbn"
+    }
+  },
+  "pw/lach/fonts/managers/emoji/AnimatedClientEmoji": {
+    "actual": "jakdCvd",
+    "fields": {
+      "emojiManager": "kPRmjRd"
+    },
+    "methods": {
+      "renderEmoji(Lnet/minecraft/client/Minecraft;FFZ)F": "gWjrZHr"
+    }
+  },
+  "pw/lach/fonts/BuiltInEmojis$1$1": {
+    "actual": "WtparLr",
+    "fields": {
+      "this$0": "gWjrZHr"
+    },
+    "methods": {
+      "renderEmoji(Lnet/minecraft/client/Minecraft;FFZ)F": "gWjrZHr"
+    }
+  },
+  "pw/lach/fonts/StandardEmojis$1": {
+    "actual": "hrdmBkI",
+    "fields": {},
+    "methods": {
+      "getActualTypeArguments()[Ljava/lang/reflect/Type;": "getActualTypeArguments",
+      "getRawType()Ljava/lang/reflect/Type;": "getRawType",
+      "getOwnerType()Ljava/lang/reflect/Type;": "getOwnerType"
+    }
+  },
+  "pw/lach/fonts/Constants": {
+    "actual": "OlIIRMr",
+    "fields": {
+      "EMOJI_LIST_URL": "FJZSFzX",
+      "COLOR_CHAR": "SJseNMa",
+      "RGB_COLOR_CHAR": "xZcGKMl",
+      "ALIGN_CHAR": "UjBIMNN",
+      "EMOJI_STANDARD_RANGE_START": "FpCNmUX",
+      "EMOJI_STANDARD_RANGE_END": "obWbjzA",
+      "EMOJI_BUILTIN_RANGE_START": "BrGopGP",
+      "EMOJI_BUILTIN_RANGE_END": "XkTqykZ",
+      "EMOJI_PROVIDED_RANGE_START": "OVTAHBy",
+      "EMOJI_PROVIDED_RANGE_END": "ESatWNr"
+    },
+    "methods": {}
+  },
+  "pw/lach/fonts/managers/emoji/ClientEmoji": {
+    "actual": "RCzYAGx",
+    "fields": {
+      "ERROR_TEXTURE": "ScRPMjE",
+      "textureManager": "oiiXgwP",
+      "emoji": "UjBIMNN",
+      "deleteOldTexture": "dJYdSiD",
+      "resourceLocation": "rOpQWhg",
+      "img": "gWjrZHr",
+      "initialized": "dAeOVfW"
+    },
+    "methods": {
+      "resourceByName(Ljava/lang/String;)Lnet/minecraft/util/ResourceLocation;": "UjBIMNN",
+      "standardResourceById(I)Lnet/minecraft/util/ResourceLocation;": "LzYOZuP",
+      "checkLoad()V": "GocZOvI",
+      "getResourceLocationForBinding()Lnet/minecraft/util/ResourceLocation;": "caCwAvT",
+      "renderEmoji(Lnet/minecraft/client/Minecraft;FFZ)F": "gWjrZHr"
+    }
+  },
+  "pw/lach/fonts/model/EmojiCategory": {
+    "actual": "mfZuNPJ",
+    "fields": {
+      "name": "qGJGEco",
+      "iconName": "DjZGmXe"
+    },
+    "methods": {
+      "getName()Ljava/lang/String;": "getName",
+      "getIconName()Ljava/lang/String;": "getIconName",
+      "equals(Ljava/lang/Object;)Z": "equals",
+      "hashCode()I": "hashCode",
+      "toString()Ljava/lang/String;": "toString"
+    }
+  },
+  "pw/lach/fonts/managers/emoji/EmojiTexture": {
+    "actual": "wIBIwKw",
+    "fields": {
+      "textureUrl": "ndHfrmL",
+      "emoji": "kPRmjRd"
+    },
+    "methods": {
+      "downloadTexture(Ljava/util/concurrent/CompletableFuture;I)V": "kPRmjRd",
+      "onTextureDownloaded(Z)V": "RrKclpt",
+      "lambda$downloadTexture$1(Ljava/util/concurrent/CompletableFuture;I)V": "LzYOZuP",
+      "lambda$null$0(Ljava/util/concurrent/CompletableFuture;I)V": "BCmcrbn"
+    }
+  },
+  "pw/lach/fonts/internal/IMixinFontRenderer": {
+    "actual": "vqSXNIY",
+    "fields": {},
+    "methods": {
+      "setEmojiEnableAlpha(Z)V": "VUbXpff",
+      "setUnicodeFlag(Z)V": "XxVKYNi"
+    }
+  },
+  "pw/lach/fonts/model/EmojiData": {
+    "actual": "GwMHvQc",
+    "fields": {
+      "id": "gWjrZHr",
+      "name": "gWjrZHr",
+      "url": "bPQZtow",
+      "hash": "jrZAYKi",
+      "pixelated": "LJKHhsy",
+      "categoryName": "rXAJEvQ",
+      "width": "ALozbsv"
+    },
+    "methods": {
+      "getId()I": "getId",
+      "getName()Ljava/lang/String;": "getName",
+      "getUrl()Ljava/lang/String;": "FpCNmUX",
+      "getHash()Ljava/lang/String;": "obWbjzA",
+      "isPixelated()Z": "arudFjb",
+      "getCategoryName()Ljava/lang/String;": "hPkLrTu",
+      "getWidth()F": "GNFqVqL"
+    }
+  },
+  "pw/lach/fonts/managers/emoji/AtlasClientEmoji": {
+    "actual": "PmWnonH",
+    "fields": {
+      "index": "kaDvjFV"
+    },
+    "methods": {
+      "renderEmoji(Lnet/minecraft/client/Minecraft;FFZ)F": "gWjrZHr"
+    }
+  },
+  "pw/lach/fonts/model/AtlasEmojiData": {
+    "actual": "VXDzgVP",
+    "fields": {
+      "totalIcons": "Tgjgqju",
+      "iconWidth": "diYgOmB",
+      "iconHeight": "SmLLDap"
+    },
+    "methods": {
+      "getTotalIcons()I": "vxOVAej",
+      "getIconWidth()I": "getIconWidth",
+      "getIconHeight()I": "getIconHeight"
+    }
+  },
+  "pw/lach/fonts/storage/AnimatedEmojiStorage": {
+    "actual": "YHupdFw",
+    "fields": {
+      "emojiManager": "LzYOZuP"
+    },
+    "methods": {
+      "getData()Lpw/lach/fonts/model/AnimatedEmojiData;": "gWjrZHr",
+      "createClientEmoji(Lnet/minecraft/client/renderer/texture/TextureManager;C)Lpw/lach/fonts/managers/emoji/ClientEmoji;": "gWjrZHr"
+    }
+  },
+  "pw/lach/fonts/storage/StandardEmoji": {
+    "actual": "TFVsnNg",
+    "fields": {
+      "STANDARD_EMOJI_DATA": "kPRmjRd",
+      "id": "BOkiUEi"
+    },
+    "methods": {
+      "getChar()C": "LzYOZuP",
+      "equals(Ljava/lang/Object;)Z": "equals",
+      "canEqual(Ljava/lang/Object;)Z": "gWjrZHr",
+      "hashCode()I": "hashCode"
+    }
+  },
+  "pw/lach/fonts/managers/emoji/EmojiManager": {
+    "actual": "CpEPNip",
+    "fields": {
+      "emojiStorage": "gWjrZHr",
+      "emojis": "gWjrZHr",
+      "errorClientEmoji": "gWjrZHr",
+      "textureManager": "YixeWRi"
+    },
+    "methods": {
+      "isEmoji(C)Z": "obWbjzA",
+      "getEmoji(C)Lpw/lach/fonts/managers/emoji/ClientEmoji;": "gWjrZHr",
+      "getAllEmojis()Lit/unimi/dsi/fastutil/chars/CharSet;": "gWjrZHr",
+      "lambda$getEmoji$1(Lpw/lach/fonts/storage/Emoji;CI)Lpw/lach/fonts/managers/emoji/ClientEmoji;": "gWjrZHr",
+      "lambda$new$0(Ljava/lang/Throwable;)Ljava/lang/Void;": "kPRmjRd"
+    }
+  },
+  "pw/lach/fonts/model/EmojiList": {
+    "actual": "kSIrPpt",
+    "fields": {
+      "emojiList": "VHlVqRm"
+    },
+    "methods": {
+      "getEmojiList()Ljava/util/List;": "pIaPPzl",
+      "equals(Ljava/lang/Object;)Z": "equals",
+      "hashCode()I": "hashCode",
+      "toString()Ljava/lang/String;": "toString"
+    }
+  },
+  "pw/lach/fonts/internal/IMixinMinecraft": {
+    "actual": "ycKqnta",
+    "fields": {},
+    "methods": {
+      "getFontManager()Lpw/lach/fonts/managers/font/FontManager;": "gWjrZHr",
+      "getEmojiManager()Lpw/lach/fonts/managers/emoji/EmojiManager;": "gWjrZHr"
+    }
+  },
+  "pw/lach/fonts/internal/IMixinStyle": {
+    "actual": "IDAfveC",
+    "fields": {},
+    "methods": {
+      "getColorRGB()Ljava/lang/String;": "OVRJFJK",
+      "getColorRGBShallow()Ljava/lang/String;": "uBeALfB",
+      "setColorRGB(Ljava/lang/String;)Lnet/minecraft/util/text/Style;": "kPRmjRd"
+    }
+  },
+  "pw/lach/fonts/BuiltInEmojis$1": {
+    "actual": "wUiwpac",
+    "fields": {},
+    "methods": {
+      "createClientEmoji(Lnet/minecraft/client/renderer/texture/TextureManager;C)Lpw/lach/fonts/managers/emoji/ClientEmoji;": "gWjrZHr"
+    }
+  },
+  "pw/lach/fonts/storage/AtlasEmoji": {
+    "actual": "puoEBty",
+    "fields": {
+      "atlasWidth": "whJnlmD",
+      "atlasHeight": "iZygwTY",
+      "row": "pNQqKkd",
+      "column": "fZNyyHM",
+      "resourceLocation": "HtPaSly",
+      "emojiTexture": "gWjrZHr"
+    },
+    "methods": {
+      "define(Lit/unimi/dsi/fastutil/chars/Char2ObjectMap;Ljava/util/Map;)V": "gWjrZHr",
+      "createClientEmoji(Lnet/minecraft/client/renderer/texture/TextureManager;C)Lpw/lach/fonts/managers/emoji/ClientEmoji;": "gWjrZHr",
+      "getAtlasWidth()I": "XDBAFkl",
+      "getAtlasHeight()I": "nBrfcgh",
+      "getRow()I": "MmzjgYg",
+      "getColumn()I": "getColumn",
+      "getResourceLocation()Lnet/minecraft/util/ResourceLocation;": "UjBIMNN",
+      "getEmojiTexture()Lpw/lach/fonts/managers/emoji/EmojiTexture;": "gWjrZHr"
+    }
+  },
+  "pw/lach/fonts/internal/IMixinLanguageManager": {
+    "actual": "pvQCNVS",
+    "fields": {},
+    "methods": {
+      "setFontManager(Lpw/lach/fonts/managers/font/FontManager;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/fonts/managers/font/FontManager": {
+    "actual": "cOfRrwL",
+    "fields": {
+      "fontManagerConfig": "gWjrZHr",
+      "mc": "hvFVCGq"
+    },
+    "methods": {
+      "getFontType()Lpw/lach/fonts/managers/font/FontType;": "gWjrZHr",
+      "updateUnicodeFlag()V": "KjohKIB",
+      "toggleFontType()V": "oyjBNLz"
+    }
+  },
+  "pw/lach/fonts/texture/AsyncSimpleTexture": {
+    "actual": "iPHtYLP",
+    "fields": {
+      "bufferedImage": "gWjrZHr",
+      "downloadStarted": "LslvfLf",
+      "textureUploaded": "UbMvdrX"
+    },
+    "methods": {
+      "readyToDisplay()Z": "ELrkFvi",
+      "checkTextureUploaded()V": "GNFqVqL",
+      "getGlTextureId()I": "getGlTextureId",
+      "setBufferedImage(Ljava/awt/image/BufferedImage;)V": "kPRmjRd",
+      "loadTexture(Lnet/minecraft/client/resources/IResourceManager;)V": "gWjrZHr",
+      "downloadTexture(Ljava/util/concurrent/CompletableFuture;I)V": "kPRmjRd",
+      "onTextureDownloaded(Z)V": "RrKclpt",
+      "loadTextureFromServer()V": "KpEgxHf",
+      "lambda$loadTextureFromServer$1(Ljava/lang/Throwable;)Ljava/lang/Void;": "gWjrZHr",
+      "lambda$loadTextureFromServer$0(Ljava/awt/image/BufferedImage;)V": "LzYOZuP"
+    }
+  },
+  "pw/lach/fonts/internal/IMixinGuiLanguage": {
+    "actual": "SxwiUQp",
+    "fields": {},
+    "methods": {
+      "updateFontTypeDisplayString()V": "rOSqBna"
+    }
+  },
+  "pw/lach/fonts/model/AnimatedEmojiData": {
+    "actual": "OeTSapg",
+    "fields": {
+      "speed": "ycuNtwZ",
+      "frames": "BCmcrbn"
+    },
+    "methods": {
+      "getSpeed()I": "QdxPACJ",
+      "getFrames()[C": "kPRmjRd"
+    }
+  },
+  "pw/lach/fonts/StandardEmojis": {
+    "actual": "EMNREMv",
+    "fields": {
+      "emojis": "hvLGEBc",
+      "EMOJI_REGEXP": "pALIEfC"
+    },
+    "methods": {
+      "loadEmojiMap()Ljava/util/Map;": "qlMRxBm",
+      "replaceStandardEmojisWithClientEmojis(Ljava/lang/String;)Ljava/lang/String;": "cfpObRT",
+      "replace(Ljava/lang/String;Ljava/util/regex/Pattern;Ljava/util/function/Function;)Ljava/lang/String;": "gWjrZHr",
+      "lambda$replaceStandardEmojisWithClientEmojis$0(Ljava/util/regex/Matcher;)Ljava/lang/String;": "gWjrZHr"
+    }
+  },
+  "pw/lach/fonts/storage/Emoji": {
+    "actual": "ElUjoYe",
+    "fields": {
+      "data": "gWjrZHr",
+      "kind": "gWjrZHr"
+    },
+    "methods": {
+      "getChar()C": "LzYOZuP",
+      "define(Lit/unimi/dsi/fastutil/chars/Char2ObjectMap;Ljava/util/Map;)V": "gWjrZHr",
+      "createClientEmoji(Lnet/minecraft/client/renderer/texture/TextureManager;C)Lpw/lach/fonts/managers/emoji/ClientEmoji;": "gWjrZHr",
+      "toString()Ljava/lang/String;": "toString",
+      "equals(Ljava/lang/Object;)Z": "equals",
+      "canEqual(Ljava/lang/Object;)Z": "gWjrZHr",
+      "hashCode()I": "hashCode"
+    }
+  },
+  "pw/lach/fonts/managers/font/FontManagerConfig": {
+    "actual": "IBhnBlb",
+    "fields": {
+      "CONFIG_FILE": "HnZskzl",
+      "fontType": "gWjrZHr"
+    },
+    "methods": {
+      "load()Lpw/lach/fonts/managers/font/FontManagerConfig;": "gWjrZHr",
+      "save()V": "XrrdGXD",
+      "getFontType()Lpw/lach/fonts/managers/font/FontType;": "gWjrZHr",
+      "setFontType(Lpw/lach/fonts/managers/font/FontType;)V": "gWjrZHr"
+    }
+  }
+}

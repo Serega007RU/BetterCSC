@@ -31,7 +31,7 @@ jobs:
           args: 7z u ./Injector/Injector.7z -p2024 -mhe=on -u- -up1q1r2x1y1z1w1!BetterCSC-${{ steps.get_version.outputs.version }}.7z ./build/libs/* README.md
       - uses: edgarrc/action-7z@v1
         with:
-          args: 7z rn BetterCSC-${{ steps.get_version.outputs.version }}.7z -p2024 -mhe=on README.md Инструкция.txt BetterCSC-Plus-${{ steps.get_version.outputs.version }}.jar Xenoceal/mods/BetterCSC-Plus-${{ steps.get_version.outputs.version }}.jar
+          args: 7z rn BetterCSC-${{ steps.get_version.outputs.version }}.7z -p2024 -mhe=on README.md Инструкция.txt BetterCSC-Plus-${{ steps.get_version.outputs.version }}.jar cristalix-mods/BetterCSC-Plus-${{ steps.get_version.outputs.version }}.jar
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4

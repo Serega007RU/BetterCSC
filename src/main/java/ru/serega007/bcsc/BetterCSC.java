@@ -284,7 +284,9 @@ public class BetterCSC implements ModMain, Listener {
                             ItemStack itemStack = player.getInventory().getCurrentItem();
                             if (!itemStack.isEmpty() && !itemStack.getDisplayName().contains("Книга")) return;
                             try {
-                                Wrapper.sendPacket(Wrapper.CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
+                                // TODO временно
+                                api.minecraft().rightClickMouse();
+//                                Wrapper.sendPacket(Wrapper.CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
                             } catch (Exception e) {
                                 //noinspection CallToPrintStackTrace
                                 e.printStackTrace();
@@ -551,11 +553,13 @@ public class BetterCSC implements ModMain, Listener {
                     allowedBuy = false;
                 } else if (message.contains("wave.complete")) {
                     allowedBuy = true;
-                    if (enableBuy) changeActiveSlot(api, slotForBuy);
+                    // TODO временно
+//                    if (enableBuy) changeActiveSlot(api, slotForBuy);
                 }
             } else if (pluginMessage.getChannel().equals("func:drop-item")) {
                 allowedBuy = true;
-                if (enableBuy) changeActiveSlot(api, slotForBuy);
+                // TODO временно
+//                if (enableBuy) changeActiveSlot(api, slotForBuy);
             } else if (pluginMessage.getChannel().equals("func:title")) {
                 if (enableUP || enableBuy) {
                     if (NetUtil.readUtf8(pluginMessage.getData().copy()).equals("i18n.csc.game.not.gold")) {

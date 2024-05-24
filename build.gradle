@@ -30,7 +30,7 @@ tasks.register('processSource', Sync) {
     from sourceSets.main.java
     inputs.property 'version', version
     filter(ReplaceTokens, tokens: [version: version])
-    into "$buildDir/src"
+    into layout.buildDirectory.file('src').get()
 }
 
 compileJava {
@@ -42,5 +42,5 @@ processResources {
     from(sourceSets.main.resources) {
         filter(ReplaceTokens, tokens: [version:  version])
     }
-    into(buildDir)
+    into(layout.buildDirectory)
 }

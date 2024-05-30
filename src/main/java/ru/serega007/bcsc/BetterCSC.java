@@ -220,7 +220,7 @@ public class BetterCSC implements ModMain, Listener {
                     }
 
                     if (idShopItems.isEmpty()) {
-                        api.chat().printChatMessage(prefix.copy().append(Text.of("Мы не смогли получить id предметов из магазина для их покупки, попробуйте открыть магазин (хотя бы на секунду)", TextFormatting.RED)));
+                        api.chat().printChatMessage(prefix.copy().append(Text.of("Мы не смогли получить id предметов из магазина для их покупки, попробуйте перезайти на сервер (выйти в /hub и обратно в игру)", TextFormatting.RED)));
                         return;
                     }
                     List<String> itemList = idShopItems.get(tab - 1);

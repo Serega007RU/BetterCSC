@@ -1,0 +1,4660 @@
+{
+  "pw/lach/p13n/model/model/ModelType": {
+    "actual": "tnnmAAA",
+    "fields": {
+      "WALKING_PET": "WALKING_PET",
+      "FLYING_PET": "FLYING_PET",
+      "PET": "PET",
+      "HAT": "HAT",
+      "TAIL": "TAIL",
+      "WINGS": "WINGS",
+      "FLOOR": "FLOOR",
+      "FULL": "FULL",
+      "INDEPENDENT": "INDEPENDENT",
+      "HEAD_WEAR": "HEAD_WEAR",
+      "HEAD": "HEAD",
+      "BODY_WEAR": "BODY_WEAR",
+      "BODY": "BODY",
+      "LEFT_ARM_WEAR": "LEFT_ARM_WEAR",
+      "LEFT_ARM": "LEFT_ARM",
+      "RIGHT_ARM_WEAR": "RIGHT_ARM_WEAR",
+      "RIGHT_ARM": "RIGHT_ARM",
+      "LEFT_LEG_WEAR": "LEFT_LEG_WEAR",
+      "LEFT_LEG": "LEFT_LEG",
+      "RIGHT_LEG_WEAR": "RIGHT_LEG_WEAR",
+      "RIGHT_LEG": "RIGHT_LEG",
+      "CAPE": "CAPE",
+      "wear": "wear",
+      "synthetic": "synthetic",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lpw/lach/p13n/model/model/ModelType;": "values",
+      "valueOf(Ljava/lang/String;)Lpw/lach/p13n/model/model/ModelType;": "valueOf",
+      "isTargeted(Lpw/lach/p13n/model/model/ModelType;)Z": "gWjrZHr",
+      "byName(Ljava/lang/String;)Lpw/lach/p13n/model/model/ModelType;": "gWjrZHr",
+      "getWear()Lpw/lach/p13n/model/model/ModelType;": "kPRmjRd",
+      "isSynthetic()Z": "XTNANCa"
+    }
+  },
+  "pw/lach/p13n/model/model/EnumHideOn": {
+    "actual": "hQzajQM",
+    "fields": {
+      "HELMET": "HELMET",
+      "CHESTPLATE": "CHESTPLATE",
+      "LEGGINGS": "LEGGINGS",
+      "BOOTS": "BOOTS",
+      "HAND": "HAND",
+      "handler": "handler",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lpw/lach/p13n/model/model/EnumHideOn;": "values",
+      "valueOf(Ljava/lang/String;)Lpw/lach/p13n/model/model/EnumHideOn;": "valueOf",
+      "canRender(Lnet/minecraft/entity/Entity;Lpw/lach/p13n/model/model/ModelType;)Z": "gWjrZHr",
+      "checkArmor(I)Ljava/util/function/BiFunction;": "gWjrZHr",
+      "lambda$checkArmor$1(ILnet/minecraft/entity/Entity;Lpw/lach/p13n/model/model/ModelType;)Ljava/lang/Boolean;": "gWjrZHr",
+      "lambda$static$0(Lnet/minecraft/entity/Entity;Lpw/lach/p13n/model/model/ModelType;)Ljava/lang/Boolean;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/settings/RenderWhen": {
+    "actual": "FfvHziq",
+    "fields": {
+      "ALWAYS": "ALWAYS",
+      "ONLY_IN_HUB": "ONLY_IN_HUB",
+      "NEVER": "NEVER",
+      "id": "id",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lpw/lach/p13n/manager/settings/RenderWhen;": "values",
+      "valueOf(Ljava/lang/String;)Lpw/lach/p13n/manager/settings/RenderWhen;": "valueOf",
+      "getName()Ljava/lang/String;": "getName"
+    }
+  },
+  "pw/lach/p13n/model/RenderStage": {
+    "actual": "cBvgSoe",
+    "fields": {
+      "PRE_PLAYER_RENDER": "PRE_PLAYER_RENDER",
+      "PRE_RENDER": "PRE_RENDER",
+      "RENDER": "RENDER",
+      "POST_RENDER": "POST_RENDER",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lpw/lach/p13n/model/RenderStage;": "values",
+      "valueOf(Ljava/lang/String;)Lpw/lach/p13n/model/RenderStage;": "valueOf"
+    }
+  },
+  "pw/lach/p13n/model/EnumModelOption": {
+    "actual": "DQdnbLf",
+    "fields": {
+      "SWAP_X": "SWAP_X",
+      "OFFSET_Y": "OFFSET_Y",
+      "COLOR": "COLOR",
+      "COLOR_HSB": "COLOR_HSB",
+      "TEXTURE": "TEXTURE",
+      "META_SKIN_TEXTURE": "META_SKIN_TEXTURE",
+      "RAINBOW_COLOR": "RAINBOW_COLOR",
+      "DESCRIPTION_SLIDER": "DESCRIPTION_SLIDER",
+      "CHANGE_BY_SKIN_TYPE": "CHANGE_BY_SKIN_TYPE",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lpw/lach/p13n/model/EnumModelOption;": "values",
+      "valueOf(Ljava/lang/String;)Lpw/lach/p13n/model/EnumModelOption;": "valueOf"
+    }
+  },
+  "net/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureState": {
+    "actual": "MnPZcoh",
+    "fields": {
+      "NONE": "NONE",
+      "REQUESTED": "REQUESTED",
+      "LOADED": "LOADED",
+      "IS_NULL": "IS_NULL",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureState;": "values",
+      "valueOf(Ljava/lang/String;)Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureState;": "valueOf"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/SortBy": {
+    "actual": "vxSkRnO",
+    "fields": {
+      "NEW": "NEW",
+      "OLD": "OLD",
+      "CHEAP": "CHEAP",
+      "EXPENSIVE": "EXPENSIVE",
+      "i18nKey": "i18nKey",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lpw/lach/p13n/manager/render/gui/main/SortBy;": "values",
+      "valueOf(Ljava/lang/String;)Lpw/lach/p13n/manager/render/gui/main/SortBy;": "valueOf",
+      "getTitle()Ljava/lang/String;": "xiOHUEZ"
+    }
+  },
+  "pw/lach/p13n/render/data/RenderPlace": {
+    "actual": "eXZLIoj",
+    "fields": {
+      "NORMAL": "NORMAL",
+      "GUI": "GUI",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lpw/lach/p13n/render/data/RenderPlace;": "values",
+      "valueOf(Ljava/lang/String;)Lpw/lach/p13n/render/data/RenderPlace;": "valueOf"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/GarlandHat": {
+    "actual": "TwjyVLQ",
+    "fields": {
+      "reloadTime": "xzEUKQb",
+      "renderers": "NzRLlqY"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "lambda$new$0(Ljava/lang/String;)Lpw/lach/p13n/render/IRenderer;": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiElementButton": {
+    "actual": "ZXIjTdI",
+    "fields": {
+      "text": "XkTqykZ",
+      "backgroundColor": "unzGPHE",
+      "backgroundHoverColor": "yMbbOyN",
+      "backgroundEnabledColor": "AXdsmNW",
+      "textColor": "FHURYzE",
+      "textEnabledColor": "MKIkeCV",
+      "enabled": "rbNGnZf"
+    },
+    "methods": {
+      "onClick(III)V": "WjCdIbC",
+      "drawScreen0(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "kPRmjRd",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "setText(Ljava/lang/String;)V": "setText",
+      "setBackgroundColor(I)V": "setBackgroundColor",
+      "setBackgroundHoverColor(I)V": "bjyNwOa",
+      "setBackgroundEnabledColor(I)V": "SJFMVwF",
+      "setTextColor(I)V": "setTextColor",
+      "setTextEnabledColor(I)V": "pukVSMx",
+      "setEnabled(Z)V": "setEnabled"
+    }
+  },
+  "pw/lach/p13n/util/UtilSet": {
+    "actual": "ozFCjsI",
+    "fields": {},
+    "methods": {
+      "containsAny(Ljava/util/Set;Ljava/util/Set;)Z": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketFetchNew": {
+    "actual": "ABWyYhO",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/render/data/hardcoded/NullRenderer": {
+    "actual": "ZaqAOSV",
+    "fields": {
+      "instance": "gWjrZHr"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/action/P13nActionSelectFast": {
+    "actual": "NgXxDsT",
+    "fields": {
+      "index": "iMyyTDm"
+    },
+    "methods": {
+      "getAvailable(Lpw/lach/p13n/manager/render/gui/main/type/P13nType;)Ljava/util/Set;": "gWjrZHr",
+      "getEnabledModels()Ljava/util/Set;": "yuHMixK",
+      "getModelOptions()Ljava/util/Map;": "FHURYzE",
+      "isEnableProfile()Z": "PCtOuhD",
+      "hasGiftButton()Z": "WlGSusJ",
+      "hasReturnButton()Z": "ugfPyUc",
+      "isHideFree()Z": "JSqgVGp",
+      "isHideProduct()Z": "haSOaLJ",
+      "getCartButton(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "gWjrZHr",
+      "transform(Lpw/lach/p13n/model/Purchase;)Lpw/lach/p13n/manager/render/wheel/WheelElement;": "gWjrZHr",
+      "onElementClick(Lpw/lach/p13n/model/Purchase;)V": "gWjrZHr",
+      "isNeedSavePreview()Z": "HbnTkTy"
+    }
+  },
+  "pw/lach/p13n/builtin/emotion/BuiltInEmotions": {
+    "actual": "DruujFT",
+    "fields": {
+      "emotions": "MfDflJV"
+    },
+    "methods": {
+      "has(Ljava/lang/String;)Z": "PZpfLhk",
+      "get(Ljava/lang/String;)Lmchorse/emoticons/common/emotions/EmotionBase;": "kPRmjRd",
+      "registerEmotion(Lmchorse/emoticons/common/emotions/EmotionBase;)V": "gWjrZHr",
+      "createSoundEvent(Ljava/lang/String;)Lnet/minecraft/util/SoundEvent;": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiElementList": {
+    "actual": "fOkiLdB",
+    "fields": {
+      "SLIDER_WIDTH": "XAhNDcj",
+      "SLIDER_MIN_SIZE": "rytUZeP",
+      "sliderXOffset": "hMNULhT",
+      "unitOffset": "afSKuwV",
+      "unitWidth": "fUXIHxX",
+      "unitHeight": "hdnJidA",
+      "targetOffset": "QVGXJNb",
+      "offset": "offset",
+      "horizontal": "kQACdYl",
+      "renderTimeMs": "euzCBJD",
+      "guiElementsList": "WNyfMoG",
+      "lastRenderElementsList": "xiVgvjI",
+      "onResize": "pkhKqpD",
+      "sliderCaptured": "EPUuaEG"
+    },
+    "methods": {
+      "setSize(II)V": "setSize",
+      "removeIf(Ljava/util/function/Predicate;)V": "gWjrZHr",
+      "onUpdate()V": "LzYOZuP",
+      "onMouseWheel(I)V": "dAeOVfW",
+      "onResize(II)V": "LtxAdJQ",
+      "keyTyped(CI)V": "keyTyped",
+      "preRender(Lpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "onMouseMove(III)V": "UlPizuc",
+      "applySliderOffset(I)V": "hvLGEBc",
+      "onMouseReleased(III)V": "ptEwGeo",
+      "onMouseClick(III)V": "HnZskzl",
+      "clear()V": "clear",
+      "setElementsList(Ljava/util/List;)V": "ptEwGeo",
+      "setHorizontalCount(I)V": "JXuvHKA",
+      "getMaxOffset()D": "kaDvjFV",
+      "getSliderSize()I": "lIUbQsN",
+      "getYSlideOffset(I)I": "fWHESNT",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "getSliderXOffset()I": "vgEXdsi",
+      "getUnitOffset()I": "BgXoMIm",
+      "getUnitWidth()I": "OTqkAEg",
+      "getUnitHeight()I": "hjxfofG",
+      "getTargetOffset()I": "hTmrFjN",
+      "getOffset()I": "getOffset",
+      "getRenderTimeMs()J": "LtxAdJQ",
+      "getGuiElementsList()Ljava/util/List;": "EhSNmpn",
+      "getLastRenderElementsList()Ljava/util/List;": "AMLIPnh",
+      "isOnResize()Z": "pnEHXWk",
+      "isSliderCaptured()Z": "vNPVdgv",
+      "setSliderXOffset(I)V": "qQQPuDt",
+      "setUnitOffset(I)V": "MfDflJV",
+      "getHorizontal()I": "oGNWioh"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/RenderUtil": {
+    "actual": "oVhnpUA",
+    "fields": {
+      "GREY_COLOR": "COJGKfY",
+      "GREY2_COLOR": "ZSBUNci",
+      "GREY3_COLOR": "WeUeRKw",
+      "GREY_25_67_COLOR": "PddSpPu",
+      "GREY_54_COLOR": "DzZnWzh",
+      "GENERAL_COLOR": "nBTWAUw",
+      "GENERAL2_COLOR": "SlqEPFS",
+      "HOVER_COLOR": "JSFhhSk",
+      "HOVER2_COLOR": "yaxMYgv",
+      "BLUE_COLOR_1": "LMfldBJ",
+      "BLUE_COLOR_2": "VpczYJU",
+      "WHITE": "ogCdrcQ",
+      "SIDE_OFFSET": "Kpptozz",
+      "ARMOR_INVENTORY_EMPTY": "yuHMixK",
+      "MAIN_INVENTORY_EMPTY": "HnZskzl",
+      "OFFHAND_INVENTORY_EMPTY": "WjCdIbC"
+    },
+    "methods": {
+      "isHover(IIIIIID)Z": "gWjrZHr",
+      "isSimpleHover(IIIIIID)Z": "kPRmjRd",
+      "isHover(IIIIIIDI)Z": "gWjrZHr",
+      "drawCustomRect(FFFFI)V": "kPRmjRd",
+      "drawRect(Lnet/minecraft/client/renderer/Tessellator;FFFFI)V": "gWjrZHr",
+      "drawCustomRect(FFFFII)V": "gWjrZHr",
+      "renderPlayerWithModel(FFLjava/util/Set;Ljava/util/Map;Lnet/minecraft/client/entity/AbstractClientPlayer;)V": "gWjrZHr",
+      "color(IIII)I": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiColorPalette$PaletteColor": {
+    "actual": "ZZwrWNm",
+    "fields": {
+      "index": "kaDvjFV",
+      "color": "yoWaGjB",
+      "description": "dHIfRSy",
+      "iconImage": "LzYOZuP"
+    },
+    "methods": {
+      "getIndex()I": "getIndex",
+      "getColor()I": "wWmyCsT",
+      "getDescription()Ljava/lang/String;": "getDescription",
+      "getIconImage()Ljava/awt/image/BufferedImage;": "LzYOZuP"
+    }
+  },
+  "pw/lach/p13n/mixin_helpers/IMixinEntityPlayer": {
+    "actual": "eGEOvhQ",
+    "fields": {},
+    "methods": {
+      "getEmotionPlayer()Lmchorse/emoticons/common/EmotionPlayer;": "RrKclpt"
+    }
+  },
+  "pw/lach/obj_parser/Vertex": {
+    "actual": "zzBVoqp",
+    "fields": {
+      "vect": "sLfACSd",
+      "x": "xiOHUEZ",
+      "y": "wuMPZig",
+      "z": "vmAlWfp"
+    },
+    "methods": {
+      "getX()F": "getX",
+      "setX(F)V": "setX",
+      "getY()F": "getY",
+      "setY(F)V": "setY",
+      "getZ()F": "getZ",
+      "setZ(F)V": "setZ",
+      "getAsVector()[F": "BrGopGP",
+      "norm()D": "SJseNMa",
+      "normalize()V": "normalize",
+      "distanceFrom(Lpw/lach/obj_parser/Vertex;)D": "gWjrZHr",
+      "rotateZ(D)Lpw/lach/obj_parser/Vertex;": "gWjrZHr",
+      "rotateX(D)Lpw/lach/obj_parser/Vertex;": "kPRmjRd",
+      "copyAndRotateZ(F)Lpw/lach/obj_parser/Vertex;": "gWjrZHr",
+      "add(Lpw/lach/obj_parser/Vertex;)V": "gWjrZHr",
+      "copyAndAdd(Lpw/lach/obj_parser/Vertex;)Lpw/lach/obj_parser/Vertex;": "gWjrZHr",
+      "mult(Lpw/lach/obj_parser/Vertex;)Lpw/lach/obj_parser/Vertex;": "kPRmjRd",
+      "mult(D)Lpw/lach/obj_parser/Vertex;": "LzYOZuP",
+      "mult(F)Lpw/lach/obj_parser/Vertex;": "kPRmjRd",
+      "copyAndSub(Lpw/lach/obj_parser/Vertex;)Lpw/lach/obj_parser/Vertex;": "LzYOZuP",
+      "copyAndMult(F)Lpw/lach/obj_parser/Vertex;": "LzYOZuP",
+      "dot(Lpw/lach/obj_parser/Vertex;)F": "gWjrZHr",
+      "perpDot(Lpw/lach/obj_parser/Vertex;)F": "kPRmjRd",
+      "subFrom(Lpw/lach/obj_parser/Vertex;)V": "kPRmjRd",
+      "toString()Ljava/lang/String;": "toString"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/action/P13nActionReturn": {
+    "actual": "JdWQZGr",
+    "fields": {},
+    "methods": {
+      "getCartButton(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "gWjrZHr",
+      "getAvailable(Lpw/lach/p13n/manager/render/gui/main/type/P13nType;)Ljava/util/Set;": "gWjrZHr",
+      "getBucket(Lpw/lach/p13n/manager/render/gui/main/ElementCreate;)Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;": "gWjrZHr",
+      "isEnableProfile()Z": "PCtOuhD",
+      "isHideFree()Z": "JSqgVGp",
+      "isHideProduct()Z": "haSOaLJ",
+      "lambda$getCartButton$0(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Z": "gWjrZHr"
+    }
+  },
+  "net/diamondden/graffiti/render/GraffitiRenderManger": {
+    "actual": "mqgQMKz",
+    "fields": {
+      "mc": "FpCNmUX",
+      "greffitiPrototypeByIdMap": "RdsVLgC",
+      "atlasByIdMap": "gWjrZHr"
+    },
+    "methods": {
+      "renderGraffitiText(FLnet/diamondden/graffiti/world/GraffitiInWorld;)V": "gWjrZHr",
+      "renderGraffiti(FLjava/util/Collection;)V": "gWjrZHr",
+      "renderGraffitiPack(Ljava/util/Collection;)V": "gWjrZHr",
+      "drawGraffiti2D(Lnet/diamondden/graffiti/prototype/GraffitiPrototype;II)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiContext": {
+    "actual": "bRuZKhm",
+    "fields": {
+      "mouseX": "OfTTGTP",
+      "mouseY": "hWvdwSr",
+      "scale": "CqyJozg",
+      "currentTime": "IguhgAC",
+      "hoverLockLevel": "XEeoPet",
+      "mousePressed": "SYhLEjz",
+      "windowWidth": "UREODzj",
+      "windowHeight": "zSQVsUT",
+      "postRender": "qgvoWHW"
+    },
+    "methods": {
+      "setHoverLock(Z)V": "KpEgxHf",
+      "isHoverLock()Z": "AptJREz",
+      "isHoverLock(I)Z": "XxVKYNi",
+      "drawHoverText(Ljava/util/List;)V": "WjCdIbC",
+      "addPostRender(Ljava/lang/Runnable;)V": "BCmcrbn",
+      "getMouseX()I": "EKRBfdq",
+      "getMouseY()I": "vHGBuab",
+      "getScale()D": "UjBIMNN",
+      "getCurrentTime()J": "DswtZYd",
+      "getHoverLockLevel()I": "OpPfuWW",
+      "isMousePressed()Z": "UYrznGN",
+      "getWindowWidth()I": "JxrUlIa",
+      "getWindowHeight()I": "wPOyigd",
+      "getPostRender()Ljava/util/List;": "PZpfLhk",
+      "setMouseX(I)V": "CzhoSuI",
+      "setMouseY(I)V": "qJanDvK",
+      "setScale(D)V": "SJseNMa",
+      "setCurrentTime(J)V": "WjCdIbC",
+      "setHoverLockLevel(I)V": "aYMXyqB",
+      "setMousePressed(Z)V": "yPfJFeq",
+      "setWindowWidth(I)V": "zoetdLa",
+      "setWindowHeight(I)V": "DQgxKRg"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/action/P13nActionInventory": {
+    "actual": "OBhEjJP",
+    "fields": {
+      "lastAction": "kPRmjRd"
+    },
+    "methods": {
+      "getCartButton(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "gWjrZHr",
+      "getInventoryButton(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "kPRmjRd",
+      "getAvailable(Lpw/lach/p13n/manager/render/gui/main/type/P13nType;)Ljava/util/Set;": "gWjrZHr",
+      "isHideFree()Z": "JSqgVGp",
+      "isHideProduct()Z": "haSOaLJ",
+      "lambda$getInventoryButton$1()Z": "tkDBVIA",
+      "lambda$getInventoryButton$0(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)V": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketEnableDisableModels": {
+    "actual": "YsgtCZc",
+    "fields": {
+      "player": "DpLHUuB",
+      "enable": "jTSZHwx",
+      "disable": "LbzMTQY",
+      "options": "sLwhyeX"
+    },
+    "methods": {}
+  },
+  "net/diamondden/graffiti/network/packet/PacketUpdateGraffiti": {
+    "actual": "MtzksaD",
+    "fields": {
+      "toRemove": "rbNGnZf",
+      "toAdd": "uyikWgD"
+    },
+    "methods": {
+      "getToRemove()Ljava/util/List;": "MoiEanH",
+      "getToAdd()Ljava/util/List;": "nBvlYtT"
+    }
+  },
+  "pw/lach/p13n/network/data/ModelPlayerData": {
+    "actual": "rMQlBOm",
+    "fields": {
+      "models": "XxVKYNi",
+      "options": "sLwhyeX"
+    },
+    "methods": {
+      "getModels()Ljava/util/Set;": "FpCNmUX",
+      "getOptions()Ljava/util/Map;": "nmuYmMD"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/tails/ModelFluffyTail": {
+    "actual": "GVGTHao",
+    "fields": {
+      "tailBase": "xQLdsTd",
+      "tail1": "hTGFbSb",
+      "tail2": "YiTubgM",
+      "tail3": "iVDglFl",
+      "tail4": "UTySNiC",
+      "tail5": "DhzDYzn"
+    },
+    "methods": {
+      "setRotationAngles(IFFFFFFLnet/minecraft/entity/Entity;)V": "gWjrZHr",
+      "render(Lnet/minecraft/entity/EntityLivingBase;IF)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/shared/PlayerViewHandler": {
+    "actual": "sxdXQZS",
+    "fields": {},
+    "methods": {
+      "getViewModels()Ljava/util/Set;": "YixeWRi",
+      "getHoverModel()Ljava/util/UUID;": "XkTqykZ",
+      "getModelsOptions()Ljava/util/Map;": "WJMXEpy",
+      "getPlayer()Lnet/minecraft/client/entity/AbstractClientPlayer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/obj_parser/parser/mtl/MtlLineParserFactory": {
+    "actual": "kJFRzaH",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/gui/main/DiscountInfo": {
+    "actual": "lyDuEew",
+    "fields": {
+      "currentDiscount": "gjQISJi",
+      "nextDiscountSum": "Jtxybhf",
+      "nextSum": "fYLTQQS",
+      "EMPTY": "gWjrZHr"
+    },
+    "methods": {
+      "getCurrentDiscount()I": "IBjPgEp",
+      "getNextDiscountSum()I": "HZxQGRL",
+      "getNextSum()I": "hzHWySl"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketReturn": {
+    "actual": "JJukNSy",
+    "fields": {
+      "packetId": "VUbXpff",
+      "units": "TfFbdKf"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/gui/main/section/AbstractBucketWindowSection": {
+    "actual": "QSiHLeU",
+    "fields": {
+      "IN_PROGRESS": "gWjrZHr",
+      "ICONS": "UTySNiC",
+      "p13nBucket": "kPRmjRd",
+      "elementList": "kPRmjRd",
+      "elementButtonDone": "xZcGKMl",
+      "action": "BCmcrbn",
+      "requestState": "kPRmjRd"
+    },
+    "methods": {
+      "send()Ljava/util/concurrent/CompletableFuture;": "SJseNMa",
+      "updateState(Lpw/lach/p13n/manager/render/gui/main/section/AbstractBucketWindowSection$RequestState;)V": "gWjrZHr",
+      "preRender(Lpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "postRender(Lpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "kPRmjRd",
+      "getTitle(I)Ljava/lang/String;": "WSVcWSq",
+      "getButtonText(II)Ljava/util/List;": "gWjrZHr",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "getElementList()Lpw/lach/p13n/manager/render/gui/engine/GuiElementList;": "gWjrZHr",
+      "lambda$new$1()V": "HVCegFf",
+      "lambda$null$0(Lpw/lach/p13n/manager/render/gui/main/section/SendResponse;Ljava/lang/Throwable;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiAddToButton": {
+    "actual": "cEdRdUJ",
+    "fields": {
+      "isBucket": "kPRmjRd",
+      "currentAngle": "McUFsfr",
+      "sourceAngle": "zqXzVyF",
+      "targetAngle": "jYyZLpq"
+    },
+    "methods": {
+      "inBucket()Z": "nGaSloT",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/common/BuiltInRenderer": {
+    "actual": "YnCMXKT",
+    "fields": {
+      "buildInName": "FpCNmUX"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/obj_parser/Texture": {
+    "actual": "fHSKKiM",
+    "fields": {
+      "textureID": "dAMCJbr",
+      "width": "AqRibOe",
+      "height": "mieCvhX",
+      "widthRatio": "rnHPRZG",
+      "heightRatio": "UoLPAwK",
+      "textureWidth": "dvLlqns",
+      "textureHeigth": "aUOtcBq"
+    },
+    "methods": {
+      "getTextureID()I": "WYQQEff",
+      "getHeight()I": "getHeight",
+      "getWidth()I": "getWidth",
+      "toString()Ljava/lang/String;": "toString"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiPlayerCompletionTextInput": {
+    "actual": "xSsfTYY",
+    "fields": {
+      "index": "kaDvjFV",
+      "completions": "gWjrZHr"
+    },
+    "methods": {
+      "keyTyped(CI)V": "keyTyped",
+      "moveToCompletion(I)V": "kKxzvLa",
+      "setCompletions([Ljava/lang/String;)V": "setCompletions"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/GuiAnimationDebug": {
+    "actual": "UyyWSZc",
+    "fields": {
+      "model": "gWjrZHr"
+    },
+    "methods": {
+      "drawScreen(IIF)V": "drawScreen"
+    }
+  },
+  "pw/lach/p13n/network/client/P13nChannels": {
+    "actual": "HFSqVhe",
+    "fields": {
+      "FORCE_MODEL_RELOAD": "mDscSRK",
+      "HOT": "riEVLxC",
+      "CAN_RETURN": "ZNvqiOw",
+      "AVAILABLE": "Ijnfjvn",
+      "RESPONSE": "WWBQAYJ",
+      "GIFT_RESPONSE": "GjKfkix",
+      "BALANCE": "UpQqcBl",
+      "LIMITED_ORDERS": "hlbXkGr",
+      "PRICE": "wKZPlHk",
+      "BUY": "ofIOaUQ",
+      "BULK_BUY": "lBQVtSw",
+      "RETURN": "xevYkgE",
+      "ENABLE_DISABLE_MODELS": "qLIsLhc",
+      "RESEND_ALL_ENABLED_MODELS_PLZ": "SWRgULV",
+      "SERVER_BIN": "oZTZjGa",
+      "FETCH_NEW": "AjwWPhw",
+      "EMOTION_ACTION": "RNcDHzH",
+      "META_RESPONSE": "PonmFHQ",
+      "PLAYER_TEXTURE_RESPONSE": "drCVlDX",
+      "ALL_CHANNELS": "SJseNMa"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/model/Purchase": {
+    "actual": "autNqQJ",
+    "fields": {},
+    "methods": {
+      "getId()Ljava/util/UUID;": "getId",
+      "getContributor()Ljava/lang/String;": "wuMPZig",
+      "getLore()Ljava/util/List;": "clRoAwN",
+      "getLimit()I": "RdsVLgC",
+      "getExpire()Ljava/time/Instant;": "BCmcrbn",
+      "getPriority()Ljava/time/Instant;": "xZcGKMl",
+      "getNew0()Ljava/time/Instant;": "SJseNMa",
+      "getPrice()I": "VkgMeck",
+      "getDiscountPrice()I": "LtxAdJQ",
+      "isAvailableInGui()Z": "PZpfLhk",
+      "isLimited()Z": "ClushVo",
+      "isPriority()Z": "KwxIXZQ",
+      "isNew()Z": "ayUpNJN",
+      "isExpire()Z": "pKZiTXW",
+      "isExpired()Z": "wdiywvp",
+      "getDefaultPrice()I": "DjZGmXe",
+      "getDiscount(I)I": "ClushVo",
+      "getFinalPrice(I)I": "wOfoeCE",
+      "getReturnPrice(F)I": "kcVZOtm",
+      "getName()Ljava/lang/String;": "getName",
+      "getType()Lpw/lach/p13n/manager/render/gui/main/type/P13nType;": "gWjrZHr"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC1Json$Null": {
+    "actual": "TIuXIAE",
+    "fields": {
+      "Shape": "gWjrZHr",
+      "Folder": "gWjrZHr",
+      "this$0": "SJseNMa"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiElementWrapper": {
+    "actual": "rVVoLxk",
+    "fields": {
+      "guiElement": "gWjrZHr",
+      "lastGuiElement": "kPRmjRd"
+    },
+    "methods": {
+      "setGuiElement(Lpw/lach/p13n/manager/render/gui/engine/GuiElement;)V": "kPRmjRd",
+      "isVisible()Z": "isVisible",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/util/UtilDeveloperMode": {
+    "actual": "YoXarQp",
+    "fields": {},
+    "methods": {
+      "isComboPressed()Z": "wTCCCZT",
+      "isComboPressedAndModeEnabled()Z": "yHhgIwU",
+      "isDeveloperMode()Z": "ntxFIen",
+      "isStaging()Z": "UXbAOMC"
+    }
+  },
+  "pw/lach/p13n/render/data/ModelLocationRotation$1": {
+    "actual": "MKepeGx",
+    "fields": {
+      "$SwitchMap$pw$lach$p13n$render$data$RenderPlace": "xRzyLjS"
+    },
+    "methods": {}
+  },
+  "pw/lach/obj_parser/parser/LineParser": {
+    "actual": "VewWaKE",
+    "fields": {
+      "words": "uyikWgD"
+    },
+    "methods": {
+      "setWords([Ljava/lang/String;)V": "kPRmjRd",
+      "parse()V": "gcnLPpq",
+      "incoporateResults(Lpw/lach/obj_parser/WavefrontObject;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiColorHSBSlider": {
+    "actual": "DlmvBOT",
+    "fields": {
+      "hueSlider": "gWjrZHr",
+      "saturationSlider": "kPRmjRd",
+      "brightnessSlider": "LzYOZuP"
+    },
+    "methods": {
+      "setUpdateHandler(Ljava/lang/Runnable;)V": "xZcGKMl",
+      "onMouseClick(III)V": "HnZskzl",
+      "onMouseReleased(III)V": "ptEwGeo",
+      "getValueAsArgb()I": "uXiNuJH",
+      "setValue(I)V": "cTdqHIu",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "lambda$new$2(F)I": "obWbjzA",
+      "lambda$new$1(F)I": "BrGopGP",
+      "lambda$new$0(F)I": "XkTqykZ"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC1Json$Techne": {
+    "actual": "oyPGnrg",
+    "fields": {
+      "Version": "dkfQNCT",
+      "Author": "CSrCaYk",
+      "Name": "BbYYyZz",
+      "PreviewImage": "CSbpfRH",
+      "ProjectName": "nEobUbi",
+      "ProjectType": "lhTmbzX",
+      "Description": "lprsBNe",
+      "DateCreated": "atiTRqC",
+      "Models": "gWjrZHr",
+      "this$0": "UjBIMNN"
+    },
+    "methods": {}
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC2Info$Techne": {
+    "actual": "FJMpfGl",
+    "fields": {
+      "Version": "dkfQNCT",
+      "Author": "CSrCaYk",
+      "Name": "BbYYyZz",
+      "PreviewImage": "CSbpfRH",
+      "ProjectName": "nEobUbi",
+      "ProjectType": "lhTmbzX",
+      "Description": "lprsBNe",
+      "DateCreated": "atiTRqC",
+      "Models": "gWjrZHr"
+    },
+    "methods": {
+      "createNewModelArray(I)V": "ZpMURQc"
+    }
+  },
+  "pw/lach/p13n/model/model/LocationRotationDescription": {
+    "actual": "XRWhTNU",
+    "fields": {},
+    "methods": {
+      "transform()Lpw/lach/p13n/render/data/ModelLocationRotation;": "uVbIQqE"
+    }
+  },
+  "pw/lach/obj_parser/parser/obj/ObjLineParserFactory": {
+    "actual": "KewVTde",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GetPageElements": {
+    "actual": "tbGDxjH",
+    "fields": {},
+    "methods": {
+      "get(III)Ljava/util/List;": "get"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/bucket/P13nCartBucket": {
+    "actual": "yIXiOeA",
+    "fields": {
+      "unitSet": "PZpfLhk",
+      "action": "gWjrZHr",
+      "create": "gWjrZHr",
+      "windowSection": "kPRmjRd",
+      "discount": "kPRmjRd"
+    },
+    "methods": {
+      "getIdsInBucket()Ljava/util/Set;": "HnZskzl",
+      "getTotalPrice()I": "xyOJqPL",
+      "getTotalDiscount(I)I": "PZpfLhk",
+      "getDiscount()Lpw/lach/p13n/manager/render/gui/main/DiscountInfo;": "gWjrZHr",
+      "onElementChange()V": "yGaboKt",
+      "remove(Ljava/util/Collection;)V": "UjBIMNN",
+      "createBucketSection()Lpw/lach/p13n/manager/render/gui/main/section/WindowSection;": "kPRmjRd",
+      "getAddToElement(Lpw/lach/p13n/model/Purchase;)Lpw/lach/p13n/manager/render/gui/main/bucket/addto/AddToElement;": "gWjrZHr",
+      "lambda$remove$1(Ljava/util/Collection;Lpw/lach/p13n/manager/render/gui/engine/GuiElement;)Z": "gWjrZHr",
+      "lambda$onElementChange$0(Lpw/lach/p13n/network/client/PacketPrice;)V": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/tails/ModelBirdTail": {
+    "actual": "cjuAKDe",
+    "fields": {
+      "center": "DoGsthF",
+      "left0": "mWevQNi",
+      "left1": "qiloZLC",
+      "left2": "cbNsAIL",
+      "right0": "GxGHLee",
+      "right2": "wRTxzlr",
+      "right1": "rOSqBna"
+    },
+    "methods": {
+      "setRotationAngles(FFFFFFLnet/minecraft/entity/Entity;)V": "gWjrZHr",
+      "render(Lnet/minecraft/entity/EntityLivingBase;IF)V": "gWjrZHr"
+    }
+  },
+  "net/diamondden/bedrock/format/PlayerAnimationController": {
+    "actual": "XolKHdT",
+    "fields": {
+      "target": "kPRmjRd"
+    },
+    "methods": {
+      "getCurrentAnimation(Ljava/util/Set;)Ljava/lang/String;": "gWjrZHr",
+      "onAnimationApply(Ljava/lang/String;Lnet/diamondden/bedrock/animation/BoneAnimationDataValue;Lnet/diamondden/bedrock/BedrockRenderContext;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/model/category/Category": {
+    "actual": "oqHIyTC",
+    "fields": {
+      "position": "JcEXYpB",
+      "iconPosition": "SFvrqvq",
+      "id": "wWVPvdZ",
+      "name": "gWjrZHr",
+      "isEmotionCategory": "yGaboKt",
+      "isGraffitiCategory": "xJKUUJF",
+      "isAdmin": "kjYCLnc",
+      "isMain": "pmQQxUB",
+      "cameraSetting": "gWjrZHr"
+    },
+    "methods": {
+      "toString()Ljava/lang/String;": "toString",
+      "getPosition()I": "TcHqeDg",
+      "getIconPosition()I": "VarAAzG",
+      "getId()Ljava/lang/String;": "SJseNMa",
+      "getName()Ljava/lang/String;": "getName",
+      "isEmotionCategory()Z": "DNdaRVZ",
+      "isGraffitiCategory()Z": "ITwKHaQ",
+      "isAdmin()Z": "pexnpJB",
+      "isMain()Z": "nevVltx",
+      "getCameraSetting()Lpw/lach/p13n/model/CameraSetting;": "kPRmjRd",
+      "setCameraSetting(Lpw/lach/p13n/model/CameraSetting;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/ElementCreate": {
+    "actual": "bzQIFfE",
+    "fields": {},
+    "methods": {
+      "create(Ljava/util/UUID;Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "create"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/social/GuiP13nSocial$3": {
+    "actual": "sUJLRRM",
+    "fields": {
+      "val$playerInfo": "LzYOZuP",
+      "this$0": "gWjrZHr"
+    },
+    "methods": {
+      "isSpectator()Z": "isSpectator",
+      "isCreative()Z": "isCreative",
+      "getPlayerInfo()Lnet/minecraft/client/network/NetworkPlayerInfo;": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/social/GuiP13nSocial$2": {
+    "actual": "msBNnTa",
+    "fields": {
+      "this$0": "kPRmjRd"
+    },
+    "methods": {
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/social/GuiP13nSocial$1": {
+    "actual": "VQAIbCE",
+    "fields": {
+      "this$0": "gWjrZHr"
+    },
+    "methods": {
+      "getViewModels()Ljava/util/Set;": "YixeWRi",
+      "getHoverModel()Ljava/util/UUID;": "XkTqykZ",
+      "getModelsOptions()Ljava/util/Map;": "WJMXEpy",
+      "getPlayer()Lnet/minecraft/client/entity/AbstractClientPlayer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/wheel/GraffitiWheelElement": {
+    "actual": "PISWVTZ",
+    "fields": {
+      "prototype": "LzYOZuP"
+    },
+    "methods": {
+      "getType()Ljava/lang/String;": "getType",
+      "init(Lnet/diamondden/graffiti/prototype/GraffitiPrototype;)V": "kPRmjRd",
+      "save(Lcom/google/gson/JsonObject;)V": "kPRmjRd",
+      "read(Lcom/google/gson/JsonObject;)V": "gWjrZHr",
+      "isInvalid()Z": "isInvalid",
+      "render(I)V": "ZIGbFLr",
+      "getDescription()Ljava/util/List;": "BCmcrbn",
+      "onActive()V": "bBIHIxp",
+      "equals(Ljava/lang/Object;)Z": "equals",
+      "canEqual(Ljava/lang/Object;)Z": "gWjrZHr",
+      "hashCode()I": "hashCode"
+    }
+  },
+  "net/diamondden/graffiti/prototype/GraffitiAtlasPrototype": {
+    "actual": "GmFhrqC",
+    "fields": {
+      "url": "bPQZtow",
+      "hash": "jrZAYKi",
+      "width": "ptEwGeo",
+      "height": "DswtZYd",
+      "id": "gWjrZHr"
+    },
+    "methods": {
+      "getUrl()Ljava/lang/String;": "FpCNmUX",
+      "getHash()Ljava/lang/String;": "obWbjzA",
+      "getWidth()I": "getWidth",
+      "getHeight()I": "getHeight",
+      "getId()I": "getId"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketHot": {
+    "actual": "XEhFIMO",
+    "fields": {
+      "hot": "lWJUDYk"
+    },
+    "methods": {
+      "getHot()Ljava/util/List;": "yoWaGjB"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/action/P13nActionGift": {
+    "actual": "cOjnrVN",
+    "fields": {
+      "player": "LzYOZuP"
+    },
+    "methods": {
+      "getInventoryButton(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "kPRmjRd",
+      "getCartButton(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "gWjrZHr",
+      "getEnabledModels()Ljava/util/Set;": "yuHMixK",
+      "getModelOptions()Ljava/util/Map;": "FHURYzE",
+      "isChangeEnabledModels()Z": "plkewHl",
+      "getAvailable(Lpw/lach/p13n/manager/render/gui/main/type/P13nType;)Ljava/util/Set;": "gWjrZHr",
+      "getDefaultDiscount()I": "KvggmDv",
+      "isEnableProfile()Z": "PCtOuhD",
+      "isHideFree()Z": "JSqgVGp",
+      "isHideProduct()Z": "haSOaLJ",
+      "hasReturnButton()Z": "ugfPyUc",
+      "hasGiftButton()Z": "WlGSusJ",
+      "getBucket(Lpw/lach/p13n/manager/render/gui/main/ElementCreate;)Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;": "gWjrZHr",
+      "getPlayer()Lnet/minecraft/client/entity/AbstractClientPlayer;": "gWjrZHr",
+      "lambda$getCartButton$0(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Z": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/settings/SettingsManager": {
+    "actual": "cqsvDAq",
+    "fields": {
+      "instance": "kPRmjRd",
+      "settings": "gWjrZHr",
+      "path": "UjBIMNN",
+      "bindingMap": "pukVSMx"
+    },
+    "methods": {
+      "toggleRenderWhen()V": "qOuWltZ",
+      "saveSettings()V": "JcEXYpB",
+      "getKeybindName(Ljava/util/UUID;)Ljava/lang/String;": "kPRmjRd",
+      "getKeybindName0(Ljava/util/UUID;)Ljava/lang/String;": "LzYOZuP",
+      "updateBindingMap()V": "mxxFSka",
+      "setBinding(Ljava/util/UUID;Ljava/lang/Integer;)V": "gWjrZHr",
+      "getEmotionByBinding(I)Ljava/util/UUID;": "gWjrZHr",
+      "isHighQuality()Z": "skBretX",
+      "toggleHighQuality()V": "dYWZdyg"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/Snowflake2020": {
+    "actual": "QCGrETF",
+    "fields": {
+      "inner": "BCmcrbn"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/exception/SilentStop": {
+    "actual": "FPFSJle",
+    "fields": {
+      "INSTANCE": "gWjrZHr"
+    },
+    "methods": {
+      "fillInStackTrace()Ljava/lang/Throwable;": "fillInStackTrace"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/section/SendResponse": {
+    "actual": "vHInCJj",
+    "fields": {
+      "successText": "qIAQXtU"
+    },
+    "methods": {
+      "getSuccessText()Ljava/lang/String;": "wzFcXfC"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/bucket/addto/AddToReturnElement": {
+    "actual": "ELqOfbR",
+    "fields": {
+      "purchase": "kPRmjRd",
+      "addToCartButton": "kPRmjRd",
+      "percent": "pSiqzSf"
+    },
+    "methods": {
+      "getBackgroundColor()I": "getBackgroundColor",
+      "isSupportPreview()Z": "bbILedA",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "getAddToCartButton()Lpw/lach/p13n/manager/render/gui/main/elements/GuiAddToButton;": "gWjrZHr",
+      "lambda$new$1(Lpw/lach/p13n/model/Purchase;Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)V": "gWjrZHr",
+      "lambda$new$0(Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;Lpw/lach/p13n/model/Purchase;)Z": "gWjrZHr"
+    }
+  },
+  "pw/lach/obj_parser/parser/DefaultParser": {
+    "actual": "TvwQtRg",
+    "fields": {
+      "INSTANCE": "gWjrZHr"
+    },
+    "methods": {
+      "parse()V": "gcnLPpq",
+      "incoporateResults(Lpw/lach/obj_parser/WavefrontObject;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/settings/PersonalizationSettings": {
+    "actual": "IiPCeBp",
+    "fields": {
+      "renderWhen": "gWjrZHr",
+      "developerMode": "iEivpPH",
+      "enabledModels": "wOfoeCE",
+      "modelsOptions": "KrHhkfC",
+      "currentProfile": "LeqNtzf",
+      "profiles": "CqyJozg",
+      "emotionBindings": "ZpMURQc",
+      "smoothSkeletons": "MiPVBBZ",
+      "highQuality": "KNSqhae",
+      "guideProgress": "jDgmOMH",
+      "wheel": "jgOurps"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/gui/main/section/AbstractBucketWindowSection$RequestState": {
+    "actual": "QZMneOE",
+    "fields": {
+      "text": "oFTLNbV",
+      "iconPosition": "oUWIpYx",
+      "updateTimeMs": "SKfIpQR"
+    },
+    "methods": {
+      "isEnd(J)Z": "kPRmjRd",
+      "getOffsetY(J)I": "BCmcrbn",
+      "getText()Ljava/lang/String;": "getText",
+      "getIconPosition()I": "VarAAzG",
+      "getUpdateTimeMs()J": "RdsVLgC"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/tabula/project/ProjectInfo": {
+    "actual": "JzSsjgx",
+    "fields": {
+      "PROJ_VERSION": "omcIvRh",
+      "bufferedTexture": "BCmcrbn",
+      "bufferedTextureId": "JhBDHge",
+      "states": "XkTqykZ",
+      "switchState": "FRerBdV",
+      "modelName": "uyikWgD",
+      "authorName": "ShlxtwT",
+      "projVersion": "QOfTmnR",
+      "metadata": "kcVZOtm",
+      "textureWidth": "owzFvYn",
+      "textureHeight": "FGWfCxJ",
+      "scale": "clRoAwN",
+      "cubeGroups": "MoiEanH",
+      "cubes": "nBvlYtT",
+      "cubeCount": "zBdPWXj"
+    },
+    "methods": {}
+  },
+  "pw/lach/math/transform/util/UtilTransform": {
+    "actual": "nTpQgsX",
+    "fields": {},
+    "methods": {
+      "distanceFromCenter([Lpw/lach/math/transform/ITransformation;)F": "gWjrZHr"
+    }
+  },
+  "net/diamondden/graffiti/display/DisplayInfo": {
+    "actual": "UQITUvT",
+    "fields": {
+      "title": "LbzMTQY",
+      "currentProgress": "SQsQYjb",
+      "maxProgress": "wEIbAWV"
+    },
+    "methods": {
+      "ofI18n(Ljava/lang/String;)Lnet/diamondden/graffiti/display/DisplayInfo;": "gWjrZHr",
+      "ofI18nError(Ljava/lang/String;)Lnet/diamondden/graffiti/display/DisplayInfo;": "kPRmjRd",
+      "error(Ljava/lang/String;)Lnet/diamondden/graffiti/display/DisplayInfo;": "LzYOZuP",
+      "error(Ljava/lang/String;DD)Lnet/diamondden/graffiti/display/DisplayInfo;": "gWjrZHr",
+      "of(Ljava/lang/String;)Lnet/diamondden/graffiti/display/DisplayInfo;": "BCmcrbn",
+      "getTitle()Ljava/lang/String;": "xiOHUEZ",
+      "getCurrentProgress()D": "LtxAdJQ",
+      "getMaxProgress()D": "RdsVLgC"
+    }
+  },
+  "pw/lach/p13n/image/ImageDimensions": {
+    "actual": "qLbjRru",
+    "fields": {
+      "x": "yuHMixK",
+      "y": "HnZskzl",
+      "width": "ptEwGeo",
+      "height": "DswtZYd"
+    },
+    "methods": {
+      "getX()I": "getX",
+      "getY()I": "getY",
+      "getWidth()I": "getWidth",
+      "getHeight()I": "getHeight"
+    }
+  },
+  "pw/lach/p13n/manager/render/wheel/EmptyWheelElement": {
+    "actual": "gNptLPZ",
+    "fields": {
+      "INSTANCE": "gWjrZHr"
+    },
+    "methods": {
+      "getType()Ljava/lang/String;": "getType",
+      "render(I)V": "ZIGbFLr",
+      "getDescription()Ljava/util/List;": "BCmcrbn"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/CustomEasingFunction": {
+    "actual": "YwMaNYy",
+    "fields": {
+      "arg": "LzYOZuP"
+    },
+    "methods": {
+      "ease(DDDD)D": "ease"
+    }
+  },
+  "net/diamondden/graffiti/network/GraffitiNetworkManager": {
+    "actual": "gYRWswO",
+    "fields": {},
+    "methods": {
+      "sendGraffiti(DDDFFFFLjava/util/UUID;)Ljava/util/concurrent/CompletableFuture;": "gWjrZHr",
+      "lambda$new$0(Lnet/diamondden/graffiti/GraffitiManager;Lnet/diamondden/graffiti/network/packet/PacketUpdateGraffiti;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/guide/GuiGuideElement": {
+    "actual": "NtdlyAz",
+    "fields": {
+      "line": "gWjrZHr"
+    },
+    "methods": {
+      "isEnabled()Z": "isEnabled",
+      "preRender(Lpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "keyTyped(CI)V": "keyTyped",
+      "onMouseClick(III)V": "HnZskzl",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "drawDescription(IIILjava/util/List;)V": "gWjrZHr",
+      "drawRect(Lnet/minecraft/client/renderer/Tessellator;FFFFI)V": "gWjrZHr",
+      "drawRectF(Lnet/minecraft/client/renderer/Tessellator;FFFFI)V": "kPRmjRd",
+      "setLine(Lpw/lach/p13n/manager/render/gui/engine/guide/GuideLine;)V": "gWjrZHr",
+      "getLine()Lpw/lach/p13n/manager/render/gui/engine/guide/GuideLine;": "gWjrZHr"
+    }
+  },
+  "pw/lach/math/vector/ThreeFields3f": {
+    "actual": "Fywqhsw",
+    "fields": {},
+    "methods": {
+      "add0(FFF)Lpw/lach/math/vector/ThreeFields3f;": "gWjrZHr",
+      "distance(Lpw/lach/math/vector/ThreeFields3f;)D": "gWjrZHr",
+      "set(IF)V": "SJseNMa",
+      "get(I)F": "FpCNmUX",
+      "setX(F)V": "setX",
+      "setY(F)V": "setY",
+      "setZ(F)V": "setZ",
+      "getX()F": "getX",
+      "getY()F": "getY",
+      "getZ()F": "getZ"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/common/FileRenderer": {
+    "actual": "ZvsROkn",
+    "fields": {
+      "file": "SJseNMa",
+      "sourceFormat": "imAYBPg",
+      "internal": "UjBIMNN"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/render/IRendererCallbacks": {
+    "actual": "ZxuvbxZ",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/builtin/renderers/MiniPlayerRender": {
+    "actual": "Xxoznnn",
+    "fields": {
+      "renderPlayer": "BCmcrbn",
+      "playerMP": "gWjrZHr"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/tabula/project/components/CubeGroup": {
+    "actual": "kqWYHKk",
+    "fields": {
+      "cubes": "nBvlYtT",
+      "cubeGroups": "MoiEanH",
+      "name": "gWjrZHr"
+    },
+    "methods": {}
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC1Json$Model": {
+    "actual": "GTFKBQB",
+    "fields": {
+      "Model": "gWjrZHr",
+      "this$0": "LzYOZuP"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/builtin/renderers/Prisoneer": {
+    "actual": "vqmoPLW",
+    "fields": {
+      "inner": "gWjrZHr",
+      "zombie": "kPRmjRd",
+      "currentSkin": "ouUzLwB"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "access$000(Lpw/lach/p13n/builtin/renderers/Prisoneer;)Lnet/minecraft/util/ResourceLocation;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/util/UtilEntity": {
+    "actual": "IpHMgTo",
+    "fields": {
+      "fixedYawPitch": "dYWZdyg"
+    },
+    "methods": {
+      "renderAdditionalPlayerWithoutPitchYaw(Lnet/minecraft/client/renderer/entity/Render;Lnet/minecraft/entity/EntityLivingBase;F)V": "gWjrZHr",
+      "renderAdditionalPlayer(Lnet/minecraft/client/renderer/entity/Render;Lnet/minecraft/entity/EntityLivingBase;F)V": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/category/CategoryController": {
+    "actual": "VCMJIMS",
+    "fields": {
+      "MAX_PRICE": "qQbpmFK",
+      "previewHandler": "gWjrZHr"
+    },
+    "methods": {
+      "isEmpty(Lpw/lach/p13n/model/category/Category;)Z": "gWjrZHr",
+      "create(Ljava/lang/Object;Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)Lpw/lach/p13n/manager/render/gui/main/elements/GuiElementListUnit;": "gWjrZHr",
+      "getByCategoryFilterAndSort(Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;Lpw/lach/p13n/model/category/Category;Ljava/lang/String;Lpw/lach/p13n/manager/render/gui/main/SortBy;)Ljava/util/List;": "gWjrZHr",
+      "getAvailableElements()Ljava/util/Set;": "UlPizuc",
+      "canSee(Lpw/lach/p13n/model/Purchase;)Z": "gWjrZHr",
+      "splitWords(Lpw/lach/p13n/model/Purchase;)Ljava/util/Collection;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/shared/GuiPlayerView": {
+    "actual": "umuWupj",
+    "fields": {
+      "previewHandler": "gWjrZHr",
+      "captured": "UGCyIjZ",
+      "actionType": "PLiLXWW",
+      "capturedX": "TfioWgG",
+      "capturedY": "sphwQFm",
+      "rotX": "tQkObaw",
+      "rotY": "LZliQbX",
+      "preRotX": "CIvfrZq",
+      "preRotY": "TrGRsCy",
+      "zoom": "TUHMKtu"
+    },
+    "methods": {
+      "onMouseClick(III)V": "HnZskzl",
+      "onMouseReleased(III)V": "ptEwGeo",
+      "onMouseWheel(I)V": "dAeOVfW",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/easing/EasingEditor": {
+    "actual": "qltcugj",
+    "fields": {
+      "targetPosition": "BCmcrbn",
+      "targetRotation": "kPRmjRd",
+      "targetPlayerRotation": "LzYOZuP",
+      "targetDistance": "wdiywvp"
+    },
+    "methods": {
+      "getEditor(Ljava/util/function/Consumer;)Ljavax/swing/JComponent;": "gWjrZHr",
+      "lambda$getEditor$5(Ljava/awt/event/ActionEvent;)V": "gWjrZHr",
+      "lambda$getEditor$4(Ljava/awt/event/ActionEvent;)V": "kPRmjRd",
+      "lambda$getEditor$3(Ljavax/swing/JSlider;Ljava/util/function/Consumer;Ljavax/swing/event/ChangeEvent;)V": "gWjrZHr",
+      "lambda$getEditor$2(Ljava/lang/Void;)V": "gWjrZHr",
+      "lambda$getEditor$1(Ljava/lang/Void;)V": "kPRmjRd",
+      "lambda$getEditor$0(Ljava/lang/Void;)V": "LzYOZuP"
+    }
+  },
+  "net/diamondden/graffiti/prototype/GraffitiFrame": {
+    "actual": "kVHkUKE",
+    "fields": {
+      "texturePosX": "XrrdGXD",
+      "texturePosY": "IJWvlUE",
+      "width": "ptEwGeo",
+      "height": "DswtZYd",
+      "atlasId": "OVRJFJK"
+    },
+    "methods": {
+      "getTexturePosX()I": "rbNGnZf",
+      "getTexturePosY()I": "uyikWgD",
+      "getWidth()I": "getWidth",
+      "getHeight()I": "getHeight",
+      "getAtlasId()I": "DswtZYd"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiDropDownList$DropListElement": {
+    "actual": "mClgCrG",
+    "fields": {
+      "title": "LbzMTQY",
+      "handler": "SJseNMa"
+    },
+    "methods": {
+      "getTitle()Ljava/lang/String;": "xiOHUEZ",
+      "getHandler()Ljava/lang/Runnable;": "gWjrZHr",
+      "access$000(Lpw/lach/p13n/manager/render/gui/engine/GuiDropDownList$DropListElement;)Ljava/lang/Runnable;": "gWjrZHr"
+    }
+  },
+  "pw/lach/lookup/custom/structures/WrappedHashKey": {
+    "actual": "FhHJoZV",
+    "fields": {
+      "operator": "gWjrZHr",
+      "wrapped": "ptEwGeo"
+    },
+    "methods": {
+      "hashCode()I": "hashCode",
+      "equals(Ljava/lang/Object;)Z": "equals"
+    }
+  },
+  "pw/lach/p13n/manager/render/RenderManager$1": {
+    "actual": "XuShNtK",
+    "fields": {
+      "$SwitchMap$pw$lach$p13n$network$ModelKind": "UTySNiC",
+      "$SwitchMap$pw$lach$p13n$model$model$ModelType": "DhzDYzn"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/gui/main/bucket/P13nBucket": {
+    "actual": "uMmMkrH",
+    "fields": {},
+    "methods": {
+      "getIdsInBucket()Ljava/util/Set;": "HnZskzl",
+      "getTotalPrice()I": "xyOJqPL",
+      "getTotalDiscount(I)I": "PZpfLhk",
+      "getDiscount()Lpw/lach/p13n/manager/render/gui/main/DiscountInfo;": "gWjrZHr",
+      "remove(Ljava/util/UUID;)V": "MoiEanH",
+      "remove(Ljava/util/Collection;)V": "UjBIMNN",
+      "toggle(Ljava/util/UUID;)V": "nBvlYtT",
+      "isEmpty()Z": "isEmpty",
+      "inBucket(Ljava/util/UUID;)Z": "BCmcrbn",
+      "createBucketSection()Lpw/lach/p13n/manager/render/gui/main/section/WindowSection;": "kPRmjRd",
+      "getAddToElement(Lpw/lach/p13n/model/Purchase;)Lpw/lach/p13n/manager/render/gui/main/bucket/addto/AddToElement;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/util/UtilUI": {
+    "actual": "vScfonw",
+    "fields": {},
+    "methods": {
+      "drawGrid(IIIIIIIILpw/lach/p13n/util/UtilUI$GridCallback;)V": "gWjrZHr",
+      "formatPrice(ILjava/lang/Integer;)Ljava/lang/String;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/bucket/addto/AddToCartElement": {
+    "actual": "LIUsTKB",
+    "fields": {
+      "purchase": "gWjrZHr",
+      "addToCartButton": "gWjrZHr",
+      "action": "LzYOZuP"
+    },
+    "methods": {
+      "getPrice()I": "VkgMeck",
+      "getDiscountPrice()I": "LtxAdJQ",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "getAddToCartButton()Lpw/lach/p13n/manager/render/gui/main/elements/GuiAddToButton;": "gWjrZHr",
+      "lambda$new$1(Lpw/lach/p13n/model/Purchase;Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)V": "gWjrZHr",
+      "lambda$new$0(Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;Lpw/lach/p13n/model/Purchase;)Z": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/mixin_helpers/IMixinGameSettings": {
+    "actual": "poFclVa",
+    "fields": {},
+    "methods": {
+      "getKeyBindPersonalization()Lnet/minecraft/client/settings/KeyBinding;": "ZidqfbY"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketBalance": {
+    "actual": "GUWIkik",
+    "fields": {
+      "value": "value",
+      "vicoins": "COOWENM"
+    },
+    "methods": {
+      "getValue()I": "wWVPvdZ",
+      "getVicoins()I": "FAZyFzn"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiDropDownList": {
+    "actual": "qAobFgz",
+    "fields": {
+      "focused": "hvLGEBc",
+      "elementList": "Yozfwqn",
+      "selectedIndex": "LTpsZNY",
+      "singleHeight": "jlbdPCU"
+    },
+    "methods": {
+      "setSelectedIndex(I)V": "HJCxAfB",
+      "addElement(Lpw/lach/p13n/manager/render/gui/engine/GuiDropDownList$DropListElement;)V": "gWjrZHr",
+      "onMouseClick(III)V": "HnZskzl",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "drawElement(IIILpw/lach/p13n/manager/render/gui/engine/GuiDropDownList$DropListElement;)V": "gWjrZHr",
+      "isFocused()Z": "isFocused",
+      "getElementList()Ljava/util/List;": "ClushVo",
+      "getSelectedIndex()I": "XrSDzeY",
+      "getSingleHeight()I": "nWFwhEB"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/tails/ModelSharkTail": {
+    "actual": "wBujKtb",
+    "fields": {
+      "tailBase": "xRzyLjS",
+      "tail1": "AgzNGTM",
+      "tail2": "Qcwvmee",
+      "tail3": "IoCWgIq",
+      "finBase": "Pgitowh"
+    },
+    "methods": {
+      "setRotateAngle(Lnet/minecraft/client/model/ModelRenderer;FFF)V": "LzYOZuP",
+      "render(Lnet/minecraft/entity/EntityLivingBase;IF)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/model/model/Model$1": {
+    "actual": "biyPxeT",
+    "fields": {
+      "$SwitchMap$pw$lach$p13n$model$model$ModelType": "AgzNGTM"
+    },
+    "methods": {}
+  },
+  "pw/lach/repackage/ichunutil/common/module/tabula/project/components/CubeInfo": {
+    "actual": "ITqmVwG",
+    "fields": {
+      "name": "gWjrZHr",
+      "dimensions": "Qcwvmee",
+      "position": "WSVcWSq",
+      "offset": "xiOHUEZ",
+      "rotation": "wuMPZig",
+      "scale": "clRoAwN",
+      "txOffset": "IoCWgIq",
+      "txMirror": "cWrjdKG",
+      "mcScale": "xJwGNXw",
+      "opacity": "lmsQJNh",
+      "hidden": "PMHiasd",
+      "children": "clRoAwN",
+      "modelCube": "OyyHSor"
+    },
+    "methods": {
+      "createModel(Lnet/minecraft/client/model/ModelBase;)Lpw/lach/repackage/ichunutil/common/module/tabula/project/components/CubeInfo;": "gWjrZHr",
+      "createChildren(Lnet/minecraft/client/model/ModelBase;)V": "LzYOZuP",
+      "getChildren()Ljava/util/ArrayList;": "UjBIMNN"
+    }
+  },
+  "pw/lach/obj_parser/parser/obj/GroupParser": {
+    "actual": "pDjoMus",
+    "fields": {
+      "newGroup": "kPRmjRd"
+    },
+    "methods": {
+      "incoporateResults(Lpw/lach/obj_parser/WavefrontObject;)V": "gWjrZHr",
+      "parse()V": "gcnLPpq"
+    }
+  },
+  "pw/lach/p13n/render/data/ModelLocationRotation": {
+    "actual": "KDmNAFL",
+    "fields": {
+      "normal": "xZcGKMl",
+      "gui": "UjBIMNN"
+    },
+    "methods": {
+      "generateCode()Ljava/lang/String;": "ZidqfbY",
+      "getEditor(Ljava/util/function/Consumer;)Ljavax/swing/JComponent;": "gWjrZHr",
+      "glApply(Lpw/lach/p13n/render/data/RenderPlace;)V": "gWjrZHr",
+      "lambda$getEditor$0(Ljavax/swing/JTextArea;Ljava/lang/Void;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/obj_parser/parser/mtl/MaterialFileParser": {
+    "actual": "hkwCpmH",
+    "fields": {
+      "BUFFER": "XkTqykZ",
+      "object": "LzYOZuP",
+      "parserFactory": "gWjrZHr"
+    },
+    "methods": {
+      "incoporateResults(Lpw/lach/obj_parser/WavefrontObject;)V": "gWjrZHr",
+      "parse()V": "gcnLPpq"
+    }
+  },
+  "pw/lach/p13n/social/SocialP13nElement": {
+    "actual": "pOAMXnm",
+    "fields": {
+      "modelId": "xZcGKMl",
+      "meta": "LtxAdJQ"
+    },
+    "methods": {
+      "getModelId()Ljava/util/UUID;": "BCmcrbn",
+      "getMeta()Ljava/util/Map;": "xiOHUEZ"
+    }
+  },
+  "pw/lach/math/transform/ITransformation": {
+    "actual": "ssTYTOn",
+    "fields": {},
+    "methods": {
+      "applyTransformTo(Lpw/lach/math/vector/Vector3f;Lpw/lach/math/vector/Angle3f;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/synthetic/FlyingPetContext": {
+    "actual": "McUFsfr",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/exception/SilentP13nError": {
+    "actual": "mSIORAQ",
+    "fields": {
+      "payload": "kPRmjRd"
+    },
+    "methods": {
+      "fillInStackTrace()Ljava/lang/Throwable;": "fillInStackTrace",
+      "getPayload()Lcom/google/gson/JsonElement;": "FpCNmUX"
+    }
+  },
+  "pw/lach/obj_parser/LineParserFactory": {
+    "actual": "iklyaJK",
+    "fields": {
+      "SPACE_PATTERN": "sKgfXOA",
+      "TAB_PATTERN": "qlMRxBm",
+      "parsers": "qQQPuDt",
+      "object": "gWjrZHr"
+    },
+    "methods": {
+      "getLineParser(Ljava/lang/String;)Lpw/lach/obj_parser/parser/LineParser;": "gWjrZHr"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter": {
+    "actual": "MhiTQPB",
+    "fields": {},
+    "methods": {
+      "fromTechne(Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Rotation;)Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Rotation;": "UjBIMNN",
+      "toTechne(Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Rotation;)Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Rotation;": "SJseNMa"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/TimedElement": {
+    "actual": "yypTEpV",
+    "fields": {},
+    "methods": {
+      "isDie()Z": "dXtCaxQ"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC2Info$Linear": {
+    "actual": "kwJzAgf",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/util/UtilLoader": {
+    "actual": "pGZlsEm",
+    "fields": {},
+    "methods": {
+      "getStreamFromClassLoader(Ljava/lang/String;)Ljava/io/InputStream;": "gWjrZHr",
+      "getStreamFromResourceLocation(Lnet/minecraft/util/ResourceLocation;)Ljava/io/InputStream;": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/format/tabula/TabulaFormat": {
+    "actual": "rpCaudB",
+    "fields": {
+      "SKIP": "cTdqHIu"
+    },
+    "methods": {
+      "load(Ljava/io/InputStream;)Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/wheel/WheelElement": {
+    "actual": "sVVoCfH",
+    "fields": {},
+    "methods": {
+      "tick()V": "tick",
+      "render(I)V": "ZIGbFLr",
+      "onActive()V": "bBIHIxp",
+      "getType()Ljava/lang/String;": "getType",
+      "save(Lcom/google/gson/JsonObject;)V": "kPRmjRd",
+      "read(Lcom/google/gson/JsonObject;)V": "gWjrZHr",
+      "isInvalid()Z": "isInvalid",
+      "getDescription()Ljava/util/List;": "BCmcrbn"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketBuy": {
+    "actual": "ghivLqd",
+    "fields": {
+      "id": "HVivheQ",
+      "kind": "gWjrZHr",
+      "successfully": "WiXhNSK"
+    },
+    "methods": {
+      "getId()Ljava/util/UUID;": "getId",
+      "getKind()Lpw/lach/p13n/network/ModelKind;": "gWjrZHr",
+      "isSuccessfully()Z": "zEPOKRw",
+      "setSuccessfully(Z)V": "HjaaYnJ",
+      "equals(Ljava/lang/Object;)Z": "equals",
+      "canEqual(Ljava/lang/Object;)Z": "gWjrZHr",
+      "hashCode()I": "hashCode",
+      "toString()Ljava/lang/String;": "toString"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/category/EmotionCategoryController$1": {
+    "actual": "dIhEBYv",
+    "fields": {
+      "$SwitchMap$pw$lach$p13n$manager$render$gui$main$SortBy": "VzwKBts"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/stack/WrappingContext": {
+    "actual": "zGQxQSf",
+    "fields": {
+      "entity": "UlPizuc",
+      "uuid": "FHURYzE",
+      "renderPlace": "gWjrZHr"
+    },
+    "methods": {
+      "isSelf()Z": "rnHPRZG"
+    }
+  },
+  "pw/lach/promise/Promise": {
+    "actual": "mdTDbeQ",
+    "fields": {
+      "completableFuture": "kPRmjRd",
+      "parentPromise": "LzYOZuP",
+      "forkJoinPool": "gWjrZHr",
+      "timerService": "SJseNMa"
+    },
+    "methods": {
+      "timeout(JLjava/util/concurrent/TimeUnit;)Lpw/lach/promise/Promise;": "gWjrZHr",
+      "withTimeout(Lpw/lach/promise/Promise;JLjava/util/concurrent/TimeUnit;)Lpw/lach/promise/Promise;": "gWjrZHr",
+      "resolve(Ljava/lang/Object;)Lpw/lach/promise/Promise;": "gWjrZHr",
+      "reject(Ljava/lang/Throwable;)Lpw/lach/promise/Promise;": "gWjrZHr",
+      "thenPromise(Ljava/util/function/Function;)Lpw/lach/promise/Promise;": "gWjrZHr",
+      "then(Ljava/util/function/Function;)Lpw/lach/promise/Promise;": "kPRmjRd",
+      "thenConsume(Ljava/util/function/Consumer;)Lpw/lach/promise/Promise;": "gWjrZHr",
+      "catchThrowable(Ljava/util/function/Function;)Lpw/lach/promise/Promise;": "LzYOZuP",
+      "catchThrowable(Ljava/util/function/Consumer;)Lpw/lach/promise/Promise;": "kPRmjRd",
+      "all(Ljava/util/Collection;)Lpw/lach/promise/Promise;": "gWjrZHr",
+      "race(Ljava/util/Collection;)Lpw/lach/promise/Promise;": "kPRmjRd",
+      "toCompletableFuture(Ljava/lang/Object;)Ljava/util/concurrent/CompletableFuture;": "gWjrZHr",
+      "runSync()Ljava/lang/Object;": "kcVZOtm",
+      "runSync(J)Ljava/lang/Object;": "gWjrZHr",
+      "lambda$race$14(Ljava/util/concurrent/CompletableFuture;Ljava/util/function/Consumer;Ljava/util/function/Consumer;)V": "gWjrZHr",
+      "lambda$null$13(Ljava/util/function/Consumer;Ljava/util/function/Consumer;Ljava/lang/Object;Ljava/lang/Throwable;)V": "gWjrZHr",
+      "lambda$race$12(Lpw/lach/promise/Promise;)Ljava/util/concurrent/CompletableFuture;": "gWjrZHr",
+      "lambda$all$11(Ljava/util/Collection;Ljava/util/function/Consumer;Ljava/util/function/Consumer;)V": "gWjrZHr",
+      "lambda$catchThrowable$10(Ljava/util/function/Consumer;Ljava/lang/Object;Ljava/lang/Throwable;)Ljava/lang/Object;": "gWjrZHr",
+      "lambda$catchThrowable$9(Ljava/util/function/Function;Ljava/lang/Object;Ljava/lang/Throwable;)Ljava/lang/Object;": "gWjrZHr",
+      "lambda$thenConsume$8(Ljava/util/function/Consumer;Ljava/lang/Object;Ljava/lang/Throwable;)Ljava/lang/Object;": "kPRmjRd",
+      "lambda$then$7(Ljava/util/function/Function;Ljava/lang/Object;Ljava/lang/Throwable;)Ljava/lang/Object;": "kPRmjRd",
+      "lambda$new$6(Ljava/util/function/BiConsumer;[Z)V": "gWjrZHr",
+      "lambda$null$5([ZLjava/lang/Throwable;)V": "gWjrZHr",
+      "lambda$null$4([ZLjava/lang/Object;)V": "gWjrZHr",
+      "lambda$withTimeout$3(Ljava/lang/Void;)Lpw/lach/promise/Promise;": "gWjrZHr",
+      "lambda$null$2(Ljava/util/function/Consumer;Ljava/util/function/Consumer;)V": "gWjrZHr",
+      "lambda$timeout$1(JLjava/util/concurrent/TimeUnit;Ljava/util/function/Consumer;Ljava/util/function/Consumer;)V": "gWjrZHr",
+      "lambda$null$0(Ljava/util/function/Consumer;)V": "LzYOZuP"
+    }
+  },
+  "pw/lach/math/easing/util/UtilEase": {
+    "actual": "xgFAIZv",
+    "fields": {},
+    "methods": {
+      "loop(Lpw/lach/math/easing/data/IEasingFunction;D)Lpw/lach/math/easing/data/IEasingFunction;": "gWjrZHr",
+      "reverse(Lpw/lach/math/easing/data/IEasingFunction;)Lpw/lach/math/easing/data/IEasingFunction;": "gWjrZHr",
+      "linear(DDDD)D": "kPRmjRd",
+      "cubicEaseInOut(DDDD)D": "LzYOZuP",
+      "circEaseInOut(DDDD)D": "BCmcrbn",
+      "sineEaseOut(DDDD)D": "SJseNMa",
+      "byName(Ljava/lang/String;)Lpw/lach/math/easing/data/IEasingFunction;": "gWjrZHr",
+      "lambda$reverse$1(Lpw/lach/math/easing/data/IEasingFunction;DDDD)D": "gWjrZHr",
+      "lambda$loop$0(Lpw/lach/math/easing/data/IEasingFunction;DDDDD)D": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/network/service/PacketService": {
+    "actual": "ySZCguM",
+    "fields": {},
+    "methods": {
+      "getPacketId()Ljava/util/UUID;": "kcVZOtm",
+      "getErrorMessage()Ljava/lang/String;": "ALozbsv",
+      "getPayload()Lcom/google/gson/JsonElement;": "FpCNmUX"
+    }
+  },
+  "pw/lach/obj_parser/parser/obj/FaceParser": {
+    "actual": "enJtmmp",
+    "fields": {
+      "face": "gWjrZHr",
+      "vertices": "gWjrZHr",
+      "normals": "kPRmjRd",
+      "textures": "gWjrZHr",
+      "object": "gWjrZHr"
+    },
+    "methods": {
+      "parse()V": "gcnLPpq",
+      "parseTriangles()V": "QgiuXUU",
+      "parseLine(I)V": "vYpZhgv",
+      "parseQuad()V": "SgMwlPk",
+      "parsePolyFace(I)V": "opHSrgH",
+      "incoporateResults(Lpw/lach/obj_parser/WavefrontObject;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/math/gl/ICodeGeneratable": {
+    "actual": "ekrJsZV",
+    "fields": {},
+    "methods": {
+      "generateCode()Ljava/lang/String;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/render/IRenderer": {
+    "actual": "xaxYDgZ",
+    "fields": {},
+    "methods": {
+      "free()V": "HPAZDyb",
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/util/UtilUI$GridCallback": {
+    "actual": "BvNydEH",
+    "fields": {},
+    "methods": {
+      "drawGridItem(IIIII)V": "FpCNmUX"
+    }
+  },
+  "pw/lach/p13n/manager/render/synthetic/PetContext": {
+    "actual": "RVgzVvT",
+    "fields": {
+      "TIMEOUT": "DohsBSE",
+      "x": "gWjrZHr",
+      "y": "kPRmjRd",
+      "z": "LzYOZuP",
+      "yaw": "ndHfrmL",
+      "pitch": "HVivheQ",
+      "lastApplyTime": "ALozbsv"
+    },
+    "methods": {
+      "init(Lnet/minecraft/entity/Entity;)V": "uVbIQqE",
+      "set(DDD)V": "kPRmjRd",
+      "set(Lnet/minecraft/util/math/Vec3d;)V": "LzYOZuP",
+      "isDead()Z": "UoLPAwK",
+      "apply(Lnet/minecraft/entity/Entity;)V": "rOpQWhg",
+      "getLastApplyTime()J": "JAIESaY"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiElementModel": {
+    "actual": "sbqTeGg",
+    "fields": {
+      "OPTIONS_ICON": "iVDglFl",
+      "model": "kPRmjRd",
+      "cameraSetting": "gWjrZHr",
+      "haveOptions": "AzoKxVy",
+      "optionsFocused": "VYudwfM",
+      "options": "sLwhyeX",
+      "leftPositionButton": "BCmcrbn",
+      "rightPositionButton": "SJseNMa",
+      "yOffsetSlider": "gWjrZHr",
+      "descriptionSlider": "kPRmjRd",
+      "colorHsbSlider": "gWjrZHr",
+      "colorPalette": "gWjrZHr",
+      "texturePalette": "kPRmjRd",
+      "metaSkinTextureButtons": "Wzrwmgc",
+      "optionsButton": "LzYOZuP",
+      "serverVersion": "zsvQDDW",
+      "needReplaceGiftBy": "OipgYHX"
+    },
+    "methods": {
+      "loadSelfMeta()Lpw/lach/p13n/network/data/ModelMetadata;": "kPRmjRd",
+      "getDescription()Ljava/util/List;": "BCmcrbn",
+      "onClick(III)V": "WjCdIbC",
+      "parseFloat(Ljava/util/Map;Ljava/lang/String;F)F": "gWjrZHr",
+      "initDescription()Ljava/util/List;": "jTSZHwx",
+      "createSkinButton(Ljava/lang/String;)Lpw/lach/p13n/manager/render/gui/engine/GuiElementButton;": "gWjrZHr",
+      "createSideButton(Lpw/lach/p13n/network/data/ModelOptionsData;Ljava/lang/String;Ljava/lang/String;I)Lpw/lach/p13n/manager/render/gui/engine/GuiElementButton;": "gWjrZHr",
+      "onHover()V": "LJKHhsy",
+      "getType()Lpw/lach/p13n/manager/render/gui/main/type/P13nType;": "gWjrZHr",
+      "canBuy()Z": "fEUIdNn",
+      "getId()Ljava/util/UUID;": "getId",
+      "getUnit()Lpw/lach/p13n/model/Purchase;": "gWjrZHr",
+      "isPreview()Z": "WkUCkaD",
+      "canAddTo()Z": "CHYcWXY",
+      "onMouseClick(III)V": "HnZskzl",
+      "onMouseReleased(III)V": "ptEwGeo",
+      "getHoverColor(J)I": "LzYOZuP",
+      "renderUnit()V": "kjYCLnc",
+      "pastRender()V": "xJKUUJF",
+      "getModelId()Ljava/util/UUID;": "BCmcrbn",
+      "setCameraSetting(Lpw/lach/p13n/model/CameraSetting;)V": "gWjrZHr",
+      "getOptionsButton()Lpw/lach/p13n/manager/render/gui/engine/GuiElementImageButton;": "gWjrZHr",
+      "lambda$createSideButton$20(I)V": "HAZPuGG",
+      "lambda$null$19(ILpw/lach/p13n/network/data/ModelOptionsData;)V": "gWjrZHr",
+      "lambda$createSkinButton$18(Ljava/lang/String;)Ljava/util/List;": "FpCNmUX",
+      "lambda$createSkinButton$17(Ljava/lang/String;)V": "rOaRXtk",
+      "lambda$getDescription$16(Ljava/lang/String;)Ljava/lang/String;": "bPQZtow",
+      "lambda$getDescription$15(Lpw/lach/p13n/network/data/ModelMetadata;Ljava/lang/String;)Ljava/lang/String;": "gWjrZHr",
+      "lambda$new$14(Ljava/util/Map$Entry;)V": "gWjrZHr",
+      "lambda$new$13(I)V": "ZMqqQLm",
+      "lambda$null$12(ILpw/lach/p13n/network/data/ModelOptionsData;)V": "kPRmjRd",
+      "lambda$new$11()I": "FJZSFzX",
+      "lambda$new$10(Ljava/util/Map$Entry;)V": "kPRmjRd",
+      "lambda$new$9(I)V": "XgloDaF",
+      "lambda$null$8(ILpw/lach/p13n/network/data/ModelOptionsData;)V": "LzYOZuP",
+      "lambda$new$7()I": "BKnVYBJ",
+      "lambda$new$6()V": "pmQQxUB",
+      "lambda$null$5(Lpw/lach/p13n/network/data/ModelOptionsData;)V": "gWjrZHr",
+      "lambda$new$4()V": "KNZmrbo",
+      "lambda$null$3(Lpw/lach/p13n/network/data/ModelOptionsData;)V": "kPRmjRd",
+      "lambda$new$2()V": "MtzksaD",
+      "lambda$null$1(Lpw/lach/p13n/network/data/ModelOptionsData;)V": "LzYOZuP",
+      "lambda$new$0()V": "iXjgQka"
+    }
+  },
+  "pw/lach/p13n/manager/render/stack/RenderStackManager": {
+    "actual": "GspeJhf",
+    "fields": {
+      "renderManager": "BrGopGP",
+      "wrappingContextStack": "xZcGKMl"
+    },
+    "methods": {
+      "getCurrentWrappingContext()Lpw/lach/p13n/manager/render/stack/WrappingContext;": "gWjrZHr",
+      "wrap(Lnet/minecraft/entity/Entity;Lpw/lach/p13n/render/data/RenderPlace;Ljava/util/function/Consumer;F)V": "gWjrZHr",
+      "getRecursionDepth()I": "qGJGEco",
+      "lambda$wrap$4()Ljava/lang/String;": "euzCBJD",
+      "lambda$wrap$3()Ljava/lang/String;": "jWHwdAN",
+      "lambda$wrap$2()Ljava/lang/String;": "LOsaIMg",
+      "lambda$wrap$1()Ljava/lang/String;": "ZOAiKjy",
+      "lambda$wrap$0(Lpw/lach/p13n/manager/render/stack/WrappingContext;FLpw/lach/p13n/model/RenderStage;Lnet/minecraft/client/model/ModelRenderer;Lnet/minecraft/client/model/ModelRenderer;Lpw/lach/p13n/model/model/ModelType;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiWindow": {
+    "actual": "SAvROyL",
+    "fields": {
+      "guiElements": "bRqEOaC",
+      "hoveringText": "TzxQOGa",
+      "context": "kPRmjRd"
+    },
+    "methods": {
+      "onResize(Lnet/minecraft/client/Minecraft;II)V": "LzYOZuP",
+      "keyTyped(CI)V": "keyTyped",
+      "handleMouseInput()V": "handleMouseInput",
+      "mouseClicked(III)V": "mouseClicked",
+      "mouseClickMove(IIIJ)V": "mouseClickMove",
+      "mouseReleased(III)V": "mouseReleased",
+      "updateScreen()V": "dHIfRSy",
+      "setCompletions([Ljava/lang/String;)V": "setCompletions",
+      "drawScreen(IIF)V": "drawScreen",
+      "postDrawScreen()V": "tLsJgzg",
+      "lambda$postDrawScreen$0(Lpw/lach/p13n/manager/render/gui/engine/GuiElement;)Z": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiWindow$1": {
+    "actual": "EAdaKwv",
+    "fields": {
+      "this$0": "gWjrZHr"
+    },
+    "methods": {
+      "drawHoverText(Ljava/util/List;)V": "WjCdIbC"
+    }
+  },
+  "pw/lach/lookup/custom/operators/CustomCompare": {
+    "actual": "qZvreOP",
+    "fields": {},
+    "methods": {
+      "compare(Ljava/lang/Object;Ljava/lang/Object;)I": "compare"
+    }
+  },
+  "pw/lach/p13n/manager/DataStore$AnotherPlayer": {
+    "actual": "ZSaHVYK",
+    "fields": {
+      "models": "XxVKYNi",
+      "options": "sLwhyeX",
+      "metadata": "rOSqBna"
+    },
+    "methods": {
+      "updateMeta(Ljava/util/UUID;Lpw/lach/p13n/network/data/ModelMetadata;)Lpw/lach/p13n/network/data/ModelMetadata;": "gWjrZHr",
+      "removeMeta(Ljava/util/UUID;)V": "clRoAwN",
+      "getMetaOrEmpty(Ljava/util/UUID;)Lpw/lach/p13n/network/data/ModelMetadata;": "gWjrZHr",
+      "getOption(Ljava/util/UUID;)Lpw/lach/p13n/network/data/ModelOptionsData;": "BCmcrbn",
+      "getModels()Ljava/util/Set;": "FpCNmUX",
+      "getOptions()Ljava/util/Map;": "nmuYmMD",
+      "getMetadata()Ljava/util/Map;": "sLfACSd"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiElementEmotion": {
+    "actual": "oSCDLgV",
+    "fields": {
+      "emotion": "kPRmjRd",
+      "emotionPlayer": "kPRmjRd",
+      "focused": "hvLGEBc"
+    },
+    "methods": {
+      "getType()Lpw/lach/p13n/manager/render/gui/main/type/P13nType;": "gWjrZHr",
+      "onMouseClick(III)V": "HnZskzl",
+      "onClick(III)V": "WjCdIbC",
+      "keyTyped(CI)V": "keyTyped",
+      "canBuy()Z": "fEUIdNn",
+      "getId()Ljava/util/UUID;": "getId",
+      "getUnit()Lpw/lach/p13n/model/Purchase;": "gWjrZHr",
+      "onUpdate()V": "LzYOZuP",
+      "pastRender()V": "xJKUUJF",
+      "renderUnit()V": "kjYCLnc"
+    }
+  },
+  "pw/lach/obj_parser/parser/obj/TextureCooParser": {
+    "actual": "SEgpXwZ",
+    "fields": {},
+    "methods": {
+      "parse()V": "gcnLPpq",
+      "incoporateResults(Lpw/lach/obj_parser/WavefrontObject;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/social/GuiViewOnceSocialSet": {
+    "actual": "LqsJjFT",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/gui/main/bucket/addto/header/AbstractAddToHeaderElement": {
+    "actual": "uPcFwBp",
+    "fields": {},
+    "methods": {
+      "getCurrentHeader()Lpw/lach/p13n/manager/render/gui/main/bucket/addto/header/AbstractAddToHeaderElement$Header;": "gWjrZHr",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "drawHeader(Ljava/lang/String;I)I": "BrGopGP"
+    }
+  },
+  "net/diamondden/graffiti/network/GraffitiChannels": {
+    "actual": "QAJtUhi",
+    "fields": {
+      "SEND_CHANNEL": "aMNpdBH",
+      "UPDATE_GRAFFITI_CHANNEL": "KBtCDSg"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/network/data/GraffitiData": {
+    "actual": "CmsQofD",
+    "fields": {
+      "id": "UjBIMNN",
+      "left": "QUAMnUd",
+      "expire": "BCmcrbn"
+    },
+    "methods": {
+      "toString()Ljava/lang/String;": "toString",
+      "getId()Ljava/util/UUID;": "getId",
+      "getLeft()J": "ptEwGeo",
+      "getExpire()Ljava/time/Instant;": "BCmcrbn"
+    }
+  },
+  "net/diamondden/graffiti/GraffitiManager": {
+    "actual": "SgMwlPk",
+    "fields": {
+      "renderManger": "gWjrZHr",
+      "packetManager": "gWjrZHr",
+      "graffitiesInWorldMap": "VkgMeck",
+      "graffitiesInLoadList": "wWVPvdZ",
+      "previewGraffiti": "gWjrZHr",
+      "delayExpires": "kPRmjRd",
+      "lastGraffitiSend": "LzYOZuP",
+      "pressed": "WJMXEpy",
+      "errorMessageFromServer": "jTSZHwx"
+    },
+    "methods": {
+      "onClick(IZ)Z": "gWjrZHr",
+      "isDelayActive()Z": "fWHESNT",
+      "getCurrentOnDisplayMessage()Lnet/diamondden/graffiti/display/DisplayInfo;": "gWjrZHr",
+      "sendGraffiti()V": "LslvfLf",
+      "updateGraffiti(Lnet/diamondden/graffiti/prototype/GraffitiPrototype;)V": "gWjrZHr",
+      "resize(F)Z": "kPRmjRd",
+      "changeWorld()V": "UbMvdrX",
+      "resetGraffiti()V": "bdDDfOC",
+      "getGraffitiesByNearLocation(Lnet/minecraft/util/math/Vec3d;)Ljava/util/List;": "gWjrZHr",
+      "renderPass(IFJ)V": "gWjrZHr",
+      "getRenderManger()Lnet/diamondden/graffiti/render/GraffitiRenderManger;": "gWjrZHr",
+      "getPacketManager()Lnet/diamondden/graffiti/network/GraffitiNetworkManager;": "gWjrZHr",
+      "getGraffitiesInWorldMap()Ljava/util/Map;": "WSVcWSq",
+      "getGraffitiesInLoadList()Ljava/util/List;": "kcVZOtm",
+      "getPreviewGraffiti()Lnet/diamondden/graffiti/world/GraffitiInWorld;": "gWjrZHr",
+      "getDelayExpires()Ljava/time/Instant;": "kPRmjRd",
+      "getLastGraffitiSend()Ljava/time/Instant;": "LzYOZuP",
+      "isPressed()Z": "isPressed",
+      "getErrorMessageFromServer()Ljava/lang/String;": "WSVcWSq",
+      "lambda$sendGraffiti$1(Lnet/diamondden/graffiti/world/GraffitiInWorld;Ljava/util/UUID;Lcom/google/gson/JsonObject;Ljava/lang/Throwable;)V": "gWjrZHr",
+      "lambda$null$0(Ljava/lang/String;)V": "obWbjzA"
+    }
+  },
+  "pw/lach/p13n/manager/render/RenderManager": {
+    "actual": "umejeDp",
+    "fields": {
+      "HOT_UPDATE_TIMEOUT": "HWLfNdK",
+      "CAN_RETURN_TIMEOUT": "kfOmOAZ",
+      "graffitiManager": "gWjrZHr",
+      "instance": "SJseNMa",
+      "renderStackManager": "gWjrZHr",
+      "builtInRenderers": "gWjrZHr",
+      "dataStore": "gWjrZHr",
+      "hoveringOver": "pIaPPzl",
+      "metaResponseMap": "kKxzvLa",
+      "responseMap": "mIgnYou",
+      "giftToMap": "eedervX",
+      "playerTextureAwaitResponseMap": "HAZPuGG",
+      "currentP13nServerVersion": "TYoKHhD",
+      "balance": "qHuenKI",
+      "vicoins": "COOWENM",
+      "lastBalanceUpdateTime": "wCfIbsm",
+      "inventoryRender": "pKwfRhC",
+      "canReturnMap": "kcVZOtm",
+      "limitedOrdersMap": "MoiEanH",
+      "lastRequestLimitedOrdersTimestamp": "HiiEkUV",
+      "lastCanReturnSetTimestamp": "apeJvbC",
+      "hotElements": "wHRudfg",
+      "lastHotUpdateTimestamp": "hPkLrTu",
+      "priceCallback": "xZcGKMl",
+      "fastAccessCircle": "gWjrZHr",
+      "groupCallbackMap": "ZMqqQLm",
+      "ZERO_ID": "rOpQWhg",
+      "lastStarted": "gWjrZHr",
+      "considerIgnoreSwapX": "eUUAawb",
+      "syntheticRenderContextMap": "XgloDaF",
+      "profileMap": "ZIGbFLr"
+    },
+    "methods": {
+      "reloadFiniteData()V": "rRLKXZX",
+      "addHandlerWithCallbackMap(Ljava/lang/String;Ljava/lang/Class;Ljava/util/Map;)V": "gWjrZHr",
+      "setProfileIntoMeta(Ljava/util/UUID;Ljava/lang/String;Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;": "gWjrZHr",
+      "updateMeta(Ljava/util/UUID;Ljava/util/UUID;Lpw/lach/p13n/network/data/ModelMetadata;)V": "gWjrZHr",
+      "getMeta(Ljava/util/UUID;Ljava/util/UUID;)Lpw/lach/p13n/network/data/ModelMetadata;": "gWjrZHr",
+      "loadAndGetMetaSync(Ljava/util/UUID;Ljava/util/UUID;)Lpw/lach/p13n/network/data/ModelMetadata;": "kPRmjRd",
+      "saveGuide(I)V": "TADtxTw",
+      "getGuideProgress()I": "eTikxxl",
+      "requestDiscount(ILjava/util/function/Consumer;)V": "gWjrZHr",
+      "requestLimitedOrders()V": "JWmotkg",
+      "requestBalance(Z)V": "GNFqVqL",
+      "requestCanReturn()V": "nNqwuyw",
+      "requestHot()V": "QAJtUhi",
+      "loadTexture(Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;": "BCmcrbn",
+      "groupRequests(Ljava/lang/String;Ljava/util/function/Supplier;)Ljava/util/concurrent/CompletableFuture;": "gWjrZHr",
+      "loadMetadata(Ljava/util/UUID;Ljava/util/UUID;Z)Ljava/util/concurrent/CompletableFuture;": "gWjrZHr",
+      "registerAwaitResponse(Ljava/util/UUID;Ljava/util/Map;)Ljava/util/concurrent/CompletableFuture;": "gWjrZHr",
+      "removeInvalidOptions(Ljava/util/Map;)V": "xiOHUEZ",
+      "getMyOptionsOrNull(Ljava/util/UUID;)Lpw/lach/p13n/network/data/ModelOptionsData;": "gWjrZHr",
+      "getMyOptionsOrEmpty(Ljava/util/UUID;)Lpw/lach/p13n/network/data/ModelOptionsData;": "kPRmjRd",
+      "changeProfile(Ljava/util/Set;I)V": "gWjrZHr",
+      "cloneOptions(Ljava/util/Map;)Ljava/util/Map;": "kPRmjRd",
+      "giveModels(Ljava/util/List;)V": "HnZskzl",
+      "sendBigCommand(Ljava/lang/Class;Ljava/util/concurrent/CompletableFuture;Ljava/lang/String;Ljava/util/UUID;Ljava/util/List;)V": "gWjrZHr",
+      "sendCommand(Ljava/lang/String;)V": "KBtCDSg",
+      "addResponseAwait(Ljava/util/concurrent/CompletableFuture;Ljava/util/UUID;Ljava/lang/Class;)V": "gWjrZHr",
+      "serverChunkBuy(Ljava/lang/Class;Ljava/util/concurrent/CompletableFuture;Ljava/util/UUID;Ljava/util/List;)V": "gWjrZHr",
+      "bulkBuy(Ljava/util/UUID;Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)Ljava/util/concurrent/CompletableFuture;": "gWjrZHr",
+      "isMyself(Ljava/util/UUID;)Z": "kPRmjRd",
+      "serverReturn(Ljava/lang/Class;Ljava/util/concurrent/CompletableFuture;Ljava/util/List;)V": "gWjrZHr",
+      "bulkReturn(Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)Ljava/util/concurrent/CompletableFuture;": "gWjrZHr",
+      "writeUuid(Ljava/io/DataOutputStream;Ljava/util/UUID;)V": "gWjrZHr",
+      "conflictResolution(Ljava/util/Set;Ljava/util/Map;Ljava/util/UUID;)V": "gWjrZHr",
+      "prepareConflictGroups(Lpw/lach/p13n/model/model/Model;Lpw/lach/p13n/network/data/ModelOptionsData;)Ljava/util/Set;": "gWjrZHr",
+      "enableEmotionForWhile(Ljava/util/UUID;I)V": "gWjrZHr",
+      "enableEmotion(Lnet/minecraft/entity/player/EntityPlayer;Ljava/util/UUID;Ljava/lang/String;Z)Z": "gWjrZHr",
+      "disableEmotion(Lnet/minecraft/entity/player/EntityPlayer;Ljava/util/UUID;)Z": "gWjrZHr",
+      "sendEmotionStart(Lpw/lach/p13n/model/emotion/Emotion;)V": "gWjrZHr",
+      "handleServerPlayers(Lpw/lach/p13n/network/client/PacketServerPlayers;)V": "gWjrZHr",
+      "changeEnabledModels(Ljava/util/Collection;Ljava/util/Map;)V": "gWjrZHr",
+      "enable(Ljava/util/UUID;)V": "FpCNmUX",
+      "disable(Ljava/util/UUID;)V": "obWbjzA",
+      "updateSettingsManager()V": "gYRWswO",
+      "getKindById(Ljava/util/UUID;)Lpw/lach/p13n/network/ModelKind;": "gWjrZHr",
+      "buy(Lpw/lach/p13n/network/ModelKind;Ljava/util/UUID;)V": "gWjrZHr",
+      "onRender(Lpw/lach/p13n/model/RenderStage;Lpw/lach/p13n/manager/render/stack/WrappingContext;Lnet/minecraft/client/model/ModelRenderer;Lnet/minecraft/client/model/ModelRenderer;Lpw/lach/p13n/model/model/ModelType;F)V": "gWjrZHr",
+      "applySyntheticPhysic(Lnet/minecraft/entity/Entity;Lpw/lach/p13n/model/model/Model;)V": "gWjrZHr",
+      "createPetContext(Lpw/lach/p13n/model/model/Model;)Lpw/lach/p13n/manager/render/synthetic/PetContext;": "gWjrZHr",
+      "applyMirror(Lpw/lach/p13n/model/model/Model;Lpw/lach/p13n/model/model/ModelType;Lpw/lach/p13n/model/model/ModelType;Lpw/lach/math/EasyTransform;)Lpw/lach/p13n/model/model/ModelType;": "gWjrZHr",
+      "hidePlayerRenderIfNeed(Lnet/minecraft/client/model/ModelRenderer;Lnet/minecraft/client/model/ModelRenderer;Lpw/lach/p13n/model/model/Model;Lpw/lach/p13n/model/model/ModelType;)V": "gWjrZHr",
+      "isNeedHide(Lpw/lach/p13n/model/model/Model;Lnet/minecraft/entity/Entity;Lpw/lach/p13n/model/model/ModelType;)Z": "gWjrZHr",
+      "applyYAnimation(Lpw/lach/p13n/model/model/Model;)V": "gWjrZHr",
+      "applyModelLight()V": "pzMSanw",
+      "applyOffsetY(Lpw/lach/p13n/network/data/ModelOptionsData;Lpw/lach/p13n/model/model/Model;)V": "gWjrZHr",
+      "applySwap(Lpw/lach/p13n/model/model/Model;Lpw/lach/p13n/model/model/ModelType;Lpw/lach/math/EasyTransform;Lpw/lach/p13n/network/data/ModelOptionsData;)Lpw/lach/p13n/model/model/ModelType;": "gWjrZHr",
+      "getRawTextureData(Lpw/lach/p13n/model/model/Model;Lpw/lach/p13n/network/data/ModelOptionsData;)Ljava/lang/String;": "gWjrZHr",
+      "applyOptions(Lpw/lach/p13n/model/model/Model;Lpw/lach/p13n/network/data/ModelOptionsData;)V": "gWjrZHr",
+      "applyDescriptionRender(Lpw/lach/p13n/network/data/ModelOptionsData;Lpw/lach/p13n/model/model/Model;)V": "kPRmjRd",
+      "applyTexture(Lpw/lach/p13n/network/data/ModelOptionsData;Lpw/lach/p13n/model/model/Model;)V": "LzYOZuP",
+      "applyColor(Lpw/lach/p13n/network/data/ModelOptionsData;Lpw/lach/p13n/model/model/Model;)V": "BCmcrbn",
+      "applyColorArgb(Lpw/lach/p13n/network/data/ModelOptionsData;Lpw/lach/p13n/model/model/Model;)V": "SJseNMa",
+      "applyRainbowColor(Lpw/lach/p13n/model/model/Model;)V": "kPRmjRd",
+      "applyMirrorSwap(Ljava/util/Collection;Lpw/lach/math/EasyTransform;I)V": "gWjrZHr",
+      "applyMirrorSwap(Ljava/lang/String;Lpw/lach/math/vector/Vector3f;Lpw/lach/math/vector/Angle3f;Lpw/lach/math/vector/Vector3f;I)V": "gWjrZHr",
+      "parseFloat(Ljava/util/Map;Ljava/lang/String;F)F": "gWjrZHr",
+      "update(Lpw/lach/math/vector/ThreeFields3f;II)V": "gWjrZHr",
+      "fromTextureProfileToGameProfile(Lpw/lach/p13n/network/data/TexturePlayerProfile;)Lcom/mojang/authlib/GameProfile;": "gWjrZHr",
+      "getCachedTexture(Ljava/util/UUID;)Lcom/mojang/authlib/GameProfile;": "gWjrZHr",
+      "loadTextureById(Ljava/util/UUID;)Ljava/util/concurrent/CompletableFuture;": "gWjrZHr",
+      "utcTimeInMs()J": "uyikWgD",
+      "getGraffitiManager()Lnet/diamondden/graffiti/GraffitiManager;": "gWjrZHr",
+      "getHoveringOver()Ljava/util/Set;": "vmAlWfp",
+      "getCurrentP13nServerVersion()I": "VOFCHgi",
+      "getBalance()I": "NKHRdke",
+      "getVicoins()I": "FAZyFzn",
+      "getFastAccessCircle()Lpw/lach/p13n/manager/render/wheel/FastAccessWheel;": "gWjrZHr",
+      "lambda$loadTextureById$39(Ljava/util/UUID;)Ljava/util/concurrent/CompletableFuture;": "kPRmjRd",
+      "lambda$null$38(Ljava/util/UUID;Lpw/lach/p13n/network/service/PacketPlayerTexture;)Lcom/mojang/authlib/GameProfile;": "gWjrZHr",
+      "lambda$applySyntheticPhysic$37(Lpw/lach/p13n/model/model/Model;Ljava/lang/String;)Lpw/lach/p13n/manager/render/synthetic/PetContext;": "gWjrZHr",
+      "lambda$enable$36(Lpw/lach/p13n/model/model/Model;)Ljava/util/UUID;": "gWjrZHr",
+      "lambda$enable$35(Ljava/util/Set;Lpw/lach/p13n/model/model/Model;)Z": "gWjrZHr",
+      "lambda$null$34(Lpw/lach/p13n/model/model/Model;Ljava/lang/String;)Z": "gWjrZHr",
+      "lambda$enable$33(Ljava/util/UUID;)Lpw/lach/p13n/model/model/Model;": "gWjrZHr",
+      "lambda$enableEmotionForWhile$32(Lmchorse/emoticons/common/EmotionPlayer;Lpw/lach/p13n/model/emotion/Emotion;Lnet/minecraft/client/entity/EntityPlayerSP;)V": "gWjrZHr",
+      "lambda$null$31(Lmchorse/emoticons/common/EmotionPlayer;Lpw/lach/p13n/model/emotion/Emotion;Lnet/minecraft/client/entity/EntityPlayerSP;)V": "kPRmjRd",
+      "lambda$conflictResolution$30(Ljava/util/Map;Ljava/util/Map;Lpw/lach/p13n/model/model/Model;Ljava/util/Set;Ljava/util/UUID;)Z": "gWjrZHr",
+      "lambda$bulkReturn$29(Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;Lpw/lach/p13n/manager/render/RenderManager$ReturnResponse;)Lpw/lach/p13n/manager/render/gui/main/section/SendResponse;": "gWjrZHr",
+      "lambda$bulkBuy$28(Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;Ljava/util/UUID;Lpw/lach/p13n/manager/render/RenderManager$BulkBuyResponse;)Lpw/lach/p13n/manager/render/gui/main/section/SendResponse;": "gWjrZHr",
+      "lambda$addResponseAwait$27(Ljava/util/concurrent/CompletableFuture;Ljava/lang/Class;Lpw/lach/p13n/network/client/PacketResponse;Ljava/lang/Throwable;)V": "gWjrZHr",
+      "lambda$changeProfile$26(Ljava/lang/Integer;)Lpw/lach/p13n/manager/settings/PersonalizationSettings$P13nProfile;": "gWjrZHr",
+      "lambda$changeProfile$25(Ljava/util/UUID;)Z": "LzYOZuP",
+      "lambda$removeInvalidOptions$24(Ljava/util/Map$Entry;)Z": "kPRmjRd",
+      "lambda$registerAwaitResponse$23(Ljava/util/Map;Ljava/util/UUID;Ljava/util/concurrent/CompletableFuture;)V": "gWjrZHr",
+      "lambda$registerAwaitResponse$22(Ljava/util/concurrent/CompletableFuture;Lpw/lach/p13n/network/service/PacketService;)V": "gWjrZHr",
+      "lambda$loadMetadata$21(Lpw/lach/p13n/manager/DataStore$AnotherPlayer;Ljava/util/UUID;Ljava/util/UUID;)Ljava/util/concurrent/CompletableFuture;": "gWjrZHr",
+      "lambda$null$20(Lpw/lach/p13n/manager/DataStore$AnotherPlayer;Ljava/util/UUID;Ljava/lang/Throwable;)Lpw/lach/p13n/network/data/ModelMetadata;": "gWjrZHr",
+      "lambda$null$19(Lpw/lach/p13n/manager/DataStore$AnotherPlayer;Ljava/util/UUID;Lpw/lach/p13n/network/service/PacketModelMeta;)Lpw/lach/p13n/network/data/ModelMetadata;": "gWjrZHr",
+      "lambda$groupRequests$18(Ljava/util/function/Supplier;Ljava/lang/String;Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;": "gWjrZHr",
+      "lambda$null$17(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Throwable;)V": "gWjrZHr",
+      "lambda$addHandlerWithCallbackMap$16(Ljava/util/Map;Lpw/lach/p13n/network/service/PacketService;)V": "gWjrZHr",
+      "lambda$new$15(Ljava/lang/String;)V": "IllpRWU",
+      "lambda$new$14(Lpw/lach/p13n/network/client/PacketPrice;)V": "gWjrZHr",
+      "lambda$new$13(Lpw/lach/p13n/network/client/PacketHot;)V": "gWjrZHr",
+      "lambda$new$12(Ljava/lang/String;)V": "ZRkihXc",
+      "lambda$new$11(Ljava/lang/String;)V": "JrzlipW",
+      "lambda$new$10(Lpw/lach/p13n/network/client/PacketBalance;)V": "gWjrZHr",
+      "lambda$new$9(Lpw/lach/p13n/network/client/PacketEmotionAction;)V": "gWjrZHr",
+      "lambda$new$8(Lpw/lach/p13n/network/client/PacketFetchNew;)V": "gWjrZHr",
+      "lambda$new$7(Lpw/lach/p13n/network/client/PacketResendAllEnabledModelsRequest;)V": "gWjrZHr",
+      "lambda$new$6(Lpw/lach/p13n/network/client/PacketEnableDisableModels;)V": "gWjrZHr",
+      "lambda$new$5(Lpw/lach/p13n/network/client/PacketBuy;)V": "gWjrZHr",
+      "lambda$new$4(Lpw/lach/p13n/network/client/PacketAvailableList;)V": "gWjrZHr",
+      "lambda$new$3(Ljava/lang/String;)V": "NoAttNn",
+      "lambda$new$2()V": "MtzksaD",
+      "lambda$null$1()V": "GmFhrqC",
+      "lambda$new$0(Lcom/google/gson/GsonBuilder;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/util/UtilZIP": {
+    "actual": "ekqvZzM",
+    "fields": {},
+    "methods": {
+      "unpackZipToMemory(Ljava/io/InputStream;)Lpw/lach/promise/Promise;": "gWjrZHr",
+      "lambda$unpackZipToMemory$0(Ljava/io/InputStream;Ljava/util/function/Consumer;Ljava/util/function/Consumer;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/network/data/TexturePlayerProfile": {
+    "actual": "LRhvHsl",
+    "fields": {
+      "uuid": "FHURYzE",
+      "username": "KABNtKu",
+      "textures": "BCmcrbn"
+    },
+    "methods": {
+      "toString()Ljava/lang/String;": "toString",
+      "getUuid()Ljava/util/UUID;": "nBvlYtT",
+      "getUsername()Ljava/lang/String;": "hWvdwSr",
+      "getTextures()Ljava/util/Map;": "wWVPvdZ"
+    }
+  },
+  "pw/lach/math/easing/Easer": {
+    "actual": "DpIZIGX",
+    "fields": {
+      "onDone": "BCmcrbn",
+      "easingFunction": "gWjrZHr",
+      "d": "sLwhyeX",
+      "startedAt": "dQPtzUM",
+      "resetFlag": "oytgfYv"
+    },
+    "methods": {
+      "reset()V": "reset",
+      "resetFlagEnable()V": "vyWmvNT",
+      "ease(Lpw/lach/math/EasyTransform;Lpw/lach/math/EasyTransform;Z)Lpw/lach/math/EasyTransform;": "gWjrZHr",
+      "ease(Lpw/lach/math/EasyTransform;Lpw/lach/math/EasyTransform;Lpw/lach/math/EasyTransform;Z)V": "gWjrZHr",
+      "ease(Lpw/lach/math/EasyTransform;Lpw/lach/math/EasyTransform;)Lpw/lach/math/EasyTransform;": "gWjrZHr",
+      "ease(Lpw/lach/math/EasyTransform;Lpw/lach/math/EasyTransform;Lpw/lach/math/EasyTransform;)V": "gWjrZHr",
+      "ease(Lpw/lach/math/vector/Angle3f;Lpw/lach/math/vector/Angle3f;Z)Lpw/lach/math/vector/Angle3f;": "gWjrZHr",
+      "ease(Lpw/lach/math/vector/Angle3f;Lpw/lach/math/vector/Angle3f;Lpw/lach/math/vector/Angle3f;Z)V": "gWjrZHr",
+      "ease(Lpw/lach/math/vector/Angle3f;Lpw/lach/math/vector/Angle3f;)Lpw/lach/math/vector/Angle3f;": "gWjrZHr",
+      "ease(Lpw/lach/math/vector/Angle3f;Lpw/lach/math/vector/Angle3f;Lpw/lach/math/vector/Angle3f;)V": "gWjrZHr",
+      "ease(Lpw/lach/math/vector/Vector3f;Lpw/lach/math/vector/Vector3f;Z)Lpw/lach/math/vector/Vector3f;": "gWjrZHr",
+      "ease(Lpw/lach/math/vector/Vector3f;Lpw/lach/math/vector/Vector3f;Lpw/lach/math/vector/Vector3f;Z)V": "gWjrZHr",
+      "ease(Lpw/lach/math/vector/Vector3f;Lpw/lach/math/vector/Vector3f;)Lpw/lach/math/vector/Vector3f;": "gWjrZHr",
+      "ease(Lpw/lach/math/vector/Vector3f;Lpw/lach/math/vector/Vector3f;Lpw/lach/math/vector/Vector3f;)V": "gWjrZHr",
+      "ease(FFZ)F": "gWjrZHr",
+      "ease(DDZ)D": "gWjrZHr",
+      "ease(FF)F": "BrGopGP",
+      "runDoneCallback()V": "xMPtYdQ",
+      "ease(DD)D": "obWbjzA",
+      "isFinished()Z": "ZTgyZNY"
+    }
+  },
+  "pw/lach/obj_parser/parser/obj/MaterialParser": {
+    "actual": "GAwvgXV",
+    "fields": {
+      "materialName": "dVRXGJN"
+    },
+    "methods": {
+      "parse()V": "gcnLPpq",
+      "incoporateResults(Lpw/lach/obj_parser/WavefrontObject;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketBulkBuy": {
+    "actual": "AxoRCca",
+    "fields": {
+      "packetId": "cFbmYDU",
+      "units": "eSdZBor",
+      "targetId": "Jbqngxu"
+    },
+    "methods": {
+      "getPacketId()Ljava/util/UUID;": "kcVZOtm",
+      "getUnits()Ljava/util/List;": "NoAttNn",
+      "getTargetId()Ljava/util/UUID;": "MoiEanH",
+      "setUnits(Ljava/util/List;)V": "eNyELuG",
+      "equals(Ljava/lang/Object;)Z": "equals",
+      "canEqual(Ljava/lang/Object;)Z": "gWjrZHr",
+      "hashCode()I": "hashCode",
+      "toString()Ljava/lang/String;": "toString"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/bucket/P13nReturnBucket": {
+    "actual": "CwTjodw",
+    "fields": {
+      "RETURN_PERCENT": "fknxksK"
+    },
+    "methods": {
+      "onElementChange()V": "yGaboKt",
+      "getTotalPrice()I": "xyOJqPL",
+      "getAddToElement(Lpw/lach/p13n/model/Purchase;)Lpw/lach/p13n/manager/render/gui/main/bucket/addto/AddToElement;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiElementImageButton": {
+    "actual": "IwSiraP",
+    "fields": {
+      "location": "xQLdsTd",
+      "textureWidth": "albYKTB",
+      "textureHeight": "MBcpJuV",
+      "activeSupplier": "gWjrZHr",
+      "unHoverDimensions": "gWjrZHr",
+      "hoverDimensions": "kPRmjRd",
+      "unHoverActiveDimensions": "LzYOZuP",
+      "hoverActiveDimensions": "BCmcrbn"
+    },
+    "methods": {
+      "setActiveHandler(Ljava/util/function/BooleanSupplier;)V": "gWjrZHr",
+      "isActive()Z": "GHfuYhT",
+      "setDimensions(Lpw/lach/p13n/image/ImageDimensions;Lpw/lach/p13n/image/ImageDimensions;Lpw/lach/p13n/image/ImageDimensions;Lpw/lach/p13n/image/ImageDimensions;)V": "gWjrZHr",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "setActiveSupplier(Ljava/util/function/BooleanSupplier;)V": "kPRmjRd",
+      "setUnHoverDimensions(Lpw/lach/p13n/image/ImageDimensions;)V": "gWjrZHr",
+      "setHoverDimensions(Lpw/lach/p13n/image/ImageDimensions;)V": "kPRmjRd",
+      "setUnHoverActiveDimensions(Lpw/lach/p13n/image/ImageDimensions;)V": "LzYOZuP",
+      "setHoverActiveDimensions(Lpw/lach/p13n/image/ImageDimensions;)V": "BCmcrbn"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiElementCategoryButton": {
+    "actual": "LTfRfBT",
+    "fields": {
+      "ICONS": "YiTubgM",
+      "iconPosition": "SFvrqvq",
+      "isSelect": "LzYOZuP",
+      "selectTimestampMs": "ZOAiKjy"
+    },
+    "methods": {
+      "onClick(III)V": "WjCdIbC",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/obj_parser/Material": {
+    "actual": "PAkfwez",
+    "fields": {
+      "texName": "PBWGSCv",
+      "texture": "gWjrZHr",
+      "name": "kSKuDAS"
+    },
+    "methods": {
+      "useMaterial()V": "UKGDEQO",
+      "setTexture(Lpw/lach/obj_parser/Texture;)V": "gWjrZHr",
+      "getTexture()Lpw/lach/obj_parser/Texture;": "gWjrZHr",
+      "getName()Ljava/lang/String;": "getName"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/section/ReturnWindowSection": {
+    "actual": "LtztcNp",
+    "fields": {},
+    "methods": {
+      "send()Ljava/util/concurrent/CompletableFuture;": "SJseNMa",
+      "getTitle(I)Ljava/lang/String;": "WSVcWSq",
+      "getButtonText(II)Ljava/util/List;": "gWjrZHr"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC1Json$Animation": {
+    "actual": "gMbqdIk",
+    "fields": {
+      "AnimationAngles": "yeUaxwt",
+      "AnimationDuration": "bTEjLeu",
+      "AnimationType": "gVlxCTz",
+      "this$0": "gWjrZHr"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/builtin/renderers/MiniMeRenderer$1": {
+    "actual": "hxLuQOK",
+    "fields": {
+      "$SwitchMap$pw$lach$p13n$render$data$RenderPlace": "iVDglFl"
+    },
+    "methods": {}
+  },
+  "pw/lach/obj_parser/parser/obj/VertexParser": {
+    "actual": "LtebAGL",
+    "fields": {},
+    "methods": {
+      "parse()V": "gcnLPpq",
+      "incoporateResults(Lpw/lach/obj_parser/WavefrontObject;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/common/ModelPartBaseRenderer": {
+    "actual": "muQUEIw",
+    "fields": {
+      "resourceLocation": "UjKiIsE",
+      "modelBase": "gWjrZHr"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC1Json$Group": {
+    "actual": "XqNqQgT",
+    "fields": {
+      "Shape": "gWjrZHr",
+      "Folder": "gWjrZHr",
+      "this$0": "kPRmjRd"
+    },
+    "methods": {}
+  },
+  "net/diamondden/bedrock/format/BedrockWrapper": {
+    "actual": "cEsOwMn",
+    "fields": {
+      "bedrockRender": "gWjrZHr"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "free()V": "HPAZDyb",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/common/SafeRenderer": {
+    "actual": "PBkTLqW",
+    "fields": {
+      "internal": "AXDiYYW"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/SkyGrid": {
+    "actual": "lScqvop",
+    "fields": {
+      "cup": "kPRmjRd",
+      "blocks": "LzYOZuP"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/section/AbstractBucketWindowSection$ProgressBuyState": {
+    "actual": "kACTWaO",
+    "fields": {},
+    "methods": {
+      "isEnd(J)Z": "kPRmjRd",
+      "getOffsetY(J)I": "BCmcrbn"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/action/P13nActionBuy$1": {
+    "actual": "iIpXdMB",
+    "fields": {
+      "val$finalNetworkPlayerInfo": "UjBIMNN",
+      "this$0": "gWjrZHr"
+    },
+    "methods": {
+      "isSpectator()Z": "isSpectator",
+      "isCreative()Z": "isCreative",
+      "getPlayerInfo()Lnet/minecraft/client/network/NetworkPlayerInfo;": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/MiniMeRenderer": {
+    "actual": "AiQlFwO",
+    "fields": {
+      "renderManager": "kPRmjRd",
+      "renderPlayer": "BCmcrbn"
+    },
+    "methods": {
+      "getNeededRecursionLimit(Lpw/lach/p13n/manager/render/stack/WrappingContext;)I": "gWjrZHr",
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "lambda$render$0(Lpw/lach/p13n/manager/render/stack/WrappingContext;FLpw/lach/p13n/util/function/RenderConsumer;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/obj_parser/Group": {
+    "actual": "zmChyvy",
+    "fields": {
+      "indices": "kPRmjRd",
+      "vertices": "LzYOZuP",
+      "normals": "BCmcrbn",
+      "texcoords": "SJseNMa",
+      "indexCount": "aAmflNz",
+      "name": "rkjYKNZ",
+      "min": "gWjrZHr",
+      "material": "gWjrZHr",
+      "faces": "xZcGKMl"
+    },
+    "methods": {
+      "addFace(Lpw/lach/obj_parser/Face;)V": "gWjrZHr",
+      "pack()V": "OTnDZYp",
+      "getName()Ljava/lang/String;": "getName",
+      "getMaterial()Lpw/lach/obj_parser/Material;": "gWjrZHr",
+      "setMaterial(Lpw/lach/obj_parser/Material;)V": "gWjrZHr",
+      "getFaces()Ljava/util/ArrayList;": "kPRmjRd",
+      "getMin()Lpw/lach/obj_parser/Vertex;": "gWjrZHr"
+    }
+  },
+  "net/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureContext": {
+    "actual": "BsPPIrw",
+    "fields": {
+      "playerId": "SJseNMa",
+      "modelId": "xZcGKMl",
+      "textureLocation": "xZcGKMl",
+      "state": "gWjrZHr",
+      "metadata": "gWjrZHr",
+      "lastUpdated": "VkgMeck"
+    },
+    "methods": {
+      "getPlayerId()Ljava/util/UUID;": "LzYOZuP",
+      "getModelId()Ljava/util/UUID;": "BCmcrbn",
+      "getTextureLocation()Lnet/minecraft/util/ResourceLocation;": "FpCNmUX",
+      "getState()Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureState;": "gWjrZHr",
+      "getMetadata()Lpw/lach/p13n/network/data/ModelMetadata;": "gWjrZHr",
+      "getLastUpdated()J": "xZcGKMl",
+      "setTextureLocation(Lnet/minecraft/util/ResourceLocation;)V": "BCmcrbn",
+      "setState(Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureState;)V": "gWjrZHr",
+      "setMetadata(Lpw/lach/p13n/network/data/ModelMetadata;)V": "gWjrZHr",
+      "setLastUpdated(J)V": "xZcGKMl"
+    }
+  },
+  "pw/lach/p13n/social/SocialUserProfile": {
+    "actual": "RIyXKtL",
+    "fields": {
+      "profile": "gWjrZHr",
+      "actualSet": "AtdMSYF",
+      "likes": "WwJeaou",
+      "dislikes": "oeiiHIX",
+      "views": "vYpZhgv",
+      "description": "dHIfRSy",
+      "p13nSetList": "TXNxOtr",
+      "clientPlayer": "BCmcrbn"
+    },
+    "methods": {
+      "getProfile()Lcom/mojang/authlib/GameProfile;": "kPRmjRd",
+      "getActualSet()Ljava/util/List;": "oYYSyxC",
+      "getLikes()J": "SpewARj",
+      "getDislikes()J": "SQsQYjb",
+      "getViews()J": "wEIbAWV",
+      "getDescription()Ljava/lang/String;": "getDescription",
+      "getP13nSetList()Ljava/util/List;": "rOaRXtk",
+      "getClientPlayer()Lnet/minecraft/client/entity/AbstractClientPlayer;": "kPRmjRd",
+      "setClientPlayer(Lnet/minecraft/client/entity/AbstractClientPlayer;)V": "BCmcrbn"
+    }
+  },
+  "pw/lach/p13n/model/emotion/EmotionDescription": {
+    "actual": "ISQDQOu",
+    "fields": {
+      "categoryId": "OwWrtAF",
+      "uuid": "FHURYzE",
+      "contributor": "IllpRWU",
+      "name": "gWjrZHr",
+      "availableInGui": "OVRJFJK",
+      "price": "uBeALfB",
+      "discountPrice": "FpCNmUX",
+      "source": "bSfohrH",
+      "sourcePath": "xychTiq",
+      "lore": "DswtZYd",
+      "isLimited": "KNZmrbo",
+      "limit": "lsfOfqA",
+      "expire": "BCmcrbn",
+      "priority": "xZcGKMl",
+      "new0": "SJseNMa"
+    },
+    "methods": {
+      "transform()Lpw/lach/p13n/model/emotion/Emotion;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketOpen": {
+    "actual": "jtCqRsQ",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC2Info$Model": {
+    "actual": "tXWIvII",
+    "fields": {
+      "Model": "gWjrZHr"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/util/UtilTime": {
+    "actual": "pUdeWGF",
+    "fields": {},
+    "methods": {
+      "localizeTime(JI)Ljava/lang/String;": "gWjrZHr"
+    }
+  },
+  "pw/lach/lookup/custom/operators/CustomHashCode": {
+    "actual": "ytfVUZd",
+    "fields": {},
+    "methods": {
+      "hashCodeFor(Ljava/lang/Object;)I": "xZcGKMl"
+    }
+  },
+  "pw/lach/repackage/ichunutil/client/module/tabula/model/ModelTabula": {
+    "actual": "cqKrwdb",
+    "fields": {
+      "projectInfo": "gWjrZHr",
+      "cubes": "WLndMqB",
+      "visible": "nCzobbW"
+    },
+    "methods": {
+      "render(Lnet/minecraft/entity/Entity;FFFFFF)V": "gWjrZHr",
+      "renderTextured(FLpw/lach/p13n/render/IRendererCallbacks;)V": "kPRmjRd",
+      "render(FZZFFFFLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "createGroupCubes(Lpw/lach/repackage/ichunutil/common/module/tabula/project/components/CubeGroup;)V": "gWjrZHr",
+      "lambda$render$1(ZFFFFFLpw/lach/repackage/ichunutil/common/module/tabula/project/components/CubeInfo;)V": "gWjrZHr",
+      "lambda$new$0(Lpw/lach/repackage/ichunutil/common/module/tabula/project/components/CubeInfo;)Z": "gWjrZHr"
+    }
+  },
+  "pw/lach/lookup/custom/structures/WrappedHashKeySet": {
+    "actual": "jNgGFvD",
+    "fields": {
+      "operator": "kPRmjRd",
+      "wrappedHashKeys": "jrZAYKi"
+    },
+    "methods": {
+      "size()I": "size",
+      "isEmpty()Z": "isEmpty",
+      "contains(Ljava/lang/Object;)Z": "contains",
+      "iterator()Ljava/util/Iterator;": "iterator",
+      "toArray()[Ljava/lang/Object;": "toArray",
+      "toArray([Ljava/lang/Object;)[Ljava/lang/Object;": "toArray",
+      "add(Ljava/lang/Object;)Z": "add",
+      "remove(Ljava/lang/Object;)Z": "remove",
+      "containsAll(Ljava/util/Collection;)Z": "containsAll",
+      "addAll(Ljava/util/Collection;)Z": "addAll",
+      "retainAll(Ljava/util/Collection;)Z": "retainAll",
+      "removeAll(Ljava/util/Collection;)Z": "removeAll",
+      "clear()V": "clear"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketGiftResponse": {
+    "actual": "mIrOBSG",
+    "fields": {
+      "packetId": "cFbmYDU",
+      "profile": "gWjrZHr",
+      "errorMessage": "PpIUxVj"
+    },
+    "methods": {
+      "getPacketId()Ljava/util/UUID;": "kcVZOtm",
+      "getProfile()Lpw/lach/p13n/network/data/TexturePlayerProfile;": "gWjrZHr",
+      "getErrorMessage()Ljava/lang/String;": "ALozbsv"
+    }
+  },
+  "pw/lach/math/easing/data/IEasingFunction": {
+    "actual": "eHlRidu",
+    "fields": {},
+    "methods": {
+      "ease(DDDD)D": "ease"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/tails/ModelDevilTail": {
+    "actual": "RIdUkTS",
+    "fields": {
+      "tailBase": "RkXfDac",
+      "tail1": "sLwhyeX",
+      "tail2": "dQPtzUM",
+      "tail3": "KrHhkfC",
+      "tail4": "CqyJozg",
+      "tail5": "ZpMURQc",
+      "tailTip": "rQnNuzT"
+    },
+    "methods": {
+      "setRotationAngles(FFFFFFLnet/minecraft/entity/Entity;)V": "gWjrZHr",
+      "render(Lnet/minecraft/entity/EntityLivingBase;IF)V": "gWjrZHr"
+    }
+  },
+  "net/diamondden/bedrock/format/BedrockFileReader": {
+    "actual": "oluQazb",
+    "fields": {},
+    "methods": {
+      "load(Ljava/util/Map;)Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/RenderManager$ReturnResponse": {
+    "actual": "eDAqAZP",
+    "fields": {
+      "returnedSum": "UnyzkHr",
+      "unitList": "ndWoULj",
+      "this$0": "UjBIMNN"
+    },
+    "methods": {
+      "getReturnedSum()I": "xAiQVHP",
+      "getUnitList()Ljava/util/List;": "fWHESNT"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketServerPlayers": {
+    "actual": "YPEvoNR",
+    "fields": {
+      "gson": "MoiEanH",
+      "reset": "kaDvjFV",
+      "players": "xJwGNXw",
+      "version": "dIOAKVg"
+    },
+    "methods": {
+      "getVersion()I": "jgOurps",
+      "serializeTo(ILio/netty/buffer/ByteBuf;)V": "gWjrZHr",
+      "deserializeFrom(ILio/netty/buffer/ByteBuf;)V": "kPRmjRd",
+      "lambda$deserializeFrom$5(Lio/netty/buffer/ByteBuf;)Lpw/lach/p13n/network/data/ModelPlayerData;": "gWjrZHr",
+      "lambda$null$4(Lio/netty/buffer/ByteBuf;)Lpw/lach/p13n/network/data/ModelOptionsData;": "gWjrZHr",
+      "lambda$deserializeFrom$3(Ljava/util/UUID;Ljava/util/HashSet;)V": "gWjrZHr",
+      "lambda$deserializeFrom$2(Lio/netty/buffer/ByteBuf;)Ljava/util/HashSet;": "gWjrZHr",
+      "lambda$serializeTo$1(Lio/netty/buffer/ByteBuf;Lio/netty/buffer/ByteBuf;Lpw/lach/p13n/network/data/ModelPlayerData;)V": "gWjrZHr",
+      "lambda$null$0(Lio/netty/buffer/ByteBuf;Lio/netty/buffer/ByteBuf;Lpw/lach/p13n/network/data/ModelOptionsData;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/guide/GuideStep": {
+    "actual": "elBoVir",
+    "fields": {
+      "targetElement": "MoiEanH",
+      "displayName": "tWXlMam",
+      "description": "XxVKYNi"
+    },
+    "methods": {
+      "getTargetElement()Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "gWjrZHr",
+      "getDisplayName()Ljava/lang/String;": "getDisplayName",
+      "getDescription()Ljava/util/List;": "BCmcrbn",
+      "lambda$new$0(Lpw/lach/p13n/manager/render/gui/engine/GuiElement;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/category/EmotionCategoryController": {
+    "actual": "jIupVNd",
+    "fields": {
+      "renderManager": "obWbjzA"
+    },
+    "methods": {
+      "isEmpty(Lpw/lach/p13n/model/category/Category;)Z": "gWjrZHr",
+      "create(Lpw/lach/p13n/model/emotion/Emotion;Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)Lpw/lach/p13n/manager/render/gui/main/elements/GuiElementListUnit;": "gWjrZHr",
+      "getAvailableElements()Ljava/util/Set;": "UlPizuc",
+      "filterEmotion(Ljava/util/List;Ljava/lang/String;)V": "gWjrZHr",
+      "sortEmotions(Ljava/util/List;Lpw/lach/p13n/manager/render/gui/main/SortBy;)V": "gWjrZHr",
+      "getByCategoryFilterAndSort(Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;Lpw/lach/p13n/model/category/Category;Ljava/lang/String;Lpw/lach/p13n/manager/render/gui/main/SortBy;)Ljava/util/List;": "gWjrZHr",
+      "create(Ljava/lang/Object;Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)Lpw/lach/p13n/manager/render/gui/main/elements/GuiElementListUnit;": "gWjrZHr",
+      "lambda$sortEmotions$6(Lpw/lach/p13n/model/emotion/Emotion;)Ljava/lang/Boolean;": "gWjrZHr",
+      "lambda$sortEmotions$5(Ljava/util/Set;Lpw/lach/p13n/model/emotion/Emotion;)Ljava/lang/Boolean;": "gWjrZHr",
+      "lambda$sortEmotions$4(ILpw/lach/p13n/model/emotion/Emotion;)Ljava/lang/Integer;": "gWjrZHr",
+      "lambda$sortEmotions$3(ILpw/lach/p13n/model/emotion/Emotion;)Ljava/lang/Integer;": "kPRmjRd",
+      "lambda$filterEmotion$2(Ljava/lang/String;Lpw/lach/p13n/model/emotion/Emotion;)Z": "gWjrZHr",
+      "lambda$filterEmotion$1(Lpw/lach/p13n/model/emotion/Emotion;)Z": "gWjrZHr",
+      "lambda$create$0(Lpw/lach/p13n/model/emotion/Emotion;)V": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/format/techne2/Techne2Format": {
+    "actual": "oYXvaSW",
+    "fields": {},
+    "methods": {
+      "load(Ljava/io/InputStream;)Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/model/model/LocationRotationInternalDescription": {
+    "actual": "ITuFwZy",
+    "fields": {
+      "location": "bIaORKD",
+      "rotation": "UjBIMNN",
+      "scale": "pmpUnlO"
+    },
+    "methods": {
+      "transform()Lpw/lach/math/EasyTransform;": "kPRmjRd"
+    }
+  },
+  "net/diamondden/graffiti/world/GraffitiInWorld": {
+    "actual": "dJYdSiD",
+    "fields": {
+      "id": "UjBIMNN",
+      "owner": "obWbjzA",
+      "text": "XkTqykZ",
+      "x": "gWjrZHr",
+      "y": "kPRmjRd",
+      "z": "LzYOZuP",
+      "sizeX": "TwmUyAy",
+      "sizeY": "QhupgWv",
+      "yaw": "ndHfrmL",
+      "pitch": "HVivheQ",
+      "roll": "BCNDQAL",
+      "created": "UjBIMNN",
+      "deadline": "FpCNmUX",
+      "meta": "LtxAdJQ",
+      "prototypeId": "FpCNmUX",
+      "transparent": "iahtaOZ"
+    },
+    "methods": {
+      "getPassedTimeInMs()J": "clRoAwN",
+      "getLeftTimeInMs()J": "dHIfRSy",
+      "getDurationTimeInMs()J": "WSVcWSq",
+      "setPosition(Lnet/minecraft/util/math/Vec3d;)V": "gWjrZHr",
+      "isNullPosition()Z": "wOfoeCE",
+      "setLook(FFF)V": "kPRmjRd",
+      "getId()Ljava/util/UUID;": "getId",
+      "getOwner()Ljava/util/UUID;": "xZcGKMl",
+      "getText()Ljava/lang/String;": "getText",
+      "getX()D": "getX",
+      "getY()D": "getY",
+      "getZ()D": "getZ",
+      "getSizeX()F": "pmpUnlO",
+      "getSizeY()F": "SpewARj",
+      "getYaw()F": "bIaORKD",
+      "getPitch()F": "getPitch",
+      "getRoll()F": "sLfACSd",
+      "getCreated()Ljava/time/Instant;": "UjBIMNN",
+      "getDeadline()Ljava/time/Instant;": "FpCNmUX",
+      "getMeta()Ljava/util/Map;": "xiOHUEZ",
+      "getPrototypeId()Ljava/util/UUID;": "SJseNMa",
+      "isTransparent()Z": "scWGGoF",
+      "setId(Ljava/util/UUID;)V": "kPRmjRd",
+      "setOwner(Ljava/util/UUID;)V": "LzYOZuP",
+      "setText(Ljava/lang/String;)V": "setText",
+      "setX(D)V": "kPRmjRd",
+      "setY(D)V": "LzYOZuP",
+      "setZ(D)V": "BCmcrbn",
+      "setSizeX(F)V": "PZpfLhk",
+      "setSizeY(F)V": "ClushVo",
+      "setYaw(F)V": "setYaw",
+      "setPitch(F)V": "setPitch",
+      "setRoll(F)V": "wOfoeCE",
+      "setCreated(Ljava/time/Instant;)V": "gWjrZHr",
+      "setDeadline(Ljava/time/Instant;)V": "kPRmjRd",
+      "setMeta(Ljava/util/Map;)V": "UjBIMNN",
+      "setPrototypeId(Ljava/util/UUID;)V": "BCmcrbn",
+      "setTransparent(Z)V": "uVbIQqE",
+      "toString()Ljava/lang/String;": "toString"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiAbstractModal": {
+    "actual": "wdMGOpe",
+    "fields": {
+      "input": "gWjrZHr",
+      "doneButton": "gWjrZHr",
+      "cancelButton": "kPRmjRd",
+      "lock": "OwWrtAF",
+      "lockAfterTimeMs": "ZidqfbY"
+    },
+    "methods": {
+      "isParentHover()Z": "ZvBVLmq",
+      "setEnabled(Z)V": "setEnabled",
+      "done(Ljava/lang/String;)V": "yoWaGjB",
+      "done0()V": "kVHkUKE",
+      "unlock(I)V": "lNgwJrq",
+      "cancel()V": "BcpzeNY",
+      "throwError()V": "wdcBSnk",
+      "setCompletions([Ljava/lang/String;)V": "setCompletions",
+      "keyTyped(CI)V": "keyTyped",
+      "preRender(Lpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "drawTitle(II)V": "VkgMeck",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/bucket/addto/AddToElement": {
+    "actual": "YwfenmG",
+    "fields": {
+      "available": "ClushVo",
+      "headerElement": "gWjrZHr"
+    },
+    "methods": {
+      "getBackgroundColor()I": "getBackgroundColor",
+      "isSupportPreview()Z": "bbILedA",
+      "getAvailable()Ljava/util/Set;": "WjCdIbC",
+      "setAvailable(Ljava/util/Set;)V": "SJseNMa",
+      "setHeaderElement(Lpw/lach/p13n/manager/render/gui/main/bucket/addto/header/AbstractAddToHeaderElement;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiElementPages": {
+    "actual": "lpInOUJ",
+    "fields": {
+      "totalElements": "cFTvotS",
+      "pageElementsHandler": "gWjrZHr",
+      "elements": "qKvPUuv"
+    },
+    "methods": {
+      "setElements(ILpw/lach/p13n/manager/render/gui/engine/GetPageElements;)V": "gWjrZHr",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/action/P13nActionBuy": {
+    "actual": "bGgQumf",
+    "fields": {
+      "player": "kPRmjRd"
+    },
+    "methods": {
+      "getCartButton(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "gWjrZHr",
+      "getInventoryButton(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "kPRmjRd",
+      "getPlayer()Lnet/minecraft/client/entity/AbstractClientPlayer;": "gWjrZHr",
+      "getEnabledModels()Ljava/util/Set;": "yuHMixK",
+      "getModelOptions()Ljava/util/Map;": "FHURYzE",
+      "isChangeEnabledModels()Z": "plkewHl",
+      "getAvailable(Lpw/lach/p13n/manager/render/gui/main/type/P13nType;)Ljava/util/Set;": "gWjrZHr",
+      "isHidePurchased()Z": "wKNEWMY",
+      "getDefaultDiscount()I": "KvggmDv",
+      "isEnableProfile()Z": "PCtOuhD",
+      "isHideFree()Z": "JSqgVGp",
+      "isHideProduct()Z": "haSOaLJ",
+      "hasGiftButton()Z": "WlGSusJ",
+      "hasReturnButton()Z": "ugfPyUc",
+      "getBucket(Lpw/lach/p13n/manager/render/gui/main/ElementCreate;)Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;": "gWjrZHr",
+      "lambda$getInventoryButton$2()Z": "DtLioMb",
+      "lambda$getInventoryButton$1(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)V": "gWjrZHr",
+      "lambda$getCartButton$0(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Z": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/tails/ModelCatTail": {
+    "actual": "IaGQptw",
+    "fields": {
+      "tailBase": "HpTjZVd",
+      "tail1": "xJwGNXw",
+      "tail2": "lmsQJNh",
+      "tail3": "teWrBzj",
+      "tail4": "TcHqeDg",
+      "tail5": "GUYiHPL"
+    },
+    "methods": {
+      "setRotationAngles(FFFFFFLnet/minecraft/entity/Entity;)V": "gWjrZHr",
+      "render(Lnet/minecraft/entity/EntityLivingBase;IF)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/tails/ModelRaccoonTail": {
+    "actual": "viClOlJ",
+    "fields": {
+      "tailBase": "VzwKBts",
+      "tail1": "JyFkRyh",
+      "tail2": "eWeMAtS"
+    },
+    "methods": {
+      "setRotationAngles(FFFFFFLnet/minecraft/entity/Entity;)V": "gWjrZHr",
+      "render(Lnet/minecraft/entity/EntityLivingBase;IF)V": "gWjrZHr"
+    }
+  },
+  "net/diamondden/bedrock/format/controller/ImplMultiTextureWithForceTextureController": {
+    "actual": "xYAHAMM",
+    "fields": {},
+    "methods": {
+      "getForceTexture()Ljava/lang/String;": "MoiEanH"
+    }
+  },
+  "pw/lach/p13n/manager/render/LayerPersonalization": {
+    "actual": "BtSZqdy",
+    "fields": {
+      "renderManager": "BCmcrbn",
+      "head": "KABNtKu",
+      "headWear": "HpYnXeL",
+      "body": "FyaSJGd",
+      "bodyWear": "DgxPTBk",
+      "rightArm": "ZSEnONK",
+      "rightArmWear": "KbJgkYe",
+      "leftArm": "XagrjHN",
+      "leftArmWear": "BwSfOKn",
+      "rightLeg": "yoXDBCS",
+      "rightLegWear": "EtwsEmX",
+      "leftLeg": "HPBtmym",
+      "leftLegWear": "WhEJptb",
+      "cape": "iQQglIH"
+    },
+    "methods": {
+      "render(Lpw/lach/p13n/model/RenderStage;Lnet/minecraft/entity/EntityLivingBase;FF)V": "gWjrZHr",
+      "preRenderLayer(Lnet/minecraft/entity/EntityLivingBase;FFFFFFF)V": "BCmcrbn",
+      "prePlayerAttributeRenderLayer(Lnet/minecraft/entity/EntityLivingBase;FF)V": "kPRmjRd",
+      "doRenderLayer(Lnet/minecraft/entity/EntityLivingBase;FFFFFFF)V": "gWjrZHr",
+      "shouldCombineTextures()Z": "kfOmOAZ",
+      "lambda$render$0(Lpw/lach/p13n/model/RenderStage;FLpw/lach/p13n/util/function/RenderConsumer;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/GuiDevPreview": {
+    "actual": "FbyAJyt",
+    "fields": {
+      "player": "gWjrZHr",
+      "rotate": "bgnkTVH"
+    },
+    "methods": {
+      "drawScreen(IIF)V": "drawScreen",
+      "keyTyped(CI)V": "keyTyped",
+      "glScissorEnable(IIII)V": "ptEwGeo",
+      "glScissorDisable()V": "dJYdSiD"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiElementBalance": {
+    "actual": "KAmeDcV",
+    "fields": {
+      "NUMBER_FORMAT": "BCmcrbn"
+    },
+    "methods": {
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr"
+    }
+  },
+  "net/diamondden/graffiti/GraffitiAtlas": {
+    "actual": "QgiuXUU",
+    "fields": {
+      "prototype": "gWjrZHr",
+      "atlasTexture": "kcVZOtm"
+    },
+    "methods": {
+      "getPrototype()Lnet/diamondden/graffiti/prototype/GraffitiAtlasPrototype;": "gWjrZHr",
+      "getAtlasTexture()Lnet/minecraft/util/ResourceLocation;": "obWbjzA"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC2Info": {
+    "actual": "JHkmOGW",
+    "fields": {
+      "Techne": "gWjrZHr",
+      "tampered": "vcBauqa"
+    },
+    "methods": {
+      "readTechneFile(Ljava/io/InputStream;)Lpw/lach/repackage/ichunutil/common/module/techne/TC2Info;": "gWjrZHr",
+      "convertTechneFile(Ljava/io/InputStream;Ljava/util/HashMap;)Lpw/lach/repackage/ichunutil/common/module/techne/TC2Info;": "gWjrZHr",
+      "createShapesFromNode(ILorg/w3c/dom/Node;Lpw/lach/repackage/ichunutil/common/module/techne/TC2Info$Group;)I": "gWjrZHr",
+      "readTechne2File(Ljava/io/InputStream;Ljava/util/HashMap;)Lpw/lach/repackage/ichunutil/common/module/techne/TC2Info;": "kPRmjRd"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC2Info$Null": {
+    "actual": "lpiZzxL",
+    "fields": {
+      "Type": "APCJkUJ",
+      "Name": "BbYYyZz",
+      "Position": "EygPMcz",
+      "Rotation": "ZGhYcyp",
+      "Children": "kPRmjRd"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/network/client/PacketEmotionAction": {
+    "actual": "mcksUhn",
+    "fields": {
+      "player": "DpLHUuB",
+      "emotion": "XxVKYNi",
+      "actionKind": "bPaXBGi",
+      "actionData": "wHmehoq"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/network/service/PacketPlayerTexture": {
+    "actual": "OnAwDPX",
+    "fields": {
+      "packetId": "cFbmYDU",
+      "errorMessage": "PpIUxVj",
+      "texture": "kPRmjRd"
+    },
+    "methods": {
+      "getPacketId()Ljava/util/UUID;": "kcVZOtm",
+      "getErrorMessage()Ljava/lang/String;": "ALozbsv",
+      "getTexture()Lpw/lach/p13n/network/data/TexturePlayerProfile;": "kPRmjRd"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC2Info$Group": {
+    "actual": "IXxGlwg",
+    "fields": {
+      "Shape": "gWjrZHr",
+      "Null": "gWjrZHr"
+    },
+    "methods": {
+      "createNewShapeArray(I)V": "CqyJozg",
+      "extendNullArray()V": "KHLrpKb"
+    }
+  },
+  "pw/lach/lookup/custom/operators/CustomHashOperator": {
+    "actual": "iirytrE",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/obj_parser/TextureCoordinate": {
+    "actual": "pIAQnYJ",
+    "fields": {
+      "u": "skBretX",
+      "v": "RMRnEfb",
+      "w": "AMLIPnh"
+    },
+    "methods": {
+      "getU()F": "KpEgxHf",
+      "setU(F)V": "NHymCSL",
+      "getV()F": "yPfJFeq",
+      "setV(F)V": "MCOHWyB",
+      "getW()F": "nmuYmMD",
+      "setW(F)V": "wHRudfg"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew$1": {
+    "actual": "HgvHwGL",
+    "fields": {
+      "this$0": "gWjrZHr"
+    },
+    "methods": {
+      "getViewModels()Ljava/util/Set;": "YixeWRi",
+      "getHoverModel()Ljava/util/UUID;": "XkTqykZ",
+      "getModelsOptions()Ljava/util/Map;": "WJMXEpy",
+      "getPlayer()Lnet/minecraft/client/entity/AbstractClientPlayer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/model/category/CategoryDescription": {
+    "actual": "FBJnGho",
+    "fields": {
+      "position": "JcEXYpB",
+      "id": "wWVPvdZ",
+      "name": "gWjrZHr",
+      "iconPosition": "SFvrqvq",
+      "isEmotionCategory": "yGaboKt",
+      "isGraffitiCategory": "xJKUUJF",
+      "cameraSetting": "gWjrZHr",
+      "isAdmin": "kjYCLnc",
+      "isMain": "pmQQxUB"
+    },
+    "methods": {
+      "transform()Lpw/lach/p13n/model/category/Category;": "LzYOZuP"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiElementSlider": {
+    "actual": "DMyZzPS",
+    "fields": {
+      "SLIDER_SIZE": "qcuugqE",
+      "captured": "UGCyIjZ",
+      "minValue": "ITwKHaQ",
+      "maxValue": "pexnpJB",
+      "minStep": "nevVltx",
+      "value": "RgRZVvj",
+      "updateHandler": "xZcGKMl"
+    },
+    "methods": {
+      "setValue(F)V": "iXjgQka",
+      "onMouseClick(III)V": "HnZskzl",
+      "onMouseReleased(III)V": "ptEwGeo",
+      "getSliderOffset()F": "buAdjEU",
+      "updateValueByMouse(I)V": "jobLuWl",
+      "drawBackground()V": "drawBackground",
+      "drawVertical()V": "oytgfYv",
+      "drawSliderIcon(F)V": "VeDrWyg",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "isCaptured()Z": "FdIuhfd",
+      "getMinValue()F": "eEwEecG",
+      "getMaxValue()F": "yuDPBmv",
+      "getMinStep()F": "WPiyeDQ",
+      "getValue()F": "RVOlFlY",
+      "getUpdateHandler()Ljava/lang/Runnable;": "kPRmjRd",
+      "setUpdateHandler(Ljava/lang/Runnable;)V": "xZcGKMl"
+    }
+  },
+  "pw/lach/p13n/render/data/wrappers/PromiseRenderer": {
+    "actual": "AYrdRFq",
+    "fields": {
+      "rendererPromise": "gWjrZHr",
+      "renderer": "xZcGKMl"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "lambda$new$1(Ljava/lang/Throwable;)V": "kPRmjRd",
+      "lambda$new$0(Lpw/lach/p13n/render/IRenderer;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/obj_parser/TextureLoader": {
+    "actual": "yGHpZOk",
+    "fields": {
+      "instance": "gWjrZHr"
+    },
+    "methods": {
+      "instance()Lpw/lach/obj_parser/TextureLoader;": "gWjrZHr",
+      "loadTexture(Ljava/util/Map;Ljava/lang/String;)Lpw/lach/obj_parser/Texture;": "gWjrZHr",
+      "loadTexture(Ljava/util/Map;Ljava/lang/String;IIII)Lpw/lach/obj_parser/Texture;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/action/P13nAction": {
+    "actual": "iuvXZjf",
+    "fields": {},
+    "methods": {
+      "getCartButton(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "gWjrZHr",
+      "getInventoryButton(Lpw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "kPRmjRd",
+      "getPlayer()Lnet/minecraft/client/entity/AbstractClientPlayer;": "gWjrZHr",
+      "getEnabledModels()Ljava/util/Set;": "yuHMixK",
+      "getModelOptions()Ljava/util/Map;": "FHURYzE",
+      "isChangeEnabledModels()Z": "plkewHl",
+      "getAvailable(Lpw/lach/p13n/manager/render/gui/main/type/P13nType;)Ljava/util/Set;": "gWjrZHr",
+      "getDefaultDiscount()I": "KvggmDv",
+      "isEnableProfile()Z": "PCtOuhD",
+      "isHideFree()Z": "JSqgVGp",
+      "isHideProduct()Z": "haSOaLJ",
+      "hasReturnButton()Z": "ugfPyUc",
+      "hasGiftButton()Z": "WlGSusJ",
+      "isHidePurchased()Z": "wKNEWMY",
+      "getBucket(Lpw/lach/p13n/manager/render/gui/main/ElementCreate;)Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;": "gWjrZHr",
+      "onElementClick(Lpw/lach/p13n/model/Purchase;)V": "gWjrZHr",
+      "isNeedSavePreview()Z": "HbnTkTy"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/ValentinesHearth": {
+    "actual": "gJLceEx",
+    "fields": {
+      "inner": "SJseNMa",
+      "function": "kPRmjRd"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketResponse": {
+    "actual": "JuyHEHv",
+    "fields": {
+      "packetId": "cFbmYDU",
+      "errorMessage": "PpIUxVj",
+      "payload": "kPRmjRd"
+    },
+    "methods": {
+      "getPacketId()Ljava/util/UUID;": "kcVZOtm",
+      "getErrorMessage()Ljava/lang/String;": "ALozbsv",
+      "getPayload()Lcom/google/gson/JsonElement;": "FpCNmUX"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/section/WindowSection": {
+    "actual": "xbVyDek",
+    "fields": {},
+    "methods": {
+      "getElementList()Lpw/lach/p13n/manager/render/gui/engine/GuiElementList;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/PreviewHandler": {
+    "actual": "juTzslt",
+    "fields": {},
+    "methods": {
+      "addTimedElement(Lpw/lach/p13n/manager/render/gui/engine/GuiElement;)V": "LzYOZuP",
+      "updateConflict(Ljava/util/UUID;)V": "kcVZOtm",
+      "togglePreviewUnit(Ljava/util/UUID;)V": "BrGopGP",
+      "enablePreviewUnit(Ljava/util/UUID;)V": "XkTqykZ",
+      "updateHover(Ljava/util/UUID;Ljava/util/List;)V": "gWjrZHr",
+      "getHoverModelId()Ljava/util/UUID;": "BrGopGP",
+      "getPreviewModels()Ljava/util/Set;": "oiiXgwP",
+      "getPreviewModelOptions()Ljava/util/Map;": "QAgrfHO",
+      "updateOptions(Ljava/util/UUID;Ljava/util/function/Consumer;)V": "gWjrZHr",
+      "getAction()Lpw/lach/p13n/manager/render/gui/main/action/P13nAction;": "gWjrZHr"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC2Info$ModelInfo": {
+    "actual": "NXrjtwC",
+    "fields": {
+      "GlScale": "tiSfbcS",
+      "Name": "BbYYyZz",
+      "TextureSize": "OKxIHiL",
+      "texture": "kPRmjRd",
+      "BaseClass": "YogognN",
+      "Geometry": "gWjrZHr",
+      "image": "kPRmjRd"
+    },
+    "methods": {}
+  },
+  "pw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Matrix3x3": {
+    "actual": "uAeRQGM",
+    "fields": {
+      "data": "dHIfRSy"
+    },
+    "methods": {
+      "createRotationMatrixX(D)Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Matrix3x3;": "gWjrZHr",
+      "createRotationMatrixY(D)Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Matrix3x3;": "kPRmjRd",
+      "createRotationMatrixZ(D)Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Matrix3x3;": "LzYOZuP",
+      "multiply(Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Matrix3x3;)Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Matrix3x3;": "gWjrZHr",
+      "setValue(IID)V": "BCmcrbn",
+      "getValue(II)D": "BCmcrbn",
+      "debug()V": "frqpeIF"
+    }
+  },
+  "pw/lach/p13n/manager/render/RenderManager$BulkBuyResponse": {
+    "actual": "RrWaDEx",
+    "fields": {
+      "unitList": "ndWoULj",
+      "this$0": "xZcGKMl"
+    },
+    "methods": {
+      "getUnitList()Ljava/util/List;": "fWHESNT"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiSliderWithColor": {
+    "actual": "vfVglug",
+    "fields": {
+      "function": "gWjrZHr"
+    },
+    "methods": {
+      "drawVertical()V": "oytgfYv",
+      "drawBackground()V": "drawBackground",
+      "drawSliderIcon(F)V": "VeDrWyg",
+      "setFunction(Lit/unimi/dsi/fastutil/floats/Float2IntFunction;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/common/StreamRenderer": {
+    "actual": "LDVgelo",
+    "fields": {
+      "stream": "BCmcrbn",
+      "sourceFormat": "PnTjitv",
+      "innerRenderer": "obWbjzA"
+    },
+    "methods": {
+      "asyncLoadRender(Ljava/util/function/BiConsumer;)Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "lambda$render$4(Ljava/util/Map;Ljava/util/function/Consumer;)V": "gWjrZHr",
+      "lambda$render$3(Ljava/util/Map;Ljava/util/function/Consumer;)V": "kPRmjRd",
+      "lambda$asyncLoadRender$2(Ljava/util/function/BiConsumer;Ljava/util/Map;)Lpw/lach/promise/Promise;": "gWjrZHr",
+      "lambda$null$1(Ljava/util/function/BiConsumer;Ljava/util/Map;Ljava/util/function/Consumer;Ljava/util/function/Consumer;)V": "gWjrZHr",
+      "lambda$null$0(Ljava/util/function/BiConsumer;Ljava/util/Map;Ljava/util/function/Consumer;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC2Info$Shape": {
+    "actual": "VmrvwSJ",
+    "fields": {
+      "Id": "nUOVdyX",
+      "Name": "BbYYyZz",
+      "IsDecorative": "PIzTRDP",
+      "IsFixed": "IMFyoFN",
+      "IsMirrored": "ZcpvKAl",
+      "Position": "EygPMcz",
+      "Offset": "UFSxqPZ",
+      "Rotation": "ZGhYcyp",
+      "Size": "TUegWDE",
+      "TextureOffset": "rSHvwye"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/PersonalizationManagerProvider": {
+    "actual": "GDByWFE",
+    "fields": {
+      "instance": "gWjrZHr",
+      "renderManager": "LzYOZuP",
+      "easingManager": "LzYOZuP"
+    },
+    "methods": {
+      "getInstance()Lpw/lach/p13n/manager/PersonalizationManagerProvider;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/network/IPacketSerialized": {
+    "actual": "tzTezDZ",
+    "fields": {},
+    "methods": {
+      "getVersion()I": "jgOurps",
+      "serializeTo(Lio/netty/buffer/ByteBuf;)V": "obWbjzA",
+      "serializeTo(ILio/netty/buffer/ByteBuf;)V": "gWjrZHr",
+      "deserializeFrom(Lio/netty/buffer/ByteBuf;)V": "BrGopGP",
+      "deserializeFrom(ILio/netty/buffer/ByteBuf;)V": "kPRmjRd"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/PacketManager": {
+    "actual": "uHhauTx",
+    "fields": {
+      "instance": "gWjrZHr",
+      "internals": "gWjrZHr",
+      "jsonPayloadClasses": "aYMXyqB",
+      "jsonPayloadHandlers": "zoetdLa",
+      "payloadClasses": "DQgxKRg",
+      "payloadHandlers": "HJCxAfB",
+      "serviceJsonPayloadClasses": "VGSCVEU",
+      "serviceJsonHandler": "dAeOVfW",
+      "serviceJsonPayloadHandlers": "EjQtGsT"
+    },
+    "methods": {
+      "populatePayloadClasses(Ljava/lang/String;Ljava/lang/Class;)V": "kPRmjRd",
+      "on(Ljava/lang/String;Ljava/lang/Class;Ljava/util/function/Consumer;)V": "gWjrZHr",
+      "emit(Ljava/lang/String;Ljava/lang/Class;Lpw/lach/p13n/network/IPacketSerialized;)V": "gWjrZHr",
+      "populateJsonPayloadClasses(Ljava/lang/String;Ljava/lang/Class;)V": "LzYOZuP",
+      "onJson(Ljava/lang/String;Ljava/lang/Class;Ljava/util/function/Consumer;)V": "kPRmjRd",
+      "onServiceJson(Ljava/lang/String;Ljava/lang/Class;Ljava/util/function/Consumer;)V": "LzYOZuP",
+      "onServiceRaw(Ljava/lang/String;Ljava/util/function/Consumer;)V": "gWjrZHr",
+      "emitJson(Ljava/lang/String;Ljava/lang/Class;Ljava/lang/Object;)V": "gWjrZHr",
+      "lambda$onServiceJson$2(Ljava/lang/String;)Ljava/util/List;": "SJseNMa",
+      "lambda$onJson$1(Ljava/lang/String;)Ljava/util/List;": "xZcGKMl",
+      "lambda$on$0(Ljava/lang/String;)Ljava/util/List;": "UjBIMNN"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiSelectProfileModal": {
+    "actual": "ZvZOwvr",
+    "fields": {
+      "previewHandler": "LzYOZuP",
+      "modelId": "RrKclpt",
+      "textureKey": "dgxZXUU"
+    },
+    "methods": {
+      "isDie()Z": "dXtCaxQ",
+      "drawTitle(II)V": "VkgMeck",
+      "done(Ljava/lang/String;)V": "yoWaGjB",
+      "postRender(Lpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "kPRmjRd",
+      "lambda$done$1(Lpw/lach/p13n/network/data/ModelMetadata;Ljava/lang/Throwable;)V": "gWjrZHr",
+      "lambda$null$0(Lpw/lach/p13n/network/data/ModelOptionsData;)V": "BCmcrbn"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/category/MainCategoryController": {
+    "actual": "WmVrjTg",
+    "fields": {},
+    "methods": {
+      "isEmpty(Lpw/lach/p13n/model/category/Category;)Z": "gWjrZHr",
+      "getByCategoryFilterAndSort(Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;Lpw/lach/p13n/model/category/Category;Ljava/lang/String;Lpw/lach/p13n/manager/render/gui/main/SortBy;)Ljava/util/List;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketResendAllEnabledModelsRequest": {
+    "actual": "fvjkYZa",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/wheel/FastAccessWheel": {
+    "actual": "RgxTClD",
+    "fields": {
+      "elementsMap": "dQPtzUM",
+      "elementList": "xsXLxzN",
+      "target": "PnOivIo",
+      "ungrabMouse": "fuaDWMY"
+    },
+    "methods": {
+      "setElement(ILpw/lach/p13n/manager/render/wheel/WheelElement;)V": "gWjrZHr",
+      "saveElements()V": "WiXhNSK",
+      "init()V": "init",
+      "tick()V": "tick",
+      "isEnabled()Z": "isEnabled",
+      "select(I)V": "JToGGVM",
+      "onMouseClick(I)Z": "VUbXpff",
+      "render()V": "pcfmgkk",
+      "drawHoveringText(Ljava/util/List;II)V": "kPRmjRd",
+      "putVertex(Lnet/minecraft/client/renderer/BufferBuilder;DDI)V": "gWjrZHr",
+      "getElementList()Ljava/util/List;": "ClushVo",
+      "lambda$init$1()Lpw/lach/p13n/manager/render/wheel/WheelElement;": "gWjrZHr",
+      "lambda$setElement$0(Lpw/lach/p13n/manager/render/wheel/WheelElement;Lpw/lach/p13n/manager/render/wheel/WheelElement;)Lpw/lach/p13n/manager/render/wheel/WheelElement;": "gWjrZHr"
+    }
+  },
+  "net/diamondden/bedrock/format/controller/ControllerWithModel": {
+    "actual": "DqbyWQC",
+    "fields": {},
+    "methods": {
+      "updateModelId(Ljava/util/UUID;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/GuiPersonalizationNew": {
+    "actual": "LRlCJoe",
+    "fields": {
+      "BUTTON_LOCATION": "hTGFbSb",
+      "DEFAULT_CATEGORY": "rCzIkvH",
+      "HEADER_HEIGHT": "DjrrFrE",
+      "GENERAL_OFFSET": "FiuiFJr",
+      "LOCAL_OFFSET": "HxZTUQa",
+      "SEARCH_INPUT_WIDTH": "YufoVRY",
+      "PRIORITY_DROP_LIST_WIDTH": "KSPYBpd",
+      "PROFILE_DROP_LIST_WIDTH": "xkRTigw",
+      "BUTTON_TAKE_ALL_OFF_WIDTH": "suWWwvF",
+      "BUTTON_TAKE_ALL_OFF_HEIGHT": "mJzRxiB",
+      "UNIT_SIZE": "eFzajnQ",
+      "renderManager": "FpCNmUX",
+      "hoverModelId": "uVbIQqE",
+      "action": "gWjrZHr",
+      "currentWindow": "gWjrZHr",
+      "categories": "gObupbx",
+      "categoryByNameMap": "JToGGVM",
+      "elementListCategory": "gWjrZHr",
+      "cartButton": "gWjrZHr",
+      "inventoryButton": "kPRmjRd",
+      "elementButtonTakeItAllOff": "LzYOZuP",
+      "elementPlayerView": "gWjrZHr",
+      "modelCategoryController": "gWjrZHr",
+      "mainModelsCategoryController": "kPRmjRd",
+      "emotionCategoryController": "LzYOZuP",
+      "graffitiCategoryController": "BCmcrbn",
+      "searchTextInput": "kPRmjRd",
+      "sortDropList": "gWjrZHr",
+      "returnButton": "gWjrZHr",
+      "giftButton": "kPRmjRd",
+      "profileDropList": "kPRmjRd",
+      "elementBalance": "gWjrZHr",
+      "guiGiftModal": "gWjrZHr",
+      "guiGuideElement": "gWjrZHr",
+      "p13nBucket": "gWjrZHr",
+      "sortBy": "gWjrZHr",
+      "previewModels": "fWHESNT",
+      "previewModelOptions": "RkXfDac",
+      "tempGamma": "IUJNBOg",
+      "lastModelViewTime": "LOsaIMg"
+    },
+    "methods": {
+      "addTimedElement(Lpw/lach/p13n/manager/render/gui/engine/GuiElement;)V": "LzYOZuP",
+      "getHoverModelId()Ljava/util/UUID;": "BrGopGP",
+      "openDefaultCategory()V": "eUUAawb",
+      "initProfile()V": "SYhLEjz",
+      "initSort()V": "jUVlNFn",
+      "initReturnButton()V": "pkhKqpD",
+      "initGiftButton()V": "EPUuaEG",
+      "initCategories()V": "UGCyIjZ",
+      "setAction(Lpw/lach/p13n/manager/render/gui/main/action/P13nAction;)V": "gWjrZHr",
+      "getControllerByCategory(Lpw/lach/p13n/model/category/Category;)Lpw/lach/p13n/manager/render/gui/main/category/CategoryController;": "gWjrZHr",
+      "createGuideStep(Lpw/lach/p13n/manager/render/gui/engine/GuiElement;Ljava/lang/String;)Lpw/lach/p13n/manager/render/gui/engine/guide/GuideStep;": "gWjrZHr",
+      "createGuideStep(Ljava/util/function/Supplier;Ljava/lang/String;)Lpw/lach/p13n/manager/render/gui/engine/guide/GuideStep;": "gWjrZHr",
+      "addGuide()V": "AzoKxVy",
+      "updatePreview()V": "VYudwfM",
+      "initGui()V": "clRoAwN",
+      "onGuiClosed()V": "nBvlYtT",
+      "savePreview()V": "OipgYHX",
+      "reset()V": "reset",
+      "updateHover(Ljava/util/UUID;Ljava/util/List;)V": "gWjrZHr",
+      "togglePreviewUnit(Ljava/util/UUID;)V": "BrGopGP",
+      "enablePreviewUnit(Ljava/util/UUID;)V": "XkTqykZ",
+      "updateConflict(Ljava/util/UUID;)V": "kcVZOtm",
+      "getPreviewModels()Ljava/util/Set;": "oiiXgwP",
+      "getPreviewModelOptions()Ljava/util/Map;": "QAgrfHO",
+      "updateOptions(Ljava/util/UUID;Ljava/util/function/Consumer;)V": "gWjrZHr",
+      "openBucket()V": "fuaDWMY",
+      "setCurrentWindow(Lpw/lach/p13n/manager/render/gui/main/section/WindowSection;)V": "gWjrZHr",
+      "getCurrentCategory()Lpw/lach/p13n/model/category/Category;": "gWjrZHr",
+      "changeCategory(Ljava/lang/String;)V": "oYYSyxC",
+      "updateModels()V": "iEivpPH",
+      "updateModelsBySearch()V": "MiPVBBZ",
+      "drawScreen(IIF)V": "drawScreen",
+      "drawMainWindow(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "LzYOZuP",
+      "getAction()Lpw/lach/p13n/manager/render/gui/main/action/P13nAction;": "gWjrZHr",
+      "getCurrentWindow()Lpw/lach/p13n/manager/render/gui/main/section/WindowSection;": "gWjrZHr",
+      "getP13nBucket()Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;": "gWjrZHr",
+      "lambda$updateOptions$13(Ljava/util/UUID;)Lpw/lach/p13n/network/data/ModelOptionsData;": "LzYOZuP",
+      "lambda$addGuide$12(I)V": "mIgnYou",
+      "lambda$addGuide$11()Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "kPRmjRd",
+      "lambda$addGuide$10()Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "LzYOZuP",
+      "lambda$createGuideStep$9(Lpw/lach/p13n/manager/render/gui/engine/GuiElement;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "kPRmjRd",
+      "lambda$setAction$8(Ljava/util/UUID;Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)Lpw/lach/p13n/manager/render/gui/engine/GuiElement;": "gWjrZHr",
+      "lambda$initGiftButton$7()Ljava/util/List;": "ELrkFvi",
+      "lambda$initGiftButton$6()V": "KNSqhae",
+      "lambda$initGiftButton$5()Z": "aPKTIie",
+      "lambda$initReturnButton$4()V": "pUtTeNu",
+      "lambda$initReturnButton$3()Z": "KqhhBvr",
+      "lambda$initSort$2(Lpw/lach/p13n/manager/render/gui/main/SortBy;)V": "gWjrZHr",
+      "lambda$initProfile$1(I)V": "eedervX",
+      "lambda$new$0()V": "iXjgQka"
+    }
+  },
+  "pw/lach/p13n/manager/render/wheel/EmotionWheelElement$1": {
+    "actual": "CsVfFmg",
+    "fields": {
+      "val$finalNetworkPlayerInfo": "xZcGKMl",
+      "this$0": "LzYOZuP"
+    },
+    "methods": {
+      "isSpectator()Z": "isSpectator",
+      "isCreative()Z": "isCreative",
+      "getPlayerInfo()Lnet/minecraft/client/network/NetworkPlayerInfo;": "kPRmjRd"
+    }
+  },
+  "net/diamondden/graffiti/network/packet/PacketSpawnGraffiti": {
+    "actual": "pzMSanw",
+    "fields": {
+      "id": "UjBIMNN",
+      "prototypeId": "FpCNmUX",
+      "x": "gWjrZHr",
+      "y": "kPRmjRd",
+      "z": "LzYOZuP",
+      "size": "LxqxaYR",
+      "yaw": "ndHfrmL",
+      "pitch": "HVivheQ",
+      "roll": "BCNDQAL",
+      "meta": "LtxAdJQ"
+    },
+    "methods": {
+      "getId()Ljava/util/UUID;": "getId",
+      "getPrototypeId()Ljava/util/UUID;": "SJseNMa",
+      "getX()D": "getX",
+      "getY()D": "getY",
+      "getZ()D": "getZ",
+      "getSize()F": "fEblpSX",
+      "getYaw()F": "bIaORKD",
+      "getPitch()F": "getPitch",
+      "getRoll()F": "sLfACSd",
+      "getMeta()Ljava/util/Map;": "xiOHUEZ"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC1Json$Shape": {
+    "actual": "dlFilbL",
+    "fields": {
+      "Type": "APCJkUJ",
+      "Name": "BbYYyZz",
+      "IsDecorative": "PIzTRDP",
+      "IsFixed": "IMFyoFN",
+      "IsMirrored": "ZcpvKAl",
+      "Position": "EygPMcz",
+      "Offset": "UFSxqPZ",
+      "Rotation": "ZGhYcyp",
+      "Size": "TUegWDE",
+      "TextureOffset": "rSHvwye",
+      "this$0": "xZcGKMl"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiColorPalette": {
+    "actual": "PEgFIzg",
+    "fields": {
+      "dynamicTexture": "SJseNMa",
+      "getColorSupplier": "gWjrZHr",
+      "setColorHandler": "kPRmjRd"
+    },
+    "methods": {
+      "addColor(Lpw/lach/p13n/manager/render/gui/main/elements/GuiColorPalette$PaletteColor;)V": "gWjrZHr",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "lambda$addColor$0(Lpw/lach/p13n/manager/render/gui/main/elements/GuiColorPalette$PaletteColor;)V": "kPRmjRd",
+      "access$000()Lnet/minecraft/client/renderer/texture/DynamicTexture;": "gWjrZHr"
+    }
+  },
+  "pw/lach/obj_parser/parser/mtl/KdMapParser": {
+    "actual": "RJyUFfx",
+    "fields": {
+      "object": "kPRmjRd",
+      "texture": "gWjrZHr",
+      "texName": "PBWGSCv"
+    },
+    "methods": {
+      "incoporateResults(Lpw/lach/obj_parser/WavefrontObject;)V": "gWjrZHr",
+      "parse()V": "gcnLPpq"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Rotation": {
+    "actual": "dAMBLfx",
+    "fields": {
+      "rotationX": "ZpMURQc",
+      "rotationY": "rQnNuzT",
+      "rotationZ": "HpTjZVd"
+    },
+    "methods": {
+      "createFromRadians(DDD)Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Rotation;": "gWjrZHr",
+      "createFromDegrees(DDD)Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Rotation;": "kPRmjRd",
+      "getRadiansX()D": "SsCeIdr",
+      "getRadiansY()D": "RVOlFlY",
+      "getRadiansZ()D": "BCNDQAL",
+      "getDegreesX()D": "LxqxaYR",
+      "getDegreesY()D": "ndHfrmL",
+      "getDegreesZ()D": "TwmUyAy",
+      "createFromMatrixZYX(Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Matrix3x3;)Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Rotation;": "gWjrZHr",
+      "createFromMatrixYZX(Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Matrix3x3;)Lpw/lach/repackage/ichunutil/common/module/tabula/project/TechneConverter$Rotation;": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/social/GuiP13nSocial": {
+    "actual": "ckGKWim",
+    "fields": {
+      "LOCAL_OFFSET": "nyAmSXA",
+      "BIG_OFFSET": "gpAyxZd",
+      "UNIT_SIZE": "ZdEYyfb",
+      "profile": "gWjrZHr",
+      "userProfile": "gWjrZHr",
+      "elementPlayerView": "kPRmjRd",
+      "elementPages": "gWjrZHr"
+    },
+    "methods": {
+      "drawScreen(IIF)V": "drawScreen",
+      "getPlayerByProfile(Lpw/lach/p13n/social/SocialUserProfile;)Lnet/minecraft/client/entity/AbstractClientPlayer;": "gWjrZHr",
+      "getUserProfile()Lpw/lach/p13n/social/SocialUserProfile;": "gWjrZHr",
+      "lambda$new$1(III)Ljava/util/List;": "kPRmjRd",
+      "lambda$null$0(Lpw/lach/p13n/social/SocialP13nSet;)Lpw/lach/p13n/manager/render/gui/social/GuiP13nSocial$2;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/bucket/addto/header/PurchaseAddToHeaderElement": {
+    "actual": "gKuYlDc",
+    "fields": {
+      "purchase": "LzYOZuP",
+      "RED_COLOR": "IjINfcJ",
+      "ORANGE_COLOR": "QrtXCOE",
+      "GREEN_COLOR": "ivqUHrS"
+    },
+    "methods": {
+      "getCurrentHeader()Lpw/lach/p13n/manager/render/gui/main/bucket/addto/header/AbstractAddToHeaderElement$Header;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/util/function/RenderConsumer": {
+    "actual": "MrGYSdn",
+    "fields": {},
+    "methods": {
+      "accept(Lpw/lach/p13n/model/RenderStage;Lnet/minecraft/client/model/ModelRenderer;Lnet/minecraft/client/model/ModelRenderer;Lpw/lach/p13n/model/model/ModelType;)V": "accept"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/social/GuiViewManySocialSets": {
+    "actual": "lFcGdQG",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/builtin/renderers/common/UrlRenderer": {
+    "actual": "tVnGwPn",
+    "fields": {
+      "modelCachePath": "xZcGKMl",
+      "sourcePath": "xychTiq",
+      "sourceFormat": "oBnKKHK",
+      "hash": "gQgWVPH",
+      "internal": "UjBIMNN"
+    },
+    "methods": {
+      "cacheKey(Ljava/lang/String;)Ljava/lang/String;": "clRoAwN",
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "lambda$render$0()V": "UQITUvT"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/category/ModelCategoryController": {
+    "actual": "OVmRYWs",
+    "fields": {
+      "dataStore": "kPRmjRd"
+    },
+    "methods": {
+      "isEmpty(Lpw/lach/p13n/model/category/Category;)Z": "gWjrZHr",
+      "getModelIdsByCategory(Lpw/lach/p13n/model/category/Category;)Ljava/util/List;": "gWjrZHr",
+      "getAvailableElements()Ljava/util/Set;": "UlPizuc",
+      "create(Lpw/lach/p13n/model/model/Model;Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)Lpw/lach/p13n/manager/render/gui/main/elements/GuiElementListUnit;": "gWjrZHr",
+      "convertToModels(Ljava/util/List;)Ljava/util/List;": "LzYOZuP",
+      "sortModels(Ljava/util/List;Lpw/lach/p13n/manager/render/gui/main/SortBy;)V": "kPRmjRd",
+      "filterModels(Ljava/util/List;Ljava/lang/String;)V": "kPRmjRd",
+      "getByCategoryFilterAndSort(Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;Lpw/lach/p13n/model/category/Category;Ljava/lang/String;Lpw/lach/p13n/manager/render/gui/main/SortBy;)Ljava/util/List;": "gWjrZHr",
+      "getCameraSetting(Lpw/lach/p13n/model/model/Model;)Lpw/lach/p13n/model/CameraSetting;": "gWjrZHr",
+      "getDefaulCameraSetting(Ljava/lang/String;)Lpw/lach/p13n/model/CameraSetting;": "gWjrZHr",
+      "create(Ljava/lang/Object;Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)Lpw/lach/p13n/manager/render/gui/main/elements/GuiElementListUnit;": "gWjrZHr",
+      "lambda$filterModels$11(Ljava/lang/String;Lpw/lach/p13n/model/model/Model;)Z": "gWjrZHr",
+      "lambda$filterModels$10(Lpw/lach/p13n/model/model/Model;)Z": "gWjrZHr",
+      "lambda$sortModels$9(Lpw/lach/p13n/model/model/Model;)Ljava/lang/Boolean;": "gWjrZHr",
+      "lambda$sortModels$8(Lpw/lach/p13n/model/model/Model;)Ljava/lang/Boolean;": "kPRmjRd",
+      "lambda$sortModels$7(Ljava/util/Set;Lpw/lach/p13n/model/model/Model;)Ljava/lang/Boolean;": "gWjrZHr",
+      "lambda$sortModels$6(Ljava/util/Set;Lpw/lach/p13n/model/model/Model;)Ljava/lang/Boolean;": "kPRmjRd",
+      "lambda$sortModels$5(Ljava/util/Set;Lpw/lach/p13n/model/model/Model;)Ljava/lang/Boolean;": "LzYOZuP",
+      "lambda$sortModels$4(ILpw/lach/p13n/model/model/Model;)Ljava/lang/Integer;": "gWjrZHr",
+      "lambda$sortModels$3(ILpw/lach/p13n/model/model/Model;)Ljava/lang/Integer;": "kPRmjRd",
+      "lambda$sortModels$2(Lpw/lach/p13n/model/model/Model;)Ljava/lang/Double;": "gWjrZHr",
+      "lambda$sortModels$1(Lpw/lach/p13n/model/model/Model;)Ljava/lang/Double;": "kPRmjRd",
+      "lambda$isEmpty$0(Ljava/util/Map;Ljava/util/UUID;)Z": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/format/techne2/TabulaRenderer": {
+    "actual": "kbnclog",
+    "fields": {
+      "modelTabula": "gWjrZHr"
+    },
+    "methods": {
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "net/diamondden/graffiti/storage/GraffitiesDescription": {
+    "actual": "WhLHRhu",
+    "fields": {
+      "packList": "VkgMeck",
+      "stickers": "LtxAdJQ"
+    },
+    "methods": {
+      "getPackList()Ljava/util/List;": "dHIfRSy",
+      "getStickers()Ljava/util/List;": "WSVcWSq",
+      "setPackList(Ljava/util/List;)V": "BCmcrbn",
+      "setStickers(Ljava/util/List;)V": "SJseNMa"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/ModelCameraSettingEditor": {
+    "actual": "iVJvcil",
+    "fields": {
+      "targetScale": "obWbjzA",
+      "targetPosition": "BrGopGP",
+      "targetRotation": "XkTqykZ"
+    },
+    "methods": {
+      "getEditor(Ljava/util/function/Consumer;)Ljavax/swing/JComponent;": "gWjrZHr",
+      "lambda$getEditor$2(Ljavax/swing/JSlider;Ljavax/swing/JLabel;Ljava/util/function/Consumer;Ljavax/swing/event/ChangeEvent;)V": "gWjrZHr",
+      "lambda$getEditor$1(Ljava/lang/Void;)V": "kPRmjRd",
+      "lambda$getEditor$0(Ljava/lang/Void;)V": "LzYOZuP"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/section/CategoryWindowSection": {
+    "actual": "phMilIS",
+    "fields": {
+      "category": "gWjrZHr",
+      "elementList": "LzYOZuP"
+    },
+    "methods": {
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "getCategory()Lpw/lach/p13n/model/category/Category;": "kPRmjRd",
+      "getElementList()Lpw/lach/p13n/manager/render/gui/engine/GuiElementList;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/action/P13nActionGift$1": {
+    "actual": "mDaNFiG",
+    "fields": {
+      "val$playerInfo": "SJseNMa",
+      "this$0": "gWjrZHr"
+    },
+    "methods": {
+      "isSpectator()Z": "isSpectator",
+      "isCreative()Z": "isCreative",
+      "getPlayerInfo()Lnet/minecraft/client/network/NetworkPlayerInfo;": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/guide/GuideLine": {
+    "actual": "iibycBa",
+    "fields": {
+      "steps": "ggsbnJH",
+      "currentStepIndex": "HWyaZHn",
+      "onEndHandler": "gWjrZHr"
+    },
+    "methods": {
+      "close()V": "close",
+      "currentStep()Lpw/lach/p13n/manager/render/gui/engine/guide/GuideStep;": "gWjrZHr",
+      "getTotal()I": "MkUJudZ",
+      "next()V": "pKwfRhC",
+      "getSteps()Ljava/util/List;": "nNTPpMJ",
+      "getCurrentStepIndex()I": "khCnUnL",
+      "getOnEndHandler()Ljava/util/function/IntConsumer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC1Json$ModelInfo": {
+    "actual": "bgpWrsE",
+    "fields": {
+      "GlScale": "tiSfbcS",
+      "Name": "BbYYyZz",
+      "TextureSize": "OKxIHiL",
+      "texture": "kPRmjRd",
+      "BaseClass": "YogognN",
+      "Geometry": "gWjrZHr",
+      "this$0": "BCmcrbn"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/network/client/PacketChunkResponse": {
+    "actual": "dfebfeV",
+    "fields": {
+      "id": "UjBIMNN",
+      "status": "UfGNmxL"
+    },
+    "methods": {
+      "getId()Ljava/util/UUID;": "getId",
+      "getStatus()Ljava/lang/String;": "DohsBSE"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/category/ModelCategoryController$1": {
+    "actual": "cnmMrZd",
+    "fields": {
+      "$SwitchMap$pw$lach$p13n$manager$render$gui$main$SortBy": "JyFkRyh"
+    },
+    "methods": {}
+  },
+  "pw/lach/obj_parser/parser/CommentParser": {
+    "actual": "thRyftv",
+    "fields": {},
+    "methods": {
+      "incoporateResults(Lpw/lach/obj_parser/WavefrontObject;)V": "gWjrZHr",
+      "parse()V": "gcnLPpq"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketAvailableList": {
+    "actual": "WlwFlmx",
+    "fields": {
+      "models": "XxVKYNi",
+      "emotions": "ELrkFvi",
+      "graffities": "JGVDlsL"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/builtin/renderers/Prisoneer$1": {
+    "actual": "PHRYMxq",
+    "fields": {
+      "ZOMBIE_TEXTURES": "qsbwzLe",
+      "this$0": "gWjrZHr"
+    },
+    "methods": {
+      "getEntityTexture(Lnet/minecraft/entity/monster/EntityZombie;)Lnet/minecraft/util/ResourceLocation;": "gWjrZHr",
+      "getEntityTexture(Lnet/minecraft/entity/EntityLiving;)Lnet/minecraft/util/ResourceLocation;": "gWjrZHr",
+      "getEntityTexture(Lnet/minecraft/entity/Entity;)Lnet/minecraft/util/ResourceLocation;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/category/CategoryHandler": {
+    "actual": "iMiKrzM",
+    "fields": {},
+    "methods": {
+      "getCurrentCategory()Lpw/lach/p13n/model/category/Category;": "gWjrZHr",
+      "changeCategory(Ljava/lang/String;)V": "oYYSyxC"
+    }
+  },
+  "pw/lach/obj_parser/Face": {
+    "actual": "YzhJlhR",
+    "fields": {
+      "GL_TRIANGLES": "GL_TRIANGLES",
+      "GL_QUADS": "GL_QUADS",
+      "POLY_FACE": "OSCWwPr",
+      "vertices": "gWjrZHr",
+      "normals": "kPRmjRd",
+      "textures": "gWjrZHr",
+      "type": "aMNpdBH"
+    },
+    "methods": {
+      "getVertices()[Lpw/lach/obj_parser/Vertex;": "gWjrZHr",
+      "setVertices([Lpw/lach/obj_parser/Vertex;)V": "gWjrZHr",
+      "getType()I": "JyFkRyh",
+      "setType(I)V": "HjaaYnJ",
+      "getNormals()[Lpw/lach/obj_parser/Vertex;": "kPRmjRd",
+      "setNormals([Lpw/lach/obj_parser/Vertex;)V": "kPRmjRd",
+      "getTextures()[Lpw/lach/obj_parser/TextureCoordinate;": "gWjrZHr",
+      "setTextures([Lpw/lach/obj_parser/TextureCoordinate;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/render/CurrentRenderInfo": {
+    "actual": "HgTVeeX",
+    "fields": {
+      "forceAnimation": "ClushVo",
+      "currentEntityRender": "ptEwGeo",
+      "modelRenderId": "pALIEfC",
+      "targetRenderId": "sKgfXOA",
+      "currentTexture": "qXuxXyY",
+      "currentDescriptionRender": "aMNpdBH",
+      "forceChangeTexture": "JcEXYpB",
+      "debug": "hzzWWmn"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/settings/PersonalizationSettings$P13nProfile": {
+    "actual": "BKNdkLa",
+    "fields": {
+      "enabledModels": "wOfoeCE",
+      "modelsOptions": "KrHhkfC"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/wheel/EmotionWheelElement": {
+    "actual": "eSTDSyy",
+    "fields": {
+      "emotionPlayer": "LzYOZuP",
+      "player": "gWjrZHr",
+      "emotion": "kPRmjRd"
+    },
+    "methods": {
+      "getType()Ljava/lang/String;": "getType",
+      "read(Lcom/google/gson/JsonObject;)V": "gWjrZHr",
+      "save(Lcom/google/gson/JsonObject;)V": "kPRmjRd",
+      "init(Lpw/lach/p13n/model/emotion/Emotion;)V": "LzYOZuP",
+      "tick()V": "tick",
+      "onActive()V": "bBIHIxp",
+      "isInvalid()Z": "isInvalid",
+      "render(I)V": "ZIGbFLr",
+      "getDescription()Ljava/util/List;": "BCmcrbn",
+      "equals(Ljava/lang/Object;)Z": "equals",
+      "hashCode()I": "hashCode"
+    }
+  },
+  "pw/lach/p13n/network/data/ModelMetadata": {
+    "actual": "aaCTPfM",
+    "fields": {
+      "actual": "qOuWltZ",
+      "lastUpdateTimestamp": "BpwqFDP",
+      "profiles": "CqyJozg",
+      "giftBy": "GHxLmii",
+      "EMPTY": "kPRmjRd",
+      "IS_NOT_FOUND": "LzYOZuP"
+    },
+    "methods": {
+      "getProfile(Ljava/lang/String;)Ljava/util/UUID;": "LzYOZuP",
+      "isActual()Z": "zAiDmbA",
+      "getLastUpdateTimestamp()J": "sLfACSd",
+      "getProfiles()Ljava/util/Map;": "fyKGmzx",
+      "getGiftBy()Ljava/lang/String;": "QUAMnUd",
+      "toString()Ljava/lang/String;": "toString",
+      "setActual(Z)V": "CsdZfRT",
+      "setLastUpdateTimestamp(J)V": "UlPizuc"
+    }
+  },
+  "pw/lach/p13n/mixin_helpers/IMixinEntity": {
+    "actual": "gttzinn",
+    "fields": {},
+    "methods": {
+      "getModels()Ljava/util/Set;": "FpCNmUX",
+      "getModelOptions()Ljava/util/Map;": "FHURYzE",
+      "setModels(Ljava/util/Set;)V": "BCmcrbn",
+      "setModelOptions(Ljava/util/Map;)V": "clRoAwN"
+    }
+  },
+  "pw/lach/p13n/render/data/wrappers/LazyRenderer": {
+    "actual": "cTOUICw",
+    "fields": {
+      "gettingFunction": "nBvlYtT",
+      "loaded": "BrGopGP"
+    },
+    "methods": {
+      "free()V": "HPAZDyb",
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiElementCategory": {
+    "actual": "CWxPXMA",
+    "fields": {},
+    "methods": {
+      "lambda$new$1(Lpw/lach/p13n/model/category/Category;Lpw/lach/p13n/manager/render/gui/main/category/CategoryHandler;)Z": "gWjrZHr",
+      "lambda$new$0(Lpw/lach/p13n/manager/render/gui/main/category/CategoryHandler;Lpw/lach/p13n/model/category/Category;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/category/graffiti/GraffitiCategoryController": {
+    "actual": "MNmTmMZ",
+    "fields": {
+      "dataStore": "LzYOZuP"
+    },
+    "methods": {
+      "isEmpty(Lpw/lach/p13n/model/category/Category;)Z": "gWjrZHr",
+      "create(Lnet/diamondden/graffiti/prototype/GraffitiPrototype;Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)Lpw/lach/p13n/manager/render/gui/main/elements/GuiElementListUnit;": "gWjrZHr",
+      "filter(Ljava/util/List;Ljava/lang/String;)V": "LzYOZuP",
+      "sort(Ljava/util/List;Lpw/lach/p13n/manager/render/gui/main/SortBy;)V": "LzYOZuP",
+      "getAvailableElements()Ljava/util/Set;": "UlPizuc",
+      "getByCategoryFilterAndSort(Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;Lpw/lach/p13n/model/category/Category;Ljava/lang/String;Lpw/lach/p13n/manager/render/gui/main/SortBy;)Ljava/util/List;": "gWjrZHr",
+      "create(Ljava/lang/Object;Lpw/lach/p13n/manager/render/gui/main/bucket/P13nBucket;)Lpw/lach/p13n/manager/render/gui/main/elements/GuiElementListUnit;": "gWjrZHr",
+      "lambda$sort$7(Lnet/diamondden/graffiti/prototype/GraffitiPrototype;)Ljava/lang/Boolean;": "gWjrZHr",
+      "lambda$sort$6(Ljava/util/Set;Lnet/diamondden/graffiti/prototype/GraffitiPrototype;)Ljava/lang/Boolean;": "gWjrZHr",
+      "lambda$sort$5(Ljava/util/Set;Lnet/diamondden/graffiti/prototype/GraffitiPrototype;)Ljava/lang/Boolean;": "kPRmjRd",
+      "lambda$sort$4(Ljava/util/Set;Lnet/diamondden/graffiti/prototype/GraffitiPrototype;)Ljava/lang/Boolean;": "LzYOZuP",
+      "lambda$sort$3(ILnet/diamondden/graffiti/prototype/GraffitiPrototype;)Ljava/lang/Integer;": "gWjrZHr",
+      "lambda$sort$2(ILnet/diamondden/graffiti/prototype/GraffitiPrototype;)Ljava/lang/Integer;": "kPRmjRd",
+      "lambda$filter$1(Ljava/lang/String;Lnet/diamondden/graffiti/prototype/GraffitiPrototype;)Z": "gWjrZHr",
+      "lambda$filter$0(Lnet/diamondden/graffiti/prototype/GraffitiPrototype;)Z": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiSelectPlayerModal": {
+    "actual": "QgcdLMB",
+    "fields": {
+      "menu": "kPRmjRd"
+    },
+    "methods": {
+      "done(Ljava/lang/String;)V": "yoWaGjB",
+      "drawTitle(II)V": "VkgMeck",
+      "lambda$done$0(Lpw/lach/p13n/network/data/TexturePlayerProfile;Ljava/lang/Throwable;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/category/graffiti/GraffitiAddToHeaderElement": {
+    "actual": "IfcsODI",
+    "fields": {
+      "GREEN_COLOR": "ezgxJKu",
+      "unit": "gWjrZHr"
+    },
+    "methods": {
+      "getGraffitiData()Lpw/lach/p13n/network/data/GraffitiData;": "gWjrZHr",
+      "getCurrentHeader()Lpw/lach/p13n/manager/render/gui/main/bucket/addto/header/AbstractAddToHeaderElement$Header;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/GuiDevPreview$1": {
+    "actual": "KkHTunI",
+    "fields": {
+      "val$finalNetworkPlayerInfo": "BCmcrbn",
+      "this$0": "gWjrZHr"
+    },
+    "methods": {
+      "isSpectator()Z": "isSpectator",
+      "isCreative()Z": "isCreative",
+      "getPlayerInfo()Lnet/minecraft/client/network/NetworkPlayerInfo;": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/BuiltInRenderers": {
+    "actual": "mbuNNAC",
+    "fields": {
+      "builtin": "jobLuWl"
+    },
+    "methods": {
+      "lambda$new$10(Ljava/util/List;)Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "lambda$new$9(Ljava/lang/String;I)Ljava/lang/String;": "xZcGKMl",
+      "lambda$new$8(Ljava/lang/String;)Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "lambda$new$7()Lpw/lach/p13n/render/IRenderer;": "kPRmjRd",
+      "lambda$new$6()Lpw/lach/p13n/render/IRenderer;": "LzYOZuP",
+      "lambda$new$5()Lpw/lach/p13n/render/IRenderer;": "BCmcrbn",
+      "lambda$new$4()Lpw/lach/p13n/render/IRenderer;": "SJseNMa",
+      "lambda$new$3()Lpw/lach/p13n/render/IRenderer;": "xZcGKMl",
+      "lambda$new$2()Lpw/lach/p13n/render/IRenderer;": "UjBIMNN",
+      "lambda$new$1(Lpw/lach/p13n/manager/render/RenderManager;)Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "lambda$new$0()Lpw/lach/p13n/render/IRenderer;": "FpCNmUX"
+    }
+  },
+  "pw/lach/p13n/util/UtilRenderer": {
+    "actual": "jzSXBrG",
+    "fields": {},
+    "methods": {
+      "getRenderer(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "getStreamRenderer(Ljava/io/InputStream;Ljava/lang/String;)Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "getRendererUnsafe(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lpw/lach/p13n/render/IRenderer;": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/bucket/addto/header/AbstractAddToHeaderElement$Header": {
+    "actual": "HVKLcFw",
+    "fields": {
+      "text": "XkTqykZ",
+      "color": "yoWaGjB",
+      "hoverLine": "DjzbMsJ"
+    },
+    "methods": {
+      "getText()Ljava/lang/String;": "getText",
+      "getColor()I": "wWmyCsT",
+      "getHoverLine()Ljava/lang/String;": "IguhgAC"
+    }
+  },
+  "pw/lach/obj_parser/parser/mtl/MaterialParser": {
+    "actual": "tBnZdQz",
+    "fields": {
+      "materialName": "dVRXGJN"
+    },
+    "methods": {
+      "incoporateResults(Lpw/lach/obj_parser/WavefrontObject;)V": "gWjrZHr",
+      "parse()V": "gcnLPpq"
+    }
+  },
+  "pw/lach/p13n/model/category/CategoryIconDescription": {
+    "actual": "SLgwWTy",
+    "fields": {},
+    "methods": {
+      "transform()Lnet/minecraft/item/ItemStack;": "gWjrZHr"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/techne/TC1Json": {
+    "actual": "pmeQmxv",
+    "fields": {
+      "Techne": "gWjrZHr"
+    },
+    "methods": {
+      "toTC2Info()Lpw/lach/repackage/ichunutil/common/module/techne/TC2Info;": "gWjrZHr",
+      "populateNull(ILpw/lach/repackage/ichunutil/common/module/techne/TC2Info$Null;Lpw/lach/repackage/ichunutil/common/module/techne/TC1Json$Null;)I": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/network/service/PacketModelMeta": {
+    "actual": "jhHXSan",
+    "fields": {
+      "packetId": "cFbmYDU",
+      "metadata": "gWjrZHr",
+      "errorMessage": "PpIUxVj"
+    },
+    "methods": {
+      "getPacketId()Ljava/util/UUID;": "kcVZOtm",
+      "getMetadata()Lpw/lach/p13n/network/data/ModelMetadata;": "gWjrZHr",
+      "getErrorMessage()Ljava/lang/String;": "ALozbsv",
+      "toString()Ljava/lang/String;": "toString"
+    }
+  },
+  "pw/lach/p13n/util/UtilGL": {
+    "actual": "frmNlRB",
+    "fields": {},
+    "methods": {
+      "pushTexture()V": "vcBauqa",
+      "popTexture()V": "JBBBYsM"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiColorPalette$GuiColor": {
+    "actual": "WmVBeje",
+    "fields": {
+      "color": "gWjrZHr",
+      "getColorIndexSupplier": "kPRmjRd"
+    },
+    "methods": {
+      "isSelected()Z": "LslvfLf",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/category/graffiti/GraffitiCategoryController$1": {
+    "actual": "RlWzItc",
+    "fields": {
+      "$SwitchMap$pw$lach$p13n$manager$render$gui$main$SortBy": "eWeMAtS"
+    },
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiElementListUnit": {
+    "actual": "wTsoRUc",
+    "fields": {
+      "previewHandler": "kPRmjRd",
+      "addToElement": "gWjrZHr",
+      "description": "XxVKYNi"
+    },
+    "methods": {
+      "getType()Lpw/lach/p13n/manager/render/gui/main/type/P13nType;": "gWjrZHr",
+      "renderUnit()V": "kjYCLnc",
+      "canBuy()Z": "fEUIdNn",
+      "isPreview()Z": "WkUCkaD",
+      "isPurchased()Z": "GrszHmb",
+      "onHover()V": "LJKHhsy",
+      "getId()Ljava/util/UUID;": "getId",
+      "getUnit()Lpw/lach/p13n/model/Purchase;": "gWjrZHr",
+      "initDescription()Ljava/util/List;": "jTSZHwx",
+      "getDescription()Ljava/util/List;": "BCmcrbn",
+      "canAddTo()Z": "CHYcWXY",
+      "pastRender()V": "xJKUUJF",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "getPreviewHandler()Lpw/lach/p13n/manager/render/gui/main/PreviewHandler;": "gWjrZHr",
+      "getAddToElement()Lpw/lach/p13n/manager/render/gui/main/bucket/addto/AddToElement;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/section/CartWindowSection": {
+    "actual": "xXsfYNO",
+    "fields": {},
+    "methods": {
+      "send()Ljava/util/concurrent/CompletableFuture;": "SJseNMa",
+      "getTitle(I)Ljava/lang/String;": "WSVcWSq",
+      "getButtonText(II)Ljava/util/List;": "gWjrZHr"
+    }
+  },
+  "net/minecraft/client/renderer/entity/RenderLightmap": {
+    "actual": "DJlfTKc",
+    "fields": {
+      "instance": "gWjrZHr"
+    },
+    "methods": {
+      "create()V": "HNiouvQ",
+      "canRenderNamePlate(Lnet/minecraft/entity/EntityLivingBase;)Z": "LzYOZuP",
+      "set(Lnet/minecraft/entity/EntityLivingBase;F)Z": "gWjrZHr",
+      "unset()V": "lIUbQsN",
+      "getColorMultiplier(Lnet/minecraft/entity/EntityLivingBase;FF)I": "gWjrZHr",
+      "getEntityTexture(Lnet/minecraft/entity/EntityLivingBase;)Lnet/minecraft/util/ResourceLocation;": "gWjrZHr",
+      "getEntityTexture(Lnet/minecraft/entity/Entity;)Lnet/minecraft/util/ResourceLocation;": "gWjrZHr"
+    }
+  },
+  "pw/lach/obj_parser/WavefrontObject": {
+    "actual": "XrOtmsl",
+    "fields": {
+      "radius": "KrHhkfC",
+      "xScale": "KwxIXZQ",
+      "yScale": "ayUpNJN",
+      "zScale": "pKZiTXW",
+      "translate": "LzYOZuP",
+      "rotate": "BCmcrbn",
+      "displayListId": "DsihahA",
+      "materials": "gWjrZHr",
+      "vertices": "UjBIMNN",
+      "normals": "FpCNmUX",
+      "textures": "obWbjzA",
+      "groups": "BrGopGP",
+      "groupsDirectAccess": "kPRmjRd",
+      "parserFactory": "gWjrZHr",
+      "currentMaterial": "kPRmjRd",
+      "currentGroup": "gWjrZHr",
+      "data": "bIaORKD",
+      "valid": "ZvGNYCm"
+    },
+    "methods": {
+      "calculateRadius()V": "YngShXR",
+      "parse(Ljava/io/InputStream;)V": "LzYOZuP",
+      "parseLine(Ljava/lang/String;)V": "aMNpdBH",
+      "render(FLpw/lach/p13n/render/IRendererCallbacks;)V": "gWjrZHr",
+      "free()V": "HPAZDyb",
+      "unwrap()Lpw/lach/p13n/render/IRenderer;": "gWjrZHr",
+      "renderGroup(Lpw/lach/obj_parser/Group;)V": "gWjrZHr",
+      "getMaterials()Ljava/util/HashMap;": "gWjrZHr",
+      "getVertices()Ljava/util/ArrayList;": "LzYOZuP",
+      "getNormals()Ljava/util/ArrayList;": "BCmcrbn",
+      "getTextures()Ljava/util/ArrayList;": "SJseNMa",
+      "getGroups()Ljava/util/ArrayList;": "xZcGKMl",
+      "getGroupsDirectAccess()Ljava/util/HashMap;": "kPRmjRd",
+      "getCurrentMaterial()Lpw/lach/obj_parser/Material;": "kPRmjRd",
+      "setCurrentMaterial(Lpw/lach/obj_parser/Material;)V": "kPRmjRd",
+      "getCurrentGroup()Lpw/lach/obj_parser/Group;": "gWjrZHr",
+      "setCurrentGroup(Lpw/lach/obj_parser/Group;)V": "kPRmjRd"
+    }
+  },
+  "pw/lach/p13n/manager/easing/EasingManager": {
+    "actual": "oZxUDlC",
+    "fields": {
+      "NULL_POSITION": "SJseNMa",
+      "NULL_ROTATION": "BCmcrbn",
+      "easer": "gWjrZHr",
+      "prevPosition": "xZcGKMl",
+      "prevRotation": "SJseNMa",
+      "prevPlayerRotation": "xZcGKMl",
+      "prevPreRotation": "UjBIMNN",
+      "prevDistance": "DNdaRVZ",
+      "targetPosition": "UjBIMNN",
+      "targetRotation": "FpCNmUX",
+      "targetPlayerRotation": "obWbjzA",
+      "targetPreRotation": "BrGopGP",
+      "targetDistance": "wdiywvp",
+      "currentRotation": "XkTqykZ",
+      "currentPlayerRotation": "kcVZOtm",
+      "currentPreRotation": "MoiEanH",
+      "currentPosition": "FpCNmUX"
+    },
+    "methods": {
+      "getCurrentDistance()F": "HjaaYnJ",
+      "getCurrentRotation()Lpw/lach/math/vector/Angle3f;": "kPRmjRd",
+      "getCurrentPlayerRotation()Lpw/lach/math/vector/Angle3f;": "LzYOZuP",
+      "getCurrentPreRotation()Lpw/lach/math/vector/Angle3f;": "BCmcrbn",
+      "getCurrentPosition()Lpw/lach/math/vector/Vector3f;": "kPRmjRd",
+      "getPlayerOpacity()F": "CsdZfRT",
+      "currentToPrev()V": "YwLJTow",
+      "isNull()Z": "BRRocRf",
+      "isFinished()Z": "ZTgyZNY",
+      "shouldRenderPlayerBody()Z": "bqeiaHv",
+      "shouldRenderEasingAnimation()Z": "uxjDiTo",
+      "moveTo(Lpw/lach/math/vector/Vector3f;Lpw/lach/math/vector/Angle3f;Lpw/lach/math/vector/Angle3f;FLpw/lach/math/easing/Easer;)V": "gWjrZHr",
+      "moveTo(Lpw/lach/math/vector/Vector3f;Lpw/lach/math/vector/Angle3f;Lpw/lach/math/vector/Angle3f;Lpw/lach/math/vector/Angle3f;FLpw/lach/math/easing/Easer;)V": "gWjrZHr",
+      "getTargetRotation()Lpw/lach/math/vector/Angle3f;": "SJseNMa"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/PacketManager$Internals": {
+    "actual": "QYEwaDD",
+    "fields": {
+      "this$0": "kPRmjRd"
+    },
+    "methods": {
+      "onReceive(Lnet/minecraft/network/play/server/SPacketCustomPayload;)V": "kPRmjRd",
+      "lambda$onReceive$1(Ljava/lang/String;Ljava/lang/Object;)V": "BCmcrbn",
+      "lambda$onReceive$0(Ljava/util/function/Consumer;Ljava/lang/String;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiTextInput": {
+    "actual": "YiObbIY",
+    "fields": {
+      "leftTitle": "FouEkjV",
+      "rightTitle": "XmbbffG",
+      "textField": "HnZskzl",
+      "updateHandler": "xZcGKMl",
+      "completion": "GHfuYhT",
+      "backgroundColor": "unzGPHE",
+      "errorColor": "vGDcXJa",
+      "errorThrowTimestamp": "jWHwdAN"
+    },
+    "methods": {
+      "getText()Ljava/lang/String;": "getText",
+      "onMouseClick(III)V": "HnZskzl",
+      "keyTyped(CI)V": "keyTyped",
+      "onUpdate()V": "LzYOZuP",
+      "throwError()V": "wdcBSnk",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "drawSelectionBox(Lnet/minecraft/client/renderer/Tessellator;IIII)V": "gWjrZHr",
+      "getTextField()Lnet/minecraft/client/gui/GuiTextField;": "gWjrZHr",
+      "setUpdateHandler(Ljava/lang/Runnable;)V": "xZcGKMl",
+      "setBackgroundColor(I)V": "setBackgroundColor"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/action/P13nActionGuide": {
+    "actual": "ELzPfxF",
+    "fields": {},
+    "methods": {
+      "getAvailable(Lpw/lach/p13n/manager/render/gui/main/type/P13nType;)Ljava/util/Set;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/network/client/PacketPrice": {
+    "actual": "imHJUlu",
+    "fields": {
+      "currentDiscount": "TsHljlv",
+      "nextDiscount": "PbYWnqM",
+      "nextSum": "fYLTQQS"
+    },
+    "methods": {
+      "getCurrentDiscount()F": "GDQwfhu",
+      "getNextDiscount()F": "FrifavS",
+      "getNextSum()I": "hzHWySl"
+    }
+  },
+  "pw/lach/p13n/social/SocialP13nSet": {
+    "actual": "TXddYBO",
+    "fields": {
+      "profile": "gWjrZHr",
+      "likes": "WwJeaou",
+      "dislikes": "oeiiHIX",
+      "views": "vYpZhgv",
+      "elementList": "Yozfwqn"
+    },
+    "methods": {
+      "getProfile()Lcom/mojang/authlib/GameProfile;": "kPRmjRd",
+      "getLikes()J": "SpewARj",
+      "getDislikes()J": "SQsQYjb",
+      "getViews()J": "wEIbAWV",
+      "getElementList()Ljava/util/List;": "ClushVo"
+    }
+  },
+  "net/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController": {
+    "actual": "AqrzDYk",
+    "fields": {
+      "profileKey": "wOfoeCE",
+      "currentModelId": "LzYOZuP",
+      "currentPlayerId": "BCmcrbn"
+    },
+    "methods": {
+      "getTextureXDelta()D": "rbNGnZf",
+      "getTextureYDelta()D": "uyikWgD",
+      "init(Lnet/diamondden/bedrock/GeometryObject;)V": "kPRmjRd",
+      "remove()V": "remove",
+      "bindTexture(Lnet/diamondden/bedrock/BedrockRenderContext;)V": "LzYOZuP",
+      "isTextureUnloaded(Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureContext;)Z": "gWjrZHr",
+      "isMetaUpdated(Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureContext;)Z": "kPRmjRd",
+      "forceReloadSkin(Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureContext;Z)V": "gWjrZHr",
+      "loadMetadata(Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureContext;Z)V": "kPRmjRd",
+      "loadSkin(Lcom/mojang/authlib/GameProfile;Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureContext;)V": "gWjrZHr",
+      "update(Lnet/minecraft/entity/player/EntityPlayer;)V": "gWjrZHr",
+      "updateModelId(Ljava/util/UUID;)V": "gWjrZHr",
+      "lambda$loadSkin$3(Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureContext;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;Lnet/minecraft/util/ResourceLocation;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;Ljava/util/Map;)V": "gWjrZHr",
+      "lambda$loadMetadata$2(Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureContext;Lpw/lach/p13n/network/data/ModelMetadata;Ljava/lang/Throwable;)V": "gWjrZHr",
+      "lambda$null$1(Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureContext;Lcom/mojang/authlib/GameProfile;Ljava/lang/Throwable;)V": "gWjrZHr",
+      "lambda$bindTexture$0()Lnet/diamondden/bedrock/format/controller/ImplPlayerSkinTextureController$TextureContext;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/util/UtilIO": {
+    "actual": "FECZaJE",
+    "fields": {},
+    "methods": {
+      "toStreamMap(Ljava/util/Map;)Ljava/util/Map;": "LzYOZuP",
+      "lambda$toStreamMap$0(Ljava/util/Map$Entry;)Ljava/io/InputStream;": "gWjrZHr"
+    }
+  },
+  "pw/lach/lookup/custom/operators/CustomEquals": {
+    "actual": "QDVcIzM",
+    "fields": {},
+    "methods": {
+      "isEquals(Ljava/lang/Object;Ljava/lang/Object;)Z": "gWjrZHr"
+    }
+  },
+  "pw/lach/repackage/ichunutil/common/module/tabula/formats/types/ImportTabula": {
+    "actual": "msgYbtN",
+    "fields": {},
+    "methods": {
+      "convertTechneFile(Lpw/lach/repackage/ichunutil/common/module/techne/TC2Info;Ljava/lang/String;)Lpw/lach/repackage/ichunutil/common/module/tabula/project/ProjectInfo;": "gWjrZHr",
+      "determineAngleType(Lpw/lach/repackage/ichunutil/common/module/techne/TC2Info$Group;)Z": "gWjrZHr",
+      "exploreTC2Info(Ljava/util/ArrayList;Ljava/util/ArrayList;Lpw/lach/repackage/ichunutil/common/module/techne/TC2Info$Group;DDDDDDFFFZ)I": "gWjrZHr",
+      "readModelFile(Ljava/io/InputStream;Ljava/util/HashMap;Ljava/lang/String;)Lpw/lach/repackage/ichunutil/common/module/tabula/project/ProjectInfo;": "gWjrZHr"
+    }
+  },
+  "pw/lach/math/gl/IEditable": {
+    "actual": "tHnlqSm",
+    "fields": {},
+    "methods": {
+      "getEditor(Ljava/util/function/Consumer;)Ljavax/swing/JComponent;": "gWjrZHr",
+      "openEditor()V": "vRVZuep",
+      "lambda$openEditor$0(Ljava/lang/Object;)V": "XkTqykZ"
+    }
+  },
+  "pw/lach/obj_parser/NormalParser": {
+    "actual": "JLNfBGC",
+    "fields": {
+      "vertex": "kPRmjRd"
+    },
+    "methods": {
+      "parse()V": "gcnLPpq",
+      "incoporateResults(Lpw/lach/obj_parser/WavefrontObject;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/tails/ModelDragonTail": {
+    "actual": "SlnVLHa",
+    "fields": {
+      "tailBase": "aYZQzjE",
+      "tail1": "UePMOHf",
+      "tail2": "iCzNuIR",
+      "tail3": "ScRPMjE",
+      "tailSubBase": "HtPaSly",
+      "tailSub1": "ouUzLwB",
+      "tailSub2": "qsbwzLe",
+      "tailSub3": "UjKiIsE"
+    },
+    "methods": {
+      "setRotationAngles(FFFFFFLnet/minecraft/entity/Entity;)V": "gWjrZHr",
+      "render(Lnet/minecraft/entity/EntityLivingBase;IF)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/builtin/renderers/tails/ModelPartBase": {
+    "actual": "fnmvVjB",
+    "fields": {},
+    "methods": {
+      "render(Lnet/minecraft/entity/EntityLivingBase;IF)V": "gWjrZHr",
+      "setRotationRadians(Lnet/minecraft/client/model/ModelRenderer;DDD)V": "gWjrZHr",
+      "setRotationDegrees(Lnet/minecraft/client/model/ModelRenderer;FFF)V": "kPRmjRd",
+      "getAnimationTime(DLnet/minecraft/entity/Entity;)F": "gWjrZHr",
+      "getMotionAngles(Lnet/minecraft/entity/player/EntityPlayer;D)[D": "gWjrZHr",
+      "getTailBob(Lnet/minecraft/entity/player/EntityPlayer;F)F": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/model/CameraSetting": {
+    "actual": "DnjLSaX",
+    "fields": {
+      "scale": "kPRmjRd",
+      "translate": "gWjrZHr",
+      "rotate": "kcVZOtm",
+      "ignoreSwapCamera": "pUtTeNu"
+    },
+    "methods": {
+      "clone()Lpw/lach/p13n/model/CameraSetting;": "gWjrZHr",
+      "getScale()Lpw/lach/math/vector/Vector3f;": "LzYOZuP",
+      "getTranslate()Lpw/lach/math/vector/Vector3f;": "BCmcrbn",
+      "getRotate()Lpw/lach/math/vector/Vector3f;": "SJseNMa",
+      "isIgnoreSwapCamera()Z": "RMRnEfb"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/type/P13nModelType": {
+    "actual": "TsHljlv",
+    "fields": {},
+    "methods": {}
+  },
+  "dev/xdark/util/ModUtil": {
+    "actual": "DtLioMb",
+    "fields": {},
+    "methods": {}
+  },
+  "net/diamondden/adapter/InstantConverter": {
+    "actual": "NPNoTIp",
+    "fields": {
+      "FORMATTER": "gWjrZHr"
+    },
+    "methods": {
+      "serialize(Ljava/time/Instant;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;": "gWjrZHr",
+      "deserialize(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/time/Instant;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/network/data/ModelOptionsData": {
+    "actual": "QrkCtub",
+    "fields": {
+      "offsetY": "ZidqfbY",
+      "hand": "hRzXCbS",
+      "color": "yoWaGjB",
+      "argbColor": "HYRCGUF",
+      "texture": "bUUPfaj",
+      "lastMetaUpdateTimestamp": "WWspnbc",
+      "description": "SDnQcdK",
+      "lastSendTime": "tfGxGbv",
+      "lastUpdateTime": "cQMqKCo",
+      "EMPTY": "gWjrZHr"
+    },
+    "methods": {
+      "parseFloat(Ljava/util/Map;Ljava/lang/String;F)F": "gWjrZHr",
+      "parseInt(Ljava/util/Map;Ljava/lang/String;I)I": "gWjrZHr",
+      "parseLong(Ljava/util/Map;Ljava/lang/String;J)J": "gWjrZHr",
+      "clone()Lpw/lach/p13n/network/data/ModelOptionsData;": "gWjrZHr",
+      "setDescription(I)V": "RkXfDac",
+      "setColor(I)V": "bPQZtow",
+      "setHand(I)V": "sLwhyeX",
+      "setOffsetY(F)V": "cZvWmYA",
+      "setArgbColor(I)V": "dQPtzUM",
+      "setTexture(I)V": "KrHhkfC",
+      "setLastMetaUpdateTimestamp(J)V": "ptEwGeo",
+      "isValid()Z": "dgxZXUU",
+      "toString()Ljava/lang/String;": "toString",
+      "getOffsetY()F": "FerRmla",
+      "getHand()I": "rkjYKNZ",
+      "getColor()I": "wWmyCsT",
+      "getArgbColor()I": "PBWGSCv",
+      "getTexture()I": "kSKuDAS",
+      "getLastMetaUpdateTimestamp()J": "fEblpSX",
+      "getDescription()I": "dVRXGJN",
+      "getLastSendTime()J": "bIaORKD",
+      "getLastUpdateTime()J": "pmpUnlO",
+      "setLastSendTime(J)V": "eNyELuG",
+      "setLastUpdateTime(J)V": "rOpQWhg"
+    }
+  },
+  "pw/lach/p13n/manager/DataStore$1": {
+    "actual": "HdsiuFB",
+    "fields": {
+      "this$0": "BCmcrbn"
+    },
+    "methods": {
+      "deserialize(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lpw/lach/p13n/model/CameraSetting;": "gWjrZHr",
+      "fromArrayJson(Lcom/google/gson/JsonElement;)Lpw/lach/math/vector/Vector3f;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/model/ModelsJson": {
+    "actual": "zCzvVXj",
+    "fields": {
+      "list": "ZidqfbY",
+      "categories": "gObupbx",
+      "emotions": "PORowDK",
+      "graffities": "CMtmvXs",
+      "signature": "gWjrZHr"
+    },
+    "methods": {
+      "getList()Ljava/util/List;": "WjCdIbC",
+      "getCategories()Ljava/util/List;": "LbzMTQY",
+      "getEmotions()Ljava/util/List;": "aMNpdBH",
+      "getGraffities()Lnet/diamondden/graffiti/storage/GraffitiesDescription;": "KBtCDSg",
+      "getSignature()Ljava/lang/String;": "gWjrZHr"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/engine/GuiElement": {
+    "actual": "utOodoC",
+    "fields": {
+      "handler": "SJseNMa",
+      "enabled": "rbNGnZf",
+      "z": "jrZAYKi",
+      "x": "yuHMixK",
+      "y": "HnZskzl",
+      "width": "ptEwGeo",
+      "height": "DswtZYd",
+      "hoverOffsetY": "GInNUgy",
+      "mouseX": "OfTTGTP",
+      "mouseY": "hWvdwSr",
+      "scale": "CqyJozg",
+      "hover": "eKKaPPR",
+      "parentHover": "jUVlNFn",
+      "defaultHoverLevel": "CPotDKx",
+      "hoverLevel": "QIUROWD",
+      "context": "gWjrZHr",
+      "staticHoverText": "pcfmgkk",
+      "hoverTextSupplier": "kcVZOtm",
+      "lastRenderTime": "rbNGnZf",
+      "color": "fEblpSX",
+      "children": "HVivheQ",
+      "hoverTimeStamp": "wzFcXfC"
+    },
+    "methods": {
+      "setDefaultHoverLevel(I)V": "VGSCVEU",
+      "resetHoverLevel()V": "mqgQMKz",
+      "isHoverLock()Z": "AptJREz",
+      "addChild(Lpw/lach/p13n/manager/render/gui/engine/GuiElement;)V": "gWjrZHr",
+      "onUpdate()V": "LzYOZuP",
+      "isVisible()Z": "isVisible",
+      "onMouseWheel(I)V": "dAeOVfW",
+      "onMouseClick(III)V": "HnZskzl",
+      "playClickSound()V": "WhLHRhu",
+      "onClick(III)V": "WjCdIbC",
+      "onMouseMove(III)V": "UlPizuc",
+      "onMouseReleased(III)V": "ptEwGeo",
+      "keyTyped(CI)V": "keyTyped",
+      "onResize(II)V": "LtxAdJQ",
+      "setCompletions([Ljava/lang/String;)V": "setCompletions",
+      "isHover0(Lpw/lach/p13n/manager/render/gui/engine/GuiContext;)Z": "gWjrZHr",
+      "isHover0(Lpw/lach/p13n/manager/render/gui/engine/GuiContext;I)Z": "gWjrZHr",
+      "glScissorEnable(IIII)V": "ptEwGeo",
+      "glScissorDisable()V": "dJYdSiD",
+      "onHover()V": "LJKHhsy",
+      "preRender(Lpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "postRender(Lpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "kPRmjRd",
+      "drawScreen(IIIILpw/lach/p13n/manager/render/gui/engine/GuiContext;)V": "gWjrZHr",
+      "getHoverColor(J)I": "LzYOZuP",
+      "getHoverColor(JI)I": "kPRmjRd",
+      "getBlackoutColor(JJII)I": "gWjrZHr",
+      "compareTo(Lpw/lach/p13n/manager/render/gui/engine/GuiElement;)I": "gWjrZHr",
+      "getHandler()Ljava/lang/Runnable;": "gWjrZHr",
+      "isEnabled()Z": "isEnabled",
+      "getZ()I": "getZ",
+      "getX()I": "getX",
+      "getY()I": "getY",
+      "getWidth()I": "getWidth",
+      "getHeight()I": "getHeight",
+      "getHoverOffsetY()I": "IBDNman",
+      "getMouseX()I": "EKRBfdq",
+      "getMouseY()I": "vHGBuab",
+      "getScale()D": "UjBIMNN",
+      "isHover()Z": "memZAGg",
+      "isParentHover()Z": "ZvBVLmq",
+      "getDefaultHoverLevel()I": "VjlRZmj",
+      "getHoverLevel()I": "HNiouvQ",
+      "getContext()Lpw/lach/p13n/manager/render/gui/engine/GuiContext;": "gWjrZHr",
+      "getStaticHoverText()Ljava/util/List;": "wOfoeCE",
+      "getHoverTextSupplier()Ljava/util/function/Supplier;": "kPRmjRd",
+      "getLastRenderTime()J": "LzYOZuP",
+      "getColor()[F": "XkTqykZ",
+      "getChildren()Ljava/util/List;": "scWGGoF",
+      "getHoverTimeStamp()J": "VkgMeck",
+      "setHandler(Ljava/lang/Runnable;)V": "SJseNMa",
+      "setEnabled(Z)V": "setEnabled",
+      "setHoverOffsetY(I)V": "EjQtGsT",
+      "setHoverLevel(I)V": "AbPvhIv",
+      "setStaticHoverText(Ljava/util/List;)V": "UlPizuc",
+      "setHoverTextSupplier(Ljava/util/function/Supplier;)V": "gWjrZHr",
+      "setColor([F)V": "xiOHUEZ"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/elements/GuiElementGraffiti": {
+    "actual": "KhzaFHC",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/gui/main/type/P13nEmotionType": {
+    "actual": "PbYWnqM",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/render/gui/main/type/P13nGraffitiType": {
+    "actual": "nevVltx",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/manager/DataStore": {
+    "actual": "pnNRGND",
+    "fields": {
+      "categories": "gWjrZHr",
+      "myModels": "gWjrZHr",
+      "myModelsOptions": "Jbqngxu"
+    },
+    "methods": {
+      "setAvailableModels(Ljava/util/Set;)V": "kPRmjRd",
+      "clearAnotherPlayers()V": "QhupgWv",
+      "reloadModels()V": "clear"
+    }
+  },
+  "pw/lach/p13n/manager/render/gui/main/type/P13nType": {
+    "actual": "UdigfaU",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/model/model/ModelDescription": {
+    "actual": "yoILqaQ",
+    "fields": {},
+    "methods": {}
+  },
+  "pw/lach/p13n/network/ModelKind": {
+    "actual": "lRAOaIK",
+    "fields": {
+      "MODEL": "MODEL",
+      "EMOTION": "EMOTION",
+      "GRAFFITI": "GRAFFITI",
+      "textNomCap": "textNomCap",
+      "textGenMulti": "textGenMulti",
+      "textAcc": "textAcc",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lpw/lach/p13n/network/ModelKind;": "values",
+      "valueOf(Ljava/lang/String;)Lpw/lach/p13n/network/ModelKind;": "valueOf"
+    }
+  }
+}

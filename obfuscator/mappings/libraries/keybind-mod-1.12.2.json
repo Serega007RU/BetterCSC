@@ -1,0 +1,1254 @@
+{
+  "pw/lach/cristalix/modloader/util/position/RelativePositionType": {
+    "actual": "ukFtOwa",
+    "fields": {
+      "TOP_LEFT": "TOP_LEFT",
+      "TOP": "TOP",
+      "TOP_RIGHT": "TOP_RIGHT",
+      "RIGHT": "RIGHT",
+      "BOTTOM_RIGHT": "BOTTOM_RIGHT",
+      "BOTTOM": "BOTTOM",
+      "BOTTOM_LEFT": "BOTTOM_LEFT",
+      "LEFT": "LEFT",
+      "CENTER": "CENTER",
+      "posMultiplier": "posMultiplier",
+      "innerMovement": "innerMovement",
+      "paddingOffset": "paddingOffset",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lpw/lach/cristalix/modloader/util/position/RelativePositionType;": "values",
+      "valueOf(Ljava/lang/String;)Lpw/lach/cristalix/modloader/util/position/RelativePositionType;": "valueOf",
+      "getOuterMovement()Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "BCmcrbn",
+      "perpendicular()Lpw/lach/cristalix/modloader/util/position/RelativePositionType;": "kPRmjRd",
+      "inv()Lpw/lach/cristalix/modloader/util/position/RelativePositionType;": "LzYOZuP",
+      "getBindPos(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "gWjrZHr",
+      "getInnerBindPos(Lpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "kPRmjRd",
+      "getOuterBindPos(Lpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "LzYOZuP",
+      "toString()Ljava/lang/String;": "toString"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/ui_components/TransparentTextButton$ResizeType": {
+    "actual": "mhQacMS",
+    "fields": {
+      "SCALE_TEXT_TO_FIT": "SCALE_TEXT_TO_FIT",
+      "SCALE_BUTTON_WIDTH_AND_HEIGHT_TO_TEXT": "SCALE_BUTTON_WIDTH_AND_HEIGHT_TO_TEXT",
+      "SCALE_BUTTON_WIDTH_TO_TEXT": "SCALE_BUTTON_WIDTH_TO_TEXT",
+      "NO_SCALING": "NO_SCALING",
+      "$VALUES": "$VALUES"
+    },
+    "methods": {
+      "values()[Lpw/lach/cristalix/modloader/util/components/ui_components/TransparentTextButton$ResizeType;": "values",
+      "valueOf(Ljava/lang/String;)Lpw/lach/cristalix/modloader/util/components/ui_components/TransparentTextButton$ResizeType;": "valueOf"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/wrappers/PaddingResizerComponent": {
+    "actual": "UOlGEzK",
+    "fields": {
+      "leftTopPadding": "FpCNmUX",
+      "rightBottomPadding": "obWbjzA",
+      "toResize": "kPRmjRd",
+      "inner": "kPRmjRd"
+    },
+    "methods": {
+      "setToResize(Lpw/lach/cristalix/modloader/util/components/ResizeableComponent;)V": "kPRmjRd",
+      "setDimensions(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "destroy()V": "MnPZcoh"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/focusable/FocusableLabel": {
+    "actual": "hMrZnRZ",
+    "fields": {
+      "str": "HZxQGRL",
+      "color": "yoWaGjB",
+      "hoverColor": "vlzynup",
+      "focusColor": "aeQyGKy",
+      "tooltips": "VhvatqC",
+      "hover": "eKKaPPR",
+      "center": "gcnLPpq",
+      "focused": "hvLGEBc",
+      "userData": "UlPizuc"
+    },
+    "methods": {
+      "setColors(III)V": "yuHMixK",
+      "setColor(I)V": "bPQZtow",
+      "setHoverColor(I)V": "LOsaIMg",
+      "setFocusColor(I)V": "tfGxGbv",
+      "getText()Ljava/lang/String;": "getText",
+      "setText(Ljava/lang/String;)V": "setText",
+      "setUserData(Ljava/lang/Object;)V": "BrGopGP",
+      "getUserData()Ljava/lang/Object;": "XkTqykZ",
+      "draw(II)V": "WSVcWSq",
+      "getTooltips()Ljava/util/List;": "tWXlMam",
+      "click(II)Z": "nBvlYtT",
+      "getStringWidth(Ljava/lang/String;)I": "getStringWidth",
+      "setPosition(II)V": "BrGopGP",
+      "shiftY(I)V": "BpwqFDP",
+      "focusGained()V": "xYAHAMM",
+      "focusLost()V": "AqrzDYk"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/chat_buttons/gui/ChatBindingGuiComponent$KeybindComponent": {
+    "actual": "AXYHkeF",
+    "fields": {
+      "keybind": "kPRmjRd",
+      "nameComponent": "gWjrZHr",
+      "bindingComponent": "kPRmjRd",
+      "PADDING_SIDES": "DtLioMb",
+      "this$0": "BCmcrbn"
+    },
+    "methods": {
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "recalculate()V": "UfGNmxL",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/focusable/FocusableWidget": {
+    "actual": "jkaELaU",
+    "fields": {},
+    "methods": {
+      "focusGained()V": "xYAHAMM",
+      "focusLost()V": "AqrzDYk"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/ui_components/EmptyComponent": {
+    "actual": "UAtGSwx",
+    "fields": {},
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "destroy()V": "MnPZcoh"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/gui/GuiEditAction": {
+    "actual": "AkIaujE",
+    "fields": {
+      "action": "SJseNMa",
+      "container": "kPRmjRd",
+      "commandLabel": "gWjrZHr",
+      "commandTextField": "gWjrZHr",
+      "saveButton": "gWjrZHr"
+    },
+    "methods": {
+      "revalidateGui()V": "ZBRNLxg",
+      "createGui()V": "mYRnOPM",
+      "reopenedGui()V": "oYXvaSW",
+      "buttonClicked(Lpw/lach/cristalix/modloader/gui/core/Button;)V": "gWjrZHr",
+      "unhandledKeyTyped(CI)V": "LzYOZuP",
+      "lambda$buttonClicked$3(Ljava/lang/String;)Ljava/lang/String;": "SQsQYjb",
+      "lambda$buttonClicked$2(Ljava/lang/String;)Z": "jrZAYKi",
+      "lambda$createGui$1(Ljava/lang/String;)Ljava/lang/String;": "wEIbAWV",
+      "lambda$createGui$0(Ljava/lang/String;)Z": "pIaPPzl"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/ui_components/TransparentTextButton$1": {
+    "actual": "fxVdNyy",
+    "fields": {
+      "$SwitchMap$pw$lach$cristalix$modloader$util$components$ui_components$TransparentTextButton$ResizeType": "YiTubgM"
+    },
+    "methods": {}
+  },
+  "pw/lach/cristalix/modloader/manager/chat_buttons/gui/ChatBindingGuiComponent$EditBindingComponent": {
+    "actual": "gUsokra",
+    "fields": {
+      "commandField": "gWjrZHr",
+      "NO_SELECTION": "uXiNuJH",
+      "this$0": "kPRmjRd"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "lambda$new$5(Ljava/lang/Integer;)V": "kPRmjRd",
+      "lambda$new$4()Ljava/lang/Boolean;": "LzYOZuP",
+      "lambda$new$3()Ljava/lang/String;": "apeJvbC",
+      "lambda$new$2(Ljava/lang/Integer;)V": "gWjrZHr",
+      "lambda$new$1()Ljava/lang/Boolean;": "kPRmjRd",
+      "lambda$new$0()Ljava/lang/String;": "HiiEkUV"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/core/Scrollbar$Shiftable": {
+    "actual": "tjacFxU",
+    "fields": {},
+    "methods": {
+      "shiftY(I)V": "BpwqFDP"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/wrappers/ElementsWithPaddingComponent": {
+    "actual": "spAemoh",
+    "fields": {
+      "components": "bHXMaix",
+      "paddingMultiplier": "xZcGKMl",
+      "paddingVec": "UjBIMNN",
+      "padStart": "pzMSanw",
+      "padEnd": "MtzksaD",
+      "initialTranslation": "LzYOZuP"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "addComponent(Lpw/lach/cristalix/modloader/util/components/Component;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "destroy()V": "MnPZcoh"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/Component": {
+    "actual": "aUbEOzz",
+    "fields": {
+      "dimensions": "gWjrZHr"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "destroy()V": "MnPZcoh"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/wrappers/ScaleFitterComponent": {
+    "actual": "VkIYFAv",
+    "fields": {
+      "scale": "eNyELuG",
+      "offset": "kPRmjRd",
+      "component": "LzYOZuP"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "fitIn(Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;Lpw/lach/cristalix/modloader/util/components/Component;)Lpw/lach/cristalix/modloader/util/components/wrappers/ScaleFitterComponent;": "gWjrZHr",
+      "destroy()V": "MnPZcoh"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/vector/Vector2f": {
+    "actual": "aZeogwh",
+    "fields": {
+      "NUL": "XkTqykZ",
+      "x": "xiOHUEZ",
+      "y": "wuMPZig"
+    },
+    "methods": {
+      "isNul()Z": "HqdRtAg",
+      "sub(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "gWjrZHr",
+      "add(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "kPRmjRd",
+      "mul(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "LzYOZuP",
+      "max(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "BCmcrbn",
+      "mul(F)Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "gWjrZHr",
+      "div(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "SJseNMa",
+      "div(F)Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "kPRmjRd",
+      "inv()Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "SJseNMa",
+      "abs()Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "xZcGKMl",
+      "mulToMut(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "kPRmjRd",
+      "divToMut(F)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "gWjrZHr",
+      "invToMut()Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "gWjrZHr",
+      "cloneToMut()Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "kPRmjRd",
+      "inRange(Lpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Z": "gWjrZHr",
+      "toString()Ljava/lang/String;": "toString",
+      "equals(Ljava/lang/Object;)Z": "equals",
+      "canEqual(Ljava/lang/Object;)Z": "gWjrZHr",
+      "hashCode()I": "hashCode",
+      "getX()F": "getX",
+      "getY()F": "getY"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/chat_buttons/gui/ChatBindingGuiComponent$AddBindingComponent": {
+    "actual": "elEZDhT",
+    "fields": {
+      "this$0": "gWjrZHr"
+    },
+    "methods": {
+      "lambda$new$2(Ljava/lang/Integer;)V": "gWjrZHr",
+      "lambda$new$1()Ljava/lang/Boolean;": "kPRmjRd",
+      "lambda$new$0()Ljava/lang/String;": "HiiEkUV"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/vanilla/SliderVanilla": {
+    "actual": "DXdWSeX",
+    "fields": {
+      "TEXTURE": "iCzNuIR"
+    },
+    "methods": {
+      "handleClick(II)V": "uyikWgD",
+      "draw(II)V": "WSVcWSq"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/chat_buttons/buttons/BindChatButton": {
+    "actual": "mSoqQRj",
+    "fields": {},
+    "methods": {
+      "getText()Ljava/lang/String;": "getText",
+      "onClick()V": "BsPPIrw",
+      "isPressed()Z": "isPressed"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/ResizeableComponent": {
+    "actual": "xvezibK",
+    "fields": {},
+    "methods": {
+      "setDimensions(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/vanilla/ScrollbarVanilla": {
+    "actual": "SUqUVJF",
+    "fields": {},
+    "methods": {
+      "drawBoundary(IIII)V": "HnZskzl",
+      "drawScrollbar(IIII)V": "WjCdIbC",
+      "shiftChildren(I)V": "ALozbsv"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/chat_buttons/gui/ChatBindingGuiComponent$GuiComponent": {
+    "actual": "GPMnCBP",
+    "fields": {
+      "listComponent": "gWjrZHr",
+      "this$0": "LzYOZuP"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "lambda$recalculate$0(Lpw/lach/cristalix/modloader/manager/keybind/Keybind;)Lpw/lach/cristalix/modloader/manager/chat_buttons/gui/ChatBindingGuiComponent$KeybindComponent;": "gWjrZHr"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/vanilla/CheckboxVanilla": {
+    "actual": "MPPldkO",
+    "fields": {
+      "TEXTURE": "UePMOHf",
+      "SIZE": "WvOQrVa"
+    },
+    "methods": {
+      "handleClick(II)V": "uyikWgD",
+      "draw(II)V": "WSVcWSq"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/core/Button": {
+    "actual": "mAAIzKU",
+    "fields": {
+      "handler": "gWjrZHr"
+    },
+    "methods": {
+      "click(II)Z": "nBvlYtT",
+      "handleClick(II)V": "uyikWgD",
+      "setEnabled(Z)V": "setEnabled",
+      "getText()Ljava/lang/String;": "getText",
+      "setText(Ljava/lang/String;)V": "setText"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/core/Checkbox": {
+    "actual": "GiGTdND",
+    "fields": {
+      "str": "HZxQGRL",
+      "check": "OTnDZYp"
+    },
+    "methods": {
+      "click(II)Z": "nBvlYtT",
+      "handleClick(II)V": "uyikWgD",
+      "isChecked()Z": "fwgthrg",
+      "setChecked(Z)V": "ArUibnx"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/vanilla/TextFieldVanilla": {
+    "actual": "rIzPgRk",
+    "fields": {
+      "outerColor": "ymZFHOR",
+      "innerColor": "jJXQkEQ"
+    },
+    "methods": {
+      "setInnerColor(I)V": "cQMqKCo",
+      "setOuterColor(I)V": "WwJeaou",
+      "getDrawX()I": "oHyHAeg",
+      "getDrawY()I": "alOopmW",
+      "getInternalWidth()I": "MBxIhgr",
+      "drawBackground()V": "drawBackground"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/core/TextField": {
+    "actual": "yeRkqPA",
+    "fields": {
+      "text": "XkTqykZ",
+      "maxLength": "pvpMmxP",
+      "focused": "hvLGEBc",
+      "cursorCounter": "rOSqBna",
+      "cursorPosition": "UePMOHf",
+      "charOffset": "LvmUCFt",
+      "selectionEnd": "iCzNuIR",
+      "color": "yoWaGjB",
+      "filter": "gWjrZHr"
+    },
+    "methods": {
+      "getDrawX()I": "oHyHAeg",
+      "getDrawY()I": "alOopmW",
+      "getInternalWidth()I": "MBxIhgr",
+      "drawBackground()V": "drawBackground",
+      "draw(II)V": "WSVcWSq",
+      "drawCursorVertical(IIII)V": "UlPizuc",
+      "click(II)Z": "nBvlYtT",
+      "handleClick(II)V": "uyikWgD",
+      "update()V": "update",
+      "focusGained()V": "xYAHAMM",
+      "focusLost()V": "AqrzDYk",
+      "getText()Ljava/lang/String;": "getText",
+      "setMaxLength(I)V": "WWspnbc",
+      "setColor(I)V": "bPQZtow",
+      "getSelectedtext()Ljava/lang/String;": "kfOmOAZ",
+      "setText(Ljava/lang/String;)V": "setText",
+      "moveCursorBy(I)V": "moveCursorBy",
+      "writeText(Ljava/lang/String;)V": "writeText",
+      "deleteFromCursor(I)V": "deleteFromCursor",
+      "setCursorPosition(I)V": "setCursorPosition",
+      "setSelectionPos(I)V": "setSelectionPos",
+      "keyTyped(CI)Z": "LzYOZuP"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/core/TextField$CharacterFilter": {
+    "actual": "OUFppYB",
+    "fields": {},
+    "methods": {
+      "filter(Ljava/lang/String;)Ljava/lang/String;": "pmpUnlO",
+      "isAllowedCharacter(C)Z": "UjBIMNN"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/user/UserConfigManager$1": {
+    "actual": "ynuYbvm",
+    "fields": {
+      "this$0": "kPRmjRd"
+    },
+    "methods": {
+      "getActualTypeArguments()[Ljava/lang/reflect/Type;": "getActualTypeArguments",
+      "getRawType()Ljava/lang/reflect/Type;": "getRawType",
+      "getOwnerType()Ljava/lang/reflect/Type;": "getOwnerType"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/position/RelativePosition$RelativePositionBuilder": {
+    "actual": "ijOswGf",
+    "fields": {
+      "inner$set": "wdcBSnk",
+      "inner$value": "mqgQMKz",
+      "type": "gWjrZHr",
+      "pos$set": "WhLHRhu",
+      "pos$value": "BrGopGP"
+    },
+    "methods": {
+      "inner(Z)Lpw/lach/cristalix/modloader/util/position/RelativePosition$RelativePositionBuilder;": "gWjrZHr",
+      "type(Lpw/lach/cristalix/modloader/util/position/RelativePositionType;)Lpw/lach/cristalix/modloader/util/position/RelativePosition$RelativePositionBuilder;": "gWjrZHr",
+      "pos(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/position/RelativePosition$RelativePositionBuilder;": "gWjrZHr",
+      "build()Lpw/lach/cristalix/modloader/util/position/RelativePosition;": "gWjrZHr",
+      "toString()Ljava/lang/String;": "toString"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/i18n/I18nProvider": {
+    "actual": "aOLUZTW",
+    "fields": {},
+    "methods": {
+      "provide(Ljava/lang/String;)Ljava/lang/String;": "provide"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/vanilla/TextFieldVanilla$VanillaFilter": {
+    "actual": "YYAjVNr",
+    "fields": {},
+    "methods": {
+      "filter(Ljava/lang/String;)Ljava/lang/String;": "pmpUnlO",
+      "isAllowedCharacter(C)Z": "UjBIMNN"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/KeyBindAction": {
+    "actual": "RkNmqqS",
+    "fields": {
+      "chat": "lbsHkOJ",
+      "raw": "UQITUvT",
+      "required": "AbPvhIv"
+    },
+    "methods": {}
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/replacements/CurrentPositionReplacementProvider": {
+    "actual": "LSmZKfL",
+    "fields": {},
+    "methods": {
+      "provide(Ljava/util/Map;)V": "WSVcWSq"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/chat_buttons/gui/ChatBindingGuiComponent": {
+    "actual": "JVgsAKM",
+    "fields": {
+      "profile": "gWjrZHr",
+      "selectedBind": "gWjrZHr",
+      "listChanged": "YngShXR",
+      "selectedChanged": "QgiuXUU",
+      "waitingForKeyPress": "SgMwlPk"
+    },
+    "methods": {
+      "destroy()V": "MnPZcoh",
+      "shouldHideChat()Z": "VVNYLZi",
+      "getSelectedBind()Lpw/lach/cristalix/modloader/manager/keybind/Keybind;": "gWjrZHr"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/basic/FocusedContainer": {
+    "actual": "MmXRUga",
+    "fields": {},
+    "methods": {
+      "setFocused(Lpw/lach/cristalix/modloader/gui/focusable/FocusableWidget;)V": "gWjrZHr",
+      "addWidgets([Lpw/lach/cristalix/modloader/gui/core/Widget;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/wrappers/ListComponent": {
+    "actual": "vaanZic",
+    "fields": {
+      "SCROLLBAR_WIDTH": "nGaSloT",
+      "SCROLLBAR_THUMB_HEIGHT": "fEUIdNn",
+      "components": "bSfohrH",
+      "itemOffset": "aZxAxhC",
+      "scrollbarGap": "WkUCkaD",
+      "itemGap": "GrszHmb",
+      "itemsOnScreen": "FvbimBT",
+      "holdingThumb": "GmFhrqC"
+    },
+    "methods": {
+      "getItemHeight()F": "ArUibnx",
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "maxItemOffset()I": "tSJAHOg",
+      "scrollbarNeeded()Z": "rWvTmKz",
+      "clampItemOffset()V": "RFMWkeT",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "replaceComponents(Ljava/util/List;)V": "YixeWRi",
+      "clearComponents()V": "hjsMpBq",
+      "addComponent(Lpw/lach/cristalix/modloader/util/components/ResizeableComponent;)V": "gWjrZHr",
+      "destroy()V": "MnPZcoh"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/vanilla/ButtonVanilla": {
+    "actual": "niMpOpU",
+    "fields": {
+      "TEXTURE": "aYZQzjE",
+      "str": "HZxQGRL"
+    },
+    "methods": {
+      "draw(II)V": "WSVcWSq",
+      "getStateOffset(Z)I": "kPRmjRd",
+      "getTextColor(Z)I": "LzYOZuP",
+      "getText()Ljava/lang/String;": "getText",
+      "setText(Ljava/lang/String;)V": "setText",
+      "handleClick(II)V": "uyikWgD"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/ui_components/VanilaInputFieldComponent": {
+    "actual": "kguuUdy",
+    "fields": {
+      "inputField": "gWjrZHr"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "setText(Ljava/lang/String;)V": "setText",
+      "getText()Ljava/lang/String;": "getText",
+      "destroy()V": "MnPZcoh"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/chat_buttons/gui/ChatGui": {
+    "actual": "GqRnloK",
+    "fields": {},
+    "methods": {
+      "shouldHideChat()Z": "VVNYLZi"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/events/Event": {
+    "actual": "HYKwAjh",
+    "fields": {
+      "cancelled": "sKgfXOA"
+    },
+    "methods": {
+      "cancel()V": "BcpzeNY"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/vector/Vector2fMut": {
+    "actual": "mYQhtZN",
+    "fields": {},
+    "methods": {
+      "maxXMut(F)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "kPRmjRd",
+      "maxYMut(F)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "LzYOZuP",
+      "maxMut(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "LzYOZuP",
+      "addXMut(F)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "BCmcrbn",
+      "addYMut(F)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "SJseNMa",
+      "mulXMut(F)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "xZcGKMl",
+      "mulYMut(F)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "UjBIMNN",
+      "addMut(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "BCmcrbn",
+      "subMut(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "SJseNMa",
+      "subMut(FF)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "gWjrZHr",
+      "setNul()Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "LzYOZuP",
+      "setFrom(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "xZcGKMl",
+      "set(FF)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "kPRmjRd",
+      "setX(F)V": "setX",
+      "setY(F)V": "setY"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/basic/MultiTooltip": {
+    "actual": "pPvWtxl",
+    "fields": {
+      "color": "yoWaGjB",
+      "txtColor": "oCJHiLa",
+      "text": "OyyHSor"
+    },
+    "methods": {
+      "draw(II)V": "WSVcWSq",
+      "click(II)Z": "nBvlYtT",
+      "setBackgroundColor(I)V": "setBackgroundColor",
+      "setTextColor(I)V": "setTextColor",
+      "getMaxStringWidth(Ljava/util/List;)I": "LzYOZuP"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/user/UserConfigManager": {
+    "actual": "jvMnpyR",
+    "fields": {
+      "keybindManager": "kPRmjRd",
+      "GSON": "XkTqykZ",
+      "userProfiles": "xQXHvPI",
+      "RANDOM": "FHURYzE",
+      "file": "yuHMixK"
+    },
+    "methods": {
+      "clearAction(Lpw/lach/cristalix/modloader/manager/keybind/KeyBindAction;)V": "gWjrZHr",
+      "clearKeybind(Lpw/lach/cristalix/modloader/manager/keybind/Keybind;)V": "kPRmjRd",
+      "clearProfile(Lpw/lach/cristalix/modloader/manager/keybind/KeybindProfile;)V": "gWjrZHr",
+      "createUserProfile(Ljava/lang/String;)Lpw/lach/cristalix/modloader/manager/keybind/KeybindProfile;": "gWjrZHr",
+      "getOrCreateUserProfile(Ljava/lang/String;)Lpw/lach/cristalix/modloader/manager/keybind/KeybindProfile;": "kPRmjRd",
+      "clearProfileList(Ljava/util/List;)V": "oiiXgwP",
+      "cleanProfileList()V": "NvLQdBW",
+      "loadConfig()V": "sZDWmyf",
+      "save()V": "XrrdGXD",
+      "lambda$loadConfig$2(Lpw/lach/cristalix/modloader/manager/keybind/KeybindProfile;)Z": "gWjrZHr",
+      "lambda$clearAction$1(Ljava/lang/String;)Z": "wHRudfg",
+      "lambda$clearAction$0(Ljava/lang/String;)Z": "fWHESNT"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/core/Widget": {
+    "actual": "arSTTtH",
+    "fields": {
+      "mc": "gWjrZHr",
+      "x": "yuHMixK",
+      "y": "HnZskzl",
+      "width": "ptEwGeo",
+      "height": "DswtZYd",
+      "enabled": "rbNGnZf"
+    },
+    "methods": {
+      "draw(II)V": "WSVcWSq",
+      "click(II)Z": "nBvlYtT",
+      "handleClick(II)V": "uyikWgD",
+      "update()V": "update",
+      "mouseReleased(II)V": "mouseReleased",
+      "keyTyped(CI)Z": "LzYOZuP",
+      "mouseWheel(I)Z": "DpLHUuB",
+      "getTooltips()Ljava/util/List;": "tWXlMam",
+      "inBounds(II)Z": "clRoAwN",
+      "shouldRender(II)Z": "WSVcWSq",
+      "setPosition(II)V": "BrGopGP",
+      "getX()I": "getX",
+      "getY()I": "getY",
+      "getWidth()I": "getWidth",
+      "getHeight()I": "getHeight"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/chat_buttons/ChatGuiManager": {
+    "actual": "JqtLnQc",
+    "fields": {
+      "instance": "gWjrZHr",
+      "activeGui": "gWjrZHr",
+      "leftButtons": "TUtGekL",
+      "rightButtons": "kXxqLnO"
+    },
+    "methods": {}
+  },
+  "pw/lach/cristalix/modloader/manager/chat_buttons/gui/ChatOverlayComponent": {
+    "actual": "wRhztvm",
+    "fields": {
+      "OFFSET": "tkDBVIA",
+      "BUTTON_HEIGHT": "bbILedA",
+      "leftUi": "gWjrZHr",
+      "rightUi": "kPRmjRd",
+      "chatUiHolder": "gWjrZHr",
+      "chatUiHolderResizer": "gWjrZHr"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "getLeftOffset()F": "nAeaguS",
+      "getRightOffset()F": "ZAqKaRy",
+      "lambda$new$1(Lpw/lach/cristalix/modloader/manager/chat_buttons/ChatButton;Ljava/lang/Integer;)V": "gWjrZHr",
+      "lambda$new$0(Lpw/lach/cristalix/modloader/manager/chat_buttons/ChatButton;Ljava/lang/Integer;)V": "kPRmjRd"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/costyl/GuiKeyBindingListVariables": {
+    "actual": "vywEYwf",
+    "fields": {
+      "maxListLabelWidth": "jobLuWl"
+    },
+    "methods": {}
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/gui/GuiEditBinding": {
+    "actual": "YCVlUem",
+    "fields": {
+      "binding": "LzYOZuP",
+      "profile": "kPRmjRd",
+      "container": "kPRmjRd",
+      "nameTitle": "kPRmjRd",
+      "nameField": "kPRmjRd",
+      "saveButton": "gWjrZHr",
+      "deleteButton": "kPRmjRd",
+      "downAction": "LzYOZuP",
+      "whileDownAction": "BCmcrbn",
+      "whileDownInterval": "kPRmjRd",
+      "upAction": "SJseNMa",
+      "whileUpAction": "xZcGKMl",
+      "whileUpInterval": "LzYOZuP",
+      "isDeleteEqualsCancel": "JWmotkg"
+    },
+    "methods": {
+      "delete()V": "voUCpCy",
+      "buttonClicked(Lpw/lach/cristalix/modloader/gui/core/Button;)V": "gWjrZHr",
+      "unhandledKeyTyped(CI)V": "LzYOZuP",
+      "revalidateGui()V": "ZBRNLxg",
+      "createGui()V": "mYRnOPM",
+      "reopenedGui()V": "oYXvaSW"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/events/ClickEvent": {
+    "actual": "wayYZWb",
+    "fields": {
+      "mouseButton": "FDRjSsj"
+    },
+    "methods": {}
+  },
+  "pw/lach/cristalix/modloader/gui/core/Slider": {
+    "actual": "RHVCEDO",
+    "fields": {
+      "format": "gWjrZHr",
+      "value": "RgRZVvj",
+      "dragging": "bjyNwOa"
+    },
+    "methods": {
+      "click(II)Z": "nBvlYtT",
+      "handleClick(II)V": "uyikWgD",
+      "mouseReleased(II)V": "mouseReleased",
+      "getValue()F": "RVOlFlY"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/replacements/ReplacementProvider": {
+    "actual": "GbeSURy",
+    "fields": {},
+    "methods": {
+      "provide(Ljava/util/Map;)V": "WSVcWSq"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/KeybindProfile": {
+    "actual": "rsKcCDD",
+    "fields": {
+      "id": "UjBIMNN",
+      "userEditable": "YwLJTow",
+      "order": "MEqSMDo",
+      "name": "gWjrZHr",
+      "enabled": "rbNGnZf",
+      "keybinds": "cDUSzuB"
+    },
+    "methods": {
+      "createKeybind(Ljava/lang/String;)Lpw/lach/cristalix/modloader/manager/keybind/Keybind;": "gWjrZHr",
+      "deleteKeybind(Lpw/lach/cristalix/modloader/manager/keybind/Keybind;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/ui_components/StringComponent": {
+    "actual": "KuPiyFC",
+    "fields": {
+      "text": "XkTqykZ",
+      "withShadow": "gYRWswO",
+      "color": "yoWaGjB"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "destroy()V": "MnPZcoh",
+      "setText(Ljava/lang/String;)V": "setText"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/vanilla/sliders/IntSlider": {
+    "actual": "mzQYINp",
+    "fields": {
+      "minVal": "jwnPVhO",
+      "maxVal": "cHXEgaM",
+      "nameFormat": "xyOJqPL",
+      "hover": "eKKaPPR"
+    },
+    "methods": {
+      "draw(II)V": "WSVcWSq",
+      "mouseWheel(I)Z": "DpLHUuB",
+      "getFloatValue(III)F": "gWjrZHr",
+      "setIntValue(I)V": "oeiiHIX",
+      "getIntValue()I": "TNQtjoz"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/vanilla/TextFieldVanilla$NumberFilter": {
+    "actual": "yHeiGVp",
+    "fields": {},
+    "methods": {
+      "filter(Ljava/lang/String;)Ljava/lang/String;": "pmpUnlO",
+      "isAllowedCharacter(C)Z": "UjBIMNN"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/gui/GuiEditBindingBasic": {
+    "actual": "jnEonwS",
+    "fields": {
+      "binding": "BCmcrbn",
+      "profile": "LzYOZuP",
+      "container": "kPRmjRd",
+      "nameTitle": "kPRmjRd",
+      "nameField": "kPRmjRd",
+      "commandTitle": "LzYOZuP",
+      "commandField": "LzYOZuP",
+      "saveButton": "gWjrZHr",
+      "deleteButton": "kPRmjRd",
+      "isDeleteEqualsCancel": "nNqwuyw"
+    },
+    "methods": {
+      "delete()V": "voUCpCy",
+      "buttonClicked(Lpw/lach/cristalix/modloader/gui/core/Button;)V": "gWjrZHr",
+      "unhandledKeyTyped(CI)V": "LzYOZuP",
+      "revalidateGui()V": "ZBRNLxg",
+      "createGui()V": "mYRnOPM",
+      "reopenedGui()V": "oYXvaSW"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/layouts/FractionalLayoutComponent": {
+    "actual": "dhyuhjG",
+    "fields": {
+      "components": "eKxEyqh",
+      "paddingMultiplier": "kPRmjRd",
+      "paddingPerpendicularMultiplier": "LzYOZuP",
+      "paddingVec": "BCmcrbn"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "addComponentInZLayer(Ljava/lang/Float;ILpw/lach/cristalix/modloader/util/components/ResizeableComponent;)V": "gWjrZHr",
+      "addComponent(Ljava/lang/Float;Lpw/lach/cristalix/modloader/util/components/ResizeableComponent;)V": "gWjrZHr",
+      "destroy()V": "MnPZcoh"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/focusable/FocusableSpecialLabel": {
+    "actual": "qKgHPvR",
+    "fields": {
+      "actualText": "KvggmDv"
+    },
+    "methods": {
+      "getSpecialText()Ljava/lang/String;": "wCfIbsm",
+      "setSpecialText(Ljava/lang/String;)V": "LbzMTQY"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/core/Scrollbar": {
+    "actual": "ftFpemu",
+    "fields": {
+      "yClick": "PnjaTjz",
+      "container": "kPRmjRd",
+      "topY": "YWQvzxv",
+      "bottomY": "aSXKVrG",
+      "offset": "offset"
+    },
+    "methods": {
+      "shiftChildren(I)V": "ALozbsv",
+      "drawBoundary(IIII)V": "HnZskzl",
+      "drawScrollbar(IIII)V": "WjCdIbC",
+      "revalidate(II)V": "DswtZYd",
+      "onChildRemoved()V": "DqbyWQC",
+      "setContainer(Lpw/lach/cristalix/modloader/gui/core/Container;)V": "gWjrZHr",
+      "getHeightDifference()I": "MNHFKUG",
+      "getLength()I": "MhQwnvY",
+      "draw(II)V": "WSVcWSq",
+      "click(II)Z": "nBvlYtT",
+      "shouldRender(II)Z": "WSVcWSq",
+      "shiftRelative(I)V": "QUAMnUd",
+      "shift(I)V": "SKfIpQR"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/core/Button$ButtonHandler": {
+    "actual": "pyXmYkp",
+    "fields": {},
+    "methods": {
+      "buttonClicked(Lpw/lach/cristalix/modloader/gui/core/Button;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/gui/GuiKeyBindingHelper": {
+    "actual": "ahHLNaY",
+    "fields": {
+      "addNewProfile": "QAgrfHO",
+      "RIGHT_STOP": "rAzILIc"
+    },
+    "methods": {
+      "updatePosition(IIIF)V": "gWjrZHr",
+      "drawEntry(IIIIIIIZF)V": "gWjrZHr",
+      "mousePressed(IIIIII)Z": "gWjrZHr",
+      "mouseReleased(IIIIII)V": "LzYOZuP"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/basic/OverlayScreen": {
+    "actual": "CBrZEeh",
+    "fields": {
+      "bg": "gWjrZHr"
+    },
+    "methods": {
+      "drawBackground()V": "drawBackground",
+      "revalidateGui()V": "ZBRNLxg",
+      "reopenedGui()V": "oYXvaSW"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/wrappers/NullWrapperComponent": {
+    "actual": "ohlUBqE",
+    "fields": {
+      "inner": "kPRmjRd"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "destroy()V": "MnPZcoh",
+      "setInner(Lpw/lach/cristalix/modloader/util/components/Component;)V": "kPRmjRd"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/wrappers/ResizeableZLayerComponent": {
+    "actual": "VYzdWmY",
+    "fields": {
+      "inner": "LzYOZuP",
+      "color": "yoWaGjB",
+      "zOffset": "CHYcWXY"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "setDimensions(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "destroy()V": "MnPZcoh"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/i18n/I18nProviderManager": {
+    "actual": "ioKsIjB",
+    "fields": {
+      "instance": "kPRmjRd",
+      "providers": "HPBtmym"
+    },
+    "methods": {
+      "containsKey(Ljava/lang/String;)Z": "bPQZtow",
+      "translateKeyPrivate(Ljava/lang/String;)Ljava/lang/String;": "HnZskzl"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/layouts/FractionalLayoutComponent$ComponentWrapper": {
+    "actual": "xtypxeA",
+    "fields": {
+      "fraction": "gWjrZHr",
+      "inner": "gWjrZHr"
+    },
+    "methods": {}
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/gui/GuiEditCategory": {
+    "actual": "FFSWTIx",
+    "fields": {
+      "category": "BCmcrbn",
+      "container": "kPRmjRd",
+      "nameTitle": "kPRmjRd",
+      "nameField": "kPRmjRd",
+      "slider": "BCmcrbn",
+      "saveButton": "gWjrZHr",
+      "deleteButton": "kPRmjRd",
+      "isDeleteEqualsCancel": "QAJtUhi"
+    },
+    "methods": {
+      "unhandledKeyTyped(CI)V": "LzYOZuP",
+      "revalidateGui()V": "ZBRNLxg",
+      "createGui()V": "mYRnOPM",
+      "reopenedGui()V": "oYXvaSW",
+      "delete()V": "voUCpCy",
+      "buttonClicked(Lpw/lach/cristalix/modloader/gui/core/Button;)V": "gWjrZHr"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/KeybindManager": {
+    "actual": "LrqWhXl",
+    "fields": {
+      "instance": "gWjrZHr",
+      "profileLists": "bPQZtow",
+      "gameSettings": "MoiEanH",
+      "userConfigManager": "gWjrZHr",
+      "isOptionsTxtLoaded": "rRLKXZX",
+      "replacements": "bjyNwOa",
+      "replacementProviders": "oIxbsoW",
+      "profileMap": "SJFMVwF",
+      "bindingMap": "pukVSMx"
+    },
+    "methods": {
+      "replaceProfileList(Ljava/util/List;Ljava/util/List;)V": "kPRmjRd",
+      "processKeybindAction(Lpw/lach/cristalix/modloader/manager/keybind/KeyBindAction;J)V": "gWjrZHr",
+      "processBinds()V": "HuwyXqc",
+      "getKeyDescription(Lpw/lach/cristalix/modloader/manager/keybind/KeybindProfile;Lpw/lach/cristalix/modloader/manager/keybind/Keybind;)Ljava/lang/String;": "gWjrZHr",
+      "syncConfigWithVanilla()V": "HdQFRez",
+      "save()V": "XrrdGXD",
+      "lambda$new$0(Ljava/lang/String;)Ljava/lang/String;": "SpewARj"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/replacements/PointedEntityReplacementProvider": {
+    "actual": "QZDvYtE",
+    "fields": {},
+    "methods": {
+      "provide(Ljava/util/Map;)V": "WSVcWSq"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/events/ScrollEvent": {
+    "actual": "vKutECj",
+    "fields": {
+      "scrollAmount": "WSVcWSq"
+    },
+    "methods": {}
+  },
+  "pw/lach/cristalix/modloader/util/position/RelativePosition": {
+    "actual": "mYbgFdb",
+    "fields": {
+      "inner": "kVHkUKE",
+      "type": "gWjrZHr",
+      "pos": "gWjrZHr"
+    },
+    "methods": {
+      "getPositionFor(Lpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/vector/Vector2f;)Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;": "gWjrZHr",
+      "$default$inner()Z": "vUZqewQ",
+      "$default$pos()Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "gWjrZHr",
+      "builder()Lpw/lach/cristalix/modloader/util/position/RelativePosition$RelativePositionBuilder;": "gWjrZHr",
+      "toString()Ljava/lang/String;": "toString",
+      "isInner()Z": "JLsjTeo",
+      "getType()Lpw/lach/cristalix/modloader/util/position/RelativePositionType;": "gWjrZHr",
+      "getPos()Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "kPRmjRd",
+      "access$000()Z": "sqqvCYh",
+      "access$100()Lpw/lach/cristalix/modloader/util/vector/Vector2f;": "LzYOZuP"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/keybind/Keybind": {
+    "actual": "JpsvbQy",
+    "fields": {
+      "id": "UjBIMNN",
+      "userEditable": "YwLJTow",
+      "name": "gWjrZHr",
+      "defaultBinding": "BJAwvkR",
+      "upInterval": "RSpiWRe",
+      "downInterval": "jLRSTRw",
+      "whileDown": "gWjrZHr",
+      "onDown": "kPRmjRd",
+      "whileUp": "LzYOZuP",
+      "onUp": "BCmcrbn",
+      "binding": "cFbmYDU",
+      "pressTime": "hAbrDra",
+      "lastDownNotification": "poRZMuf",
+      "lastUpNotification": "TRDTkMx"
+    },
+    "methods": {}
+  },
+  "pw/lach/cristalix/modloader/util/components/layouts/AbsoluteLayoutComponent$ComponentWrapper": {
+    "actual": "dnIYApz",
+    "fields": {
+      "pos": "gWjrZHr",
+      "component": "gWjrZHr",
+      "relPos": "gWjrZHr",
+      "relDim": "gWjrZHr"
+    },
+    "methods": {}
+  },
+  "pw/lach/cristalix/modloader/gui/basic/Label": {
+    "actual": "pTjBnHx",
+    "fields": {
+      "str": "HZxQGRL",
+      "color": "yoWaGjB",
+      "hoverColor": "vlzynup",
+      "tooltips": "iQQglIH",
+      "hover": "eKKaPPR",
+      "center": "RQNMefi",
+      "shadow": "PfWcKOQ",
+      "hoverStart": "cxWEvrg"
+    },
+    "methods": {
+      "setColor(I)V": "bPQZtow",
+      "setHoverColor(I)V": "LOsaIMg",
+      "setShadowedText(Z)V": "ZAqKaRy",
+      "getText()Ljava/lang/String;": "getText",
+      "setText(Ljava/lang/String;)V": "setText",
+      "draw(II)V": "WSVcWSq",
+      "getTooltips()Ljava/util/List;": "tWXlMam",
+      "click(II)Z": "nBvlYtT",
+      "getStringWidth(Ljava/lang/String;)I": "getStringWidth",
+      "setPosition(II)V": "BrGopGP"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/core/Container": {
+    "actual": "XGGeAdy",
+    "fields": {
+      "mc": "ctImnoG",
+      "focusList": "wiIjmzU",
+      "widgets": "sqYBAJt",
+      "left": "TcHqeDg",
+      "right": "teWrBzj",
+      "top": "xJwGNXw",
+      "bottom": "lmsQJNh",
+      "shiftAmount": "FtUDstn",
+      "extraScrollHeight": "iyeCXMf",
+      "scrollbarWidth": "GpSdVZO",
+      "cHeight": "RECwNIw",
+      "focusIndex": "UpiIMJB",
+      "scrollbar": "gWjrZHr",
+      "lastSelected": "gWjrZHr",
+      "clip": "UKGDEQO"
+    },
+    "methods": {
+      "revalidate(IIII)V": "yuHMixK",
+      "getWidgets()Ljava/util/List;": "bPQZtow",
+      "getFocusableWidgets()Ljava/util/List;": "jrZAYKi",
+      "addWidgets([Lpw/lach/cristalix/modloader/gui/core/Widget;)V": "gWjrZHr",
+      "calculateContentHeight()V": "cEsOwMn",
+      "getContentHeight()I": "SCwyexs",
+      "update()V": "update",
+      "draw(III)Ljava/util/List;": "gWjrZHr",
+      "setFocused(Lpw/lach/cristalix/modloader/gui/focusable/FocusableWidget;)V": "gWjrZHr",
+      "inBounds(II)Z": "clRoAwN",
+      "mouseClicked(II)Z": "dHIfRSy",
+      "deleteFocused()Lpw/lach/cristalix/modloader/gui/focusable/FocusableWidget;": "gWjrZHr",
+      "mouseReleased(II)V": "mouseReleased",
+      "hasFocusedWidget()Z": "zfsZLBq",
+      "getFocusedWidget()Lpw/lach/cristalix/modloader/gui/focusable/FocusableWidget;": "kPRmjRd",
+      "keyTyped(CI)Z": "LzYOZuP",
+      "shiftFocusToNext()V": "XolKHdT",
+      "shiftFocus(I)V": "ZOAiKjy",
+      "shift(I)V": "SKfIpQR",
+      "mouseWheel(I)V": "DohsBSE"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/position/RelativePositionType$1": {
+    "actual": "ZyWmpOb",
+    "fields": {
+      "$SwitchMap$pw$lach$cristalix$modloader$util$position$RelativePositionType": "hTGFbSb"
+    },
+    "methods": {}
+  },
+  "pw/lach/cristalix/modloader/gui/core/Slider$SliderFormat": {
+    "actual": "KCxVnJK",
+    "fields": {},
+    "methods": {
+      "format(Lpw/lach/cristalix/modloader/gui/core/Slider;)Ljava/lang/String;": "gWjrZHr"
+    }
+  },
+  "pw/lach/cristalix/modloader/manager/chat_buttons/ChatButton": {
+    "actual": "ZpTunwS",
+    "fields": {},
+    "methods": {
+      "getText()Ljava/lang/String;": "getText",
+      "onClick()V": "BsPPIrw",
+      "isPressed()Z": "isPressed"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/vanilla/sliders/IntSlider$IntSliderFormat": {
+    "actual": "ypVybCx",
+    "fields": {
+      "this$0": "gWjrZHr"
+    },
+    "methods": {
+      "format(Lpw/lach/cristalix/modloader/gui/core/Slider;)Ljava/lang/String;": "gWjrZHr"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/ui_components/TransparentTextButton": {
+    "actual": "IFroAnL",
+    "fields": {
+      "padding": "SJseNMa",
+      "background": "gWjrZHr",
+      "inner": "kPRmjRd",
+      "stringComponent": "LzYOZuP",
+      "resizeType": "gWjrZHr",
+      "offset": "kPRmjRd",
+      "clickCallback": "SJseNMa",
+      "textSupplier": "obWbjzA",
+      "isVisibleAsPressed": "BrGopGP"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "button(Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Lpw/lach/cristalix/modloader/util/components/ui_components/TransparentTextButton$ResizeType;Ljava/util/function/Consumer;)Lpw/lach/cristalix/modloader/util/components/ui_components/TransparentTextButton;": "gWjrZHr",
+      "setDimensions(Lpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "destroy()V": "MnPZcoh"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/components/layouts/AbsoluteLayoutComponent": {
+    "actual": "iIxKGGw",
+    "fields": {
+      "components": "bSfohrH"
+    },
+    "methods": {
+      "recalculate()V": "UfGNmxL",
+      "draw(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;)V": "gWjrZHr",
+      "event(ZLpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/events/Event;)V": "gWjrZHr",
+      "addAbsolute(Lpw/lach/cristalix/modloader/util/vector/Vector2f;Lpw/lach/cristalix/modloader/util/components/Component;)V": "gWjrZHr",
+      "addRelative(Lpw/lach/cristalix/modloader/util/position/RelativePosition;Lpw/lach/cristalix/modloader/util/components/Component;)V": "gWjrZHr",
+      "addRelative(Lpw/lach/cristalix/modloader/util/position/RelativePosition;Lpw/lach/cristalix/modloader/util/dimensions/RelativeDimensions;Lpw/lach/cristalix/modloader/util/components/ResizeableComponent;)V": "gWjrZHr",
+      "centered(Lpw/lach/cristalix/modloader/util/vector/Vector2fMut;Lpw/lach/cristalix/modloader/util/components/Component;)Lpw/lach/cristalix/modloader/util/components/layouts/AbsoluteLayoutComponent;": "gWjrZHr",
+      "destroy()V": "MnPZcoh"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/dimensions/RelativeDimensions": {
+    "actual": "hJEuMnL",
+    "fields": {
+      "proportionX": "kPRmjRd",
+      "proportionY": "LzYOZuP"
+    },
+    "methods": {
+      "toString()Ljava/lang/String;": "toString"
+    }
+  },
+  "pw/lach/cristalix/modloader/util/events/KeyTypedEvent": {
+    "actual": "HDhYxRp",
+    "fields": {
+      "typedChar": "BCmcrbn",
+      "keyCode": "EOAkdeh"
+    },
+    "methods": {}
+  },
+  "pw/lach/cristalix/modloader/gui/basic/Tooltip": {
+    "actual": "vRkSfQl",
+    "fields": {
+      "color": "yoWaGjB",
+      "txtColor": "oCJHiLa",
+      "str": "hzHWySl"
+    },
+    "methods": {
+      "setBackgroundColor(I)V": "setBackgroundColor",
+      "setTextColor(I)V": "setTextColor",
+      "draw(II)V": "WSVcWSq",
+      "click(II)Z": "nBvlYtT"
+    }
+  },
+  "pw/lach/cristalix/modloader/gui/basic/BasicScreen": {
+    "actual": "bQdUIVm",
+    "fields": {
+      "parent": "WjCdIbC",
+      "hasInit": "vRVZuep",
+      "closed": "jrZAYKi",
+      "containers": "WhEJptb",
+      "selectedContainer": "gWjrZHr"
+    },
+    "methods": {
+      "revalidateGui()V": "ZBRNLxg",
+      "createGui()V": "mYRnOPM",
+      "reopenedGui()V": "oYXvaSW",
+      "close()V": "close",
+      "unhandledKeyTyped(CI)V": "LzYOZuP",
+      "drawBackground()V": "drawBackground",
+      "drawScreen(IIF)V": "drawScreen",
+      "updateScreen()V": "dHIfRSy",
+      "mouseClicked(III)V": "mouseClicked",
+      "mouseReleased(III)V": "mouseReleased",
+      "handleMouseInput()V": "handleMouseInput",
+      "keyTyped(CI)V": "keyTyped",
+      "initGui()V": "clRoAwN",
+      "drawCenteredStringNoShadow(Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V": "LzYOZuP",
+      "onGuiClosed()V": "nBvlYtT"
+    }
+  }
+}

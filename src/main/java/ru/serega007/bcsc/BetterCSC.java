@@ -80,11 +80,11 @@ public class BetterCSC implements ModMain, Listener {
         } catch (Exception e) {
             //noinspection CallToPrintStackTrace
             e.printStackTrace();
-            api.chat().printChatMessage(prefix.copy().append(Text.of("Ошибка загрузки маппингов, обратитесь к разработчику https://github.com/Serega007RU/BetterCSC/issues " + e.getLocalizedMessage(), TextFormatting.DARK_RED)));
+            api.chat().printChatMessage(prefix.copy().append(Text.of("Ошибка загрузки маппингов (рефлексии), обратитесь к разработчику https://github.com/Serega007RU/BetterCSC/issues " + e.getLocalizedMessage(), TextFormatting.DARK_RED)));
             return;
         }
 
-        api.chat().printChatMessage(prefix.copy().append(Text.of("Plus Edition", TextFormatting.DARK_AQUA, " версии ", TextFormatting.GOLD, "@version@", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
+        api.chat().printChatMessage(prefix.copy().append(Text.of("версии ", TextFormatting.GOLD, "@version@", TextFormatting.YELLOW, " загружен, by ", TextFormatting.GOLD, "Serega007", TextFormatting.DARK_GREEN, " & ", TextFormatting.GOLD, "VVHIX", TextFormatting.DARK_GREEN)));
         ChatSend.BUS.register(this, chatSend -> {
             if (chatSend.isCommand()) {
                 String msg = chatSend.getMessage().toLowerCase();
@@ -286,7 +286,15 @@ public class BetterCSC implements ModMain, Listener {
                             if (api.minecraft().getPlayerController().getGameMode().equals(GameMode.SPECTATOR)) return;
                             ItemStack itemStack = player.getInventory().getCurrentItem();
                             if (!itemStack.isEmpty() && !itemStack.getDisplayName().contains("Книга")) return;
-                            Minecraft.getMinecraft().getConnection().sendPacket(new CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
+                            try {
+                                Minecraft.getMinecraft().getConnection().sendPacket(new CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
+//                                api.minecraft().rightClickMouse();
+//                                Wrapper.sendPacket(Wrapper.CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
+                            } catch (Exception e) {
+                                //noinspection CallToPrintStackTrace
+                                e.printStackTrace();
+                                disableBuy(api, Text.of("Произошла ошибка при попытке кликнуть ПКМ", TextFormatting.RED, ", ", TextFormatting.GOLD, e.toString(), TextFormatting.DARK_RED));
+                            }
                         }, 0, 1000000 / periodUse, TimeUnit.MICROSECONDS);
                     }
                 } else if (msg.startsWith("/unloadbcsc")) {
@@ -548,11 +556,11 @@ public class BetterCSC implements ModMain, Listener {
                     allowedBuy = false;
                 } else if (message.contains("wave.complete")) {
                     allowedBuy = true;
-                    if (enableBuy) ((InventoryPlayer) api.minecraft().getPlayer().getInventory()).currentItem = slotForBuy;
+                    if (enableBuy) changeActiveSlot(api, slotForBuy);
                 }
             } else if (pluginMessage.getChannel().equals("func:drop-item")) {
                 allowedBuy = true;
-                if (enableBuy) ((InventoryPlayer) api.minecraft().getPlayer().getInventory()).currentItem = slotForBuy;
+                if (enableBuy) changeActiveSlot(api, slotForBuy);
             } else if (pluginMessage.getChannel().equals("func:title")) {
                 if (enableUP || enableBuy) {
                     if (NetUtil.readUtf8(pluginMessage.getData().copy()).equals("i18n.csc.game.not.gold")) {
@@ -606,6 +614,17 @@ public class BetterCSC implements ModMain, Listener {
         taskBuy = null;
         if (taskUse != null) taskUse.shutdownNow();
         taskUse = null;
+    }
+
+    private void changeActiveSlot(ClientApi api, int slot) {
+        try {
+            ((InventoryPlayer) api.minecraft().getPlayer().getInventory()).currentItem = slot;
+//            Wrapper.changeActiveSlot(api.minecraft().getPlayer().getInventory(), slot);
+        } catch (Exception e) {
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+            disableBuy(api, Text.of("Произошла ошибка при попытке сменить активный слот", TextFormatting.RED, ", ", TextFormatting.GOLD, e.toString(), TextFormatting.DARK_RED));
+        }
     }
 
     private int getMaxEnchantLvl(ItemStack stack) {

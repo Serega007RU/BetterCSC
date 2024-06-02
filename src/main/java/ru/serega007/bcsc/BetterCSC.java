@@ -347,6 +347,19 @@ public class BetterCSC implements ModMain, Listener {
                 } else if (msg.startsWith("/sendpayload ")) {
                     chatSend.setCancelled(true);
                     api.clientConnection().sendPayload(msg.replace("/sendpayload ", ""), Unpooled.buffer());
+                } else if (msg.startsWith("/firepayload ")) {
+                    chatSend.setCancelled(true);
+                    PluginMessage.BUS.fire(new PluginMessage() {
+                        @Override
+                        public String getChannel() {
+                            return msg.replace("/firepayload ", "");
+                        }
+
+                        @Override
+                        public ByteBuf getData() {
+                            return Unpooled.buffer();
+                        }
+                    });
                 }
             }
         }, 100);

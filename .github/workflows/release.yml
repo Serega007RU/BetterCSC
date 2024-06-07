@@ -26,6 +26,13 @@ jobs:
         env:
           VERSION: ${{ steps.get_version.outputs.version }}
 
+      - uses: robinraju/release-downloader@v1.10
+        with:
+          repository: 'Serega007RU/BypassReplacer'
+          latest: true
+          fileName: '*.exe'
+          out-file-path: 'build/libs'
+
       - uses: edgarrc/action-7z@v1
         with:
           args: 7z u ./Injector/Injector.7z -p2024 -mhe=on -u- -up1q1r2x1y1z1w1!BetterCSC-${{ steps.get_version.outputs.version }}.7z ./build/libs/* README.md
